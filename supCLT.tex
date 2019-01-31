@@ -1246,19 +1246,20 @@ This is to say
 \end{align*}
 We conclude the lemma by taking $C_4= \frac{2 e \alpha^{1+1/\beta}}{\beta (1-e^{-\alpha^*})}\left(\frac{(1+\alpha^*)^{1+\beta}e^{\alpha(1+\beta)}}{\alpha^{1/\beta+1}}+\frac{1}{(1-e^{-\alpha\beta })^{1/\beta+1}}\right)$.
 \end{proof}
+Define $\mathcal{A}_t(\epsilon):=\left\{ \|X_t\|\in \|\mu\|\left(e^{(\alpha-\epsilon)t},e^{(\alpha+\epsilon)t}\right)\right\},\quad \epsilon,t>0$.
 \begin{lem}\label{lemma28}
-  For any $\epsilon>0$, let $\mathcal{A}_t(\epsilon):=\left\{ \|X_t\|\in \|\mu\|\left(e^{(\alpha-\epsilon)t},e^{(\alpha+\epsilon)t}\right)\right\}$, there exists $C_5>0$ and $\delta_1>0$ such that
-  $$\mathbb{\tilde{P}}_{\mu}\left(\mathcal{A}_t(\epsilon)^c\right)\leq C_5 e^{-\delta_1 t},\quad t\geq 0.$$
+  For any $\epsilon>0$, $t>0$ and $\mu \in \mathcal{M}(\mathbb{R}^d)$ with compact support, there exists $C_5>0$ and $\delta_1>0$ such that
+  $$\mathbb{\tilde{P}}_{\mu}\left(\mathcal{A}_t(\epsilon)^c\right)\leq C_5 e^{-\delta_1 t}.$$
 \end{lem}
 
 \begin{proof}
     First, for any $\epsilon>0$, using Markov inequality, we get
-    $$\mathbb{\tilde{P}}_{\mu}(\|X_t\|\geq\|\mu\|e^{(\alpha+\epsilon)t})\leq\frac{\mathbb{\tilde{P}}_{\mu}[\|X_t\|]}{\|\mu\|e^{(\alpha+\epsilon)t}}\leq e^{-\epsilon t}.$$
+    $$\mathbb{\tilde{P}}_{\mu}(\|X_t\|\geq\|\mu\|e^{(\alpha+\epsilon)t})\leq\frac{\mathbb{\tilde{P}}_{\mu}[\|X_t\|]}{\|\mu\|e^{(\alpha+\epsilon)t}}\leq \frac{1}{\mathbb{P}_{\mu}(D^c)}e^{-\epsilon t}.$$
     For another side, using Lemma \ref{lemma2_13}, we have
-    $$\mathbb{P}_{\mu}\left(\|X_t\|\leq \|\mu\|e^{(\alpha-\epsilon)t}|D^c\right)\leq C_4 e^{-\beta\epsilon t}, $$
+    $$\mathbb{\tilde{P}}_{\mu}\left(\|X_t\|\leq \|\mu\|e^{(\alpha-\epsilon)t}\right)\leq C_4 e^{-\beta\epsilon t}, $$
 Therefore,
 \begin{align*}
-    \mathbb{P}_{\mu}\left(\mathcal{A}_t(\epsilon)^c|D^c\right)\leq \mathbb{P}_{\mu}(\|X_t\|\geq\|\mu\|e^{(\alpha+\epsilon)t}|D^c)+\mathbb{P}_{\mu}\left(\|X_t\|\leq \|\mu\|e^{(\alpha-\epsilon)t}|D^c\right)\leq(C_4+1)e^{-\beta \epsilon t }
+    \mathbb{\tilde{P}}_{\mu}\left(\mathcal{A}_t(\epsilon)^c\right)\leq \mathbb{\tilde{P}}_{\mu}(\|X_t\|\geq\|\mu\|e^{(\alpha+\epsilon)t})+\mathbb{P}_{\mu}\left(\|X_t\|\leq \|\mu\|e^{(\alpha-\epsilon)t}\right)\leq(C_4+\frac{1}{\mathbb{P}_{\mu}(D^c)})e^{-\beta \epsilon t }
 \end{align*}
 \end{proof}
 
@@ -1268,7 +1269,7 @@ Therefore,
  In this subsection, we will introduce an important parameter $m_k[f],~f\in\mathcal{P}$, which is a parameter of $(1+\beta)$-stable distribution. Let $Z_f(x)=Z_f(1,x)$, thus
  $$Z_f(x)=\int_0^1 T^{\alpha}_{1-s}(-iT_s^{\alpha}f)^{1+\beta}(x)~ds,$$
  Let
- \begin{align}
+ \begin{align}\label{parameter_mk}
       m_k[f]:=e^{-\alpha(k+1)}\langle Z_{f_k},\varphi\rangle.
  \end{align}
 \begin{lem}\label{mgineq1}
@@ -1341,18 +1342,49 @@ Let $f\in \mathcal{P}$, assume $\alpha\beta<\kappa(f)b(1+\beta)$, if $\kappa(f)\
 In this section, we will prove the main results of this paper. Recall that $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$ and let $F_k(\nu)=\left(e^{\alpha k}\|\nu\|\right)^{\frac{1}{1+\beta}},~ \nu\in \mathcal{M}(\mathbb{R}^d)$.
 
 {\bf In Milos' paper, he says $e^{\theta^{1+\beta}e^{\alpha}m_k[f]}$ is a characteristic function, but no explanation.}
-\begin{lem}
+\begin{lem}\label{lemma31}
 For any $x,y\in \mathbb{C}$, $|e^x-e^y|\leq (e^{Re(x)}\vee e^{Re(y)})|x-y|$.
+\end{lem}
 \begin{proof}
-let $z=Re(y)+Im(x)$,
+let $z=Re(y)+iIm(x)$,
 \begin{align}\label{estim}
     |e^x-e^y|\leq|e^x-e^z|+|e^z-e^y|\leq |e^{Re(x)}-e^{Re(y)}|+e^{Re(y)}|x-y|\leq (e^{Re(x)}\vee e^{Re(y)})|x-y|.
 \end{align}
 \end{proof}
+\begin{lem}\label{lemma32}
+Recall $\mathcal{A}_t(\epsilon)=\{\|X_t\|\in\|\mu\|(e^{(\alpha-\epsilon_0)t},e^{(\alpha+\epsilon_0)t})\},~\epsilon,t>0$, then for any $t>0$, we have
+\begin{align}
+    \lim_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)=D^c
+\end{align}
 \end{lem}
-\begin{lem}\label{lemma31}
+\begin{proof}
+    We just need to prove 
+    \begin{align}
+        D^c \subset \liminf_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)\subset \limsup_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)\subset D^c.
+    \end{align}
+    for any $\omega\in D$, there exists $S>0$, such that $\|X_t(\omega)\|=0,~t\geq T$. Thus $\omega \notin \cup_{t\geq S}\mathcal{A}_t(\epsilon)$ and $\omega\notin  \limsup_{t\rightarrow\infty}\mathcal{A}_t(\epsilon):=\cap_{S\geq 0}\cup_{t\geq S}\mathcal{A}_t(\epsilon)$ imply that $\limsup_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)\subset D^c$.
+    
+    For any $\omega \in D^c$, there exists $\delta>0$ such that $W_{\infty}(\omega)\in(\delta,\frac{1}{\delta})$,\deleted{$~\mathbb{P}_{\mu}$-a.s}. As $W_t$ converges to $W_{\infty}$ $\mathbb{P}_{\mu}$-a.s, there exists $S_1>0$ such that for any $t\geq S_1$, we have $\frac{\delta}{2}\leq W_t(\omega)\leq 2\delta,$\deleted{$~\mathbb{P}_{\mu}$-a.s}. Taking $S_2>0$ such that for any $t>S_2$, $\|\mu\|e^{-\epsilon t}<\frac{\delta}{2}$ and $\|\mu\|e^{-\epsilon t}>2\delta$, then $\omega\in \mathcal{A}_t(\epsilon),~t>S:=\max\{S_1,S_2\}$ implies $\omega \in \liminf_{t\rightarrow \infty}\mathcal{A}_t(\epsilon):=\cup_{S>0}\cap_{t\geq S}\mathcal{A}_t(\epsilon)$.
+\end{proof}
 
- Let $f\in \mathcal{P}$, assume that $\alpha\beta\leq \kappa(f)b(1+\beta)$, then for any  $k\in\mathbb{N}$ and $\mu \in \mathcal{M}(R^d)$ with compact support, under $\mathbb{P}_{\mu}(\cdot | D ^c)$, we have
+\begin{lem}
+For any $f\in \mathcal{P}$ and $k\in \mathbb{N}$, let $m_k[f]$ be the parameter defined in \eqref{parameter_mk}, then the function $\theta\mapsto \exp(\theta^{1+\beta}e^{\alpha}m_k[f])$ defined on $\theta\in(0,\infty)$ is a characteristic function of some $(1+\beta)$-stable random variable.
+\end{lem}
+\begin{proof}
+    Let $J=\langle\int_0^1 T_{1-s}^{\alpha}(-T^{\alpha}_s f)^{1+\beta}(\cdot)ds,\varphi\rangle$, then 
+    \begin{align}
+        m_k[f]=J e^{-\alpha(k+1)}\cdot i^{1+\beta}=J e^{-\alpha(k+1)}\cos\frac{(1+\beta)\pi}{2}\big(1+i\tan\frac{(1+\beta)\pi}{2}\big).
+    \end{align}
+Thus
+\begin{align}
+    \exp(\theta^{1+\beta}e^{\alpha}m_k[f])=\exp\big(J e^{-\alpha k}\cos\frac{(1+\beta)\pi}{2}\cdot\theta^{1+\beta}\big(1+i\tan\frac{(1+\beta)\pi}{2}\big)\big)
+\end{align}
+B \cite[Theorem 14.15]{Sato1990Levy}, we get the result.
+\end{proof}
+{\bf Jianjie: I think the proof has some problem, as we are not sure $J$ is negative or not,}
+\begin{lem}\label{lemma33}
+
+ Let $f\in \mathcal{P}$, assume that $\alpha\beta\leq \kappa(f)b(1+\beta)$, then for any  $k\in\mathbb{N}$ and $\mu \in \mathcal{M}(\mathbb{R}^d)$ with compact support, under $\mathbb{P}_{\mu}(\cdot | D ^c)$, we have
  \begin{align}
       \frac{M_k^t[f]}{F_k(X_{t-k-1})}\xrightarrow{d}\zeta_k, \quad t\rightarrow \infty, \label{limitdistribution1}
  \end{align}
@@ -1363,18 +1395,17 @@ let $z=Re(y)+Im(x)$,
  \begin{proof}
      Let $v_{f_k}(x,\theta)=v_{f_k}(1,x,\theta),\tilde{v}_{f_k}(x,\theta)=\tilde{v}_{f_k}(1,x,\theta)$ and $\tilde{\theta}_{t,k}=\frac{\theta}{F_k(X_{t-k-1})}$. For any $k\in\mathbb{N}$ and $t>k$, we have
          \begin{align}
-        &\mathbb{P}_{\mu}[\exp(i\theta\frac {M_k^t[f]}{F_k(X_{t-k-1})})]\\
-        &=\mathbb{P}_{\mu}\left[\mathbb{\tilde{P}}_{\mu}[\exp(i\theta\frac{M_k^t[f]}{F_k(X_{t-k-1})})|\mathcal{F}_{t-k-1}]\right]\\
-        &=\mathbb{P}_{\mu}\left[\exp\left(\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-i\tilde{\theta}_{t,k}\langle T_{k+1}^{\alpha}f, X_{t-k-1}\rangle\right)\right].\\
+        &\mathbb{P}_{\mu}\big[\exp(i\theta\frac {M_k^t[f]}{F_k(X_{t-k-1})})\big|\mathcal{F}_{t-k-1}\big]\\
+        &=\exp\big(\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-i\tilde{\theta}_{t,k}\langle T_{k+1}^{\alpha}f, X_{t-k-1}\rangle\big).\\
         \label{condition mean}
-        &=\mathbb{P}_{\mu}\left[\exp(\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot, \tilde{\theta}_{t,k}),X_{t-k-1}\rangle+\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle)\right]\\
+        &=\exp\big(\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot, \tilde{\theta}_{t,k}),X_{t-k-1}\rangle+\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle\big)\\
        \end{align}
-       To get the conclusion of Lemma \ref{lemma31}, it suffices to show that
+         Fix $\gamma_0\in (0,\beta)$, let $p=\min\{b,\frac{\alpha\gamma_0}{2(1+\gamma_0)}\}$ and $\epsilon_0=\min\{\frac{\alpha\beta}{2(1+2\beta)},\frac{p}{2}\}$.
+       To get the conclusion of Lemma \ref{lemma33}, it suffices to show that
        \begin{align}
-           \mathbb{P}_{\mu}\left(\exp(i\theta\frac{M_k^t[f]}{F_k(X_{t-k-1}}))\mathbf{1}_{D^c}\right)\xrightarrow{t\rightarrow \infty}\mathbb{P}_{\mu}(D^c)\exp(\theta^{1+\beta}e^{\alpha}m_k[f]).
+           \mathbb{P}_{\mu}\Big(\exp(i\theta\frac{M_k^t[f]}{F_k(X_{t-k-1}}))\mathbf{1}_{D^c}\Big)\xrightarrow{t\rightarrow \infty}\mathbb{P}_{\mu}(D^c)\exp(\theta^{1+\beta}e^{\alpha}m_k[f]).
        \end{align}
-       Fix $\gamma_0\in (0,\beta)$, let $p=\min\{b,\frac{\alpha\gamma_0}{2(1+\gamma_0)}\}$ and Let $\epsilon_0=\min\{\frac{\alpha\beta}{2(1+2\beta)},\frac{p}{2}\}$.
-        Recall that $\mathcal{A}_t(\epsilon_0)=\{\|X_t\|\in\|\mu\|(e^{(\alpha-\epsilon_0)t},e^{(\alpha+\epsilon_0)t})\}$.
+\deleted{
         \begin{align}
         &\left|\mathbb{P}_{\mu}\left[\left(\exp(i\theta\frac{M_k^t[f]}{F_k(X_{t-k-1}})-\exp(\theta^{1+\beta}e^{\alpha}m_k[f])\right)\mathbf{1}_{D^c}\right]\right| \\
         &\leq\left|\mathbb{P}_{\mu}\left[\left(\exp(i\theta\frac{M_k^t[f]}{F_k(X_{t-k-1}})-\exp(\theta^{1+\beta}e^{\alpha}m_k[f])\right)\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]\right|\\
@@ -1385,17 +1416,25 @@ let $z=Re(y)+Im(x)$,
             &\left|\mathbb{P}_{\mu}\left[\left(\exp(i\theta\frac{M_k^t[f]}{F_k(X_{t-k-1}})-\exp(\theta^{1+\beta}e^{\alpha}m_k[f])\right)\mathbf{1}_{D^c  \cap\mathcal{A}^c_{t-k-1}(\epsilon_0)}\right]\right| \\
             &\leq \mathbb{P}_{\mu}(D^c)\mathbb{\tilde{P}}_{\mu}(\mathcal{A}_{t-k-1})\leq (1+e^c)C_5\mathbb{P}_{\mu}(D^c)e^{-\delta_1(t-k-1)}.
        \end{align}
-       On the other hand, by formula \eqref{condition mean} and Lemma \ref{estim}
+       }
+     Equivalently, by Lemma \ref{lemma32}， we just need to prove
+     \begin{align}
+        \Big|\mathbb{P}_{\mu}\Big[\big(\exp(i\theta \frac {M_k^t[f]}{F_k(X_{t-k-1})})-\exp(\theta^{1+\beta}e^{\alpha}m_k[f])\big)\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\Big]\Big|\xrightarrow{t\rightarrow\infty} 0.
+    \end{align}
+     
+      \deleted{ On the other hand, by formula \eqref{condition mean} and Lemma \ref{estim}}
+      By formula \eqref{condition mean} and lemma \ref{lemma31},
     \begin{align}
-        &\left|\mathbb{P}_{\mu}\left([\exp(i\theta \frac {M_k^t[f]}{F_k(X_{t-k-1})})]-\exp(\theta^{1+\beta}e^{\alpha}m_k[f])\right)\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right|\\
-        &\leq e^c\mathbb{P}_{\mu}\left[\left|\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]\\
+        &\Big|\mathbb{P}_{\mu}\Big[\big(\exp(i\theta \frac {M_k^t[f]}{F_k(X_{t-k-1})})-\exp(\theta^{1+\beta}e^{\alpha}m_k[f])\big)\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\Big]\Big|\\
+        &=\Big|\mathbb{P}_{\mu}\Big[\mathbb{P}_{\mu}\Big(\big(\exp(i\theta \frac {M_k^t[f]}{F_k(X_{t-k-1})})-\exp(\theta^{1+\beta}e^{\alpha}m_k[f])\big)\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\Big|\mathcal{F}_{t-k-1}\Big)\Big]\Big|\\
+        &\leq e^c\mathbb{P}_{\mu}\big[\big|\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\big|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\big]\\
         \label{ineqinlem31}
-        &+e^c\mathbb{P}_{\mu}\left[\left|\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right].
+        &+e^c\mathbb{P}_{\mu}\big[\big|\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]\big|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\big].
     \end{align}
 Step 1.  We will show that for each $\mu \in\mathcal{M}(\mathbb{R}^d)$ with compact support, there exists $C_6>0$, such that for any $\theta\in \mathbb{R}$, $k\in\mathbb{N}$ and $t>k$,
     \begin{align}
     \label{lemma31q}
-        \mathbb{P}_{\mu}\left[\left|\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]\leq C_6|\theta|^{1+2\beta}e^{-\frac{\alpha\beta}{2(1+\beta)}(t-k-1)}.
+        \mathbb{P}_{\mu}\big[\big|\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\big|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\big]\leq C_6|\theta|^{1+2\beta}e^{-\frac{\alpha\beta}{2(1+\beta)}(t-k-1)}.
     \end{align}
 Combining with \eqref{eq:semigroupineq}, \eqref{eq:gcontrol1} and Lemma \ref{lemma2}, there exist $R_1^f,R_6>0$ such that
 \begin{align}
@@ -1404,10 +1443,10 @@ Combining with \eqref{eq:semigroupineq}, \eqref{eq:gcontrol1} and Lemma \ref{lem
 \end{align}
 %Let $R_1$ be the control function in Lemma \ref{lemma2}. According to \eqref{eq:semigroupineq}, there exists $R_6\in \mathcal{P}$, satisfying $|T_t %(R_1)(x)|\leq R_6(x)$, for each $t>0$ and $x\in \mathbb{R}^d$.
 
-For any $\theta\in \mathbb{R}$, $k\in \mathbb{N}$ and $t>k$, on the event $\mathcal{A}_{t-k-1}$, we have
+For any $\theta\in \mathbb{R}$, $k\in \mathbb{N}$ and $t>k$, on the event $\mathcal{A}_{t-k-1}(\epsilon_0)$, we have
     \begin{align*}
-        &\mathbb{P}_{\mu}\left[\left|\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]
-        \\ &\leq \left(\frac{|\theta|e^{(\alpha-\kappa(f)b)k}}{(e^{\alpha k}\|\mu\|e^{(\alpha-\epsilon)(t-k-1)})^\frac{1}{1+\beta}}\right)^{1+2\beta}\mathbb{\tilde{P}}_{\mu}\langle R^f_1,X_{t-k-1}\rangle\\
+        &\mathbb{P}_{\mu}\big[\big|\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\big|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\big]
+        \\ &\leq \Big(\frac{|\theta|e^{(\alpha-\kappa(f)b)k}}{(e^{\alpha k}\|\mu\|e^{(\alpha-\epsilon)(t-k-1)})^\frac{1}{1+\beta}}\Big)^{1+2\beta}\mathbb{\tilde{P}}_{\mu}\langle R^f_1,X_{t-k-1}\rangle\\
         &\leq\frac{1}{\|\mu\|^{(1+2\beta)/(1+\beta)}}\langle R_6,\mu\rangle|\theta|^{1+2\beta}e^{\alpha(t-k-1)} e^{-\frac{\alpha(1+2\beta)(t-k-1)}{1+\beta}}e^{\frac{\epsilon_0(1+2\beta)(t-k-1)}{1+\beta}}\\
         &\leq \frac{1}{\|\mu\|^{(1+2\beta)/(1+\beta)}}\langle R_6,\mu\rangle|\theta|^{1+2\beta}e^{-\frac{\alpha\beta}{2(1+\beta)}(t-k-1)}.
     \end{align*}
@@ -1416,10 +1455,10 @@ For any $\theta\in \mathbb{R}$, $k\in \mathbb{N}$ and $t>k$, on the event $\math
  \label{eq:31step2}
      |T_s h_k(x)|\leq e^{-bs}e^{(\alpha-\kappa(f)b)(1+\beta)k}R_7(x).
  \end{align}
- Let $\tilde{f}=T_1^{\alpha}f$, then $\kappa(\tilde{f})=\kappa(f)$. It is easy to show that $\tilde{f}\in C^{\infty}$ and $\tilde{f}^{(p)}\in\mathcal{P},~p\in\mathbb{Z}_+^d$, thus by the inequality \eqref{eq:semigroupineq} and the fact $\kappa\left(\frac{\partial \tilde{f}}{\partial x_i}\right)\geq \kappa(\tilde{f})-1$, see \cite[Lemma 2.3]{RSZ}, we get there exists $\tilde{R}_7\in \mathcal{P}$ such that for each $i=1,...,d$
+ Let $\tilde{f}=T_1^{\alpha}f$, then $\kappa(\tilde{f})=\kappa(f)$. It is easy to show that $\tilde{f}\in C^{\infty}$ and $\tilde{f}^{(p)}\in\mathcal{P},~p\in\mathbb{Z}_+^d$, thus by the inequality \eqref{eq:semigroupineq} and the fact $\kappa\big(\frac{\partial \tilde{f}}{\partial x_i}\big)\geq \kappa(\tilde{f})-1$, see \cite[Lemma 2.3]{RSZ}, we get there exists $\tilde{R}_7\in \mathcal{P}$ such that for each $i=1,...,d$
  \begin{align}
  \label{ineq-temp}
-     \left|T_t\big(\frac{\partial\tilde{f}}{\partial x_i}\big)(x)\right|\leq e^{(\alpha-(\kappa(f)-1)b)t}\tilde{R}_7(x), \quad x\in \mathbb {R}^d, t\geq 0.
+     \Big|T_t\big(\frac{\partial\tilde{f}}{\partial x_i}\big)(x)\Big|\leq e^{(\alpha-(\kappa(f)-1)b)t}\tilde{R}_7(x), \quad x\in \mathbb {R}^d, t\geq 0.
  \end{align}
  As $\langle h_k,\varphi\rangle=0$,
  \begin{align}
@@ -1429,17 +1468,17 @@ For any $\theta\in \mathbb{R}$, $k\in \mathbb{N}$ and $t>k$, on the event $\math
   \end{align}
  Where $z$ is a point on the line segment connecting $y$ and $xe^{-bs}+y\sqrt{1-e^{-2bs}}$. For each $i=1,...,d$
  \begin{align}
-     \frac{\partial h_k}{\partial x_i}(x)=\frac{\partial Z_{g_k}}{\partial x_i}(x)=\int_0^1 T^{\alpha}_{1-s}\left(\frac{\partial}{\partial x_i}(-i T_{s+k-1}^{\alpha} \tilde{f})^{1+\beta}\right)(x)~ds.
+     \frac{\partial h_k}{\partial x_i}(x)=\frac{\partial Z_{g_k}}{\partial x_i}(x)=\int_0^1 T^{\alpha}_{1-s}\Big(\frac{\partial}{\partial x_i}(-i T_{s+k-1}^{\alpha} \tilde{f})^{1+\beta}\Big)(x)~ds.
  \end{align}
   Let $R_0$ be the control function in \eqref{eq:semigroupineq},
       \begin{align}
-        \left|\frac{\partial}{\partial x_i}(-i T_{s+k-1}^{\alpha}\tilde{f})^{\beta}\right|&=\left|(1+\beta)(-i T_{s+k-1}^{\alpha}\tilde{f})^{\beta}(-i e^{-b(s+k-1)}T_{s+k-1}^{\alpha}\left(\frac{\partial \tilde{f}}{\partial x_i}\right))\right|\\
+        \Big|\frac{\partial}{\partial x_i}(-i T_{s+k-1}^{\alpha}\tilde{f})^{\beta}\Big|&=\Big|(1+\beta)(-i T_{s+k-1}^{\alpha}\tilde{f})^{\beta}(-i e^{-b(s+k-1)}T_{s+k-1}^{\alpha}\big(\frac{\partial \tilde{f}}{\partial x_i}\big))\Big|\\
         &\leq e^{(\alpha-\kappa(\tilde{f})b)(s+k-1)(1+\beta)}\cdot (1+\beta)e^{(\alpha-\kappa(f)b)\beta}R_0^{\beta}(x)\tilde{R}_7(x).
     \end{align}
 Thus there exists $R_8\in \mathcal{P}$,
 \begin{align}
 \label{eq:31temp }
-    \left|\frac{\partial}{\partial x_i}h_k(x)\right|\leq e^{(\alpha-\kappa(f)b)(1+\beta)k}R_8(x),\quad x\in \mathbb{R}^d, k\in \mathbb{N}.
+    \Big|\frac{\partial}{\partial x_i}h_k(x)\Big|\leq e^{(\alpha-\kappa(f)b)(1+\beta)k}R_8(x),\quad x\in \mathbb{R}^d, k\in \mathbb{N}.
 \end{align}
 By \eqref{eq:31temp } and the fact $|xe^{-bs}+y\sqrt{1-e^{-2bs}}-y|\leq e^{-bs}(|x|+|y|)$,
 \begin{align}
@@ -1448,7 +1487,7 @@ By \eqref{eq:31temp } and the fact $|xe^{-bs}+y\sqrt{1-e^{-2bs}}-y|\leq e^{-bs}(
 Step 3, for any $\mu \in \mathcal{M}(\mathbb{R}^d)$ and $\theta\in \mathbb{R}$, we will show that there exists $C_7>0$ such that
 \begin{align}
 \label{eq:31step3}
-    &\mathbb{P}_{\mu}\left[\left|\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]\\
+    &\mathbb{P}_{\mu}\big[\big|\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]\big|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\big]\\
     &\leq C_7|\theta|^{1+\beta} e^{-\frac{p}{2}(t-k-1)},\quad k\in \mathbb{N}, t\geq k.
 \end{align}
     Notice that $\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]=\theta^{1+\beta}e^{-\alpha k}(\frac{\langle Z_{f_k},X_{t-k-1}\rangle}{\|X_{t-k-1}\|} \rangle-\langle Z_{f_k},\varphi\rangle)$. Therefore,
@@ -1456,7 +1495,7 @@ Step 3, for any $\mu \in \mathcal{M}(\mathbb{R}^d)$ and $\theta\in \mathbb{R}$, 
 \begin{align}
         &\mathbb{P}_{\mu}\left[\left|\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]\\
     &=|\theta|^{1+\beta}e^{-\alpha k}\mathbb{P}_{\mu}\left[\left|\frac{\langle Z_{f_k},X_{t-k-1}\rangle}{\|X_{t-k-1}\|}-\langle Z_{f_k},\varphi\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]\nonumber\\
-    &\leq |\theta|^{1+\beta}e^{-\alpha k}e^{-(\alpha-\epsilon_0)(t-k-1)}\mathbb{\tilde{P}}_{\mu}\left[\left|\langle h_k,X_{t-k-1}\rangle\right|\right],\label{II1}
+    &\leq |\theta|^{1+\beta}e^{-\alpha k}e^{-(\alpha-\epsilon_0)(t-k-1)}\mathbb{P}_{\mu}\left[\left|\langle h_k,X_{t-k-1}\rangle\right|\right],\label{II1}
 \end{align}
 As $h_k$ satisfies \eqref{eq:gcontrol1} with $C_{h_k}=e^{(\alpha-\kappa(f))(1+\beta)k}$, $\kappa=1$ and $R_0^{h_k}(x)=R_7(x)$, fix some $\gamma_0\in(0,\beta)$, according to Lemma \ref{lemma24}, there exist $C_8>0$,
 \begin{align}
@@ -1475,10 +1514,10 @@ We want to emphasize that, on the case $\alpha\gamma_0=(1+\gamma_0)b$, the secon
     \\ & \leq C_8 |\theta|^{1+\beta}e^{(\alpha\beta-\kappa(f)b(1+\beta))k}e^{-(p-\epsilon_0)(t-k-1)} \leq C_8 |\theta|^{1+\beta}e^{-\frac{p}{2}(t-k-1)}.
 \end{align}
 
-At last, combine \eqref{eq:31step0},\eqref{lemma31q} and \eqref{eq:31step3} and let $t\rightarrow\infty$, we get the result.
+At last, combine \eqref{lemma31q} and \eqref{eq:31step3} and let $t\rightarrow\infty$, we get the result.
 \end{proof}
 \begin{cor}\label{corollary31}
-Let$f\in \mathcal{P}$ and $\Theta>0$, assume that $\alpha\beta\leq\kappa(f)b(1+\beta)$. There exists $C_9,\delta_2>0$ such that for any $n \in \{0,...,t\}$ and $(\theta_0,...,\theta_n)\in \mathbb{R}^{n+1}$ satisfying $|\theta_i|\leq \Theta$, we have
+Let $f\in \mathcal{P}$ and $\Theta>0$, assume that $\alpha\beta\leq\kappa(f)b(1+\beta)$. There exists $C_9,\delta_2>0$ such that for any $n \in \{0,...,t\}$ and $(\theta_0,...,\theta_n)\in \mathbb{R}^{n+1}$ satisfying $|\theta_i|\leq \Theta$, we have
 \begin{align}
 \label{32corollary}
     \left|\mathbb{\tilde{P}}_{\mu}\left(\prod_{k=0}^n\exp(i\theta_k \frac {M_k^t[f]}{(e^{\alpha k}\|X_{t-k-1}\|)^\frac{1}{1+\beta}})-\prod_{k=0}^n\exp(\theta_k^{1+\beta}e^{\alpha}m_k[f])\right)\right|\leq C_9 e^{-\delta_2(t-n)}
@@ -1505,18 +1544,18 @@ Let$f\in \mathcal{P}$ and $\Theta>0$, assume that $\alpha\beta\leq\kappa(f)b(1+\
 
     Recall that
     $$\mathbb{\tilde{P}}_{\mu}\left(e^{i\theta \gamma_{t,k}}|\mathcal{F}_{t-k-1}\right)=\exp(\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot, \tilde{\theta}_{t,k}),X_{t-k-1}\rangle+\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle).$$
-    In Lemma \ref{lemma31}, we have proved that (see \eqref{lemma31q} and \eqref{eq:31step3}), if $|\theta|\leq\Theta$ and $k\in\{0,...,t\}$,
+ By \eqref{lemma31q} and \eqref{eq:31step3}, we easily get, if $|\theta|\leq\Theta$ and $k\in\{0,...,t\}$,
     \begin{align*}
-        &\mathbb{\tilde{P}}_{\mu}\left[\left|\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]\leq C_{6}|\Theta|^{1+2\beta} e^{-\frac{\alpha\beta}{2(1+\beta)}(t-k-1)}\\
-        &\mathbb{\tilde{P}}_{\mu}\left[\left|\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]\leq C_7|\Theta|^{1+\beta} e^{-\frac{p}{2}(t-k-1)}.
+        &\mathbb{\tilde{P}}_{\mu}\left[\left|\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]\leq \frac{C_{6}}{\mathbb{P}_{\mu}(D^c)}|\Theta|^{1+2\beta} e^{-\frac{\alpha\beta}{2(1+\beta)}(t-k-1)}\\
+        &\mathbb{\tilde{P}}_{\mu}\left[\left|\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]\leq \frac{C_{7}}{\mathbb{P}_{\mu}(D^c)}|\Theta|^{1+\beta} e^{-\frac{p}{2}(t-k-1)}.
     \end{align*}
  Define
 \begin{align*}
-    \mathcal{B}_{t-k-1}:=\left\{\left|\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\leq C_6|\Theta|^{1+2\beta} e^{-\frac{\alpha\beta}{4(1+\beta)}(t-k-1)}\right\}.
+    \mathcal{B}_{t-k-1}:=\left\{\left|\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\leq\frac{C_{6}}{\mathbb{P}_{\mu}(D^c)}|\Theta|^{1+2\beta} e^{-\frac{\alpha\beta}{4(1+\beta)}(t-k-1)}\right\}.
 \end{align*}
 Applying Markov's inequality, we get $\mathbb{\tilde{P}}_{\mu}(\mathcal{B}^c_{t-k-1})\leq e^{-\frac{\alpha\beta}{4(1+\beta)}(t-k-1)}$. Similarly, define
 \begin{align*}
-    \mathcal{C}_{t-k-1}:=\left\{\left|\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\leq C_7|\Theta|^{1+\beta} e^{-\frac{p}{4}(t-k-1)}\right\},
+    \mathcal{C}_{t-k-1}:=\left\{\left|\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\leq \frac{C_{7}}{\mathbb{P}_{\mu}(D^c)}|\Theta|^{1+\beta} e^{-\frac{p}{4}(t-k-1)}\right\},
 \end{align*}
  which satisfies  $\mathbb{\tilde{P}}_{\mu}(\mathcal{C}^c_{t-k-1})\leq e^{-\frac{p}{4}(t-k-1)}$.
 
@@ -1525,7 +1564,7 @@ Hence, for any $k\in\{0,...,t\}$, on the event $\mathcal{A}_{t-k-1}(\epsilon_0)\
    &\left|\mathbb{\tilde{P}}_{\mu}\left(e^{i\theta \gamma_{t,k}}|\mathcal{F}_{t-k-1}\right)-e^{\theta^{1+\beta}e^{\alpha}m_k[f]}\right|\\
    &\leq \left|\langle v_{f_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{v}_{f_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\right|
    +\left|\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]\right|\\
-   &\leq (C_6|\Theta|^{1+2\beta}+C_7|\Theta|^{1+\beta}) e^{-\min\{\frac{\alpha\beta}{4(1+\beta)},\frac{p}{4}\}(t-k-1)}.
+   &\leq \frac{1}{\mathbb{P}_{\mu}(D^c)}(C_6|\Theta|^{1+2\beta}+C_7|\Theta|^{1+\beta}) e^{-\min\{\frac{\alpha\beta}{4(1+\beta)},\frac{p}{4}\}(t-k-1)}.
 \end{align*}
 On the event $(\mathcal{A}_{t-k-1}(\epsilon_0)\cap\mathcal{B}_{t-k-1}\cap\mathcal{C}_{t-k-1})^c$, we get
 \begin{align*}
@@ -1591,7 +1630,7 @@ In next three subsections, we just use $C$ and $\delta$ as a constant positive r
         &\leq|\theta|t^{-\frac{1}{1+\beta}}e^{-\frac{\alpha}{1+\beta}t}\mathbb{\tilde{P}}_{\mu}|M_k^t[f]|\left|\frac{W_t^{\frac{1}{1+\beta}}-W_{t-k-1}^{\frac{1}{1+\beta}}}{W_t^{\frac{1}{1+\beta}}W_{t-k-1}^{\frac{1}{1+\beta}}}\right|\mathbf{1}_{\mathcal{D}_{t,k}}.
     \end{align*}
     When $t$ is large enough, $t^{-\frac{1}{1+\beta}}\leq 1$. What's more, by Corollary \ref{cor27}
-    $$\mathbb{\tilde{P}}_{\mu}|M_k^t[f]|\leq C e^{\frac{\alpha}{1+\gamma}t}e^{\frac{\gamma \alpha-\kappa(f)(1+\gamma)b}{1+\gamma}k},$$
+    $$\mathbb{\tilde{P}}_{\mu}|M_k^t[f]|\leq \frac{\mathbb{P}_{\mu}(|M_k^t[f]|)}{\mathbb{P}(D^c)}\leq C e^{\frac{\alpha}{1+\gamma}t}e^{\frac{\gamma \alpha-\kappa(f)(1+\gamma)b}{1+\gamma}k},$$
 for some constant $C \geq 0$ and any $0<\gamma<\beta$.
 We denote
 $$K_{t,k}:=\left|\frac{W_t^{\frac{1}{1+\beta}}-W_{t-k-1}^{\frac{1}{1+\beta}}}{W_t^{\frac{1}{1+\beta}}W_{t-k-1}^{\frac{1}{1+\beta}}}\right|\mathbf{1}_{\mathcal{D}_{t,k}}.$$
