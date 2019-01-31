@@ -1,6 +1,7 @@
 %%----Versions-----------------------------
+% supCLT0127.tex 2018/01/27 by Yanxia
 % supCLT0124.tex 2018/01/24 by Jianjie
-% supCLT0109.tex 2018/01/14 by Yanxia
+% supCLT0114.tex 2018/01/14 by Yanxia
 % supCLT0107.tex 2018/01/07 by Jianjie
 % supclt1231.tex 2018/12/14 by Zhenyao
 % supclt1213.tex 2018/12/14 by Yanxia
@@ -215,18 +216,18 @@ $
     = \langle P^\alpha_t f, \mu \rangle,
     \quad t\geq 0, f\in \mathcal B(\mathbb R^d, \mathbb R_+), \mu \in \mathcal M(\mathbb R^d).
 \end{equation}
- %new added
+
+
  In this paper, we will establish some spatial central limit theorems for the super-OU process with stable branching mechanism. Precisely, we want to find $F_t$ and $G_t$ such that
  $$\frac{\langle f, X_t \rangle -G_t}{F_t}$$ converges weakly to some non-degenerate random variable as $t\rightarrow\infty$, for some test functions $f$. It turns out that the normalization $F_t$ depends on what we call branching rate regimes determined by the sign of $\alpha\beta-\kappa_f b (1+\beta)$, where $\kappa_f$ is the order of $f$ in the spectral decomposition.
 
- There are many papers studying central limit behavior for branching processes, branching diffusions and superprocesses. See \cite{HKBPS1,HKBPS2} for supercritical multi-type Galton-Waston processes, \cite{KBA1,KBA2,KBA3} for supercritical multi-type continuous time branching processes and \cite{ASHH} for general supercritical branching Markov processes under some certain conditions. In \cite{ARMP}, Adamcazk and Milo\'s proved some central limit theorems for supercritical branching Ornstein-Uhlenbeck processes with binary branching mechanism and in \cite{MP2012} Milo\'s proved some central limit theorems for supercritical super-OU processes with branching mechanisms satisfying a forth moment condition. In this two paper, Milo\'s with his coauthor pictured connection between CLT and what they call branching rate regimes. In \cite{RSZ}, Yanxia Ren, Renming Song and Rui Zhang proved some central limit thoerems for supercritical super-OU processes with branching mechanisms satisfying only a second moment. Moverover, Compare with the results in \cite{ARMP,MP2012}, the limit distributions in \cite{RSZ} are non-degenerate. In \cite{RSZ1,RSZ2,RSZ3,RSZ4}, They also establish a series of central limit theorems for a large class of general supercritical branching Markov processes and super processes with spatially dependent branching mechanisms.
+ There are many papers studying central limit theorems for branching processes, branching diffusions and superprocesses. See \cite{HKBPS1,HKBPS2} for supercritical multi-type Galton-Waston processes, \cite{KBA1,KBA2,KBA3} for supercritical multi-type continuous time branching processes and \cite{ASHH} for general supercritical branching Markov processes under some certain conditions. In \cite{ARMP}, Adamcazk and Milo\'s proved some central limit theorems for supercritical branching Ornstein-Uhlenbeck processes with binary branching mechanism and in \cite{MP2012} Milo\'s proved some central limit theorems for supercritical super-OU processes with branching mechanisms satisfying a forth moment condition. In this two paper, Milo\'s with his coauthor pictured connection between CLT and what they call branching rate regimes. In \cite{RSZ}, Ren, Song and Zhang proved some central limit thoerems for supercritical super-OU processes with branching mechanisms satisfying only a second moment. Moverover, Compare with the results in \cite{ARMP,MP2012}, the limit distributions in \cite{RSZ} are non-degenerate. In \cite{RSZ1,RSZ2,RSZ3,RSZ4}, They also establish a series of central limit theorems for a large class of general supercritical branching Markov processes and super processes with spatially dependent branching mechanisms.
 
- All the results described above hold for systems with branching mechanisms satisfying finite variance. It's a natural step to establish counterparts of the central limit theorems for super processes with infinite variance.  In \cite{MM}, Marks and Milo\'s have considered the limit behavior of supercritical branching Ornstein-Uhlenbeck processes with a special stable branching law. They established some central limit theorems on the small and critical branching rate cases but no large rate case. In this paper, we consider a class of super-OU processes with more general stable branching mechanisms. On small and critical branching cases, we obtained similar central limit theorems. Moreover, on large rate case, we not only show an almost sure convergent result, but also establish the corresponding central limit theorem, which is not appeared in \cite{MM}.
+ All the results described above hold for systems with branching mechanisms satisfying finite variance. It's a natural  to ask that how to establish counterparts of the central limit theorems for branching Markov processes and superprocesses with infinite variance.  In \cite{MM}, Marks and Milo\'s considered the limit behavior of supercritical branching Ornstein-Uhlenbeck processes with a special stable branching law. They established some central limit theorems for small and critical branching rate cases,  but leave the central limit result unsolved for large rate case. In this paper, we consider a class of super-OU processes with more general stable branching mechanisms. For small and critical branching cases, we obtained central limit theorems which are similar to corresponding results for branching Ornstein-Uhlenbeck processes in Marks and Milo\'s \cite{MM}. For large rate case, we first establish  an almost sure convergent result, and then establish a central limit theorem, which has no corresponds in \cite{MM}.
 
- Except for the main results proved in section 4, there are some other significative results in our paper. In appendix, we show that the characteristic exponent of supercritical general super processes $U_t f(x)=-{\rm Log} \mathbb{P}_{\delta_x}e^{i\theta X_t(f)}$ can be defined by corresponding equation by using Spain Decomposition. In section 3, we establish a small value probability estimation of supercritical continuous-state branching processes with branching mechanism satisfying Grey's condition and $L\log L$ critierion. This all results are necessary for us to prove the central limit theorems.
+ %Except for the main results proved in section 4, there are some other significative results in our paper. In appendix, we show that the characteristic exponent of supercritical general super processes $U_t f(x)=-{\rm Log} \mathbb{P}_{\delta_x}e^{i\theta X_t(f)}$ can be defined by corresponding equation by using Spain Decomposition. In section 3, we establish a small value probability estimation of supercritical continuous-state branching processes with branching mechanism satisfying Grey's condition and $L\log L$ critierion. This all results are necessary for us to prove the central limit theorems.
 
 
- % end new
 \subsection{OU Semigroup}
     In this subsection, we recall some results on the spectral properties of the OU operator $L$ from \cite{GD}.
     Let $\xi$ be an OU process with generator $L$ given by \eqref{eq: OU generator}.
@@ -524,7 +525,6 @@ Let $X$ be the super-OU process introduced in Subsection 1.1. Write $\psi_0(z)=\
     \quad  f\in \mathcal B(\mathbb R^d, \mathbb C_+), x\in \mathbb R^d.
 \end{split}\end{equation}
 For all $t\in [0,\infty), x\in \mathbb R^d $ and $f \in \mathcal{P}$, recall that $U_tf(x) := \operatorname{Log} \mathbb P_{\delta_x}[e^{i\theta \langle f, X_t\rangle}]|_{\theta = 1}$,
-%the value of the L\'evy exponent of the infinite divisible random variable
 the value of the characteristic exponent of the infinite divisible random variable
 $\langle f, X_t\rangle$ at $1$.
     From \eqref{eq: -v has positive real part}, we know that $-U_tf(x)$ takes values in $\mathbb C_+$. Furthermore, we know from Proposition \ref{prop: complex FKPP-equation} that
@@ -681,16 +681,40 @@ If let
 \]
 \end{lem}
 
-Further, for each $f\in \mathcal{P}$ satisfying $\alpha\beta<\kappa_fb(1+\beta)$,
-According to \eqref{domi-m}, $\sum_{k=0}^\infty |m_k[f]|<\infty$, and  then
-\begin{equation}\label{sum-m}
-m[f]
-    :=\sum_{k=0}^\infty m_k[f]
-    =\int_0^{\infty} e^{-\alpha s} \langle \eta (-iP_s^\alpha f)^{1+\beta}, \varphi \rangle~ds.
-\end{equation}
-% new added
-% I move ahead the follow lemma used in prop 2.6.
+%moved from below
+\begin{lem}\label{lem: control of gk}(\cite[Lemma 2.8]{MM})
+    For each $f\in \mathcal{P}$, let
+    \begin{align}
+        g_k
+    := \frac{Z_1 P^{\alpha}_k f-\langle  Z_1P^{\alpha}_k f,\varphi\rangle}{e^{(\alpha-\kappa_f b)(1+\beta)t}},
+    \quad k \geq 0.
+    \end{align}
+    There exist $h\in \mathcal{P}$ such that
+    \begin{align}
+        |P_sg_k|\leq e^{-bs}h,\quad s\geq 0, k \geq 0.
+    \end{align}
+\end{lem}
+% end move
+%moved from below
+\begin{lem}\label{control of gn} Suppose that $g\in \mathcal{C}_l$.
+    Put
+    \begin{align}
+        \bar{g}_t:=\frac{Z_1(-I_tg)-\langle Z_1(-I_tg),\varphi\rangle}{e^{-(\alpha-Kb)(1+\beta)t}},\quad t\geq 0.
+    \end{align}
+    There exists $h\in \mathcal{P}$ such that
+    \begin{align}
+        |P_s\bar{g}_t|\leq e^{-bs}h,\quad s\geq 0, t\geq 0.
+    \end{align}
+\end{lem}
+\begin{proof}
+    The proof  is similar to that of \cite[Lemma 2.8]{MM}.
+\end{proof}
+% end move
+
+
+
 Next lemma is an criterion of $(1+\beta)$-stable distribution.
+
 \begin{lem}
 \label{lem: charactreisticfunction}
     Let $q$ be a measure on $\mathbb R^d\setminus\{0\}$ with $\int |x|^{1+\beta} q(dx) \in (0,\infty)$.
@@ -728,7 +752,15 @@ Recall the definition of $\Gamma$ function in \eqref{eq: definition of Gamma fun
 \qedhere
 \end{split}\end{equation}
 \end{proof}
-% added end
+
+For each $f\in \mathcal{P}$ satisfying $\alpha\beta<\kappa_fb(1+\beta)$,
+According to \eqref{domi-m}, $\sum_{k=0}^\infty |m_k[f]|<\infty$, and  then
+\begin{equation}\label{sum-m}
+m[f]
+    :=\sum_{k=0}^\infty m_k[f]
+    =\int_0^{\infty} e^{-\alpha s} \langle \eta (-iP_s^\alpha f)^{1+\beta}, \varphi \rangle~ds.
+\end{equation}
+
 \begin{prop}
 \label{cor: alpha stable rv}
 	For all $t\geq 0$ and $f\in \mathcal P$,
@@ -840,22 +872,15 @@ The proof is similar to that of Proposition \ref{cor: alpha stable rv}. We omit 
 \end{proof}
 
 \section{Tail probability}
-In this section, we will introduce a small value probability result of supercritical continuous-state branching process with general branching mechanism and %control
+In this section, we will introduce a small value probability result of supercritical continuous-state branching process with general branching mechanism and
 $(1+\gamma)$-moments for the super-OU process. These will be needed to prove our main results.
 
 
 \subsection{Small value probability}
     In this subsection, we digress briefly from super-OU process and consider a supercritical continuous-state branching process (CSBP)
-    %$(Y_t)$.
-    $\{(Y_t)_{t\geq 0}; \mathbf P_x\}$.
-    Our goal is to determing how fast the probability $\mathbf P_x(0<e^{-\alpha t}Y_t \leq k_t)$ convergence to $0$ while $k_t \to 0$ as $t\to \infty$.
-  %  Let branching mechanism corresponding to the CSBP $\{(Y_t)_{t\geq 0}; \mathbf P_x\}$ be denoted as
-  %\[
-  %  \psi(z)
-  %  := -\alpha z + \rho z^2 + \int_{(0,\infty)} (e^{-zy} - 1 + zy) \pi(dy), \quad z\geq 0,
-  %\]
-  %  where $\alpha > 0$, $\rho \geq 0$ and $\pi$ is a measure on $(0,\infty)$ satisfying $\int_{(0,\infty)} (y \wedge y^2) \pi(dy) < \infty$.
-  Assume that the branching mechanism of the CSBP $\{(Y_t)_{t\geq 0}; \mathbf P_x\}$ is given by \eqref{mechanism}.
+        $\{(Y_t)_{t\geq 0}; \mathbf P_x\}$.
+    Our goal is to determining how fast the probability $\mathbf P_x(0<e^{-\alpha t}Y_t \leq k_t)$ convergence to $0$ while $k_t \to 0$ as $t\to \infty$.
+   Assume that the branching mechanism of the CSBP $\{(Y_t)_{t\geq 0}; \mathbf P_x\}$ is given by \eqref{mechanism}.
     Suppose that the Grey's condition is satisfied, i.e. there is some constant $z' > 0$ such that $\psi(z) > 0$ for all $z>z'$, and that $\int_{z'}^\infty \psi(z)^{-1}dz < \infty$.
     Also suppose that the $L \log L$ critierion is satisfied, i.e.
 \[
@@ -1003,7 +1028,6 @@ In fact, for each $x\geq 0$ and $t\geq 0$ we have
 
     Fix an arbitrary $\epsilon \in (0,\tau)$.
     According to the fact that $\tau=\psi'(\bar v)>0$ , there exists $z_0 \in (0,\bar v)$ such that for all $z\in (z_0, \bar v)$, we have $-\psi(z)\geq (\bar v - z)(\tau- \epsilon)$.     Fix this $z_0$.
-    %For $t$ large enough, according to \eqref{CSBP: int} and the fact that $0<k_t^{-1}e^{-\alpha t} < v_t(k_t^{-1}e^{-\alpha t})< \bar v$, we can verify the following:
     For $t$ large enough, we have $0<k_t^{-1}e^{-\alpha t} < v_t(k_t^{-1}e^{-\alpha t})< \bar v$. Then  using \eqref{CSBP: int} with $\lambda=k_t^{-1} e^{-\alpha t}$, we have
 \begin{equation}\begin{split}
     &t =\int^{v_t(k_t^{-1} e^{-\alpha t})}_{k_t^{-1} e^{-\alpha t}}\frac{dz}{-\psi(z)}
@@ -1079,11 +1103,9 @@ Q f:= Q_{\kappa_f}f.
     For all $h \in \mathcal P^+$ and $\mu \in \mathcal M_c(\mathbb R^d)$, there exists a constant $C > 0$ such that for all $\kappa \in \mathbb Z_+ $ and $0\leq r\leq s\leq t<\infty$ with $s-r \leq 1$, we have
 \[
     \sup_{g \in \mathcal P: Q_\kappa g\leq h}\mathbb P_{\mu}(|\mathcal I_r^s\langle g, X_t\rangle|>\lambda)
-    %\leq \frac{ C}{\lambda^{1+\beta}} e^{(1+\beta)(t-s)(\alpha- \kappa b)+ \alpha r},
-    \leq C e^{\alpha r} \bigg(\Big( \frac{e^{(t-s)(\alpha - \kappa b)}}{\lambda}\Big)^{1+\beta} + \Big( \frac{e^{(t-s)(\alpha - \kappa b)}}{\lambda}\Big)^{2} \bigg).
+       \leq C e^{\alpha r} \bigg(\Big( \frac{e^{(t-s)(\alpha - \kappa b)}}{\lambda}\Big)^{1+\beta} + \Big( \frac{e^{(t-s)(\alpha - \kappa b)}}{\lambda}\Big)^{2} \bigg).
 \]
-    %where $Q_kg$ is defined by \eqref{Q_k} with $f$ replaced by $g$.
-\end{lem}
+   \end{lem}
 \begin{proof}
     Denote by $R$ the $(\theta^2\vee\theta^{1+\beta})$-controller in Lemma \ref{lem: control pair for P(M>lambda)}.
     Fix $h \in \mathcal P^+$, $\mu \in \mathcal M_c(\mathbb R^d)$, $\kappa \in \mathbb Z_+ $ and $0\leq r\leq s\leq t < \infty$ with $s-r \leq 1$.
@@ -1163,14 +1185,15 @@ Q f:= Q_{\kappa_f}f.
     Using the triangle inequality, for all $\kappa\in \mathbb Z_+$, $g \in \mathcal P$ with $Q_\kappa g \leq h$ and $t\geq 0$, we have
 \begin{equation}\begin{split}
     &\|\langle g,X_t\rangle\|_{\mathbb P_\mu;1+\gamma}
-    % k is replaced by l to avoide confusing between k and \kappa.
-    \\ &\leq \sum_{l=0}^{\lfloor t\rfloor - 1}\big\| \mathcal{I}_{t-l-1}^{t-l}\langle g,X_t\rangle \big\|_{\mathbb P_\mu;1+\gamma}+\big\| \mathcal{I}_{0}^{t-\lfloor t \rfloor}\langle g,X_t\rangle  \big\|_{\mathbb P_\mu;1+\gamma}
+        \\ &\leq \sum_{l=0}^{\lfloor t\rfloor - 1}\big\| \mathcal{I}_{t-l-1}^{t-l}\langle g,X_t\rangle \big\|_{\mathbb P_\mu;1+\gamma}+\big\| \mathcal{I}_{0}^{t-\lfloor t \rfloor}\langle g,X_t\rangle  \big\|_{\mathbb P_\mu;1+\gamma}
     + |\langle P^\alpha_t g,\mu\rangle|
     \\ &\leq C^{\frac{1}{1+\gamma}} e^{\frac{\alpha}{1+\gamma}t} \sum_{l=0}^{\lfloor t\rfloor} e^{\frac{\gamma\alpha-\kappa (1+\gamma)b}{1+\gamma} l} + e^{(\alpha - \kappa b)t} \langle h,\mu\rangle.
 \end{split}\end{equation}
     By calculating the sum on the right, we get the desired result.
 \end{proof}
+
 \section{Proof of main results}
+
 In this section, we will prove the main results of this paper. Recall that $\mathcal{M}_c(\mathbb{R}^d)$ is the space of all finite Borel measures of compact support on $\mathbb{R}^d$. Denote  $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$ in the following section.
 
 \subsection{The large rate case: $\alpha \beta > \kappa_f b (1+\beta)$}
@@ -1428,20 +1451,7 @@ Since $Y_t^{\tilde{f},a_0}$ is increasing in $t$, it converges to some finite ra
 	The proof is now completed.
 
 \subsection{The critical rate case: $\alpha\beta=\kappa_fb(1+\beta)$}
-% new added
-\begin{lem}\label{lem: control of gk}(\cite[Lemma 2.8]{MM})
-    For each $f\in \mathcal{P}$, let
-    \begin{align}
-        g_k
-    := \frac{Z_1 P^{\alpha}_k f-\langle  Z_1P^{\alpha}_k f,\varphi\rangle}{e^{(\alpha-\kappa_f b)(1+\beta)t}},
-    \quad k \geq 0.
-    \end{align}
-    There exist $h\in \mathcal{P}$ such that
-    \begin{align}
-        |P_sg_k|\leq e^{-bs}h,\quad s\geq 0, k \geq 0.
-    \end{align}
-\end{lem}
-% end new
+
 \begin{lem}\label{lem: mainlemma}
 Let $f\in \mathcal{P}$.
 Assume that $\alpha\beta\leq \kappa_fb(1+\beta)$.
@@ -1492,8 +1502,7 @@ $k\geq 0, t\geq k+1$,
     \\&=e^{\langle (U_1 - iP^\alpha_1 ) (\theta_{t,k}P^\alpha_k f),X_{t-k-1}\rangle}
     =e^{\langle (Z_1 + K_1) (\theta_{t,k}P^\alpha_k f),X_{t-k-1}\rangle}.
 \end{split}\end{equation}
-    %From Corollary \ref{cor: alpha stable rv}, we have
-    From Proposition \ref{cor: alpha stable rv}, we have
+       From Proposition \ref{cor: alpha stable rv}, we have
 \begin{equation}
 \label{eq: need2}
     \operatorname {Re} m_t[f] < 0.
@@ -1570,16 +1579,7 @@ g_k
     = \frac{Z_1 P^{\alpha}_k f-\langle  Z_1P^{\alpha}_k f,\varphi\rangle}{e^{(\alpha-\kappa_f b)(1+\beta)k}},
     \quad k \geq 0.
 \]
-%According to \cite[Lemma 2.8]{MM}, there exists $h \in \mathcal P$ such that
-%\[
-%     |P_t g_k|\leq e^{-bt}h,
-%     \quad k\geq 0,t\geq 0.
-%\]
-%   This implies that
-
-%new
 According to Lemma \ref{lem: control of gk}, we get there exists $h\in \mathcal{P}$ such that
-% new end
  \[
     Q_1 (\operatorname{Re} g_k) \leq h
     \text{ and } Q_1 (\operatorname{Im} g_k)\leq h,
@@ -1628,7 +1628,6 @@ we immediately get the desired result.
 
 \begin{cor}\label{cor: used in next corollary}
 Suppose that $f\in \mathcal{P}$ such that $\alpha\beta\leq \kappa_fb(1+\beta)$.
-%Then
 Then for any $\Theta >0$ and $\mu\in \mathcal M_c(\mathbb R^d)$,
 there exist $C>0$ and $\delta>0$ such that for all $k \geq 0, t\geq k+1$ and $|\theta|\leq \Theta$,
 \begin{equation}\begin{split}
@@ -1683,8 +1682,7 @@ satisfying $|\theta_i|\leq \Theta$, we have
 \begin{proof}
 	Let $C,\delta > 0$ be the constants in Corollary \ref{cor: used in next corollary}.
     Recall that \[\gamma_{t,k}:=\frac {\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{(e^{\alpha k}\|X_{t-k-1}\|)^\frac{1}{1+\beta}},\quad k \geq 0, t\geq k+1. \]
-    %Fix $t\geq 0$, $n \in \{0,...,\lfloor t \rfloor\}$ and $(\theta_0,...,\theta_n)\in \mathbb R^{n+1}$
-    Fix $t\geq 0$, $n \in \{0, \cdots, \lfloor t \rfloor\}$ and $(\theta_0, \cdots, \theta_n)\in \mathbb R^{n+1}$
+        Fix $t\geq 0$, $n \in \{0, \cdots, \lfloor t \rfloor\}$ and $(\theta_0, \cdots, \theta_n)\in \mathbb R^{n+1}$
     satisfying $|\theta_i|\leq \Theta$.
     For each $k\in\{-1,...,n\}$, we define
     \[a_k:=\prod_{l=0}^{k}\exp(e^{\alpha}m_l[\theta_lf])\mathbb{\tilde{P}}_{\mu}\Big(\prod_{l=k+1}^{n}\exp\left(i\theta_l\gamma_{t,l}\right)\Big),\]
@@ -1696,8 +1694,7 @@ satisfying $|\theta_i|\leq \Theta$, we have
     \end{align*}
   According to Proposition \ref{cor: alpha stable rv} and Corollary \ref{cor: used in next corollary},
     there exist $C,\delta>0$ such that for any
-    % $k\in\{0,1,...,n\}$, we have
-    $k\in\{0, 1, \cdots, n\}$, we have
+        $k\in\{0, 1, \cdots, n\}$, we have
     \begin{align*}
         &|a_{k-1}- a_k|
         \\&\leq \frac{1}{\mathbb{P}_{\mu}(D^c)}\mathbb{P}_{\mu}\Big[\big|\mathbb P_\mu[e^{i\theta_{k}\gamma_{t,k}}-e^{e^{\alpha}m_k[\theta_k f]}; D^c\big|\mathscr{F}_{t-k-1}]\big|\Big]
@@ -1716,8 +1713,7 @@ We now present the proof of Theorem \ref{Theorem12}.
 \bigskip
 
 {\it Proof of Theorem \ref{Theorem12}.}\quad
-  %  Fix $f\in\mathcal{P}$.
-  According to our assumption, $f\in\mathcal{P}$ is fixed and that  $\alpha\beta=\kappa_fb(1+\beta)$.
+    According to our assumption, $f\in\mathcal{P}$ is fixed and that  $\alpha\beta=\kappa_fb(1+\beta)$.
     Chose $t_0 > 0$ large enough so that $\lceil t_0-\ln t_0\rceil \leq \lfloor t_0 \rfloor - 1.$
     Write
     \begin{align*}
@@ -1920,11 +1916,11 @@ In fact, we have
 \end{split}\end{equation}
 
 	Finally, combining Steps 3--5, we complete the proof of Theorem \ref{Theorem12}.
-%\subsection{The small rate case.}
+
 \subsection{The small rate case: $\alpha\beta<\kappa_fb(1+\beta)$}
+ In this subsection, we prove the central limit theorem for the small rate case.
 
 {\it Proof of Theorem \ref{Theorem13}.}\quad
-
 According to our assumption, $f\in \mathcal P$  is fixed  and  that $\alpha \beta < \kappa_f b(1+\beta)$.
 	Let $t_0 > 1$ be large enough so that
 \[
@@ -2063,21 +2059,7 @@ By Fubini's theorem, we get
     &=e^{\alpha(n-1)}\langle \int_0^1 P_s^{\alpha}\langle \eta(iI_{s+n-1}g)^{1+\beta}ds, \varphi\rangle\\
     &=e^{\alpha(n-1)}\langle \int_0^1 P_{1-s}^{\alpha}\langle \eta(iI_{n-s}g)^{1+\beta}ds, \varphi\rangle=e^{\alpha(n-1)}\langle Z_1(-I_ng), \varphi\rangle.
 \end{align}
-%new added
-\begin{lem}\label{control of gn}
-    Let
-    \begin{align}
-        \bar{g}_t:=\frac{Z_1(-I_tg)-\langle Z_1(-I_tg),\varphi\rangle}{e^{-(\alpha-Kb)(1+\beta)t}},\quad t\geq 0, g\in \mathcal{C}_l.
-    \end{align}
-    There exists $h\in \mathcal{P}$ such that
-    \begin{align}
-        |P_s\bar{g}_t|\leq e^{-bs}h,\quad s\geq 0, t\geq 0.
-    \end{align}
-\end{lem}
-\begin{proof}
-    Similar to the proof of \cite[Lemma 2.8]{MM}.
-\end{proof}
-% end new
+
 Recall that $\Big\{\{H^p_t, \mathscr{F}_t\}_{t\geq 0};p\in \mathbb{Z}_+^d\Big\}$ is a family of martingale defined in Lemma \ref{lemma26}.
 
 \begin{lem}
@@ -2196,15 +2178,6 @@ where
 \begin{align}
     \bar{g}_n:=\frac{Z_1(-I_ng)-\langle Z_1(-I_ng),\varphi\rangle}{e^{-(\alpha-Kb)(1+\beta)n}}.
 \end{align}
-%Similar to proof of \cite[Lemma 2.8]{MM}, there exists $h \in \mathcal P$, such that
-%\[
-%     |P_t g_n|\leq e^{-bt}h,
-%     \quad t\geq 0, n\geq 1.
-%\]
-%{\bf Remark: State the above result as a Lemma}
- Choose $\gamma\in(0,\beta)$ small enough such that $\alpha \gamma < b < (1+\gamma)b$.
-% Using  Lemma \ref{lem: control moment} (3) with $\kappa=1$,
-% there exists $C>0$ such that
 Using Lemma \ref{control of gn} and Lemma \ref{lem: control moment} (3) with $\kappa=1$,
  there exists $C>0$ such that
 \begin{align}
@@ -2715,8 +2688,7 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M(E)$ the
     Let $X$ be the non-presistent superprocess defined in Subsection \ref{sec: definition of superprocess} with its Kuznestov measure denoted by $(\mathbb N_x)_{x\in E}$.
     Define the mean semigroup
 \begin{equation}
-   % P_t^\alpha f(x)
-   P_t^\alpha f(x)
+       P_t^\alpha f(x)
     := \Pi_{x}[e^{\int_0^t \alpha(\xi_s)ds}f(\xi_t) \mathbf 1_{t< \zeta}],
     \quad t\geq 0, x\in E, f\in \mathcal B_b(E,\mathbb R_+).
 \end{equation}
@@ -2725,8 +2697,7 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M(E)$ the
 \label{eq: mean formula for superprocesses}
     \mathbb N_{\mu}[W_t(f)]
     =\mathbf P_{\mu}[X_t(f)]=
-    %\mu(P^\alpha_t f).
-    \mu(P^\alpha_t f).
+       \mu(P^\alpha_t f).
 \end{equation}
 
     Define
@@ -2769,8 +2740,7 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M(E)$ the
 \label{eq: upper bound of psi(v)}
     \big|\psi\big(x,-U_tf\big)\big|
     \leq C P^\alpha_t |f|(x)+
-    %C_2 P^\alpha_t |f| (x)^2.
-     C (P^\alpha_t |f| (x))^2.
+         C (P^\alpha_t |f| (x))^2.
 \end{split}\end{equation}
 \end{lem}
 \begin{proof}
@@ -2793,16 +2763,14 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M(E)$ the
 \label{eq: upper bound for vf}
     |U_tf(x)| \leq \mathbb N_x[|e^{i W_t(f)} - 1|]
     \leq \mathbb N_x[|i W_t(f)|]
- %   \leq (P^\alpha_t |f|)(x).
-  \leq (P^\alpha_t |f|)(x).
+     \leq (P^\alpha_t |f|)(x).
 \end{equation}
     Notice that, for any compact $K \subset \mathbb R$,
 \begin{equation}
 \label{eq: estimate of deriavetive of v(theta)}
     \mathbb N_x\Big[\sup_{\theta \in K} \Big|\frac{\partial}{\partial \theta} (e^{i\theta W_t(f)} - 1) \Big|\Big]
     \leq \mathbb N_x[|W_t(f)|] \sup_{\theta \in K}|\theta|
-    %\leq (P^\alpha_t |f|)(x) \sup_{\theta \in K}|\theta| < \infty.
-    \leq (P^\alpha_t |f|)(x) \sup_{\theta \in K}|\theta| < \infty.
+        \leq (P^\alpha_t |f|)(x) \sup_{\theta \in K}|\theta| < \infty.
 \end{equation}
     Therefore, according to \cite[Theorem A.5.2.]{Durrett2010Probability} and \eqref{eq: N and characteristic exponent},
     $U_t(\theta f)(x)$ is differentiable in $\theta \in \mathbb R$ with
@@ -2815,8 +2783,7 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M(E)$ the
 \begin{equation}
 \label{eq: upper bounded for derivative of v(theta)}
     \sup_{\theta \in \mathbb R}\Big| \frac{\partial}{\partial \theta}U_t(\theta f)(x)\Big|
-    %\leq ( P^\alpha_t |f|)(x).
-    \leq ( P^\alpha_t |f|)(x).
+         \leq ( P^\alpha_t |f|)(x).
 \end{equation}
     From the dominate convergence theorem, we can verify that $(\partial/\partial \theta)U_tf(x)$ is continuous in $\theta$.
     In other words, $\theta \mapsto -U_t(\theta f)(x)$ is a $C^1$ map from $\mathbb R$ to $\mathbb C_+$.
@@ -2834,11 +2801,9 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M(E)$ the
     \\&= \Big| - \alpha(x)- 2\rho(x)\mathbb N_x[e^{i W_{t}(f)} - 1]  + \int_{(0,\infty)} y \mathbf P_{y \delta_x}[1-e^{i X_{t}(f)}] \pi(x,dy) \Big|
 \\ &\leq \|\alpha\|_\infty + 2\rho(x)\mathbb N_x[W_t(|f|)]+ \int_{(0,\infty)} y\mathbf P_{y\delta_x}[2\wedge X_t(|f|)] \pi(x,dy)
 \\ &\leq \|\alpha\|_\infty + 2\|\rho\|_\infty
-% P^\alpha_t |f|(x) + \Big(\sup_{x\in E}\int_{(0,1]}y^2 \pi(x,dy)\Big)~P^\alpha_t |f|(x)
-P^\alpha_t |f|(x) + \Big(\sup_{x\in E}\int_{(0,1]}y^2 \pi(x,dy)\Big)~P^\alpha_t |f|(x)
+  P^\alpha_t |f|(x) + \Big(\sup_{x\in E}\int_{(0,1]}y^2 \pi(x,dy)\Big)~P^\alpha_t |f|(x)
   + 2\sup_{x\in E}\int_{(1,\infty)} y \pi(x,dy)
-%\\ &=: C_1 + C_2(P^\alpha_t |f|)(x),
-\\ &=: C_1 + C_2(P^\alpha_t |f|)(x),
+ \\ &=: C_1 + C_2(P^\alpha_t |f|)(x),
 \end{split}
 \end{equation}
     where $C_1, C_2$ are constants independent on $f,x$ and $t$.
@@ -2878,8 +2843,7 @@ and
 \begin{equation}
 \label{eq: complex FKPP-equation with FK-transform}
     U_tf(x) -  \int_0^t P_{t-s}^{\alpha} \psi_0\big(\cdot,-U_sf\big) (x)~ds
-   % \\= iP_t^\alpha f(x).
-   \\= iP_t^\alpha f(x).
+      \\= iP_t^\alpha f(x).
 \end{equation}
 \end{prop}
 
