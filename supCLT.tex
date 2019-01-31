@@ -148,7 +148,7 @@
     = e^{-\alpha^* \|\mu\|},
 \end{equation}
     where $\alpha^* := \sup\{\lambda \geq 0: \psi(\lambda) = 0\}$.
-    
+
     Define the \emph{Fenyman-Kac semigroup} by
 \begin{equation}\label{meansemigroup}
     T^{\alpha}_t f(x)
@@ -234,7 +234,7 @@ where
     \leq e^{-\kappa_f bt} R(x),
     \quad t\geq 0, x\in \mathbb R^d.
 \end{equation}
-	For each $f\in \mathcal {P}$, define an operator $Q$ by $Qf(x):=\sup_{t\geq 0}e^{\kappa(f)bt} |T_tf(x)|$. 
+	For each $f\in \mathcal {P}$, define an operator $Q$ by $Qf(x):=\sup_{t\geq 0}e^{\kappa(f)bt} |T_tf(x)|$.
 	Then $Q$ is an operator form $\mathcal P$ to $\mathcal P \cap \mathscr B
 	(\mathbb R^d,\mathbb R_+)$.
 }
@@ -482,10 +482,10 @@ $
     = \sum_{k = 0}^{\lfloor t \rfloor - 1} I_k^{k+1}[Y] + I_{\lfloor t \rfloor}^t[Y],
     \quad t\geq 0.
 \end{align}
-	The random variable we are interested in is $Y:= \langle g,X_t\rangle$. 
+	The random variable we are interested in is $Y:= \langle g,X_t\rangle$.
 	In this case we have
 \begin{align}
-    I_a^b[\langle g,X_t\rangle] 
+    I_a^b[\langle g,X_t\rangle]
     = I_a^b\big[\mathbb P[\langle g,X_t\rangle|\mathscr F_b]\big]
     = I_a^b[ \langle T_{t-b}^\alpha g, X_b \rangle ].
 \end{align}
@@ -564,8 +564,8 @@ $
 \]
 
    	Proof of (2): Let $(R_A, S_A)$ be the $\gamma$-control-pair of $(A_\lambda)_{\lambda\in\Lambda}$ on $\mathcal{D}$ and $(R_B, S_B)$ be the $\beta$-control-pair of $(B_{\delta})_{\delta\in\Delta}$ on $\mathcal{D}_0$.
-\added{ 
-	Note that $(R_BR_A, S_BS_A)$ is a $\beta \gamma$-control-pair. 
+\added{
+	Note that $(R_BR_A, S_BS_A)$ is a $\beta \gamma$-control-pair.
 	In fact:
 \begin{itemize}
 \item
@@ -573,11 +573,11 @@ $
 \item
 	For each $f\in \mathcal{P}^+$ and $\theta \geq 0$, we have $S_BS_A(\theta f)=S_B(\theta^{\gamma}S_Af)=\theta^{\beta\gamma}S_BS_Af$.
 \item
-	For each $f,g \in \mathcal P^+$ with $f\leq g$, we have $R_B R_A f \leq R_B S_A f \leq S_BS_A f$. 
+	For each $f,g \in \mathcal P^+$ with $f\leq g$, we have $R_B R_A f \leq R_B S_A f \leq S_BS_A f$.
 \end{itemize}
 	Finally, note that for each $\delta\in \Delta, \lambda\in\Lambda$ and $f\in \mathcal D$, $|B_{\delta}A_{\lambda}f|\leq R_B|A_{\lambda}f|\leq R_BR_A|f|$ which says that operators $(B_\delta\times A_\lambda)_{\delta \in \Delta, \lambda \in \Lambda}$ are uniformly $(\beta\gamma)$-controlled by $(R_BR_A,S_BS_A)$.
 }
-   
+
    Proof of (3) and (4): Similar to the Proof of (2).
 \end{proof}
 \subsection{}
@@ -617,7 +617,7 @@ $
     |U_t g(x)|
     \leq \sup_{0\leq u\leq 1}T_u^\alpha |g| (x).
 \]
-    Note that $f\mapsto\sup_{0\leq u\leq 1}T^{\added{\alpha}}_u|f|$ is monotonic and $1$-scalable. 
+    Note that $f\mapsto\sup_{0\leq u\leq 1}T^{\added{\alpha}}_u|f|$ is monotonic and $1$-scalable.
     \added{Combine this with \eqref{eq: -v has positive real part}, we get the desired result.}
 
     Proof of (2): Similar to the Proof of (1).
@@ -1049,23 +1049,42 @@ This is to say \added{for each $\lambda \in [0,1]$,
 
 %\subsection{Parameter $m_k[g]$}
 \subsection{Parameters}
-\deleted{ In this subsection, we will introduce an important parameter of $(1+\beta)$-stable distribution: $m_k[f],~~f\in \mathcal{P}$.}
-\added{ 
- Recall the definition of operator $Z_1$ in \eqref{eq: def of Zf} and the invariant density $\varphi$ in \eqref{invariantdensity}, define 
+\added{
+ Recall the definition of operator $Z_1$ in \eqref{eq: def of Zf} and the invariant density $\varphi$ in \eqref{invariantdensity}, define
  \begin{align}\label{parameter_mk}
       m_t[f]:=e^{-\alpha (t+1)}\int_{\mathbb R^d} (Z_1T_t^{\alpha}f)(x)\varphi(x)dx,\quad t\geq 0, f\in \mathcal P.
  \end{align}
  }
-\added{
-\begin{lem}\label{lem: control of mk}
+ \added{
+ Using the same argument as in the proof of \cite[Lemma2.7, Lemma4.2 \& Lemma 5.1]{MM}, we can show that
+ \begin{lem}\label{lem: control of mk}
 For each $f\in\mathcal{P}$, there is a constant $C>0$ such that for each $t\geq 0$, we have
 $$|m_t[f]|\leq C_{\ref{lem: control of mk}} e^{(\alpha\beta-\kappa_fb(1+\beta))t}.$$
+Therefore, $m_t[f]$ is well-defined.
 \end{lem}
-}
-{\bf Zhenyao: It seems to me that the definition of $m_k[f]$ is exactly the same as in Milos' paper. Why we prove its properties again?}
-\begin{proof}
-\added{
-	Let $(R,S)$ be the $(1+\beta)$-control-pair corresponding to \ref{lem: upper bound for usgx}(7). 
+Let
+\begin{align}
+    \phi(x)=\sum_{|p|=\kappa_f}\langle f, \phi_p\rangle\phi_p(x),~x\in \mathbb{R}^d, p \in\mathbb{N}_0^d.
+\end{align}
+i.e. $\phi$ is the projection of $f$ onto the $\kappa_f$-eigenspace.
+\begin{lem}\label{lemma210}
+Let $f \in \mathcal{P}$, $\kappa_f\geq 1$ and $\alpha\beta=\kappa(f)b(1+\beta)$, then the following limit exists:
+\begin{align}
+    \tilde{m}[f]:=\lim_{t\rightarrow \infty}\frac{1}{t}\sum_{k=0}^{\added{\lfloor t \rfloor}}m_k[f]=\langle\Psi_0(-i\phi),\varphi\rangle.
+\end{align}
+\end{lem}
+
+\begin{lem}\label{lemma211}
+Let $f\in \mathcal{P}$, assume $\alpha\beta<\kappa_fb(1+\beta)$, if $\kappa_f\geq 1$, the series $\sum_{k=0}^{\infty}m_k[f]$ is absolutely convergent, hence we can define
+\begin{align}
+    m[f]:=\int_{\mathbb{R}^d}\int_0^{\infty} e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}f)(x)~ds~\varphi(x)~dx \label{msmallcase}
+\end{align}
+\end{lem}
+ }
+\deleted{
+\begin{proof}[proof of Lemma 2.14]
+
+	Let $(R,S)$ be the $(1+\beta)$-control-pair corresponding to \ref{lem: upper bound for usgx}(7).
 	For each $t\geq 0$,
 \begin{align}
     |Z_1(T^{\alpha}_t f)|
@@ -1079,7 +1098,7 @@ Therefore,
 	|m_t[f]|\leq e^{-\alpha}e^{-\alpha t}e^{(\alpha-\kappa_fb)(1+\beta)t}\int_{\mathbb R^d}SQf(x)\varphi(x)dx.
 	\qedhere
 \]
-}
+
 \end{proof}
 
 $m_k[f],~f\in \mathcal{P}$ can be expressed in a new way which is convenient for us to consider the limit behavior of itself. Note that,
@@ -1097,23 +1116,16 @@ Let
     \phi(x)=\sum_{|p|=\kappa_f}\langle f, \phi_p\rangle\phi_p(x),~x\in \mathbb{R}^d, p \in\mathbb{N}_0^d.
 \end{align}
 i.e. $\phi$ is the projection of $f$ onto the $\kappa_f$-eigenspace. Easily we get $\kappa_f=\kappa_{\phi}$ and $\kappa_{f-\phi}\geq \kappa_f+1$.
-\begin{lem}\label{lemma210}
-Let $f \in \mathcal{P}$, $\kappa_f\geq 1$ and $\alpha\beta=\kappa(f)b(1+\beta)$, then the following limit exists:
-\begin{align}
-    \tilde{m}[f]:=\lim_{t\rightarrow \infty}\frac{1}{t}\sum_{k=0}^{\added{\lfloor t \rfloor}}m_k[f]=\langle\Psi_0(-i\phi),\varphi\rangle.
-\end{align}
-\end{lem}
 
-\begin{proof}
-    \added{
+
+\begin{proof}[Proof of Lemma 2.15]
+
     Notice that
         \begin{align}\label{parameter of mkphi}
         m_k[\phi]&=\int_{\mathbb{R}^d}\int_k^{k+1} e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}\phi)(x)~ds~\varphi(x)~dx\\
         &=\int_{\mathbb{R}^d}\Psi_0(-i\phi(x))\varphi (x)~dx=\langle \Psi_0(-i\phi),\varphi\rangle.
     \end{align}
-    }
-    {\bf Zhenyao: Give more details about the above equality.}
-    \added{
+    
     According to Lemma \ref{lem: Lip of power function}, for any $s\geq 0$,
     \begin{align}
         &\Big|\Psi_0(-iT^{\alpha}_s f)-\Psi_0(-iT^{\alpha}_s\phi)\Big|\leq C_{\ref{lem: Lip of power function}}(|T^{\alpha}_sf|^{\beta}+|T^{\alpha}_s\phi|^{\beta})|T^{\alpha}_s(f-\phi)|
@@ -1126,40 +1138,22 @@ Let $f \in \mathcal{P}$, $\kappa_f\geq 1$ and $\alpha\beta=\kappa(f)b(1+\beta)$,
         \\&\leq C_{\ref{lem: Lip of power function}}\langle((Qf)^{\beta}+(Q\phi)^{\beta})Q(f-\phi), \varphi\rangle e^{-bk},\quad k \in \mathbb{N}.
     \end{align}
     Therefore, the limits of $(1/t)\sum_{k=0}^tm_k[f]$ is the same with that of $(1/t)\sum_{k=0}^tm_k[\phi]$.
-    }
     
-    \deleted{
-    What's more
-    \begin{align*}
-        m_k[\phi]&=\int_{\mathbb{R}^d}\int_k^{k+1} e^{-\alpha s}(-iT_{s}^{\alpha}\phi)^{1+\beta}(x)~ds~\varphi(x)~dx\\
-        &=\int_{\mathbb{R}^d}(-i\phi(x))^{1+\beta}\varphi (x)~dx=\langle (-i\phi)^{1+\beta},\varphi\rangle.
-    \end{align*}
-    The second equality holds as $T_s\phi=e^{-\kappa(g)bs}\phi$.
-    }
-    
-    From \eqref{parameter of mkphi}, for any $k\in \mathbb{N}$,
+   From \eqref{parameter of mkphi}, for any $k\in \mathbb{N}$,
     \begin{align}
         \lim_{t\rightarrow \infty}\frac{1}{t}\sum_{k=0}^{\lfloor t\rfloor}m_k[f]=\lim_{t\rightarrow \infty}\frac{1}{t}\sum_{k=0}^{\lfloor t \rfloor}m_k[\phi]=\langle\Psi_0(-i\phi),\varphi\rangle.
     \end{align}
-    
 \end{proof}
 
-\deleted {For the small branching rate case: $\alpha\beta<\kappa(f)b(1+\beta)$.}
-\begin{lem}\label{lemma211}
-Let $f\in \mathcal{P}$, assume $\alpha\beta<\kappa_fb(1+\beta)$, if $\kappa_f\geq 1$, the series $\sum_{k=0}^{\infty}m_k[f]$ is absolutely convergent, hence we can define
-\begin{align}
-    m[f]:=\int_{\mathbb{R}^d}\int_0^{\infty} e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}f)(x)~ds~\varphi(x)~dx \label{msmallcase}
-\end{align}
-\end{lem}
-\begin{proof}
-\added{
-    By Lemma \ref{lem: control of mk}, we have $|m_k[f]|\leq C_{\ref{lem: control of mk}} e^{(\alpha\beta-\kappa_fb(1+\beta))k},~k\in\mathbb{N}$, which implies $\sum_{k=0}^{\infty}|m_k[f]|<\infty$. 
-    
+\begin{proof}[Proof of Lemma 2.16]
+
+    By Lemma \ref{lem: control of mk}, we have $|m_k[f]|\leq C_{\ref{lem: control of mk}} e^{(\alpha\beta-\kappa_fb(1+\beta))k},~k\in\mathbb{N}$, which implies $\sum_{k=0}^{\infty}|m_k[f]|<\infty$.
+
     On the other hand, denote by $(R,S)$ the $(1+\beta)$-control-pair for Lemma \ref{lem: upper bound for usgx}(3), for any $s\geq 0$,
     \begin{align}
         |e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}f)|\leq e^{-\alpha s}R|T^{\alpha]_s}f|\leq e^{-\alpha s}R(e^{(\alpha-\kappa_fb)s}Qf)=e^{(\alpha\beta-\kappa_fb(1+\beta))s}RQf.
     \end{align}
-    This implies 
+    This implies
     \begin{align}
         \sum_{k=0}^{\infty}\int_{\mathbb{R}^d}\int_k^{k+1} e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}f)(x)ds\varphi(x)dx< \infty.
     \end{align}
@@ -1168,9 +1162,8 @@ Let $f\in \mathcal{P}$, assume $\alpha\beta<\kappa_fb(1+\beta)$, if $\kappa_f\ge
             m[f]:=\sum_{k=0}^{\infty}m_k[f]=\sum_{k=0}^{\infty}\int_{\mathbb{R}^d}\int_k^{k+1} e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}f)(x)ds\varphi(x)dx
     \end{align}
     is well defined.
-    }
 \end{proof}
-
+}
 \section{Proof of main results}
 
 In this section, we will prove the main results of this paper. Recall that $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$ and let $F_k(\nu)=\left(e^{\alpha k}\|\nu\|\right)^{\frac{1}{1+\beta}},~ \nu\in \mathcal{M}(\mathbb{R}^d)$.
@@ -1192,12 +1185,12 @@ Recall $\mathcal{A}_t(\epsilon)=\{\|X_t\|\in\|\mu\|(e^{(\alpha-\epsilon_0)t},e^{
 \end{align}
 \end{lem}
 \begin{proof}
-    We just need to prove 
+    We just need to prove
     \begin{align}
         D^c \subset \liminf_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)\subset \limsup_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)\subset D^c,~~\mathbb{P}_{\mu}\text{-}{\rm a.s}.
     \end{align}
     for any $\omega\in D$, there exists $S>0$, such that $\|X_t(\omega)\|=0,~t\geq T$. Thus $\omega \notin \cup_{t\geq S}\mathcal{A}_t(\epsilon)$ and $\omega\notin  \limsup_{t\rightarrow\infty}\mathcal{A}_t(\epsilon):=\cap_{S\geq 0}\cup_{t\geq S}\mathcal{A}_t(\epsilon)$ imply that $\limsup_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)\subset D^c$.
-    
+
     For any $\omega \in D^c$, there exists $\delta>0$ such that $W_{\infty}(\omega)\in(\delta,\frac{1}{\delta})$,\deleted{$~\mathbb{P}_{\mu}$-a.s}. As $W_t$ converges to $W_{\infty}$ $\mathbb{P}_{\mu}$-a.s, there exists $S_1>0$ such that for any $t\geq S_1$, we have $\frac{\delta}{2}\leq W_t(\omega)\leq 2\delta,$\deleted{$~\mathbb{P}_{\mu}$-a.s}. Taking $S_2>0$ such that for any $t>S_2$, $\|\mu\|e^{-\epsilon t}<\frac{\delta}{2}$ and $\|\mu\|e^{-\epsilon t}>2\delta$, then $\omega\in \mathcal{A}_t(\epsilon),~t>S:=\max\{S_1,S_2\}$ implies $\omega \in \liminf_{t\rightarrow \infty}\mathcal{A}_t(\epsilon):=\cup_{S>0}\cap_{t\geq S}\mathcal{A}_t(\epsilon)$.
 \end{proof}
 
@@ -1205,7 +1198,7 @@ Recall $\mathcal{A}_t(\epsilon)=\{\|X_t\|\in\|\mu\|(e^{(\alpha-\epsilon_0)t},e^{
 For any $f\in \mathcal{P}$ and $k\in \mathbb{N}$, let $m_k[f]$ be the parameter defined in \eqref{parameter_mk}, then the function $\theta\mapsto \exp(\theta^{1+\beta}e^{\alpha}m_k[f])$ defined on $\theta\in(0,\infty)$ is a characteristic function of some $(1+\beta)$-stable random variable.
 \end{lem}
 \begin{proof}
-    Let $J=\langle\int_0^1 T_{1-s}^{\alpha}(-T^{\alpha}_s f)^{1+\beta}(\cdot)ds,\varphi\rangle$, then 
+    Let $J=\langle\int_0^1 T_{1-s}^{\alpha}(-T^{\alpha}_s f)^{1+\beta}(\cdot)ds,\varphi\rangle$, then
     \begin{align}
         m_k[f]=J e^{-\alpha(k+1)}\cdot i^{1+\beta}=J e^{-\alpha(k+1)}\cos\frac{(1+\beta)\pi}{2}\big(1+i\tan\frac{(1+\beta)\pi}{2}\big).
     \end{align}
@@ -1255,7 +1248,7 @@ B \cite[Theorem 14.15]{Sato1990Levy}, we get the result.
      \begin{align}
         \Big|\mathbb{P}_{\mu}\Big[\big(\exp(i\theta \frac {M_k^t[f]}{F_k(X_{t-k-1})})-\exp(\theta^{1+\beta}e^{\alpha}m_k[f])\big)\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\Big]\Big|\xrightarrow{t\rightarrow\infty} 0.
     \end{align}
-     
+
       \deleted{ On the other hand, by formula \eqref{condition mean} and Lemma \ref{estim}}
       By formula \eqref{condition mean} and lemma \ref{lemma31},
     \begin{align}
@@ -1284,11 +1277,13 @@ For any $\theta\in \mathbb{R}$, $k\in \mathbb{N}$ and $t>k$, on the event $\math
         &\leq\frac{1}{\|\mu\|^{(1+2\beta)/(1+\beta)}}\langle R_6,\mu\rangle|\theta|^{1+2\beta}e^{\alpha(t-k-1)} e^{-\frac{\alpha(1+2\beta)(t-k-1)}{1+\beta}}e^{\frac{\epsilon_0(1+2\beta)(t-k-1)}{1+\beta}}\\
         &\leq \frac{1}{\|\mu\|^{(1+2\beta)/(1+\beta)}}\langle R_6,\mu\rangle|\theta|^{1+2\beta}e^{-\frac{\alpha\beta}{2(1+\beta)}(t-k-1)}.
     \end{align*}
- Step 2. Let $h_k(x):=Z_{f_k}(x)-\langle Z_{f_k},\varphi\rangle,~x\in\mathbb{R}^d$.to prove inequality \eqref{ineqinlem31}, We will first show that there exists $R_7\in \mathcal{P}$ such that for any $k\in\mathbb{N}$, $x\in \mathbb{R}^d$ and $s\geq 0$,
+     \deleted{
+ Step 2. Let $h_k(x):=Z_{f_k}(x)-\langle Z_{f_k},\varphi\rangle,~x\in\mathbb{R}^d$.According to \cite[Lemma 2.8]{MM}, there exists $R_7\in \mathcal{P}$ such that for any $k\in\mathbb{N}$, $x\in \mathbb{R}^d$ and $s\geq 0$,
  \begin{align}
  \label{eq:31step2}
      |T_s h_k(x)|\leq e^{-bs}e^{(\alpha-\kappa(f)b)(1+\beta)k}R_7(x).
  \end{align}
+
  Let $\tilde{f}=T_1^{\alpha}f$, then $\kappa(\tilde{f})=\kappa(f)$. It is easy to show that $\tilde{f}\in C^{\infty}$ and $\tilde{f}^{(p)}\in\mathcal{P},~p\in\mathbb{Z}_+^d$, thus by the inequality \eqref{eq:semigroupineq} and the fact $\kappa\big(\frac{\partial \tilde{f}}{\partial x_i}\big)\geq \kappa(\tilde{f})-1$, see \cite[Lemma 2.3]{RSZ}, we get there exists $\tilde{R}_7\in \mathcal{P}$ such that for each $i=1,...,d$
  \begin{align}
  \label{ineq-temp}
@@ -1318,7 +1313,8 @@ By \eqref{eq:31temp } and the fact $|xe^{-bs}+y\sqrt{1-e^{-2bs}}-y|\leq e^{-bs}(
 \begin{align}
     |T_s h_k(x)|\leq e^{-bs}e^{(\alpha-\kappa(f)b)(1+\beta)k}R_8(x)(|x|+\int_{\mathbb{R}^d}|y|\varphi(y)~dy).
 \end{align}
-Step 3, for any $\mu \in \mathcal{M}(\mathbb{R}^d)$ and $\theta\in \mathbb{R}$, we will show that there exists $C_7>0$ such that
+}
+Step 2, for any $\mu \in \mathcal{M}_c(\mathbb{R}^d)$ and $\theta\in \mathbb{R}$, we will show that there exists $C_7>0$ such that
 \begin{align}
 \label{eq:31step3}
     &\mathbb{P}_{\mu}\big[\big|\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]\big|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\big]\\
@@ -1331,7 +1327,14 @@ Step 3, for any $\mu \in \mathcal{M}(\mathbb{R}^d)$ and $\theta\in \mathbb{R}$, 
     &=|\theta|^{1+\beta}e^{-\alpha k}\mathbb{P}_{\mu}\left[\left|\frac{\langle Z_{f_k},X_{t-k-1}\rangle}{\|X_{t-k-1}\|}-\langle Z_{f_k},\varphi\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]\nonumber\\
     &\leq |\theta|^{1+\beta}e^{-\alpha k}e^{-(\alpha-\epsilon_0)(t-k-1)}\mathbb{P}_{\mu}\left[\left|\langle h_k,X_{t-k-1}\rangle\right|\right],\label{II1}
 \end{align}
-As $h_k$ satisfies \eqref{eq:gcontrol1} with $C_{h_k}=e^{(\alpha-\kappa(f))(1+\beta)k}$, $\kappa=1$ and $R_0^{h_k}(x)=R_7(x)$, fix some $\gamma_0\in(0,\beta)$, according to Lemma \ref{lemma24}, there exist $C_8>0$,
+\added{
+where $h_k(x):=Z_{f_k}(x)-\langle Z_{f_k},\varphi\rangle,~x\in\mathbb{R}^d$.According to \cite[Lemma 2.8]{MM}, there exists $R_7\in \mathcal{P}$ such that for any $k\in\mathbb{N}$, $x\in \mathbb{R}^d$ and $s\geq 0$,
+ \begin{align}
+ \label{eq:31step2}
+     |T_s h_k(x)|\leq e^{-bs}e^{(\alpha-\kappa(f)b)(1+\beta)k}R_7(x).
+ \end{align}
+}
+Thus $h_k$ satisfies \eqref{eq:gcontrol1} with $C_{h_k}=e^{(\alpha-\kappa(f))(1+\beta)k}$, $\kappa=1$ and $R_0^{h_k}(x)=R_7(x)$, fix some $\gamma_0\in(0,\beta)$, according to Lemma \ref{lemma24}, there exist $C_8>0$,
 \begin{align}
     &\mathbb{P}_{\mu}\left[\left|\langle h_k,X_{t-k-1}\rangle\right|\right]\leq \|\langle h_k, X_{t-k-1}\rangle\|_{\mathbb{P}_{\mu,1+\gamma_0}}\\
     &\leq C_8 e^{(\alpha-\kappa(f)b)(1+\beta)k}
@@ -1707,10 +1710,10 @@ Then we get $  \left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\rightarrow
 \added{
 \subsection{}
 	In this subsection, we give more analytic results that will be used in this paper.
-	For each $z\in \mathbb C\setminus (-\infty,0]$ define 
+	For each $z\in \mathbb C\setminus (-\infty,0]$ define
 \[
 	\log z := \log |z| + i \arg z
-\] 
+\]
 	where $\arg z \in (-\pi,\pi)$ is uniquely determined by
 \[
 	z = |z|e^{i \arg z}.
@@ -1753,7 +1756,7 @@ Then we get $  \left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\rightarrow
 	= \int_0^\infty (e^{-zy}-1) \frac{dy}{\Gamma(-\beta)y^{1+\beta}},
     \quad z\in \mathbb C_+,
 \end{equation}
-	by observing that the both sides 
+	by observing that the both sides
 \begin{itemize}
 \item
     are extension of the real function $x\mapsto x^{\beta}$ on $[0,\infty)$;
@@ -2238,7 +2241,7 @@ and
 \end{align}
     Therefore, according to \eqref{eq: derivative of characteristic exponent} and above, we have
 \begin{align}
-    \frac{\partial}{\partial \theta} {U_t(\theta f)(x)} 
+    \frac{\partial}{\partial \theta} {U_t(\theta f)(x)}
     =  \Pi_x[ if(\xi_t) e^{ - \int_0^t \psi'(\xi_s, -U_{t-s}(\theta f)) ds} ]
 \end{align}
     Since $\{(\xi_{r+t})_{t \geq 0}; \Pi_{r,x}\} \overset{d}{=} \{(\xi_{t})_{t\geq 0}; \Pi_{x}\} $, we have
@@ -2388,7 +2391,7 @@ Cambridge Studies in Advanced Mathematics, 68. Cambridge University Press, Cambr
 
 \bibitem{SteinShakarchi2003Complex}
 Stein, E. M. and Shakarchi, Rami:
-\emph{Complex analysis.} 
+\emph{Complex analysis.}
 Princeton Lectures in Analysis, 2. Princeton University Press, Princeton, NJ, 2003.
 
 \end{thebibliography}
