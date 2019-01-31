@@ -1,43 +1,49 @@
 %%%----Versions-----------------------------
+% supCLT4.tex ......... by Jianjie
 % supCLT3.tex 2018/8/25 by Zhenyao
 % supCLT2.tex 2018/8/13 by Jianjie
 % supCLT1.tex 2018/7/24 by Zhenyao
 % supCLT.tex 2018/6/29 by Jianjie
 %---The preamble----------------------
-\documentclass[12pt, a4paper]{amsart}
-\setlength{\textwidth}{\paperwidth}\addtolength{\textwidth}{-2in}\calclayout
+\documentclass[12pt,oneside,english]{amsart}
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+\usepackage{amsthm}
+\usepackage{stackrel}
+\usepackage[backref=section]{hyperref}
 \def\MR#1{\href{http://www.ams.org/mathscinet-getitem?mr=#1}{MR-#1}}
 \def\ARXIV#1{\href{https://arxiv.org/abs/#1}{arXiv:#1}}
 \usepackage{mathrsfs}
-\usepackage{bbm}
-\usepackage{comment}
-\usepackage{mathtools}
-\mathtoolsset{showonlyrefs}
-\usepackage{stackrel}
 \usepackage{color}
+\usepackage{comment}
+\theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{cor}[thm]{Corollary}
 \newtheorem{conj}[thm]{Conjecture}
 \theoremstyle{definition}
+\newtheorem{defi}[thm]{Definition}
 \newtheorem{rem}[thm]{Remark}
 \newtheorem{exa}[thm]{Example}
 \newtheorem{asp}{Assumption}
 \numberwithin{equation}{section}
 \allowdisplaybreaks
+\newcommand{\added}[1]{{\color{blue}#1}}\newcommand{\deleted}[1]{{\color{red}#1}}
+%\newcommand{\added}[1]{#1}\newcommand{\deleted}[1]{}
+
 %---Top matter------------------------------
 \begin{document}
 \title
-    %{\large Central Limit Theorems for Super Ornstein-Uhlenbeck Processes with stable Branching}
     [CLT for Super-OU processes]
     {CLT for Super-OU Processes with stable Branching}
 \author
-    [Y.-X. Ren, Z. Sun and J. Zhao]
-    {Yan-Xia Ren, Zhenyao Sun and Jianjie Zhao}
-%---Yan-Xia Ren
+    [Y.-X. Ren, R. Song, Z. Sun and J. Zhao]
+    {Yan-Xia Ren, Renming Song, Zhenyao Sun and Jianjie Zhao}
 \address
     {Yan-Xia Ren\\
     School of Mathematical Sciences\\
@@ -45,14 +51,12 @@
     Beijing, P. R. China, 100871}
 \email{yxren@math.pku.edu.cn}
 \thanks{The research of Yan-Xia Ren is supported in part by NSFC (Grant Nos. 11671017  and 11731009).}
-%---Zhenyao Sun
 \address
     {Zhenyao Sun\\
     School of Mathematical Sciences\\
     Peking University\\
     Beijing, P. R. China, 100871}
 \email{zhenyao.sun@pku.edu.cn}
-%---Jianjie Zhao
 \address
     {Jianjie Zhao\\
     School of Mathematical Sciences\\
@@ -68,66 +72,70 @@
 %---Contents-----------------------
 \section{Introduction}
 \subsection{Model}
-Let $d \in \mathbb N:= \{1,2,\dots\}$.
-For each $x\in \mathbb{R}^d$, write $|x|$ for its Euclidean norm.
-Let $\xi=\{(\xi_t)_{t\geq 0}; (\Pi_x)_{x\in \mathbb R^d}\}$ be an $\mathbb R^d$-valued Ornstein-Uhlenbeck prcess (OU process) with infinitesimal generator $L$ such that
+    Let $d \in \mathbb N:= \{1,2,\dots\}$.
+    \deleted{For each $x\in \mathbb{R}^d$, write $|x|$ for its Euclidean norm.}
+    Let $\xi=\{(\xi_t)_{t\geq 0}; (\Pi_x)_{x\in \mathbb R^d}\}$ be an $\mathbb R^d$-valued Ornstein-Uhlenbeck prcess (OU process) with infinitesimal generator $L$ such that
 \begin{equation}
 \label{eq: OU generator}
     Lf(x)
-    = \frac{1}{2}\sigma^2\Delta f(x)-b x \cdot \nabla f(x),
-    \quad f \in C^2(\mathbb{R}^d),
+        = \frac{1}{2}\sigma^2\Delta f(x)-b x \cdot \nabla f(x),
+        \quad \added{ x\in \mathbb R^d,}
+        f \in C^2(\mathbb{R}^d),
 \end{equation}
-where $\sigma>0$ and $b>0$.
-Denote by $(T_t)_{t\geq 0}$ the transition semigroup of $\xi$.
-%Let $\psi$ be a function on $\mathbb C_+:= \{x+iy: x\in [0,\infty), y\in \mathbb R\}$ with
-Let $\psi$ be a function on $\mathbb R_+:= [0,\infty)$ with
+    where $\sigma>0$ and $b>0$.
+    Denote by $(T_t)_{t\geq 0}$ the transition semigroup of $\xi$.
+    Let $\psi$ be a function on $\mathbb R_+:= [0,\infty)$ with
 \begin{equation}\label{mechanism}
     \psi(z)
-    := - \alpha z + z^{1+\beta},
-    %\quad z \in \mathbb C_+,
-    \quad z \in \mathbb R_+,
+        := - \alpha z + z^{1+\beta},
+        \quad z \in \mathbb R_+,
 \end{equation}
-where $\alpha > 0$ and $\beta \in (0,1) $.
-Denote by $\mathcal{M}(\mathbb{R}^d)$ the space of finite measures on $\mathbb{R}^d$.
-In this paper, we write $\int f(x)\mu(dx)$ as $\langle f,\mu\rangle$. Put $\|\mu\|=\langle 1,\mu\rangle$.
-We say a $\mathcal{M}(\mathbb{R}^d)$-valued Markov process $X = \{(X_t)_{t\geq 0}; (\mathbb{P}_{\mu})_{\mu \in \mathcal M(\mathbb R^d)}\}$ is a super Ornstein-Uhlenbeck process (super-OU process) with branching mechanism $\psi$, if for each non-negative bounded measurable function $f$ on $\mathbb{R}^d$, we have
+        where $\alpha > 0$ and $\beta \in (0,1) $.
+    Denote by $\mathcal{M}(\mathbb{R}^d)$ the space of \added{ all} finite measures on $\mathbb{R}^d$.
+    For each measurable function $f$ and measure $\mu$ write $\langle f,\mu\rangle = \int f(x)\mu(dx)$.
+    Put $\|\mu\|=\langle 1,\mu\rangle$. 
+    We say a $\mathcal{M}(\mathbb{R}^d)$-valued Markov process $X = \{(X_t)_{t\geq 0}; (\mathbb{P}_{\mu})_{\mu \in \mathcal M(\mathbb R^d)}\}$ is a super Ornstein-Uhlenbeck process (super-OU process) with branching mechanism $\psi$, if for each non-negative bounded measurable function $f$ on $\mathbb{R}^d$, we have
 \begin{equation} \label{super}
     \mathbb{P}_{\mu}[e^{-\langle f,X_t \rangle}]
-    = e^{-\langle u_f(t,\cdot), \mu \rangle},
-    \quad t\geq 0, \mu \in \mathcal M(\mathbb R^d),
+        = e^{-\langle u_f(t,\cdot), \mu \rangle},
+        \quad t\geq 0, \mu \in \mathcal M(\mathbb R^d),
 \end{equation}
-where $(t,x) \mapsto u_f(t,x)$ is the unique locally bounded positive solution to the equation
+        where $(t,x) \mapsto u_f(t,x)$ is the unique locally bounded positive solution to the equation
 \begin{equation}\label{eq1}
-     u_f(t,x) + \Pi_x \Big[ \int_0^t\psi\big(u_f(t-s, \xi_s)\big)~ds\Big]
-     = \Pi_x [f(\xi_t)],
-     \quad x\in \mathbb R^d, t\geq 0.
+        u_f(t,x) + \Pi_x \Big[ \int_0^t\psi\big(u_f(t-s, \xi_s)\big)~ds\Big]
+        = \Pi_x [f(\xi_t)],
+        \quad x\in \mathbb R^d, t\geq 0.
 \end{equation}
-%deleted
-%According to \cite[section 2]{Li2011Measure-valued}, the above is equivalent to
-%\begin{equation}\label{eq2}
-     %u_f(x , t) + \int_0^t T_{t-s}\psi(u_f(\cdot,s))(x)~ds=T_tf(x),\quad x \in \mathbb{R}^d,~ t\geq 0.
-%\end{equation}
-%end deleted
 
     The existence of such superprocesses is well known, see \cite{EB} for instance.
     Note that $(\|X_t\|)_{t\geq 0}$ is a continuous-state branching process with branching mechanism $\psi$.
-    The fact $\psi(\infty)=\infty$  and $\int^{\infty}\frac{1}{\psi(z)}~dz<\infty$ implies that the probability of extinguish event $D:= \{\exists t\geq 0,~\text{s.t.}~\|X_t\|=0\}$ is contained in $(0,1)$, which means that our superprocess is non-persistent.
+\added{
+    According to \cite[Theorem 12.5 \& Theorem 12.7]{Kyprianou2014Fluctuations}, we have
+}\deleted{
+    The fact $\psi(\infty)=\infty$ and $\int^{\infty}\frac{1}{\psi(z)}~dz<\infty$ implies that the probability of extinguish event $D:= \{\exists t\geq 0,~\text{s.t.}~\|X_t\|=0\}$ is contained in $(0,1)$, which means that our superprocess is non-persistent.
     In fact,
+}
 \begin{equation}
-    \mathbb{P}_{\mu}(D)= \mathbb{P}_{\mu} (\lim_{t \to \infty}\|X_t\|=0 )
+\added{
+    \mathbb{P}_{\mu} (\exists t\geq 0,~\text{s.t.}~\|X_t\|=0)
+    = e^{-\alpha^* \|\mu\|}, 
+}\deleted{
+    \mathbb{P}_{\mu}(D)
+    = \mathbb{P}_{\mu} (\lim_{t \to \infty}\|X_t\|=0 )
     = e^{-\alpha^* \|\mu\|},
-\end{equation}
-    where $\alpha^* := \sup\{\lambda \geq 0: \psi(\lambda) = 0\}$. See \cite[Theorem 12.5 \& Theorem 12.7]{Kyprianou2014Fluctuations} for a example.
-%comment
-   % {\bf (Zhenyao: We should use \cite[Theorem 12.5]{Kyprianou2014Fluctuations} and talk about the probability of $D:= \{\exists t\geq %0,~\text{s.t.}~\|X_t\|=0\}$. Because we want to emphsis that our superprocess is non-presistent.)}
-%end comment
-%comment
-    {\bf (Jianjie: I rewrite this part to emphsis that our superprocess is non-presistent.)}
-%end comment
+}
+\end{equation} 
+    where $\alpha^* := \sup\{\lambda \geq 0: \psi(\lambda) = 0\}$.
+\deleted{ 
+    See {\cite[Theorem 12.5 \& Theorem 12.7]{Kyprianou2014Fluctuations} }for a example.
+    }
+
     Define the \emph{Fenyman-Kac semigroup} by
 \begin{equation}\label{meansemigroup}
     T^{\alpha}_t f(x)
-    := \Pi_x [e^{\alpha t}f(\xi_t)],
+    :=
+\added{ e^{\alpha t} T_t f(x) =}
+    \Pi_x [e^{\alpha t}f(\xi_t)],
     \quad x\in \mathbb{R}^d,t\geq 0, f\in \mathscr B^+(\mathbb R^d).
 \end{equation}
     It is konwn that, see \cite[Proposition 2.27]{Li2011Measure-valued} for example, $(T^\alpha_t)_{t\geq 0}$ is the \emph{mean semigroup} of $X$, in the sense that
@@ -136,91 +144,95 @@ where $(t,x) \mapsto u_f(t,x)$ is the unique locally bounded positive solution t
     = \langle T_t^\alpha f, \mu \rangle,
     \quad t\geq 0, f\in \mathscr B^+(\mathbb R^d).
 \end{equation}
-Notice that $T^{\alpha}_t =e^{\alpha t}T_t$ for each $t \geq 0$.
+\deleted{Notice that $T^{\alpha}_t =e^{\alpha t}T_t$ for each $t \geq 0$.}
 
 
 \subsection{OU semigroup}
-%moved and modified from below
-    In tihs subsection, we recall some results on the spectrum property of the OU operator $L$ from \cite{GD}.
-%end moved and modified from below
-    %Recall that $\xi$ is an OU process with generator $L$. It is known that $\xi$ has an invariant density
+    In this subsection, we recall some results on the spectrum property of the OU operator $L$ from \cite{GD}.
     Let $\xi$ be an OU process with generator $L$ given by \eqref{eq: OU generator}.
-    %It is known that $\xi$ has an invariant density
     It is known that $\xi$ has an invariant measure
 \begin{equation}
 \label{invariantdensity}
-    %\varphi (x)
     \varphi(x)dx
-    %=\Big (\frac{b}{\pi \sigma^2}\Big )^{\frac{d}{2}}\exp \Big(-\frac{b}{\sigma^2}|x|^2 \Big),\quad x\in \mathbb{R}^d.
     =\Big (\frac{b}{\pi \sigma^2}\Big )^{d/2}\exp \Big(-\frac{b}{\sigma^2}|x|^2 \Big)dx,
     \quad x\in \mathbb{R}^d.
 \end{equation}
-    Let $L^2(\varphi):= \left\{ h: \int_{\mathbb{R}^d} |h(x)|^2 \varphi(x) dx < \infty \right\}$, then $L^2(\varphi)$ is an Hilbert space with inner product
+    Let $L^2(\varphi):= \left\{ h \added{ \in \mathscr B(\mathbb R^d)}: \int_{\mathbb{R}^d} |h(x)|^2 \varphi(x) dx < \infty \right\}$, then $L^2(\varphi)$ is an Hilbert space with inner product
 \begin{equation}
     \langle f_1, f_2 \rangle_{\varphi}
     := \int_{\mathbb{R}^d}f_1(x)f_2(x)\varphi(x) dx, \quad f_1,f_2 \in L^2(\varphi).
 \end{equation}
-%moved to above
-    %In tihs subsection, we recall some results on the spectrum in $L^2(\varphi)$ of the operator $L$, more details can be found in \cite{GD}.
-%end moved to above
-    %For each $p = (p_k)_{k = 1\dots d} \in \mathbb{N}_0^{d}$, let $|p|=\sum_{k=1}^d p_k$, $p!= \prod_{k= 1}^d p_k !$ and $\partial x^p = \prod_{k = 1}^d\partial x_k^{p_k}$.
-    For each $p = (p_k)_{k = 1}^d \in \mathbb{N}_0^{d}$, let $|p|=\sum_{k=1}^d p_k$, $p!= \prod_{k= 1}^d p_k !$ and $\partial x^p = \prod_{k = 1}^d\partial x_k^{p_k}$.
+    \added{ Let $\mathbb N = \{1,2,\dots\}$ and $\mathbb N_0 := \mathbb N\cup\{0\}$.}
+    For each $p = (p_k)_{k = 1}^d \in \mathbb{N}_0^{d}$, let $|p| \added{ :}=\sum_{k=1}^d p_k$, $p! \added{ :}= \prod_{k= 1}^d p_k !$ and $\partial x^p \added{ :}= \prod_{k = 1}^d\partial x_k^{p_k}$.
     The Hermite polynomials are defined by
 \begin{equation}
     H_p(x)
     :=(-1)^{|p|}\exp(|x|^2) \frac{\partial ^{|p|}}{\partial x^p} \exp(-|x|^2) ,
     \quad x\in \mathbb R^d, p \in \mathbb{N}_0^{d}.
 \end{equation}
-    It is known that the generator $L$ of OU process $\xi$ can be viewed as an operator on $L^2(\varphi)$ with eigenvalues $\sigma(L)= \{-bk: k \in \mathbb N_0\}$.
-    %For each $k \in \mathbb N_0$, the eigenspace $A_k$ corresponding to eigenvalue $-bk$ of this operator is
-    For each $k \in \mathbb N_0$, the eigenspace $A_k$ corresponding to eigenvalue $-bk$ is
+    It is known that \added{ $(T_t)$ is a strong continuous semigroup }\deleted{ the generator $L$ of OU process $\xi$ can be viewed as an operator} on $L^2(\varphi)$ \added{ and its generator $L$ has }\deleted{ with} eigenvalues $\sigma(L)= \{-bk: k \in \mathbb N_0\}$.
+    For each $k \in \mathbb N_0$, \added{denote $A_k$ the eigenspace corresponding to eigenvalue $-bk$, then}\deleted{the eigenspace $A_k$ corresponding to eigenvalue $-bk$ is}
 \begin{equation}
     A_k
-    %= \operatorname{Span} \{\phi_p : |p|=k\},
     = \operatorname{Span} \{\phi_p : p\in \mathbb N_0^d, |p|=k\},
 \end{equation}
 where
 \begin{equation}\label{eigenfunction}
-	\phi_p(x)
+    \phi_p(x)
     := \frac{1}{\sqrt{ p! 2^{|p|} }} H_p \Big(\frac{ \sqrt{b} }{\sigma}x \Big),
-    %\quad x\in \mathbb{R}^d, p\in \mathbb{Z}_+^d.
     \quad x\in \mathbb{R}^d, p\in \mathbb N_0^d.
 \end{equation}
- %The function $\phi_p$ is an eigenfunction of $L$ corresponding to the eigenvalue $-b|p|$, and satisfies
- It is known that
+    It is known that
 \begin{equation}\label{semigroupformula}
     T_t\phi_p(x)
     =e^{-b|p|t}\phi_p(x),
     \quad t\geq 0, x\in \mathbb{R}^d, p\in \mathbb N_0^d.
 \end{equation}
-    %Moreover, it is known that $\{\phi_p: p \in \mathbb N_0^d\}$ forms a complete orthonormal basis of $L^2(\varphi)$.
-    Moreover, it is known that $\{\phi_p: p \in \mathbb N_0^d\}$ forms a complete orthogonal basis for $L^2(\varphi)$.
-    %Therefore, for each $f\in L^2(\varphi)$,
+    Moreover, \deleted{it is known that} $\{\phi_p: p \in \mathbb N_0^d\}$ forms a complete orthogonal basis for $L^2(\varphi)$.
     That is, for each $f\in L^2(\varphi)$,
 \begin{equation}\label{semicomp1}
     f
     =\sum_{k=0}^{\infty}\sum_{|p|=k}\langle f, \phi_p \rangle_{\varphi} \phi_p,
     \quad \text{in~} L^2(\varphi).
 \end{equation}
-%Let
-    Denote
+    Denote by
 \begin{equation}\label{order}
     \kappa(f)
-    :=\inf \left \{k\geq 0: \exists ~ p\in \mathbb{Z}_+^d,{\rm ~s.t.~}|p|=k {\rm ~and~}  \langle f, \phi_p \rangle_{\varphi}\neq 0\right \}
+    :=\inf \left \{k\geq 0: \exists ~ p\in \added{ \mathbb N_0^d }\deleted{ \mathbb{Z}_+^d},{\rm ~s.t.~}|p|=k {\rm ~and~}  \langle f, \phi_p \rangle_{\varphi}\neq 0\right \}
 \end{equation}
-    %denote the order of function $f$ in $L^2(\varphi)$. Then $ \kappa(f)\geq 0$, in particular, the order of constant functions is zero.
     the order of function $f$ in $L^2(\varphi)$.
-    Then $ \kappa(f)\geq 0$.
+    \added{ Note that }\deleted{ Then} $ \kappa(f)\geq 0$.
     In particular, the order of any constant function is zero.
 
-    %In this paper, we consider functions in the space of functions of ploynomial growth $\mathcal{P}$ defined as
+\added{
+\subsection{} 
+    Let $(\Omega, \mathscr F)$ be a measurable space.
+    Let $\mathcal F$ be a linear subspace of real valued measurable functions on $\Omega$.
+\begin{defi}
+\label{def: alpha-positive operator}
+    We say an operator $A: \mathcal F \to \mathcal F$ is $\alpha$-scalable for some $\alpha \in \mathbb R$ if for each $\lambda \in \mathbb R$ and $h \in \mathcal F$ we have $A (\lambda h) = |\lambda|^\alpha~ Ah$.
+\end{defi}
+
+    Suppose that $\alpha, \beta \in \mathbb R$. 
+    Let $A_\alpha$ and $A_\beta$ be an $\alpha$-scalable and a $\beta$-scalable operator on $\mathcal F$. 
+    Then it is clear that $A_\alpha A_\beta$ is an $(\alpha\beta)$-scalable operator.
+}
+\added{
+    Denote by $\mathcal P$ the class of functions of polynomial growth on $\mathbb R^d$ defined by
+}
+\deleted{
     In this paper, we consider the class of functions of ploynomial growth $\mathcal{P}$ defined by
+}
 \begin{equation}
     \mathcal{P}
-    :=\big \{f\in \mathcal{B}(\mathbb{R}^d):\exists~ C>0, n \in \mathbb N_0, {\rm ~s.t.~} \forall x\in \mathbb{R}^d,~ |f(x)|\leq C(1+|x|)^n\big\}.
+    :=\big \{f\in \added{ \mathscr B}\deleted{ \mathcal{B}}(\mathbb{R}^d):\exists~ C>0, n \in \mathbb N_0, {\rm ~s.t.~} \forall x\in \mathbb{R}^d,~ |f(x)|\leq C(1+|x|)^n\big\}.
 \end{equation}
-    It is easy to see that $\mathcal{P} \subset L^2(\varphi)$.
-    %According to \cite[Fact 1.2]{MM}, for any $f \in \mathcal{P}$, there exists $R \in \mathcal{P}$ such that for any $t\geq 0$,
+    It is \added{clear} \deleted{easy to see} that $\mathcal{P} \subset L^2(\varphi)$.
+    \added{ For each $f\in \mathcal {P}$, define an operator $Q$ by $Qf(x):=\sup_{t\geq 0}e^{\kappa(f)bt} |T_tf(x)|$.}
+\added{
+    According to \cite[Fact 1.2]{MM}, $Q$ is an $1$-scalable operator on $\mathcal P$.
+}
+\deleted{
     According to \cite[Fact 1.2]{MM}, for any $f \in \mathcal{P}$, there exists $R_0 \in \mathcal{P}$ such that,
 \begin{equation}
 \label{eq:semigroupineq}
@@ -228,11 +240,10 @@ where
     \leq e^{-\kappa(f)bt} R_0(x),
     \quad t\geq 0, x\in \mathbb R^d.
 \end{equation}
+}
 
-\subsection{Characteristic functions}
-    %Let $X$ be a super OU-process with initial configuration $\mu$.
-%new added
-    Let the Gamma function $\Gamma$ be defined by
+\subsection{}
+    \added{Recall $\Gamma$} \deleted{Let} the Gamma function \deleted{$\Gamma$ be} defined by
 \begin{equation}
     \Gamma (x) := \int_0^\infty t^{x-1} e^{-t}dt,
     \quad x>0,
@@ -244,7 +255,7 @@ and
     := \int_0^\infty t^{x-1} \Big(e^{-t} - \sum_{k=0}^{n-1} \frac{(-t)^k}{k!}\Big) dt,
     \quad -n< x< -n+1, n\in \mathbb N.
 \end{align}
-    Then it is elementary to verify that
+    \added{ It is known that }\deleted{ Then it is elementary to verify that}
 \begin{equation}
     \Gamma(x+1) = x\Gamma(x),
     \quad x>0~\text{or}~-n< x< -n+1, n\in \mathbb N.
@@ -262,9 +273,9 @@ and
 \item
     is an extension of the real function $x\mapsto x^{\beta}$ on $[0,\infty)$;
 \item
-    is continuous in $\mathbb C_+$;
+    is continuous \added{ on }\deleted{ in} $\mathbb C_+\added{ :=\{x+iy: x\in [0,\infty), y\in \mathbb R\}}$;
 \item
-    is holomorphic in $\mathbb C_+^0$.
+    is holomorphic \added{ on }\deleted{ in} $\mathbb C_+^0\added{ := \{x+iy:x\in (0,\infty), y\in \mathbb R\}}$.
 \end{itemize}
     According to Lemma \ref{lem: extension lemma for branching mechanism} in the Appendix, we can verify that the following function:
 \begin{equation}
@@ -278,11 +289,11 @@ and
 \item
     is an extension of the real function $x\mapsto x^{1+\beta}$ on $[0,\infty)$;
 \item
-    is continuous in $\mathbb C_+$;
+    is continuous \added{ on }\deleted{ in} $\mathbb C_+$;
 \item
-    is holomorphic in $\mathbb C_+^0$.
+    is holomorphic \added{ on }\deleted{ in} $\mathbb C_+^0$.
 \end{itemize}
-    Moreover, according to \eqref{eq: path integration representation of h}, for any $C^1$ path $\gamma:[0,1]\mapsto \mathbb C_+$,
+    Moreover, according to \eqref{eq: path integration representation of h}, for any $C^1$ path \added{ $\gamma:[0,1]\to \mathbb C_+$ }\deleted{ $\gamma:[0,1]\mapsto \mathbb C_+$},
 \begin{align}
 \label{eq: integration formula for 1+beta-th power of z}
     &\gamma(1)^{1+\beta} - \gamma(0)^{1+\beta}
@@ -293,11 +304,19 @@ and
     This indicates that the derivative of $z\mapsto z^{1+\beta}$ is $z\mapsto (1+\beta)z^{\beta}$ on $\mathbb C^0_+$.
 \begin{lem}
 \label{lem: Lip of power function}
-    There is a constant $C_0 > 0$ such that for any $z_0,z_1 \in \mathbb C_+$,
-\[
+    There is a constant $\added{ C_{\ref{lem: Lip of power function}} } \deleted{ C_0} > 0$ such that for any $z_0,z_1 \in \mathbb C_+$,
+\begin{equation}
+\label{eq: Lip of power function}
     |z_0^{1+\beta} - z_1^{1+\beta}|
-    \leq C_0(|z_0|^{\beta}+|z_1|^{\beta})|z_0 - z_1|.
-\]
+    \leq \added{ C_{\ref{lem: Lip of power function}} }\deleted{ C_0}(|z_0|^{\beta}+|z_1|^{\beta})|z_0 - z_1|.
+\end{equation}
+\added{
+    In particular, for each $z\in \mathbb C$, we have
+$
+    |z^{1+\beta}|
+    \leq  C_{\ref{lem: Lip of power function}} |z|^{1+\beta}.
+$
+}
 \end{lem}
 \begin{proof}
     Notice that
@@ -306,7 +325,7 @@ and
     &|z^{\beta}|
     = \Big|\int_0^\infty (e^{-zy}-1) \frac{dy}{\Gamma(-\beta)y^{1+\beta}}\Big|
     \\&\leq \frac{1}{|\Gamma(-\beta)|}\int_0^\infty \frac{2\wedge (|z|y)}{y^{1+\beta}}dy
-    \\&= \frac{|z|^{\beta}}{|\Gamma(-\beta)|}\int_0^\infty \frac{2\wedge t}{t^{1+\beta}}dt =: c_0 |z|^{\beta},
+    = \frac{|z|^{\beta}}{|\Gamma(-\beta)|}\int_0^\infty \frac{2\wedge t}{t^{1+\beta}}dt =: c |z|^{\beta},
     \quad z\in \mathbb C_+.
 \end{align}
     Define a path $\gamma: [0,1] \to \mathbb C_+$ such that
@@ -324,52 +343,51 @@ and
     \qedhere
 \end{align}
 \end{proof}
-
+\subsection{}
     Let $X$ be the super OU-process discussed in the previous subsections.
-    Its branching mechanism $\psi$ can be extended in the following way: $\psi(z) := -\alpha z + z^{1+\beta}$ for $z\in \mathbb C_+$.
-    Then according to the above analysis, $\psi$ is continuous on $\mathbb C_+$ and is holomorphic on $\mathbb C_+^0:=\{x+iy:x \in (0,\infty), y\in \mathbb R\}$ with derivative
+    Its branching mechanism $\psi$ can be extended \added{ on $\mathbb C_+$ by }\deleted{ in the following way: } $\psi(z) := -\alpha z + z^{1+\beta}$ for \added{ each} $z\in \mathbb C_+$.
+    According to the above analysis, $\psi$ is continuous on $\mathbb C_+$ and is holomorphic on $\mathbb C_+^0\deleted{:=\{x+iy:x \in (0,\infty), y\in \mathbb R\}}$ with derivative
 \begin{equation}
 \label{eq: deriavetive of the Poission part}
     \psi'(z) := -\alpha + (1+\beta)z^{\beta},
     \quad z\in \mathbb C_+.
 \end{equation}
-Write $\psi_0(z) = \psi(z) + \alpha z$ and $\psi'_0(z) = \psi'(z) + \alpha$.
-%end new added
-    %For any $f \in \mathcal{P}$, replace $f$ by $-i\theta f$ in equations of \eqref{super} and \eqref{eq2}, we obtain that
-%\begin{equation}\label{characteristic}
-    %\mathbb{P}_{\mu}\left[\exp(i\theta \langle  f,X_t\rangle)\right]=e^{\langle w_f(\cdot,t,\theta),\mu\rangle}
-%\end{equation}
-%where $w_f(x,t,\theta)=\log \mathbb{P}_{\delta_x}e^{i\theta\langle f,X_t\rangle}$ satisfying the equation that
-%\begin{equation}\label{charequation}
-    %w_f(x,t,\theta)-\int_0^t T_{t-s} \left(\psi (-w_f(\cdot,s,\theta))\right)(x)ds=i\theta T_tf(x)
-%\end{equation}
-    For each $t\in [0,\infty), x\in \mathbb E$ and $f \in \mathcal{P}$, denote by $v_f(t,x,\theta):= \operatorname{Log} \mathbb P_{\delta_x}[e^{i\theta \langle f, X_t\rangle}]$ the characteristic exponent of $\{\langle f,X_t \rangle; \mathbb P_{\delta_x}\}$
-    (For percise definition, see the argument in Subsection \ref{sec: definition of characteristic exponent} of Appendix).
-    From \eqref{eq: -v has positive real part}, we know that $- v_f(t,x,\theta)$ taks values in $\mathbb C_+$.
-    Furthermore, we know from Proposition \ref{sec: definition of characteristic exponent} that
-%delete
-%\begin{equation}\label{characteristic}
-    %\mathbb{P}_{\mu}[e^{i\theta X_t(f)}]
-    %=e^{\langle w_f(\cdot,t,\theta),\mu\rangle},
-    %\quad t\in [0,\infty), \mu\in \mathcal M(\mathbb R^d), f\in \mathcal P, \theta \in \mathbb R.
-%\end{equation}
-    %where $w_f(x,t,\theta)$ satisfies the equation
-\begin{align}\label{charequation}
+    Write $\psi_0(z) := \psi(z) + \alpha z$ and $\psi'_0(z) := \psi'(z) + \alpha$.
+\added{
+    For each $f\in \mathscr B(\mathbb R^d, \mathbb C_+)$ and $x\in E$, define $\Psi_0f(x) := \psi_0(x,f(x))$ and $\Psi'_0 f(x) := \psi'_0(x,f(x))$.
+}
+    For each $t\in [0,\infty), x\in \mathbb E$ and $f \in \mathcal{P}$, \added{define $U_tf(x) := \operatorname{Log} \mathbb P_{\delta_x}[e^{i\theta \langle f, X_t\rangle}]|_{\theta = 1}$} \deleted{ denote by $v_f(t,x,\theta):= \operatorname{Log} \mathbb P_{\delta_x}[e^{i\theta \langle f, X_t\rangle}]$ the characteristic exponent of $\{\langle f,X_t \rangle; \mathbb P_{\delta_x}\}$}
+    (\added{ See }\deleted{ For percise definition, see} the argument in Subsection \ref{sec: definition of characteristic exponent} of Appendix).
+    From \eqref{eq: -v has positive real part}, we know that \added{$-U_tf(x)$} \deleted{$- v_f(t,x,\theta)$} taks values in $\mathbb C_+$.
+    Furthermore, we know from Proposition \ref{prop: complex FKPP-equation} that
+\deleted{
+\begin{align}
+\label{charequation}
     v_f(t,x,\theta)-\int_0^t T_{t-s} \psi \big(-v_f(s,\cdot,\theta)\big)(x)ds
     =i\theta T_tf(x),
     \\ \quad t\in [0,\infty), \mu\in \mathcal M(\mathbb R^d), f\in \mathcal P, \theta \in \mathbb R.
 \end{align}
-and
+    and
+}
+\added{
 \begin{align}
 \label{eq:chareq2}
-    %w_f(x,t,\theta)-\int_0^t T^{\alpha}_{t-s} \left( (-w_f(\cdot,s,\theta))^{1+\beta}\right)(x)ds=i\theta T^{\alpha}_t f(x),
+    U_tf(x)-\int_0^t T^{\alpha}_{t-s} \Psi_0(-U_sf)(x)ds
+    =i T^{\alpha}_t f(x),
+    \quad t\in [0,\infty), x\in E, f\in \mathcal P.
+\end{align}
+}
+\deleted{
+\begin{align}
+\label{eq:chareq2}
     v_f(t,x,\theta)-\int_0^t T^{\alpha}_{t-s} \psi_0(-v_f(s,\cdot,\theta))(x)ds=i\theta T^{\alpha}_t f(x),
     \\ \quad t\in [0,\infty), \mu\in \mathcal M(\mathbb R^d), f\in \mathcal P, \theta \in \mathbb R.
 \end{align}
+}
 %new added
 %end new added
 %begin comments
-    {\bf Zhenyao: There are notation inconsistency in the Appendix and other suctions. Mainly on the branching mechanism: In the appendix, we use
+    {\bf Zhenyao: There are notation inconsistency in the Appendix and other sections. Mainly on the branching mechanism: In the appendix, we use
 \[
     \psi(x,z)= -\beta(x)z+\alpha(x)z^2 + \int_0^t \dots;
 \]
@@ -378,8 +396,6 @@ and
     \psi(z) = - \alpha z + z^{1+\beta}.
 \]
     Readers can easily be confused by which $\alpha$ and $\beta$ we mean in the context.
-
-    Another inconsistency is the notation for the characteristic exponent $\operatorname{Log} \mathbb P_{\delta_x}[e^{i\theta X_t(f)}]$. In the appendix we use $v_f(t,x,\theta)$, but in other subsection we use $w_f(x,t,\theta)$. I recommended to use $v_f$ because I would like that $w$ be reserved for representing canonical element in some measurable spaces. Also, I would like to use $(t,x)$ instead of $(x,t)$ because it make more sense to put the ``time parameter t" first. ($(t,x)$ and $(x,t)$ are both used by different authors.)
 
     Though I recommended all those changes, I did not try to make them in this version (in order to not mess things up). I would like Jianjie to decide which set of notations is better. Overall, I am fine with any set of notations as long as they are consistent with each other and don't raise any confusions.}
 %end comments
@@ -434,104 +450,214 @@ In Lemma \ref{lemma211}, we will prove that $|m[f]|<\infty$.
 \end{thm}
 
 \section{Preliminaries}
-In this section, we will estimate the characteristic function and the $(1+\gamma)$-th moments of super OU-process, where $\gamma \in (0,\beta)$.
-%For notational convenience, we always fix $g\in \mathcal{P}$ in the following sections, correspondingly, there exists $R\in\mathcal{P}$ such that
-    In this section, we assume a function $g$ satisfying that there exists $C_h, \kappa>0$ and $R^g_0\in \mathcal{P}$
-    such that
-\begin{align}
-\label{eq:gcontrol1}
-     |T_tg|(x)
-     \leq C_g e^{-\kappa bt}R^g_0(x),
-     \quad t\geq 0,x\in \mathbb{R}^d.
-\end{align}
-%new added
-Taking $T_s$ on the both side of the above inequality (since it is a positive operator), we have that there exists $R^g \in \mathcal P$ such that
-\begin{align}
-\label{eq:gcontrol}
+    In this section, we will estimate the characteristic function and the $(1+\gamma)$-th moments of super OU-process, where $\gamma \in (0,\beta)$.
+    \deleted{In this section, we assume a function $g$ satisfying that there exists $C_h, \kappa>0$ and $R^g_0\in \mathcal{P}$
+    such that}
+\deleted{\begin{align}\label{eq:gcontrol1}
+    |T_tg|(x)
+    \leq C_g e^{-\kappa bt}R^g_0(x),
+    \quad t\geq 0,x\in \mathbb{R}^d.
+\end{align}}
+\deleted{Taking $T_s$ on the both side of the above inequality (since it is a positive operator), we have that there exists $R^g \in \mathcal P$ such that}
+\deleted{\begin{align}\label{eq:gcontrol}
     T_s|T_t g|(x)
     \leq C_g e^{-\kappa bt} R^g(x),
     \quad t\geq 0,s\geq 0,x\in \mathbb{R}^d.
+\end{align}}
+\added{
+    Consider an incremental decomposition of $\langle g,X_t \rangle$.
+    For each $t\geq 0$, denote by $\{\mathcal{F}_t:t\geq 0\}$ the natrual filtration of $X$.
+    For each $g\in \mathcal P$ and $0 \leq a \leq b \leq t <\infty$, define random variable
+\[
+    M_{r,s}\langle g,X_t\rangle   
+    := \mathbb P[\langle g,X_t\rangle|\mathscr F_s] - \mathbb P[\langle g,X_t\rangle|\mathscr F_r]
+    \langle T_{t-b}^\alpha g, X_b\rangle - \langle T_{t-a}^\alpha g, X_a\rangle.
+\]
+    Thus, we have
+\begin{align}
+    M^t_g(0,t)
+    = \sum_{k = 0}^{\lfloor t \rfloor - 1} M^t_g(k,k+1) + M^t_g(\lfloor t \rfloor, t).
 \end{align}
-%end new added
-
-Consider an incremental decomposition of $\langle g,X_t \rangle$.
-    %Denote by $\{\mathcal{F}_t:t\geq 0\}$ the filtration of $X$, that is $\mathcal{F}_t=\sigma(X_s:s\in [0,t])$.
+    Note that 
+\begin{align}
+    M_g^t(a,b) = M_{(T_{t-b}^\alpha g)}^b (a,b).
+\end{align}
+}
+\deleted{
+    Consider an incremental decomposition of $\langle g,X_t \rangle$.
     For each $t\geq 0$, denote by $\{\mathcal{F}_t:t\geq 0\}$ the natrual filtration of $X$, that is $\mathcal{F}_t=\sigma(X_s:s\in [0,t])$.
-    %For $k \in \mathbb{N}$, let $g_k=T^{\alpha}_k g$.
     For each $f\in\mathcal{P}$ and $k \in \mathbb{N}$, let $f_k=T^{\alpha}_k f$.
-    %For each $t-k\geq 1$, according to \eqref{eq:meanformula}, write
-    %For each $k \in \mathbb N$ and $t\geq k+1$, 
-    According to \eqref{eq:meanformula}, write
+    According to \eqref{eq:meanformula}, write}
 \begin{align*}
-    M_k^t[g]:&=\langle g_k, X_{t-k}\rangle-\mathbb{P}_{\mu}(\langle g_k,X_{t-k}\rangle|\mathcal{F}_{t-k-1})\\
-    &=\langle g_k, X_{t-k}\rangle-\langle T_1^{\alpha}g_{k},X_{t-k-1}\rangle\\
-    &=\langle g_k, X_{t-k}\rangle-\langle g_{k+1},X_{t-k-1}\rangle, \quad t\geq k+1.
+    \deleted{M_k^t[g]}:&
+    \deleted{=\langle g_k, X_{t-k}\rangle-\mathbb{P}_{\mu}(\langle g_k,X_{t-k}\rangle|\mathcal{F}_{t-k-1})}\\
+    &\deleted{=\langle g_k, X_{t-k}\rangle-\langle T_1^{\alpha}g_{k},X_{t-k-1}\rangle}\\
+    &\deleted{=\langle g_k, X_{t-k}\rangle-\langle g_{k+1},X_{t-k-1}\rangle, \quad t\geq k+1.}
 \end{align*}
-    %If $k=t$, let $M_t^t[g]:=\langle g_t,\mu\rangle$, where $\mu $ is the initial configuration.
-    What's more, we denote $M_{\lfloor t\rfloor}^t[g]:=\langle g_{\lfloor t \rfloor},X_{t-\lfloor t\rfloor}\rangle-\langle g_t, \mu\rangle$ and $M_t^t[g]:=\langle g_t,\mu\rangle$ under $\mathbb P_\mu$, where $\mu $ is the initial configuration. Thus
+    \deleted{What's more, we denote $M_{\lfloor t\rfloor}^t[g]:=\langle g_{\lfloor t \rfloor},X_{t-\lfloor t\rfloor}\rangle-\langle g_t, \mu\rangle$ and $M_t^t[g]:=\langle g_t,\mu\rangle$ under $\mathbb P_\mu$, where $\mu $ is the initial configuration. Thus}
 \begin{equation}\label{decomposition}
-    \langle g,X_t\rangle-M_t^t[g]
+    \deleted{\langle g,X_t\rangle-M_t^t[g]
     =\sum_{k=0}^{\lfloor t\rfloor}M_k^t[g]
-%new added
-    , \quad t \geq 0.
-%end new added
+    , \quad t \geq 0.}
 \end{equation}
 
-%{\bf Jianjie: We have to emphasize that, if $t\notin \mathbb{N}$, there will appear an additional term corresponding to the interval $[\lfloor t %\rfloor,t]$, which can be handled with the same techniques.
-%}
-\subsection{Approximate expansion of characteristic function}
+\added{
+\subsection{}
+    Define $\mathcal P^+:= \mathcal P \cap \mathcal B(\mathbb R^d, \mathbb R^+)$ and $\mathcal P^*:= \{f\in \mathscr B(\mathbb R^d, \mathbb C): |f|\in \mathcal P\}$.
+    We say $S$ is a $\gamma$-scalable operator for some $\gamma\in \mathbb R$ if $S: \mathcal P^+ \to \mathcal P^+$ and $S(\theta f) = \theta^\gamma Tf$ for each $\theta \geq 0$ and $f \in \mathcal P^+$.
+    We say $R$ is a monotonic operator if $R:\mathcal P^+ \to \mathcal P^+$ and $Rf \leq Rg$ for each $f, g \in \mathcal P^+$ with $f\leq g$. 
+    We say $(R,S)$ is a $\gamma$-control-pair for some $\gamma \in \mathbb R$ if $R$ is a monotonic operator and $S$ is a $\gamma$-scalable operator and $Rf\leq Sf$ for each $f\in \mathcal P$.
+    We say an operator $A$ is $\gamma$-controllable on $\mathcal D$ for some $\gamma \in \mathbb R$ and $\mathcal D \subset \mathcal P^+$ if $A: \mathcal D \to \mathcal P^*$ and there exits a $\gamma$-control pair $(R,S)$ such that $|Af|\leq R|f|$ for each $f\in \mathcal D$. 
+    In this case we say $A$ is $\gamma$-controlled by the $\gamma$-control-pair $(R,S)$ on $\mathcal D$.
+    We say a family of operator $(A_s)_{s\in \Lambda}$ is uniformly $\gamma$-controllable on $\mathcal D$ for some $\gamma \in \mathbb R$ and $\mathcal D \subset \mathcal P^*$ if there exits a $\gamma$-control pair $(R,S)$ such that $A_s$ is $\gamma$-controlled by $(M, S)$ on $\mathcal D$ for each $s\in \Lambda$.
+}
+\added{
+    The first reason for considering $\gamma$-controllable operators is the following:
+\begin{lem}
+    Suppose that operators $(A_\lambda)_{\lambda\in \Lambda}$ are uniformly $\gamma$-controllable on $\mathcal D$ for some $\gamma \in \mathbb R$ and $\mathcal D \subset \mathcal P^*$.
+    Then there exists a $\gamma$-scalable operator $S$ such that
+\[
+    |A_\lambda T_t^\alpha f|
+    \leq e^{\gamma t (\alpha  - \kappa_f b)} SQf,
+    \quad \lambda \in \Lambda, t\geq 0, f\in \mathcal D.
+\]
+\end{lem}
+}
+\added{
+\begin{proof}
+    Let $(R,S)$ be the $\gamma$-control-pair for $(A_\lambda)_{\lambda\in \Lambda}$. 
+    Then
+\[
+    |A_\lambda T_t^\alpha f| \leq R|T_t^\alpha f|
+    \leq R (e^{\alpha t  - \kappa_f bt}Qf)
+    \leq S (e^{\alpha t  - \kappa_f bt}Qf)
+    \leq e^{\gamma t (\alpha  - \kappa_f b)} SQf.
+    \qedhere
+\]
+\end{proof}
+}
+\added{
+    For two operators $A$ and $B$ defined on same domain $\mathcal D\subset \mathcal P^*$, write $(A\times B)f (x):= Af(x) \times Bf(x)$. 
+    Let $a \in \mathbb R$, write $A^{\times a}f(x):= (Af(x))^a$ as long as it is well defined for all .
+    The second reason for considering $\gamma$-controllable operators is that they have good algebra properties: 
+\begin{lem}
+\label{lem: property of controllable operators}
+    Let operators $(A_\lambda)_{\lambda\in \Lambda}$ be uniformly $\gamma$-controllable on $\mathcal D$ from some $\gamma \in \mathbb R$ and $\mathcal D\subset \mathcal P^*$:
+\begin{itemize}
+\item[(1)]
+    Suppose that $(\Lambda, \mathscr F)$ is a measurable space.
+    Also suppose that $(\lambda,x)\mapsto A_\lambda f(x)$ is $\mathscr F \otimes \mathscr B(\mathbb R^d)$-measurable for each $f\in \mathcal D$.
+    For each probability measure $\mu$ on $(\Lambda, \mathscr F)$ write
+\[
+    A_\mu f(x):= \int_{\Lambda} A_\lambda f (x)~\mu(d\lambda), \quad f\in \mathcal D, x\in \mathbb R^d.
+\]
+    Then operators $\{A_\mu: \mu \text{ is  a probability measure on } (\Lambda, \mathscr F)\}$ are uniformly $\gamma$-controllable on $\mathcal D$.
+\item[(2)]
+    Suppose that operators $(B_\theta)_{\theta\in \Theta}$ is uniformly $\beta$-controllable on $\mathcal D_0 \subset \mathcal P^*$. 
+    Also suppose that for each $\lambda$, $A_\lambda:\mathcal D \to \mathcal D_0$.
+    Then operators $(B_\theta A_\lambda)_{\theta\in \Theta, \lambda \in \Lambda}$ is uniformly $(\gamma\beta)$-controllable on $\mathcal D$.
+\item[(3)]
+    Suppose that operators $(B_\theta)_{\theta \in \Theta}$ is uniformly $\beta$-controllable on $\mathcal D$ for some $\beta\in \mathbb R$.
+    Then operators $(B_\theta\times A_\lambda)_{\theta \in \Theta, \lambda \in \Lambda}$ are uniformly $(\gamma+\beta)$-controllable.
+\item[(4)]
+    Let $a\in \mathbb R$. Suppose that, for each $\lambda \in \Lambda$, $A_\lambda : \mathcal D \to \mathcal P^+$.
+    Then operators $(A^{\times a}_\lambda)_{\lambda \in \Lambda}$ are uniformly $(a\gamma)$-controllable.
+\end{itemize}
+\end{lem}
+\begin{proof}
+    ......
+\end{proof}
+}
 
-In this subsection, we will estimate the characteristic function of $M_k^t[g]$ near $0$. First, we will prove the following inequality which controls $v_{g_k}(s,x,\theta)$.
-\begin{lem}\label{lemma1}
-%For any $k \in \mathbb{N}$, $x\in\mathbb{R}^d$ and $\theta\in \mathbb{R}$, we have
+
+\subsection{}
+\added{
+    For each $f \in \mathcal{P}$, $x\in E$ and $t\geq 0$, define
+\begin{align}
+\label{eq: def of Zf}
+    \tilde U_t f(x)
+    &:= i T^\alpha_t f(x) + \int_0^t T^\alpha_{t-s} \Psi_0(-i T_s^{\alpha}f)(x)ds
+    \\Z_t f (x)
+    &:= \int_0^t T^\alpha_{t-s} \Psi_0(-i T_s^{\alpha}f)(x)ds.
+\end{align}
+}
+\added{
+\begin{lem}
+\label{lem: upper bound for usgx} 
+$~$
+\begin{itemize}
+\item[(1)]
+    Operators $(-U_t)_{0\leq t\leq 1}$ are uniformly $1$-controllable from $\mathcal P$ to $\mathcal P^*\cap \mathcal B(\mathbb R^d, \mathbb C_+)$. 
+\item[(2)]
+    Operators $(T^\alpha_t)_{0\leq t\leq 1}$ are uniformly $1$-controllable on $\mathcal P$.
+\item[(3)]
+    Operator $\Psi_0$ is $(1+\beta)$-controllable on $\mathcal P^* \cap \mathcal B(\mathbb R^d, \mathbb C_+)$.
+\item[(4)]
+    Operators $(U_t- iT_t^{\alpha})_{0\leq t\leq 1}$ are uniformly $(1+\beta)$-controllable on $\mathcal P$.
+\item[(5)]
+    Operators $\{\Psi_0(-U_t) - \Psi_0(-iT_t^\alpha): 0\leq t\leq 1\}$ are uniformly $(1+2\beta)$-controllable on $\mathcal P$.
+\item[(6)]
+    Operator $(U_t-\tilde U_t)_{0\leq t\leq 1}$ are uniformly $(1+2\beta)$-controllable on $\mathcal P$.
+\item[(7)]
+    Operators $(Z_t)_{0\leq t\leq 1}$ are uniformly $(1+\beta)$-controallable on $\mathcal P$.
+\end{itemize}
+\end{lem}
+}
+\added{
+\begin{proof}
+    Proof of (1): From \eqref{eq: upper bound for vf} in the appendix, we have for each $g\in \mathcal P$, $0\leq t\leq 1$ and $x\in E$,
+\[
+    |U_t g(x)|
+    \leq \sup_{0\leq u\leq 1}T_u^\alpha |g| (x).
+\]
+    Note that $f\mapsto\sup_{0\leq u\leq 1}T_u|f|$ is monotonic and $1$-scalable.
+
+    Proof of (2): Similar to the Proof of (1).
+
+    Proof of (3): According to Lemma \ref{lem: Lip of power function}, for each $f\in \mathcal P^* \cap \mathcal B(\mathbb R^d, \mathbb C_+)$,
+\[
+    |\Psi_0 f(x)| = |f(x)^{1+\beta}| \leq C_{\ref{lem: Lip of power function}} |f(x)|^{1+\beta}.
+\]
+    Also note that $f\mapsto |f|^{1+\beta}$ is monotonic and $(1+\beta)$-scalable.
+
+    Proof of (4): From (1), (2), (3) and Lemma \ref{lem: property of controllable operators}(2) we know that operators
+\[
+    f
+    \mapsto T^{\alpha}_{t-s}\Psi_0(-U_sf)(x),
+    \quad 0\leq s\leq t\leq 1
+\]
+    are uniformly $(1+\beta)$-controllable.
+    From Lemma \ref{lem: property of controllable operators}(1) and above we get the desired result.
+
+    Proof of (5): Notice that from Lemma \ref{lem: Lip of power function},
+\[
+    |\Psi_0(-U_t f) - \Psi_0(-iT_t^\alpha f) |
+    \leq  C_{\ref{lem: Lip of power function}} |U_u f-iT_u^{\alpha}f|(|U_u f|^{\beta}+|i T_u^{\alpha}f|^{\beta}).
+\]
+    From (1), (2), (4) and Lemma \ref{lem: property of controllable operators} (3,4) we get the desired result.
+
+    Proof of (6): Note that 
+\[
+    U_sf - \tilde U_sf
+    = \int_0^s T_{s-u}^{\alpha}\big(\Psi_0(-U_t f)-\Psi_0(-i T_t^{\alpha}f)\big)~du.
+\]
+    Then from (2), (5) and Lemma \ref{lem: property of controllable operators}(1,2) we get the desired result. 
+
+    Proof of (7): Similar to the proof of (4).
+\end{proof}
+}
+\deleted{
+\begin{lem}
+\label{lemma1}    
     Let $R^g \in \mathcal P$ be the control function in \eqref{eq:gcontrol}, then
-%$$e^{-(\alpha-\kappa(g)b) s}|w_{g_k}(x,s,\theta)|\leq |\theta|e^{(\alpha-\kappa(g)b)k} R(x), \quad s\geq 0.$$
 \begin{equation}
     e^{-\alpha s}|v_{g_k}(s,x,\theta)|
     \leq C_g|\theta|e^{(\alpha-\kappa b)k} R^g(x),
     \quad k\in \mathbb N, x\in \mathbb R^d, \theta \in \mathbb R, s\geq 0.
 \end{equation}
 \end{lem}
-%comment
-   % {\bf Zhenyao: The statement of the above Lemma is changed. I think the old version is not correct. I'm not sure how this influence the rest of the paper.
-
-    % Also, there are some paragraphs below I deleted which are duplicated with the appendix.}
-%end comment
-%delete
-    %Recall some result about the Kuznestov measures of $\{X_t, t\geq 0\}$. Let $\mathbb{D}$ be the collection of $\mathcal{M}(\mathbb{R}^d)$-valued right continuous functions $t\rightarrow \omega_t$ on $(0,\infty)$ having zero as a trap. Denote by $\{\omega_t, t\geq0\}$ the coordinate process of $\mathbb{D}$ and $(\mathcal{C},\mathcal{C}_t)$ the natural $\sigma$-algebras on $\mathbb{D}$ generated by the coordinate process.
-
-    %It's known by \cite[section 8.4]{Li2011Measure-valued} that  one can associate with $\{\mathbb{P}_{\delta_x}:x\in\mathbb{R}^d\}$ a family of $\sigma$-finite measures $\{\mathbb{N}_x:x \in \mathbb{R}^d\}$ defined on $(\mathbb{D},\mathcal{C})$ such that $\mathbb{N}_x\{0\}=0$,
-%\begin{equation}\label{Nmeasure}
-   %\int_{\mathbb{D}}(1-e^{-\langle f,\omega_t\rangle})\mathbb{N}_x(d\omega)=-\log \mathbb{P}_{\delta_x}(e^{-\langle f, X_t \rangle}), \quad f \in \mathcal{B}_b^+(\mathbb{R}^d), t>0,
-%\end{equation}
-%and, for $0<t_2<...<t_n<\infty$, and nonzero $\mu_1,...,\mu_n \in \mathcal{M}(\mathbb{R}^d)$,
-%\begin{align*}
-    %\mathbb{N}_x&\left(\omega_1\in d \mu_1,...,\omega_n \in d\mu_n\right)=\mathbb{N}_x(\omega_1\in d\mu_1)\mathbb{P}_{\mu_1}\left(X_{t_2-t_1}\in d \mu_2\right)...\\
-    %&\mathbb{P}_{\mu_{n-1}}\left(X_{t_n-t_{n-1}}\in d \mu_n\right).
-%\end{align*}
-    %We refer $\{\mathbb{N}_x:x \in \mathbb{R}^d\}$ as {\em Kuznestov measures} of $X$. For more general definition and further properties of such measures, we refer our readers to \cite{Li2011Measure,DK}.
-
-    %For any $\mu \in \mathcal{M}(\mathbb{R}^d)$, if $\mathcal{N}$ is a Poisson random measure defined in some probability space with intensity $\mathbb{N}_{\mu}(\cdot):=\int_{\mathbb{R}^d}\mathbb{N}_x(\cdot)~\mu(dx)$, then the super OU-process $\{X;\mathbb{P}_{\mu}\}$ can be realized by $\tilde{X}_t(\cdot)=\mu$ and
-%\begin{align*}
-    %\tilde{X}_t(\cdot):=\int_{\mathbb{D}}\omega_t(\cdot)\mathcal{N}(d\omega), \quad t\geq 0.
-%\end{align*}
-    %See \cite[Theorem 8.24]{Li2011Measure-valued} for a proof.
-
-    %What's more, if $\mathbb{P}_{\delta_x}|\langle f, X_t\rangle|<\infty$, then
-%\begin{equation}\label{Nmean}
-    %\mathbb{N}_x(\langle f,\omega_t \rangle) = \mathbb{P}_{\delta_x}(\langle f, X_t\rangle)=T^{\alpha}_t f(x).
-%\end{equation}
-    %See \cite[Lemma 3.3]{RenSongSun2017Spine} for example.
-%end delete
-
-
-%\begin{proof}[Proof of Lemma \ref{lemma1}]
 \begin{proof}
-%Recall that $w_{g_k}(x,s,\theta)=\log\mathbb{P}_{\delta_x}(e^{i\theta \langle g_k, X_s \rangle})$.
     Recall that $v_{g_k}(s,x,\theta)=\operatorname{Log}\mathbb{P}_{\delta_x}(e^{i\theta \langle g_k, X_s \rangle})$.
-    %Replace $f$ by $-i\theta g_k$ in equation \eqref{Nmeasure},\eqref{Nmean}, we obtain that $w_{g_k}(x,s,\theta)=\mathbb{N}_x\left(e^{i\theta\langle g_k,w_s\rangle}-1\right)$.
-    %Therefore,by the element inequality $|e^{i\theta}-1|\leq|\theta|$ for $\theta \in \mathbb{R}$, we have
-    %$$|w_{g_k}(x,s,\theta)|=|\mathbb{N}_x(e^{i\theta\langle g_{k},\omega_s \rangle}-1)|\leq |\theta|\mathbb{N}_x(\langle|g_k|,\omega_s\rangle)\leq|\theta|T_{s+k}^{\alpha}|g|$$
     Let $R^g \in \mathcal P$ be the control function in \eqref{eq:gcontrol}.
     From \eqref{eq: upper bound for vf} in the appendix, we have for each $k \in \mathbb{N}$, $x\in\mathbb{R}^d$, $\theta\in \mathbb{R}$ and $s\geq 0$,
 \begin{equation}
@@ -542,47 +668,37 @@ In this subsection, we will estimate the characteristic function of $M_k^t[g]$ n
     \qedhere
 \end{equation}
 \end{proof}
-    %For any $k \in \{0,1,...,t\}$, consider the characteristic function of $M^t_k[g]$ conditioned on $\mathcal{F}_{t-k-1}$, by the Markov property of $X$, we have
     For each $t \geq 0 $ and $k \in \{0,1,...,\lfloor t \rfloor-1\}$, consider the characteristic function of $M^t_k[g]$ conditioned on $\mathcal{F}_{t-k-1}$.
     By the Markov property of $X$, we have
  \begin{align*}
     &\mathbb{P}_{\mu}(e^{i\theta M_k^t[g]}|\mathcal{F}_{t-k-1})
-    %&=\mathbb{P_{\mu}}\left [\mathbb{P}_{\nu}\left(e^{i\theta(\langle g_k,X_1\rangle-\langle T_1^{\alpha}g_k,\nu\rangle)}\right)|_{\nu=X_{t-k-1}}\right]   \\
     =\mathbb{P}_{\mu}(e^{i\theta (\langle X_{t-k},g_k\rangle - \langle X_{t-(k+1)},g_{k+1}\rangle)}|\mathcal{F}_{t-k-1})
-    %\\&=\mathbb P_\mu \big [\mathbb P_{X_{t-k-1}} [e^{i\theta(\langle g_k,X_1\rangle)}]e^{-i\theta \langle T_1^{\alpha}g_k,X_{t-k-1}\rangle}\big]
     \\&=\mathbb P_{X_{t-k-1}} [e^{i\theta(\langle g_k,X_1\rangle)}]e^{-i\theta \langle T_1^{\alpha}g_k,X_{t-k-1}\rangle}
     \\&= e^{\langle v_{g_k}(1,\cdot,\theta),X_{t-k-1}\rangle -i \theta\langle T_1^{\alpha}g_k,X_{t-k-1}\rangle},
-%new added
     \quad \mu \in \mathcal M(\mathbb R^d), \theta \in \mathbb R.
-%end added
 \end{align*}
-Hence, it is important to estimate the function $v_{g_k}(1,x,\theta)$. For any $f \in \mathcal{P}$, let
-\begin{equation}\label{w2function}
-    %\tilde{w}_{f}(x,t,\theta)=i\theta T^{\alpha}_t f(x) + \int_0^t T^{\alpha}_{t-s}(-i\theta T_s^{\alpha}f)^{1+\beta}(x)ds
+    Hence, it is important to estimate the function $v_{g_k}(1,x,\theta)$.
+    For any $f \in \mathcal{P}$, let
+\begin{equation}
+\label{w2function}
     \tilde{v}_{f}(t,x,\theta)
     := i\theta T^{\alpha}_t f(x) + \int_0^t T^{\alpha}_{t-s}\psi_0(-i\theta T_s^{\alpha}f(\cdot))(x)ds,
     \quad x\in \mathbb R^d,t\geq 0, \theta \in \mathbb R.
 \end{equation}
-
+}
+\deleted{
 \begin{lem}\label{lemma2}
-%There exists $R_1 \in \mathcal{P}$ and $p_1 >1+\beta$ such that for any $k \in \mathbb{N}$ and $0\leq s \leq 1$, we have
-There exists $R^g_1 \in \mathcal{P}$ such that for any $k \in \mathbb{N}$ and $0\leq s \leq 1$, we have
+    There exists $R^g_1 \in \mathcal{P}$ such that for any $k \in \mathbb{N}$ and $0\leq s \leq 1$, we have
 \begin{align}
     |v_{g_k}(s,x,\theta)-\tilde{v}_{g_k}(s,x,\theta)|
     \leq |C_g\theta e^{(\alpha-\kappa b)k}|^{1+2\beta}R^g_1(x),
     \quad x\in \mathbb{R}^d,\theta\in \mathbb{R}.
 \end{align}
-
 \end{lem}
+}
+\deleted{
 \begin{proof}
-%As $\exp({\rm Re~}w_{g_k})=|\exp(w_{g_k})|=\left|\mathbb{P}_{\delta_x}\exp(i\theta \langle  g_k,X_t\rangle)\right|\leq 1$ implying ${\rm Re~}(-w_{g_k})\geq0$,
-From \eqref{eq: -v has positive real part} we know that $\operatorname{Re}(-v_{g_k})\geq 0$.
-%we use the fact that
-%\begin{align}
-    %|x^{1+\beta}-y^{1+\beta}|
-    %\leq C (|x|^{\beta}+|y|^{\beta})|x-y|\label{element},
-%\end{align}
-    %for $x,y \in \mathbb{C}$ such that ${\rm Re~} x \geq 0, {\rm Re~} y\geq 0$ to get
+    From \eqref{eq: -v has positive real part} we know that $\operatorname{Re}(-v_{g_k})\geq 0$.
     Let $C_0>0$ be the constant in Lemma \ref{lem: Lip of power function}, then from \eqref{eq:chareq2}, we have
 \begin{align}
 \label{eq: estimate of wgk}
@@ -590,11 +706,9 @@ From \eqref{eq: -v has positive real part} we know that $\operatorname{Re}(-v_{g
    \\&\leq \int_0^s T_{s-u}^{\alpha}\left(|(-v_{g_k}(u,\cdot,\theta))^{1+\beta}-(-i\theta T_u^{\alpha}g_k)^{1+\beta}|\right)(x)~du
    \\&\leq C_0\int_0^s T_{s-u}^{\alpha}\left( |v_{g_k}(u,\cdot,\theta)-i\theta T_u^{\alpha}g_{k}|\left(|v_{g_k}(u,\cdot,\theta)|^{\beta}+|i\theta T_u^{\alpha}g_k|^{\beta}\right)\right)(x)~du.
 \end{align}
-%Notice that, for $0\leq v \leq 1$, $x\in \mathbb{R}^d$ and $\theta \in \mathbb{R}$, by Lemma \ref{lemma1} and \eqref{eq:gcontrol}, we have
    Let $R^g\in \mathcal P$ be the control function in both \eqref{eq:gcontrol} and Lemma \ref{lemma1}, then for $0\leq u \leq 1$, $x\in \mathbb{R}^d$, $\theta \in \mathbb{R}$ and $k \in \mathbb N$,
 \begin{align}
 \label{eq: upper bound of wgk}
-    %|w_{g_{k}}(x,v,\theta)|\leq &|\theta|e^{(\alpha-\kappa(g)b)k}(e^{(\alpha-\kappa(g)b)v}R(x))\leq|\theta|e^{(\alpha-\kappa(g)b)k}(C_1R(x)),
     |v_{g_{k}}(u,x,\theta)|
     &\leq C_g|\theta|e^{(\alpha-\kappa b)k+\alpha}R^g(x),
     \\
@@ -602,10 +716,6 @@ From \eqref{eq: -v has positive real part} we know that $\operatorname{Re}(-v_{g
     &\leq |\theta| e^{\alpha(k+1)}T_u|T_k g|(x)
     \leq C_g|\theta|e^{(\alpha-\kappa b)k+\alpha}R^g(x).
 \end{align}
-%deleted
-    %where $C_1=\max\{1,e^{(\alpha-\kappa(g)b)}\}$.
-%end deleted
-%new added
     Observe that $(R^g)^{1+\beta}\in \mathcal P$.
     According to \eqref{eq:semigroupineq}, there exists an $\tilde R^g_0 \in \mathcal P$ such that
 \begin{align}
@@ -615,72 +725,50 @@ From \eqref{eq: -v has positive real part} we know that $\operatorname{Re}(-v_{g
     \quad t\geq0, x\in \mathbb{R}^d.
 \end{align}
     According \eqref{eq:chareq2}, \eqref{eq: upper bound of wgk} and above, for $0\leq u \leq 1$, $x\in \mathbb{R}^d$, $\theta \in \mathbb{R}$ and $k \in \mathbb N$,
-%end new
 \begin{align}
 \label{eq: Zineq}
    &|v_{g_{k}}(u,x,\theta)-i\theta T_u^{\alpha}g_k(x)|
    =\Big| \int_0^u T^{\alpha}_{u-t}(-v_{g_k}(t,\cdot,\theta))^{1+\beta}(x)dt\Big|
-   %\\\leq & \int_0^1 T_{1-u}^{\alpha}(|w_{g_k}(\cdot,u,\theta)|^{1+\beta})(x)du \nonumber \\
    \\&\leq \int_0^u T_{u-t}^{\alpha}(|v_{g_k}(t,\cdot,\theta)|^{1+\beta})(x)dt
    \leq  |C_g\theta e^{(\alpha-\kappa b)k+\alpha}|^{1+\beta}\int_0^u (T_{u-t}^{\alpha}(R^g)^{1+\beta})(x)dt
-   %\\\leq &C_1^{1+\beta}e^{\alpha}|\theta e^{(\alpha-\kappa(g)b)k}|^{1+\beta}R^{1+\beta}(x)\nonumber\\
    \\&\leq e^{\alpha}|C_g\theta e^{(\alpha-\kappa b)k+\alpha}|^{1+\beta}\tilde R^g_0(x).
-%deleted
-   %\\= & |\theta e^{(\alpha-\kappa(g)b)k}|^{1+\beta}R_2(x),
-%end deleted
 \end{align}
-%where $R_2(x)=C_1^{1+\beta}e^{\alpha}R^{1+\beta}(x)$.
     According to \eqref{eq:semigroupineq}, since $\tilde R^g_0(R^g)^{\beta} \in \mathcal P$, there exists an $\tilde R^g_1\in \mathcal P$ such that
 \[
     |T_t(\tilde R^g_0(R^g)^{\beta})(x)|
     \leq \tilde R^g_1(x),
     \quad t\geq0, x\in \mathbb{R}^d.
 \]
-%In consequence,
 As a consecuence of \eqref{eq: estimate of wgk}, \eqref{eq: Zineq}, \eqref{eq: upper bound of wgk} and the above, for $k \in \mathbb{N}$, $0\leq s \leq 1$, $x\in \mathbb{R}^d$ and $\theta \in \mathbb R$, we have
 \begin{align}
     &|v_{g_k}(s,x,\theta)-\tilde{v}_{g_k}(s,x,\theta)|
-%new added
     \\&\leq C_0e^{\alpha}|C_g\theta e^{(\alpha-\kappa(g)b)k+\alpha}|^{1+2\beta} \int_0^s T_{s-u}^{\alpha}( \tilde R^g_0(R^g)^{\beta})(x)~du
-%end new added
-    %\\&\leq |\theta e^{(\alpha-\kappa(g)b)k}|^{2+\beta}\cdot 2CC_1e^{\alpha}R(x)R_2(x).
     \\&\leq C_0e^{2\alpha}|C_g\theta e^{(\alpha-\kappa(g)b)k+\alpha}|^{1+2\beta}\tilde R^g_1(x).
     \qedhere
 \end{align}
-%delete
-    %Take $p_1=2+\beta$ and $R_1(x)=2CC_1e^{\alpha}R(x)R_2(x)$, we obtain the desired result.
-%end delete
 \end{proof}
-
-%new added
+}
+\deleted{
     It can be verified from its definition that $(\rho z)^{1+\beta} = \rho^{1+\beta}z^{1+\beta}$ for all $\rho \in [0,\infty)$ and $z\in \mathbb C_+$.
-%end new
-%For each $f\in \mathcal{R}$, define
-For each $f\in \mathcal{P}$, define
-\[
+    For each $f\in \mathcal{P}$, define
+\begin{equation}
+\label{eq: def of Zf}
     Z_f(s,x,\theta)
-    %:=\int_0^1 T^{\alpha}_{1-s}(-i\theta T_s^{\alpha}f)^{1+\beta}(x)ds ,
     :=\int_0^s T^{\alpha}_{s-u}\big((-i\theta T_u^{\alpha}f)^{1+\beta}\big)(x)du ,
-%new
     \quad s\geq 0, x\in E, \theta \in \mathbb R.
-%end new
-\]
-and let $Z_f(s,x)=Z_f(s,x,1)$.
-%Observe that
-Then we have
-\begin{equation}\label{zfunction}
-    Z_f(s,x,\theta)=\theta^{1+\beta}Z_f(s,x),
-%new
-    \quad s\geq 0, x\in E, \theta \in \mathbb R.
-%end new
 \end{equation}
-
+and let $Z_f(s,x)=Z_f(s,x,1)$.
+\deleted{Then we have}
+\begin{equation}\label{zfunction}
+    \deleted{Z_f(s,x,\theta)=\theta^{1+\beta}Z_f(s,x),
+    \quad s\geq 0, x\in E, \theta \in \mathbb R.}
+\end{equation}
+}
+\deleted{
 \begin{cor}
 \label{cor: corollary2}
-    %For any $k\in\{0,1,...,t\}$, $x\in \mathbb{R}^d$ and $\theta\in \mathbb{R}$, we have
     There exists $R^g_2\in \mathcal P$ such that for each $k\in\mathbb N$ and $0\leq s\leq1$, we have
 \begin{align}
-\label{zineq2}
     |Z_{g_k}(s,x)|\leq C_g^{1+\beta}e^{(\alpha-\kappa b)(1+\beta)k}R^g_2(x), \quad x\in \mathbb{R}^d,
 \end{align}
     and consequently,
@@ -688,53 +776,38 @@ Then we have
     |Z_{g_k}(s,x,\theta)|\leq C_g^{1+\beta}|\theta|^{1+\beta}e^{(\alpha-\kappa b)(1+\beta)k}R^g_2(x), \quad x\in \mathbb{R}^d,\theta\in \mathbb{R}. \label{zineq1}
 \end{align}
 \end{cor}
-
+}
+\deleted{
 \begin{proof}
-%new
     Let $c_0 > 0$ be the constant in \eqref{eq: upper bound for beta power of z}.
-%end new
-    %By \eqref{eq:gcontrol}, we have
     Let $R^g\in \mathcal P$ be the control function in \eqref{eq:gcontrol}.
     Let $\tilde R^g_0 \in \mathcal P$ be the control function in \eqref{eq: tilde R0}.
     Now, we have for each $k\in\mathbb N$, $x\in \mathbb{R}^d$ and $\theta\in \mathbb{R}$,
 \begin{align}
     |Z_{g_k}(s,x)|
-    %&\leq \int_0^1 T_{1-s}^{\alpha}(|T_s^{\alpha}g_k|^{1+\beta})(x)ds \leq\int_0^t T_{1-s}^{\alpha}\left(|C_1 e^{(\alpha-\kappa(g)b)k}|R(x)\right )^{1+\beta}
-    &\leq c_0\int_0^s T_{s-u}^{\alpha}(|T_u^{\alpha}g_k|^{1+\beta})(x)du
+    &\leq C_{}\int_0^s T_{s-u}^{\alpha}(|T_u^{\alpha}g_k|^{1+\beta})(x)du
     \leq c_0 \int_0^s T_{s-u}^{\alpha}\Big(\big(e^{(\alpha-\kappa b)k+\alpha}R\big)^{1+\beta}\Big)(x)~du
     \\&\leq c_0e^{\alpha(2+\beta)} C_g^{1+\beta}e^{(\alpha-\kappa b)(1+\beta)k}\tilde R^g_2(x).
 \qedhere
 \end{align}
-%delete
-    %The proof of \eqref{zineq1} is similar with \eqref{zineq2}.
-%end delete
 \end{proof}
+}
+\textbf{ Zhenyao: I think the following Corollary is incorrect. In its proof, we seems used Jensen's inequality assuming $\mu$ is a probability measure (which is not the case). At first, I think I may find a way to fix this. But then I realize we don't really need this Corrollary to calculate $\|X_t(g)\|_{1+\gamma}$. So I didn't touch it. Yet, I'm not sure if this Corrollary is needed somewhere else in section 3.}
 
-%comments
-   % {\bf Zhenyao: I don't think the following corollary in the old version is accurate. Here is what I think the correct form should be.}
-%end comment
 \begin{cor}
 \label{cor: corollary1}
-%There exists $R_3 \in \mathcal{P}$ and $p_2 >1+\beta$ such that for any $k \in \mathbb{N}$ and $\theta \in \mathbb{R}$, we have
-There exists an $R^g_3 \in \mathcal{P}$ such that for any $\mu\in \mathcal M(\mathbb R^d)$ with compact support, $k \in \mathbb{N}$,$\theta \in \mathbb{R}$ and $0\leq s\leq 1$, we have
+    There exists an $R^g_3 \in \mathcal{P}$ such that for any $\mu\in \mathcal M(\mathbb R^d)$ with compact support, $k \in \mathbb{N}$,$\theta \in \mathbb{R}$ and $0\leq s\leq 1$, we have
 \[
-    %\mathbb{P}_{\mu}e^{i\theta(\langle g_k, X_1\rangle-\langle T_1^{\alpha}g_k,\mu \rangle)}
     \mathbb P_{\mu}[e^{i\theta(\langle g_k, X_s\rangle-\langle T_s^{\alpha}g_k,\mu \rangle)}]
-    %=1+\langle Z_{g_k}(\cdot,\theta),\mu\rangle+\langle err(\cdot,\theta),\mu\rangle
     =1+\langle Z_{g_k}(s,\cdot,\theta),\mu\rangle+ err(k,\mu,\theta),
 \]
-    %where $err(\cdot,\theta)\leq |\theta e^{(\alpha-\kappa(g)b)k}|^{p_2}R_3(\cdot)$.
     where $|err(k,\mu,\theta)| \leq (C_g|\theta e^{(\alpha-\kappa b)k}|^{2+2\beta} + C_g|\theta e^{(\alpha-\kappa b)k}|^{1+2\beta} )\langle R^g_3,\mu\rangle$.
 \end{cor}
-
 \begin{proof}
     Let 
-    % $ w_f(x,\theta)=w_f(x,1,\theta)$, $\tilde{w}_f(x,\theta)=\tilde{w}_f(x,1,\theta)$ for short, and write
 \begin{align}
 \label{eq: definition of varphi-mu-k-theta}
-    %\varphi_{\mu}(\theta)
     \varphi_{k,\mu,s}(\theta)
-    %=\mathbb{P}_{\mu}e^{i\theta(\langle g_k, X_1\rangle-\langle T_1^{\alpha}g_k,\mu \rangle)}
     =\mathbb{P}_{\mu}[e^{i\theta(\langle g_k, X_s\rangle-\langle T_s^{\alpha}g_k,\mu \rangle)}]
     =e^{(\langle v_{g_k}(s,\cdot,\theta),\mu \rangle-i\theta \langle T_s^{\alpha} g_k, \mu \rangle)},
     \quad \theta \in \mathbb R.
@@ -744,7 +817,6 @@ There exists an $R^g_3 \in \mathcal{P}$ such that for any $\mu\in \mathcal M(\ma
     &|\varphi_{k,\mu,s}(\theta)-1-\langle Z_{g_k}(s,\cdot, \theta),\mu\rangle|\\
     &\leq|\varphi_{\mu,k,s}(\theta)-1-\left( \langle v_{g_k}(s,\cdot,\theta), \mu \rangle-i\theta \langle T_s^{\alpha}g_k,\mu\rangle\right)| + |\langle v_{g_k}(s,\cdot,\theta)-\tilde{v}_{g_k}(s,\cdot,\theta),\mu \rangle|.
 \end{align*}
-%Using Lemma \ref{lemma2}, \eqref{eq: Zineq} and the fact that if $ {\rm Re~} z\leq 0$, $|e^z-1-z|\leq|z|^2$,   we get, for any $\theta \in \mathbb{R}$ and $k\in \mathbb{N}$,
     Let $R^g_1\in \mathcal P$ be the control function in Lemma \ref{lemma2}.
     Let $\tilde R^g$ be the control function in \eqref{eq: Zineq}.
     Notice that
@@ -757,105 +829,110 @@ $
     Therefore, for any $\mu\in \mathcal M(\mathbb R^d)$ with compact support, $k \in \mathbb{N}$, $\theta \in \mathbb{R}$ and $0\leq s\leq1$, using Jensen's inequality,
 \begin{align*}
     &|\varphi_{k,\mu,s}(\theta)-1- \langle Z_{g_k}(s,\cdot, \theta),\mu\rangle|\\
-    %&\leq 2|\langle w_{g_k}(\cdot,\theta)-i\theta T_1^{\alpha}g_k, \mu \rangle|^2 + \langle |w_{g_k}(\cdot,\theta)-\tilde{w}_{g_k}(\cdot,\theta)|, \mu \rangle\\
     &\leq |\langle v_{g_k}(s,\cdot,\theta)-i\theta T_s^{\alpha}g_k, \mu \rangle|^2 + \langle |v_{g_k}(s,\cdot,\theta)-\tilde{v}_{g_k}(s,\cdot,\theta)|, \mu \rangle
-%new added
     \\&\leq \langle |v_{g_k}(s,\cdot,\theta)-i\theta T_s^{\alpha}g_k|^2, \mu \rangle + \langle |v_{g_k}(s,\cdot,\theta)-\tilde{v}_{g_k}(s,\cdot,\theta)|, \mu \rangle
-%end new
-    %\\&\leq |\theta_{k}|^{2(1+\beta)}\langle R_2,\mu\rangle + |\theta_{k}|^{2+\beta}\langle R_1,\mu\rangle,
     \\&\leq e^{2\alpha}|C_g\theta e^{(\alpha-\kappa b)k+\alpha}|^{2+2\beta}\langle (\tilde R^g)^2,\mu\rangle + |C_g\theta e^{(\alpha-\kappa b)k}|^{1+2\beta}\langle R^g_1,\mu\rangle.
     \qedhere
 \end{align*}
-%deleted
-    %where $\theta_k=\theta e^{(\alpha-\kappa(g)b)k}$. By implicitly assuming that $|\theta_k|\leq 1$, and taking $p_2=\min \{2(1+\beta), 2+\beta\}$ and $R_3=R_1+R_2$, we get the desired result.
-%end deleted
 \end{proof}
 
-\subsection{Moment}
+\subsection{}
 
- In this subsection, for any $\gamma \in (0,\beta)$, we want to bound the $(1+\gamma)$-th moment of $\langle g ,X_t \rangle $ by an exponential function depending on $\kappa$.
- %comment
-   % {\bf Zhenyao: I changed the statement and the proof of the following Lemma. I think the old version has too many mistakes.}
-%end comment
-%deleted
-\begin{comment}
-\begin{lem}\label{lem: lemma23}
-For any $0< \gamma < \beta$ there exists a constant $C_2>0$ such that
-$$\|M_k^t[g]\|_{1+\gamma}\leq C_2 e^{\frac{\alpha}{1+\gamma}t}e^{\frac{\gamma \alpha-\kappa(g)(1+\gamma)b}{1+\gamma}k},$$
-for any $k \in \{0,...,t \}$.
-\end{lem}
-\begin{proof}
-    %Let $C(k)=e^{(\alpha-\kappa(g)b)k}$, and, for convenience, define $A:=\{|M_t^k[g]|>C(k)\}$, $A_{\mu}:=\{|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\mu\rangle|>C(k)\}$.
-    Let $C(k)=e^{(\alpha-\kappa(g)b)k}$.
-    Define events $A:=\{|M_t^k[g]|>C(k)\}$ and $A_{k,\mu}:=\{|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\mu\rangle|>C(k)\}$ for each $k \in \mathbb N$ and $\mu \in \mathcal M(\mathbb R^d)$ with compact support.
-    Notice that
+ In this subsection, for any $\gamma \in (0,\beta)$, we want to bound the $(1+\gamma)$-th moment of $\langle g ,X_t \rangle$ \deleted{by an exponential function depending on $\kappa$}.
+
+\added{
+\begin{lem}
+\label{lem: control pair for P(M>lambda)}
+    There is an $(1+\beta)$-control-pair $(R,S)$ such that for each $0\leq t\leq 1$, $g\in \mathcal P$, $\lambda >0$ and $\mu\in \mathcal M_c(\mathbb R^d)$ we have
 \[
-    \mathbb{P}_{\mu}[|M_k^t[g]|^{1+\gamma}]
-    =\mathbb{P}_{\mu}[|M_k^t[g]\mathbf{1}_{A^c}|^{1+\gamma}]+\mathbb{P}_{\mu}[|M_k^t[g]\mathbf{1}_{A}|^{1+\gamma}]
-    =:I+II.
+    \mathbb P_\mu (|M^t_g(0,t)| > \lambda) 
+    \leq \frac{\lambda}{2}\int_{-2/\lambda}^{2/\lambda}\langle R|\theta g|,\nu\rangle d\theta    
+    \leq \langle S| g|,\nu\rangle \frac{1}{\lambda^{1+\beta}}.
 \]
-    For the first part,
-\begin{align*}
-    I\leq C(k)^{1+\gamma}
-    =e^{(\alpha-\kappa(g)b)k(1+\gamma)}
-    \leq e^{\alpha t}e^{(\gamma \alpha-\kappa(g)(1+\gamma)b)k},
-\end{align*}
-    since $k\leq t$.
-
-For the second part, recall that $M_k^t[g]=\langle T_k^{\alpha}g, X_{t-k}\rangle-\langle T_{k+1}^{\alpha}g,X_{t-k-1}\rangle$,
-under the condition of $\sigma$-algebra $\mathcal{F}_{t-k-1}$, by the Markov property of $X$, we have
-\begin{align*}
-    II
-    %=\mathbb{P}_{\mu}\left[\mathbb{P}_{\nu}\left[|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|^{1+\gamma}\mathbf{1}_{A_{\nu}}\right]|_{\nu=X_{t-k-1}}\right]
-    =\mathbb{P}_{\mu}\big[\mathbb{P}_{\nu}[|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|^{1+\gamma}\mathbf{1}_{A_{k,\nu}}]|_{\nu=X_{t-k-1}}\big].
-\end{align*}
-%comment
-{\bf Zhenyao: Just wondering why $X$ has compact support a.s.ly.}
-%end comment
-%Observe that, for any $\nu \in \mathcal{M}(\mathbb{R}^d)$
-Observe that, for any $\nu \in \mathcal{M}(\mathbb{R}^d)$ with compact support, from Fubini's theorem,
+\end{lem}
+}
+\added{
+\begin{proof}
+    Denote by $(R_0,S_0)$ the $(1+\beta)$-control pair for Lemma \ref{lem: upper bound for U-iT}.
+    Using the argument in \cite[Proof of Theorem 3.3.6]{Durrett2010Probability} and Lemma \ref{cor: corollary1} we have
 \begin{align}
-    %&\mathbb{P}_{\nu}\left[|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|^{1+\gamma}\right] \label{temp1}\\
-    &\mathbb{P}_{\nu}[|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|^{1+\gamma} \mathbf 1_{A_{k,\nu}}] \label{temp1}\\
-    %&=(1+\gamma)\int_0^{\infty}\lambda^{\gamma}\mathbb{P}_{\nu}\left(|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|\mathbf{1}_{A_{\nu}}>\lambda\right)d\lambda \nonumber\\
-    &=(1+\gamma)\int_0^{\infty}\lambda^{\gamma}\mathbb{P}_{\nu}(|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|\mathbf{1}_{A_{k,\nu}}>\lambda)d\lambda \\
-    &\leq (1+\gamma)\int_{C(k)}^{\infty}\lambda^{\gamma}\mathbb{P}_{\nu}\left(|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|>\lambda\right)d\lambda.\nonumber
+    &\mathbb P_\mu (|M^t_g(0,t)| > \lambda) 
+    \leq \frac{\lambda}{2}\int_{-2/\lambda}^{2/\lambda}\Big(1 - \mathbb P_\mu[e^{i\theta M_g^t(0,t)}]\Big)d\theta
+    = \frac{\lambda}{2}\int_{-2/\lambda}^{2/\lambda}\Big(1 - \mathbb P_\mu[e^{iM_{(\theta g)}^t(0,t)}]\Big)d\theta
+    \\&\leq \frac{\lambda}{2}\int_{-2/\lambda}^{2/\lambda}\langle 3|U_t(\theta g) - iT_t^\alpha(\theta g)|,\nu\rangle d\theta
+    \leq \frac{\lambda}{2}\int_{-2/\lambda}^{2/\lambda}\langle 3R_0|\theta g|,\nu\rangle d\theta
+    \\& \leq \frac{\lambda}{2}\int_{-2/\lambda}^{2/\lambda}\langle 3S_0|\theta g|,\nu\rangle d\theta
 \end{align}
-%comment
-    {\bf Zhenyao: Why the above inequality is true?}
-%end comment
-Using the element inequality $\mathbb{P}(|Y|>2/u)\leq u^{-1}\int_{-u}^{u}(1-\varphi(t))dt$, see,\cite[Chaper 3]{Durrett2010Probability}, for example, where $Y$ is a random variable corresponding to characteristic function $\varphi(t)$, $u\geq 0$, we have
-
-$$\mathbb{P}_{\nu}\left(|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|>\lambda\right)\leq \frac{\lambda}{2}\int_{-2/\lambda}^{2/\lambda}(1-\varphi_{\nu}(\theta))d\theta,$$
-where $\varphi_{\nu}(\theta))$ has been defined in Corollary \eqref{cor: corollary1}. What's more, as $g_k=T_k^{\alpha}g$, by Corollary \eqref{cor: corollary1} and Corollary \eqref{cor: corollary2}, we get, for any $\theta\in\mathbb{R}$, there exists $p>\beta$ (actually, we just take $p=p_2-1$ ), such that
-\begin{align*}
-    |1-\varphi_{\nu}(\theta)|&\leq|\langle Z_{g_k}(\cdot,\theta),\nu \rangle|+|\langle err(\cdot,\theta),\nu \rangle|\\
-    &\leq|\theta_k|^{1+\beta}\langle R_2,\nu\rangle+|\theta_k|^{1+p}\langle R_3, \nu \rangle\\
-    &\leq (|\theta_k|^{1+\beta}+|\theta_k|^{1+p})\langle R_2+R_3, \nu \rangle.
-\end{align*}
-Therefore,
-\begin{align*}
-    &\mathbb{P}_{\nu}\big(|\langle T_k^{\alpha}g, X_1 \rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|>\lambda\big)\\
-    &\leq\lambda\int_0^{2/\lambda}(|\theta_k|^{1+\beta}+|\theta_k|^{1+p})\langle R_2+R_3, \nu \rangle d\theta\\
-    &= \frac{2^{2+\beta}}{2+\beta}e^{(\alpha-\kappa(g)b)k(1+\beta)}\lambda^{-(1+\beta)}+ \frac{2^{2+p}}{2+p}e^{(\alpha-\kappa(g)b)k(1+p)}\lambda^{-(1+p)})\langle R_2+R_3,\nu \rangle,
-\end{align*}
- Then by calculating the integral in formula \eqref{temp1}, we get
-\begin{align*}
-    &\mathbb{P}_{\nu}\left[|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|^{1+\gamma} \right] \\
-    &\leq C_3\left(e^{(\alpha-\kappa(g)b)k(1+\beta)}C(k)^{\gamma-\beta}+e^{(\alpha-\kappa(g)b)k(1+p)}C(k)^{\gamma-p}\right)\langle R_2+R_3,\nu\rangle\\
-    &= C_3 e^{(\alpha-\kappa(g)b)k(1+\gamma)}\langle R_2+R_3,\nu\rangle,
-\end{align*}
-where $C_3=(1+\gamma)\cdot\max\{ \frac{2^{2+\beta}}{(\beta-\gamma)(2+\beta)}, \frac{2^{2+p}}{(2+p)(p-\gamma)}\}$. At last, using the mean formula \eqref{eq:meanformula}, we get
-\begin{align*}
-    II &\leq C_3e^{(\alpha-\kappa(g)b)k(1+\gamma)}\mathbb{P}_{\mu}\left[\langle R_2+R_3,X_{t-k-1}\rangle\right]\\
-       &=C_3e^{-\alpha}\langle T_{t-k-1}(R_2+R_3),\mu \rangle e^{\alpha t}e^{(\gamma\alpha-\kappa(g)b(1+\gamma))k}\\
-       &\leq C_4e^{\alpha t}e^{(\gamma\alpha-\kappa(g)b(1+\gamma))k}.
-\end{align*}
- By \eqref{eq:semigroupineq}, there exists $R_4\in \mathcal{P}$, such that $T_t(R_2+R_3)\leq R_4$, we take $C_4=C_3 e^{-\alpha}\langle R_4, \mu\rangle$. Combining with the result of $I$ and $II$, we complete the proof by taking $C_2=(1+C_4)^{\frac{1}{1+\gamma}}$.
+    To finish the proof we write $R=3R_0$ and $S= 3S_0$.
 \end{proof}
-\end{comment}
-%end deleted
-%new added
+}
+\added{
+\begin{lem}
+    There is an $(1+\beta)$-scalable operator $S$ such that for each $g\in \mathcal P$, $\lambda >0$, $\mu\in \mathcal M_c(\mathbb R^d)$ and $0\leq r\leq s\leq t$ with $s-r \leq 1$ we have
+\[
+    \mathbb P_{\mu}(|M^t_g(r,s)|>\lambda) 
+    \leq \frac{ 1}{\lambda^{1+\beta}} e^{(1+\beta)(t-s)(\alpha- \kappa_gb)+ \alpha r} \langle Sg,\mu\rangle  
+\]
+\end{lem}
+}
+
+\added{
+\begin{proof}
+    Denote by $(R_0,S_0)$ the $(1+\beta)$-control-pair in Lemma \ref{lem: control pair for P(M>lambda)}. 
+    Then using Markovian property of $(X_t)$ we get
+\begin{align}
+    &\mathbb P_{\mu}(|M^t_g(r,s)|>\lambda) 
+    = \mathbb P_\mu \big[\mathbb P_\mu\big(|M_g^t(r,s)|> \lambda\big| \mathscr F_r\big)\big]
+    = \mathbb P_\mu \big[\mathbb P_{X_r}(|M^{t-r}_g(0,s-r)|> \lambda)\big] 
+    \\&= \mathbb P_\mu \big[\mathbb P_{X_r}(|M^{s-r}_{T^\alpha_{t-s}g}(0,s-r)|> \lambda)\big]
+    \leq \mathbb P_\mu \Big[ \frac{\lambda}{2}\int_{-2/\lambda}^{2/\lambda}\langle R_0|\theta T^\alpha_{t-s}g|,X_r\rangle d\theta \Big]
+    \\&\leq \mathbb P_\mu \Big[ \frac{\lambda}{2}\int_{-2/\lambda}^{2/\lambda}\langle R_0|\theta e^{(t-s)(\alpha- \kappa_gb)}Qg|,X_r\rangle d\theta \Big] 
+    \leq \mathbb P_\mu \Big[ \frac{\lambda}{2}\int_{-2/\lambda}^{2/\lambda}\langle S_0|\theta e^{(t-s)(\alpha- \kappa_gb)}Qg|,X_r\rangle d\theta \Big] 
+    \\& = e^{(1+\beta)(t-s)(\alpha- \kappa_gb)} \mathbb P_\mu [ \langle S_0Qg,X_r\rangle ] \frac{\lambda}{2}\int_{-2/\lambda}^{2/\lambda}|\theta|^{1+\beta}d\theta
+    \\& = e^{(1+\beta)(t-s)(\alpha- \kappa_gb)} \langle T_r^\alpha S_0Qg,\mu\rangle  \frac{2^{2+\beta}}{2+\beta}\frac{1}{\lambda^{1+\beta}}
+    \leq e^{(1+\beta)(t-s)(\alpha- \kappa_gb)+ \alpha r} \langle QS_0Qg,\mu\rangle  \frac{2^{2+\beta}}{2+\beta}\frac{1}{\lambda^{1+\beta}}.
+\end{align}
+    Note that
+\[
+    S := \frac{2^{2+\beta}}{2+\beta}QS_0Q 
+\]
+    is an $(1+\beta)$-scalable operator which is independent of the choice of $g,\mu, \lambda, r, s$ and $t$.
+\end{proof}
+}
+\added{
+\begin{lem}
+    For each $g\in \mathcal P$, $\mu \in \mathcal M_c$ and $0<\gamma < \beta$, there exists a constant $C>0$ such that for each $0\leq r\leq s\leq t$ with $s-r \leq 1$ we have
+\[
+    \mathbb P_\mu\big[|M^t_g(r,s)|^{1+\gamma}\big] 
+    \leq C e^{t\alpha+(t-s) (\gamma\alpha- (1+\gamma)\kappa_gb)}.
+\]
+\end{lem}
+}
+\added{
+\begin{proof}
+    For each $c>0$ we have
+\begin{align}
+    &\mathbb P_\mu\big[|M^t_g(r,s)|^{1+\gamma}\big] 
+    = (1+\gamma)\int_0^\infty \lambda^{\gamma} \mathbb P_{\mu}(|M^t_g(r,s)|>\lambda) d\lambda
+    \\&\leq (1+\gamma)\int_0^c \lambda^{\gamma} d\lambda +(1+\gamma)\int_c^\infty \lambda^{\gamma}\mathbb P_\mu(|M^t_g(r,s)|> \lambda) d\lambda
+    \\& \leq c^{1+\gamma} + e^{(1+\beta)(t-s)(\alpha- \kappa_gb) + \alpha r} \langle Sg,\mu\rangle  (1+\gamma)\int_c^\infty \frac{1}{\lambda^{1+(\beta-\gamma)}}d\lambda
+    \\&\leq c^{1+\gamma} e^{\alpha r} + e^{(1+\beta)(t-s)(\alpha- \kappa_gb) + \alpha r} \langle Sg,\mu\rangle   \frac{1+\gamma}{\beta - \gamma} \frac{1}{c^{\beta - \gamma}}.
+\end{align}
+    Taking $c = e^{(t-s)(\alpha- \kappa_gb)}$ we have
+\begin{align}
+    &\mathbb P_\mu\big[|M^t_g(r,s)|^{1+\gamma}\big] 
+    \leq e^{(1+\gamma)(t-s)(\alpha- \kappa_gb)} e^{\alpha r}\Big(1+ \langle Sg,\mu\rangle \frac{1+\gamma}{\beta - \gamma}\Big).
+\end{align}
+    Note that
+\[
+    (1+\gamma)(t-s)(\alpha- \kappa_gb) + \alpha r
+    \leq t\alpha+(t-s) (\gamma\alpha- (1+\gamma)\kappa_gb).
+    \qedhere
+\]
+\end{proof}
+}
+
+\deleted{
 \begin{lem}\label{lem: lemma23}
 For each $0< \gamma < \beta$ and $\mu \in \mathcal M(\mathbb R^d)$ with compact support, there exists a constant $C_1>0$ such that, for each $t >0$ and $k \in \{0,\dots,\lfloor t \rfloor\}$, we have
 \begin{align}
@@ -870,13 +947,13 @@ and
 \end{align}
 \end{lem}
 \begin{proof}
-    Let $R^g$ be the control function in \eqref{eq:gcontrol}.
-    Then for each $\mu\in \mathcal M(\mathbb R^d)$ with compact support and $t\geq 0$, we have
+    For each $g \in \mathcal P$, $t\geq 0$, $\gamma \in (0,\beta)$ and $\mu$ with compact support:
 \begin{align}
     \mathbb P_\mu\big[|M_t^t[g]|^{1+\gamma}\big]
-    = |\langle T_t^\alpha g, \mu\rangle|^{1+\gamma}
+    = |\langle g_t, \mu\rangle|^{1+\gamma}
     \leq \langle e^{\alpha t} |T_tg|, \mu\rangle^{1+\gamma}
-    \leq  \langle R^g,\mu\rangle^{1+\gamma} C_h^{1+\gamma}e^{\alpha t} e^{(\alpha\gamma- \kappa(g)b(1+\gamma))t}.
+    \leq \langle e^{\alpha t}e^{-\kappa(g)bt}Q[g],\mu\rangle^{1+\gamma}
+\leq (e^{\alpha t}e^{-\kappa(g)bt})^{1+\gamma}\langle Q[g],\mu\rangle^{1+\gamma}.
 \end{align}
     This proves the Lemma in the case that $M_t^t[g]$.
     So we only have to consider the case when $k \in \{0,\dots,\lfloor t \rfloor\}$.
@@ -937,11 +1014,35 @@ On the case $k=\lfloor t \rfloor$, also we have
  \qedhere
 \end{align}
 \end{proof}
-
-As $\langle g,X_t\rangle$ is the sum of $M_k^{t}[g], k=0,1,...,\lfloor t\rfloor$ and $M_t^t[g]$. We obtain the following lemma.
-
-\begin{lem}\label{lemma24}
-%For each $0\leq \gamma < \beta$ there exists a constant $C_5>0$, we have the result:
+}
+    As $\langle g,X_t\rangle$ is the sum of $M_k^{t}[g], k=0,1,...,\lfloor t\rfloor$ and $M_t^t[g]$. We obtain the following lemma.
+\added{
+\begin{lem}
+\label{lemma24}
+    For each $0 < \gamma < \beta$ and $\mu\in \mathcal M_c(\mathbb R^d)$ and $g\in \mathcal P$ there exists a constant $C>0$ such that for each $t\geq 0$:
+\begin{itemize}
+\item[(1)]
+    $\|\langle g,X_t\rangle\|_{\mathbb{P}_{\mu};1+\gamma}\leq C e^{(\alpha-\kappa b)t}$ provided $\alpha\gamma > \kappa (1+\gamma)b$.
+\item[(2)]
+    $\|\langle g,X_t\rangle\|_{\mathbb{P}_{\mu};1+\gamma}\leq C te^{\frac{\alpha}{1+\gamma}t}$ provided $\alpha\gamma = \kappa (1+\gamma)b$.
+\item[(3)]
+    $\|\langle g,X_t\rangle\|_{\mathbb{P}_{\mu};1+\gamma}\leq C e^{\frac{\alpha}{1+\gamma}t}$ provided $\alpha\gamma < \kappa (1+\gamma)b$.
+\end{itemize}
+\end{lem}
+\begin{proof}
+    Fix $\gamma \in (0,\beta)$ and $\mu \in \mathcal M_c(\mathbb R^d)$ and $g\in \mathcal P$.
+    Let $C$ be the constant in Lemma \ref{lem: lemma23}.
+    Using the triangle inequality,
+\begin{align}
+    \|\langle g,X_t\rangle\|_{\mathbb P_\mu;1+\gamma}
+    &\leq \sum_{k=0}^{\lfloor t\rfloor - 1}\| M_g^t(t-k-1,t-k)\|_{\mathbb P_\mu;1+\gamma}+\|M_g^t(0, t-\lfloor t \rfloor)\|_{\mathbb P_\mu;1+\gamma}
+    \\ &\leq C e^{\frac{\alpha}{1+\gamma}t}\sum_{k=0}^{\lfloor t\rfloor} e^{\frac{\gamma\alpha-\kappa_g (1+\gamma)b}{1+\gamma} k} .
+\end{align}
+    By calculating the sum on the right, we get the desired result.
+\end{proof}
+}
+\deleted{
+\begin{lem}%\label{lemma24}
 For each $0 < \gamma < \beta$ and $\mu\in \mathcal M(\mathbb R^d)$ with compact support, there exists a constant $C_2>0$, such that for each $t\geq 0$:
 
 i) If $\alpha\gamma > \kappa (1+\gamma)b$,
@@ -965,6 +1066,8 @@ $$\|\langle g,X_t\rangle\|_{\mathbb{P}_{\mu};1+\gamma}\leq C_2 C_g e^{\frac{\alp
 \end{align}
 By calculating the sum on the right, we easily get the result.
 \end{proof}
+}
+\deleted{
 According to \eqref{eq:semigroupineq}, each $f \in \mathcal{P}$ satisfies \eqref{eq:gcontrol1} with $C_f=1$, $\kappa=\kappa(f)$ and $R_0^f=R_0$. Thus 
 \begin{cor}\label{cor27}
 Let $0< \gamma < \beta$ and $\mu \in \mathcal M(\mathbb R^d)$ with compact support, for each $f\in \mathcal{P}$, there exist constants $\tilde{C}_1,\tilde{C}_2>0$ such that, for each $t>0$ and $k \in \{0,\dots,\lfloor t \rfloor\}$, we have
@@ -985,72 +1088,61 @@ Moreover,
     \item If $\alpha\gamma < \kappa(f)(1+\gamma)b$,\quad$\|\langle g,X_t\rangle\|_{\mathbb{P}_{\mu};1+\gamma}\leq \tilde{C}_2 e^{\frac{\alpha}{1+\gamma}t}.$
 \end{itemize}
 \end{cor}
-\begin{comment}
-
-\begin{rem}
-    The Lemma \eqref{lemma24} offers insights how to guess $\{F_t, t\geq0\}$ raised in Introduction. indeed
-    \begin{itemize}
-        \item  Large branching rate: when $\alpha\gamma > \kappa(g)(1+\gamma)b$, $F_t\approx e^{(\alpha-\kappa(g)b)t} $;
-        \item  Critical branching rate: when $\alpha\gamma = \kappa(g)(1+\gamma)b$, $F_t\approx (te^{\alpha               t})^{\frac{1}{1+\beta}}\approx(t\|X_t\|)^{\frac{1}{1+\beta}}$;
-        \item  Small branching rate: when $\alpha\gamma < \kappa(g)(1+\gamma)b$, $F_t\approx e^{\frac{\alpha t}{1+\beta}}\approx \|X_t\|^{\frac{1}{1+\beta}}$.
-    \end{itemize}
-\end{rem}
-{\bf (Jianjie: We do not mention $F_t$ in Introduction, But we possibly need this mark in the future, so I decide to keep this part for now.)}
-\end{comment}
+}
 \subsection{Martingales}
-In this subsection, we will prove the almost sure and $L^{1+\gamma}(\mathbb{P}_{\mu})$ convergence of some martingales, for $0<\gamma<\beta$. Recall that $L$ is the infinitesimal generator of OU-process. Let $a\in \mathbb{R}$ and $f\in \mathcal{P}\cap C^2(\mathbb{R}^d)$ such that $Lf \in \mathcal{P}$ ,we define that
+    In this subsection, we will prove the almost sure and $L^{1+\gamma}(\mathbb{P}_{\mu})$ convergence of some martingales with $0<\gamma<\beta$. Recall that $L$ is the infinitesimal generator of OU-process. Let $a\in \mathbb{R}$ and $f\in \mathcal{P}\cap C^2(\mathbb{R}^d)$ such that $Lf \in \mathcal{P}$ ,we define that
 \begin{align}
 \label{defmartingale}
-  M_t^{f,a}:=e^{-(\alpha-ab)t}\langle f,X_t\rangle-\int_0^t e^{-(\alpha-ab)s}\langle \bar{f}, X_s\rangle~ ds
+    M_t^{f,a}:=e^{-(\alpha-ab)t}\langle f,X_t\rangle-\int_0^t e^{-(\alpha-ab)s}\langle (L+ab)f, X_s\rangle~ ds
 \end{align}
-Where $\bar{f}=(L+ab)f$. The following lemma says that $\{M_t^{f,a}: t\geq 0\}$ is a martingale corresponding to the $\sigma$-algebra $\{\mathcal{F}_t\}_{t\geq 0}$.
-\begin{lem}\label{lemma25}
-Let $a\in \mathbb{R}$ and $h\in \mathcal{P}\cap C^2(\mathbb{R}^d)$ such that $Lf \in \mathcal{P}$. Then the process $\left\{M_t^{f,a}, \mathcal{F}_t:t\geq 0\right\}$ is an martingale.
+    \deleted{Where $\bar{f}=(L+ab)f$.} 
+    The following lemma says that $\{M_t^{f,a}: t\geq 0\}$ is a martingale corresponding to the $\sigma$-algebra $\{\mathcal{F}_t\}_{t\geq 0}$.
+\begin{lem}
+\label{lemma25}
+    Let $a\in \mathbb R$ and $\added{f} \deleted{h}\in \mathcal{P}\cap C^2(\mathbb{R}^d)$ such that $Lf \in \mathcal{P}$. Then the process \added{$(M_t^{f,a})_{t\geq 0}$ is an $(\mathscr F_t)$-martingale.} \deleted{$\left\{M_t^{f,a}, \mathcal{F}_t:t\geq 0\right\}$ is an martingale.}
 \end{lem}
 \begin{proof}
-For any $a\in \mathbb{R},x\in \mathbb{R}^d$, take $\pi_tf(x)=T_t^{ab}f(x)$ into \cite[Theorem A.55]{Li2011Measure-valued}, we have
+    \added{Write $\bar{f}=(L+ab)f$.} \deleted{For any $ a\in \mathbb{R},x\in \mathbb{R}^d$, take $\pi_tf(x)=T_t^{ab}f(x)$} \added{According to} \deleted{into} \cite[Theorem A.55]{Li2011Measure-valued}, we have
 \begin{align}\label{Theorem55}
     T_t^{ab}f(x)= f(x)+\int_0^t T_s^{ab}\bar{f}(x)~ds,\quad t\geq 0,x\in \mathbb{R}^d.
 \end{align}
 Let $0\leq s\leq t$,
 \begin{align}
 \label{martingale1}
-    %\mathbb{P}_{\mu}\left[M_t^{f,a}|\mathcal{F}_s\right] &=e^{-(\alpha-ab)t}\mathbb{P}_{\mu}\left[\langle f,X_t\rangle|\mathcal{F}_s\right]-\mathbb{P}_{\mu}\left[\int_0^t e^{-(\alpha-ab)s}\langle \bar{f}, X_u\rangle~ du|\mathcal{F}_s\right]\nonumber\\
-    &\mathbb{P}_{\mu}\left[M_t^{f,a}|\mathcal{F}_s\right]
-    =e^{-(\alpha-ab)t}\mathbb{P}_{\mu}\left[\langle f,X_t\rangle|\mathcal{F}_s\right]-\mathbb{P}_{\mu}\left[\int_0^t e^{-(\alpha-ab)u}\langle \bar{f}, X_u\rangle~ du|\mathcal{F}_s\right]
+    &\mathbb{P}_{\mu}[M_t^{f,a}|\mathcal{F}_s]
+    =e^{-(\alpha-ab)t}\mathbb{P}_{\mu}\left[\langle f,X_t\rangle|\mathcal{F}_s\right]-\mathbb{P}_{\mu}\Big[\int_0^t e^{-(\alpha-ab)u}\langle \bar{f}, X_u\rangle~ du\Big|\mathcal{F}_s\big]
     %\\&=e^{-(\alpha-ab)t}\langle T_{t-s}^{\alpha}f, X_s\rangle-\int_0^s e^{-(\alpha-ab)s}\langle \bar{f}, X_u\rangle~ du\nonumber\\
     %\\&-\int_s^t e^{-(\alpha-ab)u}\langle T_{u-s}^{\alpha} \bar{f},X_u\rangle~ du.\label{martingale1}
     \\&=e^{-(\alpha-ab)t}\langle T_{t-s}^{\alpha}f, X_s\rangle-\int_0^s e^{-(\alpha-ab)u}\langle \bar{f}, X_u\rangle~ du -\int_s^t e^{-(\alpha-ab)u}\langle T_{u-s}^{\alpha} \bar{f},X_s\rangle~ du.
 \end{align}
-By using \eqref{Theorem55}and Fubini's theorem , further we get
+    \added{Using \eqref{Theorem55} and Fubini's theorem, we have}
+    \deleted{By using \eqref{Theorem55} and Fubini's theorem , further we get}
 \begin{align}
     &\int_s^t e^{-(\alpha-ab)u}\langle T_{u-s}^{\alpha} \bar{f},X_s\rangle~ du=e^{-(\alpha-ab)s}\int_s^t\langle T_{u-s}^{ab}\bar{f},X_s\rangle~du\\
     &=e^{-(\alpha-ab)s}\langle\int_0^{t-s}T_{u}^{ab}\bar{f}~du,X_s\rangle=e^{-(\alpha-ab)s}\left(\langle T_{t-s}^{ab}f,X_s\rangle-\langle
     f,X_s\rangle\right)\\
     &=e^{-(\alpha-ab)t}\langle T_{t-s}^{\alpha}f, X_s\rangle-e^{-(\alpha-ab)s}\langle
-    f,X_s\rangle
+    f,X_s\rangle.
 \end{align}
-Take it to \eqref{martingale1}, we get the desired result.
+    \deleted{Take it to} \added{Using this and} \eqref{martingale1}, we get the desired result.
 \end{proof}
-{\bf (Jianjie: Please check this above lemma. )}
-%comment
-%{\bf Zhenyao: I think the above Lemma is not accurate. I think we need condition that $f\in C^2(\mathbb R^d) \cap \mathcal P$. Also in the proof we %better use \cite[Theorem A.55]{Li2011Measure-valued} and Fubini's theorem.}
-%end comment
 
-Let $p=(p_1,...,p_d)\in \mathbb{Z}_+^d$, recall that $\phi_p$ is an eigenfunction of $L$ corresponding to the eigenvalue $-|p|b$. Define
+    Let $p=(p_1,...,p_d)\in \added{\mathbb N_0^d} \deleted{\mathbb{Z}_+^d}$, recall that $\phi_p$ is \added{one of the} \deleted{an} eigenfunction\added{s} of $L$ corresponding to the eigenvalue $-|p|b$. Define
 $$H_t^p:=e^{-(\alpha-|p|b)t}\langle\phi_p,X_t\rangle, \quad t\geq 0.$$
 
 \begin{lem}\label{lemma26}
-$\{H_t^p: t\geq0\}$ is a martingale with respect to $\mathcal{F}_t$. If $\alpha\beta>|p|b(1+\beta)$, then for any $0< \gamma<\beta$ and $\mu \in \mathcal{M}(\mathbb{R}^d)$ with compact support, we have $\sup_{t\geq 0}\|H_t^p\|_{1+\gamma}< \infty$. Thus the limit
+    \added{$(H^p_t)_{t\geq 0}$} \deleted{$\{H_t^p: t\geq0\}$} is a martingale with respect to \added{filtration $(\mathscr F_t)$} \deleted{$\mathcal{F}_t$}. 
+    \deleted{If} \added{Moreover, if} $\alpha\beta>|p|b(1+\beta)$, then for any $0< \gamma<\beta$ and \added{$\mu \in \mathcal M_c(\mathbb R^d)$} \deleted{$\mu \in \mathcal{M}(\mathbb{R}^d)$ with compact support}, we have $\sup_{t\geq 0}\|H_t^p\|_{\added{\mathbb P_\mu;}1+\gamma}< \infty$ \added{and}\deleted{. Thus the limit}
 $$H_{\infty}^p:=\lim_{t\rightarrow \infty}H_t^p$$
 exists $\mathbb{P}_{\mu}$-a.s and in $L^{1+\gamma}(\mathbb{P}_{\mu}).$
 \end{lem}
 \begin{proof}
-    By taking $a=|p|$ and $f=\phi_p$ in Lemma \ref{lemma25}, we get $\{H_t^p, \mathcal{F}_t:t\geq 0\}$ is a martingale.
+    \deleted{By taking $a=|p|$ and $f=\phi_p$ in} \added{According to} Lemma \ref{lemma25}, we get \added{$(H_t^p)_{t\geq 0}$} \deleted{$\{H_t^p, \mathcal{F}_t:t\geq 0\}$} is a martingale.
 
-    There exists $\gamma_0 \in [0,\beta)$ close enough to $\beta$ such that $\alpha\gamma_0>|p|(1+\gamma_0)b$. Using  Lemma \ref{lemma24} and the fact $\kappa(\phi_p)=|p|$, we get that, for any $\gamma_0\leq\gamma<\beta$
-    $$\|H_t^p\|_{1+\gamma}\leq C_2e^{-(\alpha-|p|b)t}e^{(\alpha-|p|b)t}=C_2,$$
- For any $0\leq\gamma<\gamma_0$, by the concave of function $h(x)=x^{(1+\gamma)/(1+\gamma_0)}$,
+    There exists $\gamma_0 \in [0,\beta)$ close enough to $\beta$ such that \deleted{$\alpha\gamma_0>|p|(1+\gamma_0)b$} \added{for each $\gamma_0 \leq \gamma < \beta$, $\alpha\gamma>|p|(1+\gamma)b$}. 
+    Using  Lemma \ref{lemma24} and the fact $\kappa(\phi_p)=|p|$, we get that, for any $\gamma_0\leq\gamma<\beta$\added{, there exists a constant $C$ such that}
+    $$\|H_t^p\|_{1+\gamma}\leq Ce^{-(\alpha-|p|b)t}e^{(\alpha-|p|b)t}=C.$$
+    For any $0\leq\gamma<\gamma_0$, \deleted{by the concave of function $h(x)=x^{(1+\gamma)/(1+\gamma_0)}$,} \added{consider the concave function $x\mapsto x^{(1+\gamma)/(1+\gamma_0)}$ on $[0,\infty)$, using Jensen's inequality, we have}
     $$\mathbb{P}_{\mu}|H_t^p|^{1+\gamma}\leq(\mathbb{P}_{\mu}|H_t^p|^{1+\gamma_0})^{\frac{1+\gamma}{1+\gamma_0}}<\infty.$$
     Hence the martingale is bounded in $L_{1+\gamma}(\mathbb{P}_{\mu})$ and this indicate the convergence in $L_{1+\gamma}(\mathbb{P}_{\mu}) $ an almost sure,
 %added
@@ -1184,7 +1276,7 @@ Let $f\in\mathcal{P}$, there exists constant $C_6>0$ such that for any $k\in \{0
 $$|m_k[f]|\leq C_6 e^{(\alpha\beta-\kappa(f)b(1+\beta))k}.$$
 \end{lem}
 \begin{proof}
-Let $R_0$ be the control function in \eqref{eq:semigroupineq}, as $f$ satisfies \eqref{eq:gcontrol1} by $C_f=1, \kappa=\kappa(f)$ and $R_0^f=R_0$, by \eqref{zineq2}, there exists $R_2^f\in \mathcal{P}$ such that 
+Let $R_0$ be the control function in \eqref{eq:semigroupineq}, as $f$ satisfies \eqref{eq:gcontrol1} by $C_f=1, \kappa=\kappa(f)$ and $R_0^f=R_0$, by \eqref{eq: zineq2}, there exists $R_2^f\in \mathcal{P}$ such that 
 \begin{align}
     |Z_{f_k}(x)|\leq e^{(\alpha-\kappa(f)b)(1+\beta)k}R_2^f(x), \quad x\in \mathbb{R}^d, k\in\mathbb{N}.
 \end{align}
@@ -1368,69 +1460,6 @@ We want to emphasize that, on the case $\alpha\gamma_0=(1+\gamma_0)b$, the secon
 
 At last, combine \eqref{eq:31step0},\eqref{lemma31q} and \eqref{eq:31step3} and let $t\rightarrow\infty$, we get the result.
 \end{proof}
-\begin{comment}
-    where $h_k=Z_{g_k}-\langle Z_{g_k}, \varphi\rangle$. To estimate $h_k$, we claim that for any $f \in \mathcal{P}$, $T_t f$ is differential and $\frac{\partial (T_t f)}{\partial x_i} \in \mathcal{P}, i=1,...,d$. We firstly admit the claim and continue our proof.
-    \begin{align*}
-        h_k(x)&=\int_{\mathbb{R}^d}(Z_{g_k}(x)-Z_{g_k}(y))\varphi(y)~dy\\
-        &\leq\int_{\mathbb{R}^d} \sup|\nabla Z_{g_k}(z)||x-y|\varphi(y)~dy.
-    \end{align*}
-
-    Let $\tilde{g}=T_1^{\alpha}g $, then $\tilde{g}$ differentiable. For any $i \in \{1,...,d\}$,
-    $$\frac{\partial}{\partial x_i}Z_{g_k}(x)=\int_0^1 T^{\alpha}_{1-s}\left(\frac{\partial}{\partial x_i}(-i T_{s+k-1}^{\alpha} \tilde{g})^{1+\beta}\right)(x)~ds$$
-    Using the inequality \eqref{eq:semigroupineq} and the fact $\kappa\left(\frac{\partial \tilde{g}}{\partial x_i}\right)\geq \kappa(\tilde{g})-1$, see \cite[Lemma 2.3]{RSZ}, we get that there exists $R_7 \in \mathcal{P}$ such that, for any $k\in \mathbb{N}$,
-    \begin{align*}
-        \left|\frac{\partial}{\partial x_i}(-i T_{s+k-1}^{\alpha}\tilde{g})^{\beta}\right|&=\left|(1+\beta)(-i T_{s+k-1}^{\alpha}\tilde{g})^{\beta}(-i e^{-b(s+k-1)}T_{s+k-1}^{\alpha}\left(\frac{\partial \tilde{g}}{\partial x_i}\right))\right|\\
-        &\leq e^{(\alpha-\kappa(\tilde{g})b)(s+k-1)(1+\beta)}R_7(x).
-    \end{align*}
-
-    What's more, $T_1 g(x)=\sum_{|p|\geq\kappa(g)}\langle g,\phi_p\rangle e^{-b|p|}\phi_p(x)$, thus $\kappa(\tilde{g})=\kappa(g)$. Therefore, there exists $R_8 \in \mathcal{P}$ such that for any $k\in \mathbb{N}$,
-    $$\left|\frac{\partial}{\partial x_i}Z_{g_k}(x)\right|\leq e^{(\alpha-\kappa(g)b)(1+\beta)k}R_8(x),\quad x\in \mathbb{R}^d. $$
-    Hence
-\begin{align}
-    |h_k(x)|\leq e^{(\alpha-\kappa(g)b)(1+\beta)k}(R_8(x)(|x|+\int_{\mathbb{R}^d}|y|\varphi(y)~dy)),\quad  x\in \mathbb{R}^d, k\in\mathbb{N},
-\end{align}
-
-Denote $R_9=R_8(x)(|x|+\int_{\mathbb{R}^d}|y|\varphi(y)~dy)$, we notice that $\kappa(R_9)\geq1$. Therefore, for $\theta\in \mathbb{R}^d$, $k\in\mathbb{N}$ and $t>k$,
-\begin{align*}
-  \mathbb{\tilde{P}}_{\mu}\left[|\langle h_k,X_{t-k-1}\rangle\right|]&\leq e^{(\alpha-\kappa(g)b)(1+\beta)k}\langle T_{t-k-1}^{\alpha}R_9,\mu\rangle\\
-  &\leq C_{12} e^{(\alpha-\kappa(g)b)(1+\beta)k}e^{(\alpha-b)(t-k-1)}.
-\end{align*}
- The last inequality holds as \eqref{eq:semigroupineq}. Now combine with \eqref{II1}, we can chose $\epsilon$ just depending $b$ such that,
-\begin{align}
-    II\leq C_{12} e^c|\theta|^{1+\beta} e^{-(b-\epsilon)(t-k-1)}\leq C_{13}|\theta|^{1+\beta}e^{-\delta_3(t-k)},\quad k\in\mathbb{N},t>k,\theta\in\mathbb{R}\label{lemma32q}
-\end{align}
-for some $C_{13},\delta_3>0$.
-
-At last, Using Lemma \ref{lemma28}, on the event $\mathcal{A}^c_{t-k-1}$, we get
-
-\begin{align}
-    \left|\mathbb{\tilde{P}}_{\mu}\left([\exp(i\theta \frac {M_k^t[g]}{F_k(X_{t-k-1})})]-\exp(\theta^{1+\beta}e^{\alpha}m_k[g])\right)\mathbf{1}_{\mathcal{A}^c_{t-k-1}}\right|&\leq e^c\mathbb{\tilde{P}}_{\mu}(\mathcal{A}^c_{t-k-1})\nonumber\\
-    &\leq C_{14} e^{-\delta_1(t-k)},\label{lemma33q}
-\end{align}
-Combine with \eqref{lemma31q},\eqref{lemma32q} and \eqref{lemma33q}, by letting $t \rightarrow \infty$, We obtain the desired result.
-
-\end{comment}
-\begin{comment}
-
-Now we will prove the claim mentioned in Lemma \ref{lemma31}.
-\begin{proof}[Proof of claim:] Let $\sigma_t^2=\sigma^2(1-e^{-2bt})$, then we get
-\begin{align*}
-    T_t f(x)= \int_{\mathbb{R}^d}f(y)\left(\frac{b}{\pi \sigma_t^2}\right)^{\frac{d}{2}} \exp\left(-\frac{b}{\sigma_t^2}(y-xe^{-bt})^2\right)dy=f\ast\varphi_t(xe^{-bt})
-\end{align*}
-where $\varphi_t(x)=\left(\frac{b}{\pi \sigma_t^2}\right)^{\frac{d}{2}} \exp\left(-\frac{b}{\sigma_t^2}x^2\right)$, which is belong to $C^{\infty}$. Hence $  T_t f(x)$ also belong to $C^{\infty}$. On the other hand, by calculating, we get
-\begin{align*}
-    \frac{\partial}{\partial x_i}T_t f(x)&=\int_{\mathbb{R}^d}f(y)\frac{\partial}{\partial x_i}\left(\varphi_t(xe^{-bt}-y)\right)dy\\
-    &=e^{-bt}\int_{\mathbb{R}^d}\frac{\partial \varphi_t}{\partial x_i}(y)f(xe^{-bt}-y)dy\\
-    &=\frac{-2bx_i}{\sigma_t^2}e^{-bt}T_t f(x)\in \mathcal{P}.
-\end{align*}
-\end{proof}
-
-
-\begin{rem}
-   i) For any $k\in\mathbb{N}$, $e^{\theta^{1+\beta}e^{\alpha}m_k[g]}$ is the characteristic function of some $1+\beta$-stable distribution, hence $|e^{\theta^{1+\beta}e^{\alpha}m_k[g]}|\leq 1$.
-\end{rem}
-    
-\end{comment}
 \begin{cor}\label{corollary31}
 Let$f\in \mathcal{P}$ and $\Theta>0$, assume that $\alpha\beta\leq\kappa(f)b(1+\beta)$. There exists $C_9,\delta_2>0$ such that for any $n \in \{0,...,t\}$ and $(\theta_0,...,\theta_n)\in \mathbb{R}^{n+1}$ satisfying $|\theta_i|\leq \Theta$, we have
 \begin{align}
@@ -1711,78 +1740,78 @@ $C,\delta >0$ such that  $\mathbb{\tilde{P}}_{\mu}(\mathcal{E}_t^c)\leq C e^{-\d
 \end{align*}
 Then we get $  \left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\rightarrow 0$ as $ t\rightarrow \infty$, by following the similar way in critical case.
 
-%new added
-\section{Appendix}
+\appendix
+\section{}
 
 \subsection{}
-    We first present two analytic results which are useful.
+    \added{ In this subsection, we }\deleted{ We first} present two analytic results which are useful.
 \begin{lem}
 \label{lem: estimate of exponential remaining}
-	Suppose that $z\in \mathbb C_+:= \{x+iy: x \in [0,\infty), y \in \mathbb R\}$. Then
+    Suppose that $z\in \mathbb C_+:= \{x+iy: x \in [0,\infty), y \in \mathbb R\}$. Then
 \begin{equation}
 \label{eq: estimate of exponential remaining}
-	\Big|e^{-z} - \sum_{k=0}^n \frac{(-z)^k}{k!} \Big|
-	\leq \frac{|z|^{n+1}}{(n+1)!} \wedge \frac{2|z|^{n}}{n!}, \quad n\in \mathbb N_0.
+    \Big|e^{-z} - \sum_{k=0}^n \frac{(-z)^k}{k!} \Big|
+    \leq \frac{|z|^{n+1}}{(n+1)!} \wedge \frac{2|z|^{n}}{n!}, \quad n\in \mathbb N_0.
 \end{equation}
 \end{lem}
 \begin{proof}
-	Notice that $|e^{-z}| = e^{- \operatorname{Re} z} \leq 1$.
-	Therefore, according to \cite[Theorem 7.20.]{Rudin1987Real},
+    Notice that $|e^{-z}| = e^{- \operatorname{Re} z} \leq 1$.
+    Therefore, according to \cite[Theorem 7.20.]{Rudin1987Real},
 \begin{equation}
-	|e^{-z} - 1| = \Big| \int_0^1 e^{-\theta z} z d\theta\Big|
-	\leq |z|.
+    |e^{-z} - 1| = \Big| \int_0^1 e^{-\theta z} z d\theta\Big|
+    \leq |z|.
 \end{equation}
-	Also, notice that $|e^{-z} - 1| \leq |e^{-z}|+1 \leq 2$.
-	So we have \eqref{eq: estimate of exponential remaining} is true when $n = 0$.
-	Now, suppose that \eqref{eq: estimate of exponential remaining} is true when $n = m$ for some $m \in \mathbb N_0$.
-	According to \cite[Theorem 7.20.]{Rudin1987Real},
+    Also, notice that $|e^{-z} - 1| \leq |e^{-z}|+1 \leq 2$.
+    So we have \eqref{eq: estimate of exponential remaining} is true when $n = 0$.
+    Now, suppose that \eqref{eq: estimate of exponential remaining} is true when $n = m$ for some $m \in \mathbb N_0$.
+    According to \cite[Theorem 7.20.]{Rudin1987Real},
 \begin{align}
-	&\Big|e^{-z} - \sum_{k=0}^{m+1} \frac{(-z)^k}{k!}\Big|
-	= \Big| \int_0^1\Big(e^{-\theta z} - \sum_{k=0}^m \frac{(-\theta z)^k}{k!} \Big) z d\theta \Big|
-	%\\&\quad \leq  \Big(\int_0^1 \frac{|\theta z|^{m+1}}{(m+1)!} z d\theta\Big) \wedge \Big(\int_0^1 \frac{2|\theta z|^{m}}{m!} z d\theta\Big)
+    &\Big|e^{-z} - \sum_{k=0}^{m+1} \frac{(-z)^k}{k!}\Big|
+    = \Big| \int_0^1\Big(e^{-\theta z} - \sum_{k=0}^m \frac{(-\theta z)^k}{k!} \Big) z d\theta \Big|
+    %\\&\quad \leq  \Big(\int_0^1 \frac{|\theta z|^{m+1}}{(m+1)!} z d\theta\Big) \wedge \Big(\int_0^1 \frac{2|\theta z|^{m}}{m!} z d\theta\Big)
     \\&\quad \leq  \Big(\int_0^1 \frac{|\theta z|^{m+1}}{(m+1)!} |z| d\theta\Big) \wedge \Big(\int_0^1 \frac{2|\theta z|^{m}}{m!} |z| d\theta\Big)
-	= \frac{|z|^{m+2}}{(m+2)!} \wedge \frac{2|z|^{m+1}}{(m+1)!},
+    = \frac{|z|^{m+2}}{(m+2)!} \wedge \frac{2|z|^{m+1}}{(m+1)!},
 \end{align}
-	which says that \eqref{eq: estimate of exponential remaining} is true for $n = m + 1$.
-	Finally, use induction.
+    which says that \eqref{eq: estimate of exponential remaining} is true for $n = m + 1$.
+    Finally, use induction.
 \end{proof}
 
 \begin{lem}
 \label{lem: extension lemma for branching mechanism}
-	Suppose that  $\nu$ is a measure on $(0,\infty)$ such that $\int_{(0,\infty)} (u \wedge u^2) \nu(du)< \infty$. Then the following function $h: \mathbb C_+ \to \mathbb C$ is well defined:
+    Suppose that  $\nu$ is a measure on $(0,\infty)$ such that $\int_{(0,\infty)} (u \wedge u^2) \nu(du)< \infty$. Then the following function $h: \mathbb C_+ \to \mathbb C$ is well defined:
 \begin{equation}
-	h (z) = \int_{(0,\infty)} (e^{-zu} - 1 + zu) \nu(du), \quad z \in \mathbb C_+.
+    h (z) = \int_{(0,\infty)} (e^{-zu} - 1 + zu) \nu(du), \quad z \in \mathbb C_+.
 \end{equation}
-	Moreover, $h$ is continuous on $\mathbb C_+$ and is holomorphic on $\mathbb C_+^0:=\{x+iy:x \in (0,\infty), y\in \mathbb R\}$ with deriavative
+    Moreover, $h$ is continuous on $\mathbb C_+$ and is holomorphic on $\mathbb C_+^0:=\{x+iy:x \in (0,\infty), y\in \mathbb R\}$ with deriavative
 \begin{equation}
 \label{eq: deriavetive of the Poission part}
-	h'(z) = \int_{(0,\infty)}(1- e^{-uz})u \nu(du).
+    h'(z) = \int_{(0,\infty)}(1- e^{-uz})u \nu(du).
 \end{equation}
 \end{lem}
 \begin{proof}
-	From Lemma \ref{lem: estimate of exponential remaining}, we know that $h$ is well defined on $\mathbb C_+$.
-	According to \cite[Theorem 3.2. \& Theorem 3.5.]{SchillingSongVondracek2010Bernstein}, \eqref{eq: deriavetive of the Poission part} defines a continuous function $h'$ on $\mathbb C_+$ which is holomorphic on $\mathbb C_+^0$.
-	Let $z_0, z \in \mathbb C_+$.
-	Let $\gamma: [0,1]\mapsto \mathbb C_+$ be a $C^1$ path with $\gamma(0) = z_0$ and $\gamma(1) = z$.
-	Notice that, according to Lemma \ref{lem: estimate of exponential remaining},
+    From Lemma \ref{lem: estimate of exponential remaining}, we know that $h$ is well defined on $\mathbb C_+$.
+    According to \cite[Theorem 3.2. \& Theorem 3.5.]{SchillingSongVondracek2010Bernstein}, \eqref{eq: deriavetive of the Poission part} defines a continuous function $h'$ on $\mathbb C_+$ which is holomorphic on $\mathbb C_+^0$.
+    Let $z_0, z \in \mathbb C_+$.
+    Let $\gamma: [0,1]\mapsto \mathbb C_+$ be a $C^1$ path with $\gamma(0) = z_0$ and $\gamma(1) = z$.
+    Notice that, according to Lemma \ref{lem: estimate of exponential remaining},
 \begin{align}
-	&\int_0^1 \int_0^\infty |1-e^{-u\gamma(\theta)}|u~\nu(du)~d\theta
-	\\ &= \int_0^1~d\theta~ \Big( \int_0^1 |1-e^{-u\gamma(\theta)}|u~\nu(du) + \int_1^\infty |1-e^{-u\gamma(\theta)}|u~\nu(du) \Big)
-	\\ &\leq \int_0^1~d\theta~ \Big( |\gamma(\theta)|\int_0^1 u^2~\nu(du) + 2\int_1^\infty u~\nu(du) \Big)
-	< \infty.
+    &\int_0^1 \int_0^\infty |1-e^{-u\gamma(\theta)}|u~\nu(du)~d\theta
+    \\ &= \int_0^1~d\theta~ \Big( \int_0^1 |1-e^{-u\gamma(\theta)}|u~\nu(du) + \int_1^\infty |1-e^{-u\gamma(\theta)}|u~\nu(du) \Big)
+    \\ &\leq \int_0^1~d\theta~ \Big( |\gamma(\theta)|\int_0^1 u^2~\nu(du) + 2\int_1^\infty u~\nu(du) \Big)
+    < \infty.
 \end{align}
-	Therefore, according to Fubini's theorem,
+    Therefore, according to Fubini's theorem,
 \begin{align}
 \label{eq: path integration representation of h}
-	\int_\gamma h'(z)dz
-	&=\int_0^1 h'(\gamma(\theta))\gamma'(\theta) ~d\theta
-	= \int_0^1 \int_0^\infty (1-e^{-u\gamma(
-	\theta)}) u~\nu(du)~ \gamma'(\theta) ~d\theta
-	\\&= \int_0^\infty \int_0^1 (1-e^{-u\gamma(
-	\theta)})~ \gamma'(\theta) u ~d\theta~ \nu(du)
-	= h(z) - h(z_0).
+    \int_\gamma h'(z)dz
+    &=\int_0^1 h'(\gamma(\theta))\gamma'(\theta) ~d\theta
+    = \int_0^1 \int_0^\infty (1-e^{-u\gamma(
+    \theta)}) u~\nu(du)~ \gamma'(\theta) ~d\theta
+    \\&= \int_0^\infty \int_0^1 (1-e^{-u\gamma(
+    \theta)})~ \gamma'(\theta) u ~d\theta~ \nu(du)
+    = h(z) - h(z_0).
 \end{align}
-	The rest of the proof follows the arguement in \cite[Section 10.14]{Rudin1987Real}.
+    The rest of the proof follows the arguement in \cite[Section 10.14]{Rudin1987Real}.
 \end{proof}
 
 \subsection{}
@@ -1790,28 +1819,28 @@ Then we get $  \left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\rightarrow
 %new added
     In this subsection we give a version of the Feynman-Kac formula with complex values.
 %end new added
-	Suppose that $\{(\xi_t)_{t \in [r,\infty)}; (\Pi_{r,x})_{r\in [0,\infty), x\in E}\}$ is a (possibly non-homogeneous) Hunt process in a locally compact seperable metric space $E$.
-	%For brevity, for each $0< s< t< \infty$ and each bounded complex valued measurable function $\rho$ on $[0,\infty) \times E$, we write
+    Suppose that $\{(\xi_t)_{t \in [r,\infty)}; (\Pi_{r,x})_{r\in [0,\infty), x\in E}\}$ is a (possibly non-homogeneous) Hunt process in a locally compact seperable metric space $E$.
+    %For brevity, for each $0< s< t< \infty$ and each bounded complex valued measurable function $\rho$ on $[0,\infty) \times E$, we write
     Fix a time $t >0$.
     For each $0< s< t$ and each bounded complex valued measurable function $\rho$ on $[0,t) \times E$, we write
 \begin{equation}
-	H^{(\rho)}_{(s,t)}:= \exp\Big\{\int_s^t \rho(u,\xi_u) du\Big\}.
+    H^{(\rho)}_{(s,t)}:= \exp\Big\{\int_s^t \rho(u,\xi_u) du\Big\}.
 \end{equation}
-	Notice that
+    Notice that
 \begin{equation}
 \label{eq: crucial for Feynman-Kac}
-	\frac{\partial}{\partial s} H^{(\rho)}_{(s,t)}= -H^{(\rho)}_{(s,t)}\rho(s,\xi_s),
-	%\quad s> 0.
+    \frac{\partial}{\partial s} H^{(\rho)}_{(s,t)}= -H^{(\rho)}_{(s,t)}\rho(s,\xi_s),
+    %\quad s> 0.
     \quad s\in (0,t).
 \end{equation}
-	%Suppose that $\beta$, $\rho$ are complex valued bounded measurable functions on $[0,\infty) \times E$; $F$ is a complex valued bounded measurable function on $E$.
+    %Suppose that $\beta$, $\rho$ are complex valued bounded measurable functions on $[0,\infty) \times E$; $F$ is a complex valued bounded measurable function on $E$.
     Suppose that $\beta$, $\rho$ are complex valued bounded measurable functions on $[0,t) \times E$; $F$ is a complex valued bounded measurable function on $E$.
 %delete
     %Fix a time $t >0$.
 %end delete
-	Define
+    Define
 \begin{equation}
-	g(r,x) := \Pi_{r,x}[ H_{(r,t)}^{(\beta+\rho)} F(\xi_t)],\quad r \in [0,t), x\in E.
+    g(r,x) := \Pi_{r,x}[ H_{(r,t)}^{(\beta+\rho)} F(\xi_t)],\quad r \in [0,t), x\in E.
 \end{equation}
     Notice that
 \begin{align}
@@ -1819,31 +1848,31 @@ Then we get $  \left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\rightarrow
     \leq  \int_r^t e^{(t-r)\|\beta\|_\infty}e^{(t-s)\|\rho\|_\infty}\|\rho\|_\infty\|F\|_\infty ~ds
     < \infty.
 \end{align}
-	Therefore, from the Markov property of $\xi$, \eqref{eq: crucial for Feynman-Kac}, Fubini's theorem and above, we can verify that
+    Therefore, from the Markov property of $\xi$, \eqref{eq: crucial for Feynman-Kac}, Fubini's theorem and above, we can verify that
 \begin{align}
-	&\Pi_{r,x} \Big[ \int_r^tH_{(r,s)}^{(\beta)}~(\rho g)(s,\xi_s)~ds \Big]
-	=\Pi_{r,x} \Big[ \int_r^t H_{(r,s)}^{(\beta)}\rho(s,\xi_s) \Pi_{s,\xi_s}[ H_{(s,t)}^{(\beta+\rho)} F(\xi_t)]~ds \Big]
-	\\&= \Pi_{r,x} \Big[ \int_r^t H_{(r,t)}^{(\beta)}\rho(s,\xi_s) H_{(s,t)}^{(\rho)} F(\xi_t) ~ds \Big]
-	= \Pi_{r,x} [ H_{(r,t)}^{(\beta)}F(\xi_t)(H_{(r,t)}^{(\rho)} - 1)]
-	\\&= g(r,x) - \Pi_{r,x} [ H_{(r,t)}^{(\beta)} F(\xi_t)].
+    &\Pi_{r,x} \Big[ \int_r^tH_{(r,s)}^{(\beta)}~(\rho g)(s,\xi_s)~ds \Big]
+    =\Pi_{r,x} \Big[ \int_r^t H_{(r,s)}^{(\beta)}\rho(s,\xi_s) \Pi_{s,\xi_s}[ H_{(s,t)}^{(\beta+\rho)} F(\xi_t)]~ds \Big]
+    \\&= \Pi_{r,x} \Big[ \int_r^t H_{(r,t)}^{(\beta)}\rho(s,\xi_s) H_{(s,t)}^{(\rho)} F(\xi_t) ~ds \Big]
+    = \Pi_{r,x} [ H_{(r,t)}^{(\beta)}F(\xi_t)(H_{(r,t)}^{(\rho)} - 1)]
+    \\&= g(r,x) - \Pi_{r,x} [ H_{(r,t)}^{(\beta)} F(\xi_t)].
 \end{align}
 
 \subsection{}
 \label{sec: definition of characteristic exponent}
-	According to Levy-Khintchine formula \cite[Theorem 8.1]{Sato1990Levy}, an $\mathbb R$-valued random variable $\{Y; P\}$ is infinitely divisible if and only if
+    According to Levy-Khintchine formula \cite[Theorem 8.1]{Sato1990Levy}, an $\mathbb R$-valued random variable $\{Y; P\}$ is infinitely divisible if and only if
 \begin{equation}
 \label{eq: characteristic function of an infinitely divisible random variable}
-	P[e^{i\theta Y}]
-	= \exp\Big( ia \theta - \frac{1}{2}\sigma^2 \theta^2 + \int_{\mathbb R}(e^{i\theta x} - 1 - i \theta x\mathbf 1_{|x|< 1}) \nu(dx)\Big),
+    P[e^{i\theta Y}]
+    = \exp\Big( ia \theta - \frac{1}{2}\sigma^2 \theta^2 + \int_{\mathbb R}(e^{i\theta x} - 1 - i \theta x\mathbf 1_{|x|< 1}) \nu(dx)\Big),
     \quad \theta \in \mathbb R,
 \end{equation}
-	where $a\in \mathbb R$, $\sigma \in \mathbb R$ and $\nu$ is a measure on $\mathbb R\setminus\{0\}$ with $\int_{\mathbb R}(1\wedge x^2) \nu(dx)< \infty$.
-	Suppose that $\{Y;P\}$ is an infinitely divisible random variable with characteristic function \eqref{eq: characteristic function of an infinitely divisible random variable}, then
+    where $a\in \mathbb R$, $\sigma \in \mathbb R$ and $\nu$ is a measure on $\mathbb R\setminus\{0\}$ with $\int_{\mathbb R}(1\wedge x^2) \nu(dx)< \infty$.
+    Suppose that $\{Y;P\}$ is an infinitely divisible random variable with characteristic function \eqref{eq: characteristic function of an infinitely divisible random variable}, then
 \begin{equation}
 \label{eq: Characteristic exponent}
-	h(\theta)
-	:= ia \theta - \frac{1}{2}\sigma^2 \theta^2 + \int_{\mathbb R}(e^{i\theta x} - 1 - i \theta x\mathbf 1_{|x|< 1}) \nu(dx),
-	\quad \theta \in \mathbb R,
+    h(\theta)
+    := ia \theta - \frac{1}{2}\sigma^2 \theta^2 + \int_{\mathbb R}(e^{i\theta x} - 1 - i \theta x\mathbf 1_{|x|< 1}) \nu(dx),
+    \quad \theta \in \mathbb R,
 \end{equation}
     is a continuous function.
     %In fact, for any compact $K \subset \mathbb R$, since due to Lemma \ref{lem: estimate of exponential remaining},
@@ -1854,19 +1883,19 @@ Then we get $  \left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\rightarrow
 \end{equation}
     we can verify the continuity of $h$ from the dominant convergence theorem.
     Now, according to \cite[Proposition 1.9.1.]{Linde1986Probability},
-	$h$ is the unique continuous function from $\mathbb R$ to $\mathbb C$ with $h(0) = 0$ and $P[e^{i\theta Y}] = \exp\big(h(\theta)\big)$.
-	We refer to function $h$ the characteristic exponent of random variable $Y$ and write $\operatorname{Log} P[e^{i\theta Y}] = h(\theta)$.
+    $h$ is the unique continuous function from $\mathbb R$ to $\mathbb C$ with $h(0) = 0$ and $P[e^{i\theta Y}] = \exp\big(h(\theta)\big)$.
+    We refer to function $h$ the characteristic exponent of random variable $Y$ and write $\operatorname{Log} P[e^{i\theta Y}] = h(\theta)$.
 
 \subsection{}
-	
-	Suppose that $\{Y;P\}$ is an infinitely divisible random variable with characteristic exponent \eqref{eq: Characteristic exponent}.
-	Suppose that $P[|Y|]< \infty$.
-	According to \cite[Corollary 25.8.]{Sato1990Levy}, $\int_{|x|>1} |x|\nu(dx) < \infty$.
-	
-	We claim that, $h$ is differentiable on $\mathbb R$.
-	In fact, according to Lemma \ref{lem: estimate of exponential remaining}, we have for any compact $K \subset \mathbb R$,
+    
+    Suppose that $\{Y;P\}$ is an infinitely divisible random variable with characteristic exponent \eqref{eq: Characteristic exponent}.
+    Suppose that $P[|Y|]< \infty$.
+    According to \cite[Corollary 25.8.]{Sato1990Levy}, $\int_{|x|>1} |x|\nu(dx) < \infty$.
+    
+    We claim that, $h$ is differentiable on $\mathbb R$.
+    In fact, according to Lemma \ref{lem: estimate of exponential remaining}, we have for any compact $K \subset \mathbb R$,
 \begin{align}
-	&\int_{\mathbb R} \sup_{\theta \in K} \Big|\frac{\partial}{\partial \theta}(e^{i\theta x} - 1 - i \theta x\mathbf 1_{|x|< 1})\Big| \nu(dx)
+    &\int_{\mathbb R} \sup_{\theta \in K} \Big|\frac{\partial}{\partial \theta}(e^{i\theta x} - 1 - i \theta x\mathbf 1_{|x|< 1})\Big| \nu(dx)
     = \int_{\mathbb R} \sup_{\theta \in K} | e^{
     i\theta x} ix - ix \mathbf 1_{|x|< 1} | \nu(dx)
     \\&\leq(\sup_{\theta \in K}|\theta|) \int_{[0,1)}|x^2| \nu(dx)+\int_{[1,\infty)} |x|  \nu(dx)
@@ -1874,236 +1903,279 @@ Then we get $  \left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\rightarrow
     %\quad \epsilon > 0.
     < \infty.
 \end{align}
-	Therefore, according to \cite[Theorem A.5.2.]{Durrett2010Probability},
-	we have that $h$ is differentiable on $\mathbb R$ with derivative
+    Therefore, according to \cite[Theorem A.5.2.]{Durrett2010Probability},
+    we have that $h$ is differentiable on $\mathbb R$ with derivative
 \begin{equation}
-	h'(\theta) = ia - \sigma^2 \theta + i \int_{\mathbb R} (xe^{i\theta x} - x\mathbf 1_{|x|<1}) \nu(dx).
+    h'(\theta) = ia - \sigma^2 \theta + i \int_{\mathbb R} (xe^{i\theta x} - x\mathbf 1_{|x|<1}) \nu(dx).
 \end{equation}
-	%Therefore, according to \cite[Theorem 3.2.4.]{Cuppens1975Decomposition}, we have that map $\theta \mapsto \mathbf P[e^{i\theta Y}]$ from $\mathbb R$ to $\mathbb C$ is differentiable with
+    %Therefore, according to \cite[Theorem 3.2.4.]{Cuppens1975Decomposition}, we have that map $\theta \mapsto \mathbf P[e^{i\theta Y}]$ from $\mathbb R$ to $\mathbb C$ is differentiable with
     Now, according to \cite[Theorem 3.2.4.]{Cuppens1975Decomposition}, we have that map $\theta \mapsto \mathbf P[e^{i\theta Y}]$ from $\mathbb R$ to $\mathbb C$ is differentiable with
 \begin{equation}
 \label{eq: derivative of characteristic exponent}
-	iP[Y e^{i\theta Y}]
-	=\frac{d}{d \theta} P[e^{i\theta Y}]
-	= P[e^{i\theta Y}] \frac{d}{d \theta} h(\theta),
-	\quad \theta \in \mathbb R.
+    iP[Y e^{i\theta Y}]
+    =\frac{d}{d \theta} P[e^{i\theta Y}]
+    = P[e^{i\theta Y}] \frac{d}{d \theta} h(\theta),
+    \quad \theta \in \mathbb R.
 \end{equation}
 
 \subsection{}
 \label{sec: definition of superprocess}
-	We say $X=\{(X_t)_{t\geq 0}; (\mathbf P_\mu)_{\mu \in \mathcal M^1_E}\}$ is a $(\xi,\psi)$-superprocess if
+    We say $X=\{(X_t)_{t\geq 0}; (\mathbf P_\mu)_{\mu \in \mathcal M^1_E}\}$ is a $(\xi,\psi)$-superprocess if
 \begin{itemize}
 \item
-	The sample space $E$ is a locally compact separable metric space.
-	Denote by $\mathcal M_E^1$ the collection of all the finite measures on $E$ equipped with weak topology.
+    The sample space $E$ is a locally compact separable metric space.
+    Denote by $\mathcal M_E^1$ the collection of all the finite measures on $E$ equipped with weak topology.
 \item
-	The spatial motion $\xi=\{(\xi_t)_{t\geq 0};(\Pi_x)_{x\in E}\}$ is an $E$-valued Hunt process with its lifetime denoted by $\zeta$.
+    The spatial motion $\xi=\{(\xi_t)_{t\geq 0};(\Pi_x)_{x\in E}\}$ is an $E$-valued Hunt process with its lifetime denoted by $\zeta$.
 \item
-	%the branching mechanism $\psi: E\times[0,\infty) \to \mathbb R$ is given by
+    %the branching mechanism $\psi: E\times[0,\infty) \to \mathbb R$ is given by
     The branching mechanism $\psi: E\times[0,\infty) \to \mathbb R$ is given by
 \begin{equation}
 \label{eq: branching mechanism}
-	\psi(x,z)=
-	- \beta(x) z + \alpha (x) z^2 + \int_{(0,\infty)} (e^{-zy} - 1 + zy) \pi(x,dy).
+    \psi(x,z)=
+    - \beta(x) z + \alpha (x) z^2 + \int_{(0,\infty)} (e^{-zy} - 1 + zy) \pi(x,dy).
 \end{equation}
-	where $\beta \in \mathscr B_b(E)$, $\alpha \in \mathscr B^+_b(E)$ and $\pi(x,dy)$ is a kernel from $E$ to $(0,\infty)$ such that $\sup_{x\in E} \int_{(0,\infty)} (y\wedge y^2) \pi(x,dy) < \infty$.
+    where $\beta \in \mathscr B_b(E)$, $\alpha \in \mathscr B^+_b(E)$ and $\pi(x,dy)$ is a kernel from $E$ to $(0,\infty)$ such that $\sup_{x\in E} \int_{(0,\infty)} (y\wedge y^2) \pi(x,dy) < \infty$.
 \item
-	$X=\{(X_t)_{t\geq 0}; (\mathbf P_\mu)_{\mu \in \mathcal M^1_E}\}$ is an $\mathcal M^1_E$-valued Hunt process with is transition probability determined by
+    $X=\{(X_t)_{t\geq 0}; (\mathbf P_\mu)_{\mu \in \mathcal M^1_E}\}$ is an $\mathcal M^1_E$-valued Hunt process with is transition probability determined by
 \begin{align}
-	\mathbf P_\mu [e^{-X_t(f)}] = e^{-\mu(u_f(t,\cdot))},
-	\quad t\geq 0, \mu \in \mathcal M_E^1, f\in \mathscr B^+_b(E),
+    \mathbf P_\mu [e^{-X_t(f)}] = e^{-\mu(\added{ V_tf}\deleted{ u_f(t,\cdot)})},
+    \quad t\geq 0, \mu \in \mathcal M_E^1, f\in \mathscr B^+_b(E),
 \end{align}
-	where the function $u_f:(t,x) \mapsto u_f(t,x)$ on $[0,\infty) \times E$ is the unique locally bounded positive solution to the equation
+    where \added{ for each $f\in b\mathscr B_E$,} the function \added{ $(t,x)\mapsto V_tf(x)$}\deleted{ $u_f:(t,x) \mapsto u_f(t,x)$} on $[0,\infty) \times E$ is the unique locally bounded positive solution to the equation
 \begin{align}\label{eq:FKPP_in_definition}
-	u_f(t,x) + \Pi_x \Big[  \int_0^{t\wedge \zeta} \psi \big(\xi_s,u_f(t-s,\xi_s)\big) ds \Big]
-	= \Pi_x [ f(\xi_t)\mathbf 1_{t<\zeta} ],
-	\quad t \geq 0, x \in E.
+    V_tf(x) + \Pi_x \Big[  \int_0^{t\wedge \zeta} \psi(\xi_s,V_{t-s}f)ds \Big]
+    = \Pi_x [ f(\xi_t)\mathbf 1_{t<\zeta} ],
+    \quad t \geq 0, x \in E.
+    \\
+    \deleted{u_f(t,x) + \Pi_x \Big[  \int_0^{t\wedge \zeta} \psi \big(\xi_s,u_f(t-s,\xi_s)\big) ds \Big]
+    = \Pi_x [ f(\xi_t)\mathbf 1_{t<\zeta} ],
+    \quad t \geq 0, x \in E.}
 \end{align}
 \end{itemize}
-	We refer our reader to \cite{Li2011Measure-valued} for more discussion about the definition and the existence of superprocesses.
+    We refer our reader to \cite{Li2011Measure-valued} for more discussion about the definition and the existence of superprocesses.
     To avoid triviality, we assume that $\psi(x,z)\neq -\beta(x)z$ for some $x \in E$ and $z \geq 0$; and that $\Pi_x(\zeta>t)>0$ for each $x \in E$ and $t \geq 0$.
 
 \subsection{}
 \label{sec: extension of branching mechanism}
-    Let $X$ be the superprocess defined in Subsection \ref{sec: definition of superprocess}.	
-	Notice that, the branching mechanism $\psi$ can be extended as a map from $E \times \mathbb C_+$ to $\mathbb C$ using \eqref{eq: branching mechanism}.
-	Define
+    Let $X$ be the superprocess defined in Subsection \ref{sec: definition of superprocess}.    
+    Notice that, the branching mechanism $\psi$ can be extended as a map from $E \times \mathbb C_+$ to $\mathbb C$ using \eqref{eq: branching mechanism}.
+    Define
 \begin{equation}
-	\psi'(x,z):= - \beta(x) + 2\alpha(x) z + \int_{(0,\infty)} (1-e^{-zy})y\pi(x,dy),
-	\quad x\in E, z\in \mathbb C_+.
+    \psi'(x,z):= - \beta(x) + 2\alpha(x) z + \int_{(0,\infty)} (1-e^{-zy})y\pi(x,dy),
+    \quad x\in E, z\in \mathbb C_+.
 \end{equation}
-	Then according to Lemma \ref{lem: extension lemma for branching mechanism}, for each $x \in E$, $z \mapsto \psi(x,z)$ is a holomorphic function on $\mathbb C_+^0$ with deriavetive $z \mapsto \psi'(x,z)$.
-	Define $\psi_0(x,z) := \psi(x,z)+ \beta(x)z $ and $\psi'_0(x,z) := \psi'(x,z) + \beta(x)$.
+    Then according to Lemma \ref{lem: extension lemma for branching mechanism}, for each $x \in E$, $z \mapsto \psi(x,z)$ is a holomorphic function on $\mathbb C_+^0$ with deriavetive $z \mapsto \psi'(x,z)$.
+    Define $\psi_0(x,z) := \psi(x,z)+ \beta(x)z $ and $\psi'_0(x,z) := \psi'(x,z) + \beta(x)$.
 
 \subsection{}
-	Let $X$ be the superprocess defined in Subsection \ref{sec: definition of superprocess}.
-	%Denote by $\mathbb W$ the space of $\mathcal M_E^1$-valued c\`{a}dl\`{a}g paths whis its conanical path denoted by $(W_t)_{t\geq 0}$.
+    Let $X$ be the superprocess defined in Subsection \ref{sec: definition of superprocess}.
+    %Denote by $\mathbb W$ the space of $\mathcal M_E^1$-valued c\`{a}dl\`{a}g paths whis its conanical path denoted by $(W_t)_{t\geq 0}$.
     Denote by $\mathbb W$ the space of $\mathcal M_E^1$-valued c\`{a}dl\`{a}g paths with its conanical path denoted by $(W_t)_{t\geq 0}$.
-	We say $X$ is \emph{non-persistent} if $\mathbf P_{\delta_x}(\|X_t\|= 0) > 0$ for all $x\in E$ and $t> 0$.
-	Suppose that $(X_t)_{t\geq 0}$ is non-persistent, then according to \cite[Section 8.4]{Li2011Measure-valued},
-	there is a family of measures $(\mathbb N_x)_{x\in E}$ on $\mathbb W$ such that
+    We say $X$ is \emph{non-persistent} if $\mathbf P_{\delta_x}(\|X_t\|= 0) > 0$ for all $x\in E$ and $t> 0$.
+    Suppose that $(X_t)_{t\geq 0}$ is non-persistent, then according to \cite[Section 8.4]{Li2011Measure-valued},
+    there is a family of measures $(\mathbb N_x)_{x\in E}$ on $\mathbb W$ such that
 \begin{itemize}
 \item
-	$\mathbb N_x (\forall t \geq 0, \|W_t\|=0) =0$;
+    $\mathbb N_x (\forall t \geq 0, \|W_t\|=0) =0$;
 \item
-	$\mathbb N_x(\|W_0 \|\neq 0) = 0$;
+    $\mathbb N_x(\|W_0 \|\neq 0) = 0$;
 \item
-	For any $\mu \in \mathcal M_E^1$, if $\mathcal N$ is a Poisson random measure defined on some probability space
-	with intensity $\mathbb N_\mu(\cdot):= \int_E \mathbb N_x(\cdot )\mu(dx)$,
-	then the superprocess $\{X;\mathbf P_\mu\}$ can be realized by $\widetilde X_0 := \mu$ and $\widetilde X_t(\cdot) := \mathcal N[W_t(\cdot)]$ for each $t>0$.
+    For any $\mu \in \mathcal M_E^1$, if $\mathcal N$ is a Poisson random measure defined on some probability space
+    with intensity $\mathbb N_\mu(\cdot):= \int_E \mathbb N_x(\cdot )\mu(dx)$,
+    then the superprocess $\{X;\mathbf P_\mu\}$ can be realized by $\widetilde X_0 := \mu$ and $\widetilde X_t(\cdot) := \mathcal N[W_t(\cdot)]$ for each $t>0$.
 \end{itemize}
-	We refer to $(\mathbb N_x)_{x\in E}$ the Kuznetsov measures of $X$.
+    We refer to $(\mathbb N_x)_{x\in E}$ the Kuznetsov measures of $X$.
 \subsection{}
 \label{sec: definition of vf}
-	Let $X$ be the superprocess defined in Subsection \ref{sec: definition of superprocess}.
-	Define the mean semigroup
+    Let $X$ be the superprocess defined in Subsection \ref{sec: definition of superprocess}.
+    Define the mean semigroup
 \begin{equation}
-	P_t^\beta f(x)
-	:= \Pi_{x}[e^{\int_0^t \beta(\xi_s)ds}f(\xi_t) \mathbf 1_{t< \zeta}],
-	\quad t\geq 0, x\in E, f\in b\mathscr B^+_E.
+    P_t^\beta f(x)
+    := \Pi_{x}[e^{\int_0^t \beta(\xi_s)ds}f(\xi_t) \mathbf 1_{t< \zeta}],
+    \quad t\geq 0, x\in E, f\in b\mathscr B^+_E.
 \end{equation}
     Assume that the superprocess $X$ is non-presistent with its Kuznestov measure denoted by $(\mathbb N_x)_{x\in E}$.
-	It is know from \cite[Proposition 2.27]{Li2011Measure-valued} and \cite[Theorem 2.7]{Kyprianou2014Fluctuations} that for any $t > 0$, $\mu \in \mathcal M_E^1$ and $f\in b\mathscr B^+_E$,
+    It is know from \cite[Proposition 2.27]{Li2011Measure-valued} and \cite[Theorem 2.7]{Kyprianou2014Fluctuations} that for any $t > 0$, $\mu \in \mathcal M_E^1$ and $f\in b\mathscr B^+_E$,
 \begin{equation}
 \label{eq: mean formula for superprocesses}
     \mathbb N_{\mu}[W_t(f)]
     =\mathbf P_{\mu}[X_t(f)]=\mu(P^\beta_t f).
 \end{equation}
-	Define
+    Define
 \begin{align}
     L_1(\xi)
     &:= \{f\in \mathscr B_E: \forall x\in E, t\geq 0, \quad \Pi_x[|f(\xi_t)|]< \infty\},
-	\\L_2(\xi)
+    \\L_2(\xi)
     &:= \{f \in \mathscr B_E: |f|^2 \in L_1(\xi)\}.
 \end{align}
-	Let $f\in L_1(\xi), t >0$ and $x\in E$.
+    Let $f\in L_1(\xi), t >0$ and $x\in E$.
     Evaluating \eqref{eq: mean formula for superprocesses} by monotonicity and linearity, we have
 \begin{equation}
     \mathbb N_x[W_t(f)]
     =\mathbf P_{\delta_x}[X_t(f)]=P^\beta_t f(x) \in \mathbb R.
 \end{equation}
-	Notice that, from the branching property of the superprocess $X$, $\{X_t(f); \mathbf P_{\delta_x}\}$ is an infinitely divisible random variable with finite moment.
-	Denote by $v_f(t,x,\theta) := \operatorname{Log} \mathbf P_{\delta_x}[e^{i\theta X_t(f)}]$ the charateristic exponent of random variable $\{X_t(f); \mathbf P_{\delta_x}\}$.
-	According to Campbell's formula, see \cite[Theorem 2.7]{Kyprianou2014Fluctuations} for example, for each $\theta \in \mathbb R$,
-$	\mathbf P_{\delta_x} [e^{i\theta X_t(f)}]
-	= \exp(\mathbb N_x[ e^{i\theta W_t(f)} - 1]).
+    Notice that, from the branching property of the superprocess $X$, $\{X_t(f); \mathbf P_{\delta_x}\}$ is an infinitely divisible random variable with finite moment.
+    \added{ Denote by $U_t(\theta f)(x) := \operatorname{Log} \mathbf P_{\delta_x}[e^{i \theta X_t(f)}]$ }\deleted{ Denote by $v_f(t,x,\theta) := \operatorname{Log} \mathbf P_{\delta_x}[e^{i\theta X_t(f)}]$} the charateristic exponent of random variable $\{X_t(f); \mathbf P_{\delta_x}\}$.
+    According to Campbell's formula, see \cite[Theorem 2.7]{Kyprianou2014Fluctuations} for example, for each $\theta \in \mathbb R$,
+$   \mathbf P_{\delta_x} [e^{i\theta X_t(f)}]
+    = \exp(\mathbb N_x[ e^{i\theta W_t(f)} - 1]).
 $
-	Notice that $\theta \mapsto \mathbb N_x[e^{i\theta W_t(f)} - 1]$ is a continuous function.
-	Also notice that $\mathbb N_x[e^{i\theta W_t(f)} - 1] = 0$ if $\theta = 0$.
-	Therefore, according to the discussion in Subsection \ref{sec: definition of characteristic exponent}, we have
+    Notice that $\theta \mapsto \mathbb N_x[e^{i\theta W_t(f)} - 1]$ is a continuous function.
+    Also notice that $\mathbb N_x[e^{i\theta W_t(f)} - 1] = 0$ if $\theta = 0$.
+    Therefore, according to the discussion in Subsection \ref{sec: definition of characteristic exponent}, we have
 \begin{equation}
 \label{eq: N and characteristic exponent}
-	v_f(t,x,\theta) = \mathbb N_x[e^{i\theta W_t(f)} - 1],
-	\quad \theta \in \mathbb R.
+    \added{ U_tf(x)}\deleted{ v_f(t,x,\theta)} = \added{ \mathbb N_x[e^{i W_t(f)} - 1]}
+    \deleted{ \mathbb N_x[e^{i\theta W_t(f)} - 1]},
+    \quad \theta \in \mathbb R.
 \end{equation}
 
 \subsection{}
+\deleted{
     Let $X$ be the non-persistent superprocess discussed in Subsection \ref{sec: definition of vf}.
-    Fix $t > 0,x\in E$ and $f\in L^1(\xi)$.
-	Noticing that
+    In this subsection, we want to show that if $f\in L^2(\xi)$ then the following expectation
 \[
-	e^{\operatorname{Re} v_f(t,x,\theta)} = |e^{v_f(t,x,\theta)}|
-	= |\mathbf P_{\delta_x}[e^{i\theta X_t(f)}]| \leq 1,
-	\quad \theta\in \mathbb R,
+    \Pi_x\Big[\int_0^t \psi(\xi_s,- U_{t-s}f)ds\Big]
+    \in \mathbb C
+\]
+    is well defined.
+}
+    
+    Firstly, fix $t > 0,x\in E$ and $f\in L^1(\xi)$.
+    Noticing that
+\[
+    \added{ e^{\operatorname{Re} U_tf(x)}}
+    \deleted{ e^{\operatorname{Re} v_f(t,x,\theta)}} 
+    = \added{|e^{U_tf(x)}|}
+    \deleted{ |e^{v_f(t,x,\theta)}|}
+    = \added{|\mathbf P_{\delta_x}[e^{i X_t(f)}]|}
+    \deleted{|\mathbf P_{\delta_x}[e^{i\theta X_t(f)}]|}
+    \leq 1,
+    \quad \theta\in \mathbb R,
 \]
     we have
 \begin{equation}
 \label{eq: -v has positive real part}
-	\operatorname{Re} v_f(t,x,\theta) \leq 0,\quad \theta \in \mathbb R.
+    \added{ \operatorname{Re} U_tf(x)}
+    \deleted{ \operatorname{Re} v_f(t,x,\theta)} 
+    \leq 0.
+    \deleted{\quad \theta \in \mathbb R.}
 \end{equation}
 %new added
-    Therefore, it is legal to talk about $\psi(x,-v_f(t,x,\theta))$ since in $z\mapsto \psi(x,z)$ is well defined on $\mathbb C_+$.
-%end new added
-	According to Lemma \ref{lem: estimate of exponential remaining}, we have that
+    Therefore, it is legal to talk about \added{$\psi(x,-U_tf)$}\deleted{$\psi(x,-v_f(t,x,\theta))$} since \deleted{in} $z\mapsto \psi(x,z)$ is well defined on $\mathbb C_+$.
+    According to Lemma \ref{lem: estimate of exponential remaining}, we have that
 \begin{equation}
 \label{eq: upper bound for vf}
-	|v_f(t,x,\theta)| \leq \mathbb N_x[|e^{i\theta W_t(f)} - 1|]
-	\leq \mathbb N_x[|i\theta W_t(f)|]
-	\leq |\theta| ~(P^\beta_t |f|)(x),
-	\quad \theta \in \mathbb R.
+    |\deleted{U_tf(x)}\added{ v_f(t,x)}| \leq \mathbb N_x[|e^{i W_t(f)} - 1|]
+    \leq \mathbb N_x[|i W_t(f)|]
+    \leq (P^\beta_t |f|)(x),
+    \quad \theta \in \mathbb R.
 \end{equation}
-	Notice that, for any compact $K \subset \mathbb R$,
+    Notice that, for any compact $K \subset \mathbb R$,
 \begin{equation}
 \label{eq: estimate of deriavetive of v(theta)}
-	\mathbb N_x\Big[\sup_{\theta \in K} \Big|\frac{\partial}{\partial \theta} (e^{i\theta W_t(f)} - 1) \Big|\Big]
-	\leq \mathbb N_x[|W_t(f)|] \leq (P^\beta_t |f|)(x) < \infty.
+    \mathbb N_x\Big[\sup_{\theta \in K} \Big|\frac{\partial}{\partial \theta} (e^{i\theta W_t(f)} - 1) \Big|\Big]
+    \leq \mathbb N_x[|W_t(f)|] \leq (P^\beta_t |f|)(x) < \infty.
 \end{equation}
-	Therefore, according to \cite[Theorem A.5.2.]{Durrett2010Probability},
-	$v_f(t,x,\theta)$ is differentiable in $\theta \in \mathbb R$ with
+    Therefore, according to \cite[Theorem A.5.2.]{Durrett2010Probability},
+    \added{$U_t(\theta f)(x)$}\deleted{$v_f(t,x,\theta)$} is differentiable in $\theta \in \mathbb R$ with
 \[
-	\frac{\partial}{\partial \theta} v_f(t,x,\theta)
-	= i\mathbb N_x[W_t(f)e^{i\theta W_t(f)}],
-	\quad \theta \in \mathbb R.
+    \added{\frac{\partial}{\partial \theta} U_t(\theta f)(x)}
+    \deleted{\frac{\partial}{\partial \theta} v_f(t,x,\theta)}
+    = i\mathbb N_x[W_t(f)e^{i\theta W_t(f)}],
+    \quad \theta \in \mathbb R.
 \]
-	Moreover, from the above, it is clear that
+    Moreover, from the above, it is clear that
 \begin{equation}
 \label{eq: upper bounded for derivative of v(theta)}
-	\sup_{\theta \in \mathbb R}\Big| \frac{\partial}{\partial \theta} v_f(t,x,\theta)\Big|\leq ( P^\beta_t |f|)(x),
+    \added{\sup_{\theta \in \mathbb R}\Big| \frac{\partial}{\partial \theta}U_t(\theta f)(x)\Big|}
+    \deleted{\sup_{\theta \in \mathbb R}\Big| \frac{\partial}{\partial \theta} v_f(t,x,\theta)\Big|}
+    \leq ( P^\beta_t |f|)(x),
     \quad \theta \in \mathbb R.
 \end{equation}
-    From \eqref{eq: estimate of deriavetive of v(theta)} and the dominate convergence theorem, we can verify that $(\partial/\partial \theta)v_f(t,x,\theta)$ is continuous in $\theta$.
-    %In another words, $\theta \to v_f(t,x,\theta)$ is a $C^1$ map from $\mathbb R$ to $\mathbb C_+$.
-    In another words, $\theta \mapsto -v_f(t,x,\theta)$ is a $C^1$ map from $\mathbb R$ to $\mathbb C_+$.
+    From \deleted{\eqref{eq: estimate of deriavetive of v(theta)} and} the dominate convergence theorem, we can verify that \added{$(\partial/\partial \theta)U_tf(x)$}\deleted{$(\partial/\partial \theta)v_f(t,x,\theta)$} is continuous in $\theta$.
+    In another words, \added{$\theta \mapsto -U_t(\theta f)(x)$}\deleted{$\theta \mapsto -v_f(t,x,\theta)$} is a $C^1$ map from $\mathbb R$ to $\mathbb C_+$.
     According to this and \eqref{eq: path integration representation of h}, we can write
+\deleted{
 \begin{equation}
 \label{eq: path integration representation of psi(v)}
-    %\psi(x,v_f(t,x,\theta_0)) = \int_0^{\theta_0} \psi'(x,v_f(t,x,\theta)) \frac{\partial}{\partial \theta} v_f(t,x,\theta)~d\theta,
-    \psi(x,-v_f(t,x,\theta_0)) = -\int_0^{\theta_0} \psi'(x,-v_f(t,x,\theta)) \frac{\partial}{\partial \theta} v_f(t,x,\theta)~d\theta,
-    \quad \theta_0 \in \mathbb R.
+    \psi(x,-U_tf) = -\int_0^1 \psi'\big(x,-U_t(\theta f)\big) \frac{\partial}{\partial \theta} U_t(\theta f)(x)~d\theta.
+\end{equation}
+}
+\begin{equation}
+%\label{eq: path integration representation of psi(v)}
+    \deleted{\psi(x,-v_f(t,x,\theta_0)) = -\int_0^{\theta_0} \psi'(x,-v_f(t,x,\theta)) \frac{\partial}{\partial \theta} v_f(t,x,\theta)~d\theta,
+    \quad \theta_0 \in \mathbb R.}
 \end{equation}
     Notice that
-\begin{align}
+\deleted{
+\begin{equation}
 \label{eq: upper bound of psi'(v)}
-    %&\big|\psi'\big(x, v_f(t,x,\theta)\big)\big|
-    &\big|\psi'\big(x, -v_f(t,x,\theta)\big)\big|
-    %\\&= \Big| -\beta(x)+ 2\alpha(x) v_f(t-s,x,\theta) + \int_{(0,\infty)} y (e^{-y v_f(t-s,x,\theta)} - 1) \pi(x,dy)\Big|
-    \\&= \Big| -\beta(x)- 2\alpha(x) v_f(t-s,x,\theta) + \int_{(0,\infty)} y (1- e^{y v_f(t-s,x,\theta)} ) \pi(x,dy)\Big|
-    %\\&= \Big| - \beta(x)+ 2\alpha(x)\mathbb N_x(e^{i\theta W_{t}(f)} - 1)  + \int_{(0,\infty)} y \mathbf P_{y \delta_x}[e^{i\theta W_{t}(f)} - 1] \pi(x,dy) \Big|
-    \\&= \Big| - \beta(x)- 2\alpha(x)\mathbb N_x(e^{i\theta W_{t}(f)} - 1)  + \int_{(0,\infty)} y \mathbf P_{y \delta_x}[1-e^{i\theta X_{t}(f)}] \pi(x,dy) \Big|
-\\ &\leq \|\beta\|_\infty + 2\alpha(x)\mathbb N_x[|\theta| W_t(|f|)]+ \int_{(0,\infty)} y\mathbf P_{y\delta_x}\big[2\wedge\big(|\theta| W_t(|f|)\big)\big] \pi(x,dy)
-\\ &\leq \|\beta\|_\infty + 2\|\alpha\|_\infty  |\theta|~ (P^\beta_t |f|)(x) + \Big(\sup_{x\in E}\int_{(0,1]}y^2 \pi(x,dy)\Big)~ |\theta| ~(P^\beta_t |f|)(x)
-\\ & \qquad + 2\sup_{x\in E}\int_{(1,\infty)} y \pi(x,dy)
-\\ &= c_0 +c_1 |\theta| ~(P^\beta_t |f|)(x),
-\quad \theta \in \mathbb R.
-\end{align}
-    where $c_0,c_1 \geq 0$ are constants not dependent on $f,x,t$ and $\theta$.
+\begin{split}
+    &|\psi'(x, -U_tf)|
+    \\&= \Big| -\beta(x)- 2\alpha(x) U_tf(x)+ \int_{(0,\infty)} y (1- e^{y U_tf(x)} ) \pi(x,dy)\Big|
+    \\&= \Big| - \beta(x)- 2\alpha(x)\mathbb N_x[e^{i W_{t}(f)} - 1]  + \int_{(0,\infty)} y \mathbf P_{y \delta_x}[1-e^{i X_{t}(f)}] \pi(x,dy) \Big|
+\\ &\leq \|\beta\|_\infty + 2\alpha(x)\mathbb N_x[W_t(|f|)]+ \int_{(0,\infty)} y\mathbf P_{y\delta_x}[2\wedge X_t(|f|)] \pi(x,dy)
+\\ &\leq \|\beta\|_\infty + 2\|\alpha\|_\infty  P^\beta_t |f|(x) + \Big(\sup_{x\in E}\int_{(0,1]}y^2 \pi(x,dy)\Big)~P^\beta_t |f|(x) + 2\sup_{x\in E}\int_{(1,\infty)} y \pi(x,dy)
+\\ &=: C_{\ref{eq: upper bound of psi'(v)}.1} + C_{\ref{eq: upper bound of psi'(v)}.2}(P^\beta_t |f|)(x).
+\end{split}
+\end{equation}
+}
+\begin{equation}
+\deleted{ \textbf{The old equation is deleted and marked by \%}}
+\end{equation}
+    where \added{$C_{\ref{eq: upper bound of psi'(v)}.1}, C_{\ref{eq: upper bound of psi'(v)}.2}$}\deleted{$c_0,c_1$} are constants not dependent on \added{$f,x$ and $t$}\deleted{$f,x,t$ and $\theta$}.
     Now, using \eqref{eq: path integration representation of psi(v)}, \eqref{eq: upper bounded for derivative of v(theta)} and \eqref{eq: upper bound of psi'(v)}, we have
+\deleted{
 \begin{align}
 \label{eq: upper bound of psi(v)}
-    %\big|\psi\big(x,v_f(t,x,\theta)\big)\big|
-    \big|\psi\big(x,-v_f(t,x,\theta)\big)\big|
+    \big|\psi\big(x,-U_tf\big)\big|
+    \leq C_{\ref{eq: upper bound of psi'(v)}.1} P^\beta_t |f|(x)+C_{\ref{eq: upper bound of psi'(v)}.2} P^\beta_t |f| (x)^2.
+    \\ \deleted{\big|\psi\big(x,-v_f(t,x,\theta)\big)\big|
     \leq c_0|\theta|~(P^\beta_t |f|)(x)+c_1 |\theta|^2 ~(P^\beta_t |f|)(x)^2,
-    \quad \theta \in \mathbb R.
+    \quad \theta \in \mathbb R.}
 \end{align}
+}
 
-    Assume that $f \in L_2(\xi) \subset L_1(\xi)$.
+    Now assume that $f \in L_2(\xi) \subset L_1(\xi)$.
     Then, using Jensen's inequality and the above, we have that
+\deleted{
 \begin{align}
 \label{eq: domination of psi(v)}
-    %&\Pi_x\Big[\int_0^t |\psi(\xi_s,v_f(t-s,\xi_s,\theta))|ds\Big]
-    &\Pi_x\Big[\int_0^t |\psi(\xi_s,-v_f(t-s,\xi_s,\theta))|ds\Big]
-\\&\leq \Pi_x\Big[\int_0^t \big(c_0|\theta| (P_{t-s}^\beta|f|)(\xi_s)+c_1|\theta|^2(P_{t-s}^\beta|f|)(\xi_s)^2\big)ds\Big]
-\\ &\leq \int_0^t \big(c_0|\theta|e^{t\|\beta\|}\Pi_x \big[ \Pi_{\xi_s}[|f(\xi_{t-s})|] \big]+c_1|\theta|^2e^{2t\|\beta\|}\Pi_x \big[ \Pi_{\xi_s}[|f (\xi_{t-s})|]^2 \big]\big)~ds
-\\ &\leq \int_0^t (c_0|\theta|e^{t\|\beta\|}\Pi_x [ |f(\xi_{t})|]+c_1|\theta|^2e^{2t\|\beta\|}\Pi_x [ |f (\xi_{t})|^2 ])~ds < \infty.
+    &\Pi_x\Big[\int_0^t \big|\psi \big(\xi_s,-U_{t-s}f\big)\big|ds\Big]
+    \\&\leq \Pi_x\Big[\int_0^t \big(C_{\ref{eq: upper bound of psi'(v)}.1} P_{t-s}^\beta|f|(\xi_s)+C_{\ref{eq: upper bound of psi'(v)}.2} P_{t-s}^\beta|f|(\xi_s)^2\big)ds\Big]
+    \\ &\leq \int_0^t \big(C_{\ref{eq: upper bound of psi'(v)}.1} e^{t\|\beta\|}\Pi_x \big[ \Pi_{\xi_s}[|f(\xi_{t-s})|] \big]+C_{\ref{eq: upper bound of psi'(v)}.2} e^{2t\|\beta\|}\Pi_x \big[ \Pi_{\xi_s}[|f (\xi_{t-s})|]^2 \big]\big)~ds
+    \\ &\leq \int_0^t (C_{\ref{eq: upper bound of psi'(v)}.1} e^{t\|\beta\|}\Pi_x [ |f(\xi_{t})|]+C_{\ref{eq: upper bound of psi'(v)}.2}e^{2t\|\beta\|}\Pi_x [ |f (\xi_{t})|^2 ])~ds < \infty.
+\end{align}
+}
+\begin{align}
+    \added{ \textbf{The old equation is deleted and marked by \%}}
+    %\label{eq: domination of psi(v)}
+    %&\Pi_x\Big[\int_0^t |\psi(\xi_s,-v_f(t-s,\xi_s,\theta))|ds\Big]
+    %\\&\leq \Pi_x\Big[\int_0^t \big(c_0|\theta| (P_{t-s}^\beta|f|)(\xi_s)+c_1|\theta|^2(P_{t-s}^\beta|f|)(\xi_s)^2\big)ds\Big]
+    %\\ &\leq \int_0^t \big(c_0|\theta|e^{t\|\beta\|}\Pi_x \big[ \Pi_{\xi_s}[|f(\xi_{t-s})|] \big]+c_1|\theta|^2e^{2t\|\beta\|}\Pi_x \big[ \Pi_{\xi_s}[|f (\xi_{t-s})|]^2 \big]\big)~ds
+    %\\ &\leq \int_0^t (c_0|\theta|e^{t\|\beta\|}\Pi_x [ |f(\xi_{t})|]+c_1|\theta|^2e^{2t\|\beta\|}\Pi_x [ |f (\xi_{t})|^2 ])~ds < \infty.
 \end{align}
     As a consequence, expectation
 \[
-    %\Pi_x\Big[\int_0^t \psi(\xi_s,v_f(t-s,\xi_s,\theta))ds\Big]
-    \Pi_x\Big[\int_0^t \psi(\xi_s,-v_f(t-s,\xi_s,\theta))ds\Big]
+    \added{ \Pi_x\Big[\int_0^t \psi(\xi_s,-U_{t-s}f)ds\Big]}
+    \deleted{\Pi_x\Big[\int_0^t \psi(\xi_s,-v_f(t-s,\xi_s,\theta))ds\Big]}
     \in \mathbb C
 \]
     is well defined for all $f\in L_2(\xi)$.
 \subsection{}
-	Let $X$ be the non-persistent superprocess discussed in Subsection \ref{sec: definition of vf}.
-	Let $f\in b\mathscr B_E^{++}$, $T >0$ and $x\in E$.
-	The fact that $\mathbf P_{\delta_x}[X_T(f)] = \mathbb N_x[W_T(f)] = P^\beta_T f(x) \in (0,\infty)$ allows us to define the following probability transforms:
+    \added{ In this subsection, we recall the generalized spine decomposition theorem for the superprocesses.}
+    Let $X$ be the non-persistent superprocess discussed in Subsection \ref{sec: definition of vf}.
+    Let $f\in b\mathscr B_E^{++}$, $T >0$ and $x\in E$.
+    The fact that $\mathbf P_{\delta_x}[X_T(f)] = \mathbb N_x[W_T(f)] = P^\beta_T f(x) \in (0,\infty)$ allows us to define the following probability transforms:
 \begin{equation}
-	d\mathbf P_{\delta_x}^{X_T(f)}
-	:= \frac{X_T(f)}{T_t^\beta f(x)} d\mathbf P_{\delta_x};
-	\quad d\mathbb N_x^{W_T(f)}
-	:=  \frac{W_T(f)}{T_t^\beta f(x)} d\mathbb N_x.
+    d\mathbf P_{\delta_x}^{X_T(f)}
+    := \frac{X_T(f)}{T_t^\beta f(x)} d\mathbf P_{\delta_x};
+    \quad d\mathbb N_x^{W_T(f)}
+    :=  \frac{W_T(f)}{T_t^\beta f(x)} d\mathbb N_x.
 \end{equation}
-	Following the definition in \cite{RenSongSun2017Spine}, we say that $\{\xi, \mathbf n;\mathbf Q_{x}^{(f,T)}\}$ is a spine representation of $\mathbb N_x^{W_T(f)}$ if
+    Following the definition in \cite{RenSongSun2017Spine}, we say that $\{\xi, \mathbf n;\mathbf Q_{x}^{(f,T)}\}$ is a spine representation of $\mathbb N_x^{W_T(f)}$ if
 \begin{itemize}
 \item
     The spine process $\{(\xi_t)_{0\leq t\leq T}; \mathbf Q^{(f,T)}_x\}$ is a copy of $\{(\xi_t)_{0\leq t\leq T}; \Pi^{(f,T)}_{x}\}$,
@@ -2126,11 +2198,11 @@ $
     \quad 0 \leq t\leq T.
 \end{align}
 \end{itemize}
-	According to the spine decomposition theorem \cite{RenSongSun2017Spine}, we have that
+    According to the spine decomposition theorem \cite{RenSongSun2017Spine}, we have that
 \begin{align}
 \label{eq: Spine decomposition 1}
-	\{(X_s)_{s \geq 0};\mathbf P_{\delta_x}^{X_T(f)}\}
-	\overset{f.d.d.}{=} \{(X_s + W_s)_{s \geq 0};\mathbf P_{\delta_x} \otimes \mathbb N_x^{W_T(f)} \}
+    \{(X_s)_{s \geq 0};\mathbf P_{\delta_x}^{X_T(f)}\}
+    \overset{f.d.d.}{=} \{(X_s + W_s)_{s \geq 0};\mathbf P_{\delta_x} \otimes \mathbb N_x^{W_T(f)} \}
 \end{align}
     and
 \begin{align}
@@ -2140,118 +2212,154 @@ $
 \end{align}
 \subsection{}
     Let $X$ be the non-persistent superprocess discussed in Subsection \ref{sec: definition of vf}.
+\added{
 \begin{prop}
 \label{prop: complex FKPP-equation}
-	Let $f\in L_2(\xi)$. Then for each $t\geq 0$, $x\in E$ and $\theta \in \mathbb R$,
+    Let $f\in L_2(\xi)$. Then for each $t\geq 0$ and $x\in E$,
 \begin{equation}
 \label{eq: complex FKPP-equation}
-	v_f(t,x,\theta) - \Pi_{x} \Big[\int_0^t \psi\big(\xi_s, - v_f(t-s,\xi_s,\theta)\big) ds \Big]
-	\\= i\theta \Pi_{x} [f(\xi_t)],
+    U_tf(x) - \Pi_x \Big[\int_0^t \psi\big(\xi_s, - U_{t-s}f\big) ds \Big]
+    \\= i \Pi_x [f(\xi_t)],
 \end{equation}
-%new
 and
 \begin{equation}
 \label{eq: complex FKPP-equation with FK-transform}
+    U_tf(x) -  \int_0^t P_{t-s}^{\beta} \psi_0\big(\cdot,-U_sf\big) (x)~ds
+    \\= iP_t^\beta f(x).
+\end{equation}
+\end{prop}
+}
+\deleted{
+\begin{prop}
+%\label{prop: complex FKPP-equation}
+    Let $f\in L_2(\xi)$. Then for each $t\geq 0$, $x\in E$ and $\theta \in \mathbb R$,
+\begin{equation}
+%\label{eq: complex FKPP-equation}
+    v_f(t,x,\theta) - \Pi_{x} \Big[\int_0^t \psi\big(\xi_s, - v_f(t-s,\xi_s,\theta)\big) ds \Big]
+    \\= i\theta \Pi_{x} [f(\xi_t)],
+\end{equation}
+    and
+\begin{equation}
+%\label{eq: complex FKPP-equation with FK-transform}
     v_f(t,x,\theta) -  \int_0^t P_{t-s}^{\beta} \psi_0\big(\cdot,-v_f(s,\cdot,\theta)\big) (x)~ds
     \\= i\theta P_t^\beta f(x).
 \end{equation}
-%end new
 \end{prop}
+}
 \begin{proof}
     Assume that $f\in b\mathscr B_E$.
-	Set $t>0, r\in [0,t), x\in E, \theta \in \mathbb R$ and $g\in b\mathscr B_E^{++}$.
-	Denoted by $\{\xi, \mathbf n; \mathbf Q_x^{(g,t)}\}$ the spine representation of $\mathbb N_x^{W_t(g)}$.
+    Set $t>0, r\in [0,t), x\in E\deleted{, \theta \in \mathbb R}$ and $g\in b\mathscr B_E^{++}$.
+    Denoted by $\{\xi, \mathbf n; \mathbf Q_x^{(g,t)}\}$ the spine representation of $\mathbb N_x^{W_t(g)}$.
     %Given $\{\xi; \mathbf Q_x^{(g,t)}\}$, denote by $\mathbf m(\xi, ds,dw)$ the conditional intensity of $\mathbf n$.
     Conditioned on $\{\xi; \mathbf Q_x^{(g,t)}\}$, denote by $\mathbf m(\xi, ds,dw)$ the conditional intensity of $\mathbf n$.
     Denote by $\Pi_{r,x}$ the probability of Hunt process $\{\xi; \Pi\}$ initiated at time $r$ and position $x$.
     From Lemma \ref{lem: estimate of exponential remaining}, we have $\mathbf Q^{(g,t)}_{x}$-a.s.ly
 \begin{align}
-&\int_{[0,t]\times \mathbb W}|e^{i\theta w_{t-s}(f)} - 1| \mathbf m(\xi, ds,dw)
-    \leq \int_{[0,t]\times \mathbb W}\big(|\theta w_{t-s}(f)| \wedge 2\big) \mathbf m(\xi, ds,dw)
-    \\&\leq \int_0^t \Big(2\alpha(\xi_s)\mathbb N_{\xi_s}\big(|\theta | W_{t-s}(|f|)\big)  + \int_{(0,1]} y \mathbf P_{y \delta_{\xi_s}}[|\theta| X_{t-s}(|f|)] \pi(\xi_s,dy)
+&\int_{[0,t]\times \mathbb W}|e^{i \deleted{\theta} w_{t-s}(f)} - 1| \mathbf m(\xi, ds,dw)
+    \leq \int_{[0,t]\times \mathbb W}\big(|\deleted{\theta} w_{t-s}(f)| \wedge 2\big) \mathbf m(\xi, ds,dw)
+    \\&\leq \int_0^t \Big(2\alpha(\xi_s)\mathbb N_{\xi_s}\big(\deleted{|\theta |} W_{t-s}(|f|)\big)  + \int_{(0,1]} y \mathbf P_{y \delta_{\xi_s}}[\deleted{|\theta|} X_{t-s}(|f|)] \pi(\xi_s,dy)
     \\&\qquad\qquad+ 2\int_{(1,\infty)}y\pi(\xi_s,dy)\Big) ds
-     \\&\leq \int_0^t |\theta|(P_{t-s}^\beta |f|)(\xi_s)\Big(2\alpha(\xi_s)  + \int_{(0,1]} y^2 \pi(\xi_s,dy)\Big) ds + 2t \sup_{x\in E}\int_{(1,\infty)}y\pi(x,dy)
-    \\&\leq \Big(2\|\alpha\|_\infty +\sup_{x\in E}\int_{(0,1]} y^2 \pi(x,dy)\Big) t |\theta| e^{t\|\beta\|_\infty}\|f\|_\infty + 2t \sup_{x\in E}\int_{(1,\infty)}y\pi(x,dy)
+     \\&\leq \int_0^t \deleted{|\theta|}(P_{t-s}^\beta |f|)(\xi_s)\Big(2\alpha(\xi_s)  + \int_{(0,1]} y^2 \pi(\xi_s,dy)\Big) ds + 2t \sup_{x\in E}\int_{(1,\infty)}y\pi(x,dy)
+    \\&\leq \Big(2\|\alpha\|_\infty +\sup_{x\in E}\int_{(0,1]} y^2 \pi(x,dy)\Big) t \deleted{|\theta|} e^{t\|\beta\|_\infty}\|f\|_\infty + 2t \sup_{x\in E}\int_{(1,\infty)}y\pi(x,dy)
     < \infty.
 \end{align}
     According to this, Fubini's theorem, \eqref{eq: N and characteristic exponent}, \eqref{eq: -v has positive real part} and the argument in Subsection \ref{sec: extension of branching mechanism}, we have $\mathbf Q^{(g,t)}_{x}$-a.s.ly,
 \begin{align}
-	&\int_{[0,t]\times \mathbb N}(e^{i\theta w_{t-s}(f)} - 1) \mathbf m(\xi, ds,dw)
-	\\&=\int_0^t \Big(2\alpha(\xi_s)\mathbb N_{\xi_s}(e^{i\theta W_{t-s}(f)} - 1)  + \int_{(0,\infty)} y \mathbf P_{y \delta_{\xi_s}}[e^{i\theta X_{t-s}(f)} - 1] \pi(\xi_s,dy)\Big) ds
-	%\\&=\int_0^t \Big( 2\alpha(\xi_s) v_f(t-s,\xi_s,\theta) + \int_{(0,\infty)} y (e^{-y v_f(t-s,\xi_s,\theta)} - 1) \pi(\xi_s,dy) \Big) ds
-    \\&=\int_0^t \Big( 2\alpha(\xi_s) v_f(t-s,\xi_s,\theta) + \int_{(0,\infty)} y (e^{y v_f(t-s,\xi_s,\theta)} - 1) \pi(\xi_s,dy) \Big) ds
-	%\\&= \int_0^t \psi'_0\big(\xi_s, v_f(t-s,\xi_s,\theta)\big)ds.
-    \\&= -\int_0^t \psi'_0 \big(\xi_s, -v_f(t-s,\xi_s,\theta)\big)ds.
+    &\int_{[0,t]\times \mathbb N}(e^{i\deleted{\theta} w_{t-s}(f)} - 1) \mathbf m(\xi, ds,dw)
+    \\&=\int_0^t \Big(2\alpha(\xi_s)\mathbb N_{\xi_s}(e^{i\deleted{\theta} W_{t-s}(f)} - 1)  + \int_{(0,\infty)} y \mathbf P_{y \delta_{\xi_s}}[e^{i\deleted{\theta} X_{t-s}(f)} - 1] \pi(\xi_s,dy)\Big) ds
+    \\&=\int_0^t \Big( 2\alpha(\xi_s) U_{t-s} f(\xi_s) + \int_{(0,\infty)} y (e^{y U_{t-s}f(\xi_s)} - 1) \pi(\xi_s,dy) \Big) ds
+    \\&\deleted{=\int_0^t \Big( 2\alpha(\xi_s) v_f(t-s,\xi_s,\theta) + \int_{(0,\infty)} y (e^{y v_f(t-s,\xi_s,\theta)} - 1) \pi(\xi_s,dy) \Big) ds}
+    \\&= -\int_0^t \psi'_0 \big(\xi_s, -U_{t-s}f\big)ds.
+    \\&\deleted{= -\int_0^t \psi'_0 \big(\xi_s, -v_f(t-s,\xi_s,\theta)\big)ds.}
 \end{align}
-	Therefore, according to \eqref{eq: Spine decomposition 2}, Campbell's formula and above, we have that
+    Therefore, according to \eqref{eq: Spine decomposition 2}, Campbell's formula and above, we have that
 \begin{align}
 \label{eq: N to Pi}
-	\mathbb N_x^{W_t(g)}[e^{i\theta W_t(f)}]
-	&=\mathbf Q_x^{(g,t)} \Big[\exp\Big\{\int_{[0,t]\times \mathbb N}(e^{i\theta w_{t-s}(f)} - 1) \mathbf m(\xi, ds,dw)\Big\}\Big]
-	%\\&= \Pi_x^{(g,t)} [e^{\int_0^t \psi'_0(\xi_s, v_f(t-s,\xi_s,\theta))ds}]
-    \\&= \Pi_x^{(g,t)} [e^{-\int_0^t \psi'_0(\xi_s, -v_f(t-s,\xi_s,\theta))ds}]
-	%\\&= \frac{1}{T_t^\beta g (x)} \Pi_x[ g(\xi_t) e^{\int_0^t \psi'(\xi_s, v_f(t-s,\xi_s,\theta))ds} ].
-    \\&= \frac{1}{T_t^\beta g (x)} \Pi_x[ g(\xi_t) e^{-\int_0^t \psi'(\xi_s, -v_f(t-s,\xi_s,\theta))ds} ].
+    \mathbb N_x^{W_t(g)}[e^{i\deleted{\theta} W_t(f)}]
+    &=\mathbf Q_x^{(g,t)} \Big[\exp\Big\{\int_{[0,t]\times \mathbb N}(e^{i\deleted{\theta} w_{t-s}(f)} - 1) \mathbf m(\xi, ds,dw)\Big\}\Big]
+    \\&= \Pi_x^{(g,t)} [e^{-\int_0^t \psi'_0(\xi_s, -U_{t-s}f)ds}]
+    \\&\deleted{= \Pi_x^{(g,t)} [e^{-\int_0^t \psi'_0(\xi_s, -v_f(t-s,\xi_s,\theta))ds}]}
+    \\&= \frac{1}{T_t^\beta g (x)} \Pi_x[ g(\xi_t) e^{-\int_0^t \psi'(\xi_s, -U_{t-s}f)ds} ].
+    \\&\deleted{= \frac{1}{T_t^\beta g (x)} \Pi_x[ g(\xi_t) e^{-\int_0^t \psi'(\xi_s, -v_f(t-s,\xi_s,\theta))ds} ].}
 \end{align}
     Let $\epsilon >0$.
     Define $f^+ = (f \vee 0) + \epsilon$ and $f^- = (-f) \vee 0 + \epsilon$, then $f^\pm \in b\mathscr B^{++}_E$ and $f = f^+ - f^-$.
     According to \eqref{eq: Spine decomposition 1}, we have that
 \begin{equation}
-    \frac{\mathbf P_{\delta_x}[X_t(f^{\pm})e^{i\theta X_t(f)}]}{\mathbf P_{\delta_x}[X_t(f^{\pm})]}
-    = \mathbf P_{\delta_x}[e^{i\theta X_t(f)}] \mathbb N_x^{W_t(f^{\pm})}[e^{i\theta X_t(f)}].
+    \frac{\mathbf P_{\delta_x}[X_t(f^{\pm})e^{i\deleted{\theta} X_t(f)}]}{\mathbf P_{\delta_x}[X_t(f^{\pm})]}
+    = \mathbf P_{\delta_x}[e^{i\deleted{\theta} X_t(f)}] \mathbb N_x^{W_t(f^{\pm})}[e^{i\deleted{\theta} X_t(f)}].
 \end{equation}
     Using \eqref{eq: N to Pi} and above, we have
 \begin{align}
-	\frac{\mathbf P_{\delta_x}[X_t(f)e^{i\theta X_t(f)}] }{\mathbf P_{\delta_x}[e^{i\theta X_t(f)}]}
-	&= \mathbf P_{\delta_x}[X_t(f^+)] \mathbb N_x^{W_t(f^+)} [e^{i\theta X_t(f)}] - \mathbf P_{\delta_x}[X_t(f^-)]\mathbb N_x^{W_t(f^-)}[e^{i\theta X_t(f)}]
-	%\\& = \Pi_x[ f(\xi_t) e^{\int_0^t \psi'(\xi_s, v_f(t-s,\xi_s,\theta)) ds}  ].
-    \\& = \Pi_x[ f(\xi_t) e^{- \int_0^t \psi'(\xi_s, -v_f(t-s,\xi_s,\theta)) ds}  ].
+    \frac{\mathbf P_{\delta_x}[X_t(f)e^{i \deleted{\theta} X_t(f)}] }{\mathbf P_{\delta_x}[e^{i\deleted{\theta} X_t(f)}]}
+    &= \mathbf P_{\delta_x}[X_t(f^+)] \mathbb N_x^{W_t(f^+)} [e^{i\deleted{\theta} X_t(f)}] - \mathbf P_{\delta_x}[X_t(f^-)]\mathbb N_x^{W_t(f^-)}[e^{i\deleted{\theta} X_t(f)}]
+    \\& = \Pi_x[ f(\xi_t) e^{- \int_0^t \psi'(\xi_s, -U_{t-s}f) ds}  ].
+    \\& \deleted{= \Pi_x[ f(\xi_t) e^{- \int_0^t \psi'(\xi_s, -v_f(t-s,\xi_s,\theta)) ds}  ].}
 \end{align}
-	Therefore, according to \eqref{eq: derivative of characteristic exponent} and above, we have
+    Therefore, according to \eqref{eq: derivative of characteristic exponent} and above, we have
 \begin{align}
-	\frac{\partial}{\partial \theta} v_f(t, x, \theta)
-	%= \Pi_x[ if(\xi_t) e^{\int_0^t \psi'(\xi_s, v_f(t-s,\xi_s,\theta)) ds} ].
-    = \Pi_x[ if(\xi_t) e^{ - \int_0^t \psi'(\xi_s, -v_f(t-s,\xi_s,\theta)) ds} ].
+    \frac{\partial}{\partial \theta} \added{U_t(\theta f)(x)}\deleted{v_f(t, x, \theta) }   
+    = \added{ \Pi_x[ if(\xi_t) e^{ - \int_0^t \psi'(\xi_s, -U_{t-s}(\theta f)) ds} ]}\deleted{ \Pi_x[ if(\xi_t) e^{ - \int_0^t \psi'(\xi_s, -v_f(t-s,\xi_s,\theta)) ds} ]}.
 \end{align}
-	Since $\{(\xi_{r+t})_{t \geq 0}; \Pi_{r,x}\} \overset{d}{=} \{(\xi_{t})_{t\geq 0}; \Pi_{x}\} $, we have
+    Since $\{(\xi_{r+t})_{t \geq 0}; \Pi_{r,x}\} \overset{d}{=} \{(\xi_{t})_{t\geq 0}; \Pi_{x}\} $, we have
+\deleted{
 \begin{align}
-	&\frac{\partial}{\partial \theta} v_f(t - r, x, \theta)
-	%= \Pi_x[ if(\xi_{t-r}) e^{\int_0^{t-r} \psi'(\xi_s, v_f(t-r-s,\xi_s,\theta)) ds} ]
-	%\\&= \Pi_{r,x}[if(\xi_t)e^{\int_0^{t-r} \psi'(\xi_{r+s}, v_f(t-r-s,\xi_{r+s},\theta)) ds} ]
-	%= \Pi_{r,x}[if(\xi_t)e^{\int_r^t \psi'(\xi_{s}, v_f(t-s,\xi_{s},\theta)) ds} ].
+    &\frac{\partial}{\partial \theta} U_{t-r}(\theta f)( x)
+    = \Pi_x[ i f(\xi_{t-r}) e^{-\int_0^{t-r} \psi'(\xi_s, -U_{t-r-s}(\theta f)) ds} ]
+    \\&= \Pi_{r,x}[i f(\xi_t)e^{-\int_0^{t-r} \psi'(\xi_{r+s}, -U_{t-r-s}(\theta f)) ds} ]
+    = \Pi_{r,x}[if(\xi_t)e^{-\int_r^t \psi'(\xi_{s}, -U_{t-s}(\theta f)) ds} ].
+\end{align}}
+\deleted{
+\begin{align}
+    &\frac{\partial}{\partial \theta} v_f(t - r, x, \theta)
     = \Pi_x[ if(\xi_{t-r}) e^{-\int_0^{t-r} \psi'(\xi_s, -v_f(t-r-s,\xi_s,\theta)) ds} ]
     \\&= \Pi_{r,x}[if(\xi_t)e^{-\int_0^{t-r} \psi'(\xi_{r+s}, -v_f(t-r-s,\xi_{r+s},\theta)) ds} ]
     = \Pi_{r,x}[if(\xi_t)e^{-\int_r^t \psi'(\xi_{s}, -v_f(t-s,\xi_{s},\theta)) ds} ].
 \end{align}
-    %From \eqref{eq: upper bound of psi'(v)}, we know that for each fixed $\theta \in \mathbb R$, $(t,x) \mapsto |\psi'(x,v_f(t,x,\theta))|$ is bounded above.
-    From \eqref{eq: upper bound of psi'(v)}, we know that for each $\theta\in \mathbb R$, $(t,x) \mapsto |\psi'(x,-v_f(t,x,\theta))|$ is locally bounded (i.e. bounded on $[0,T]\times E$ for each $T \geq 0$).
-	Therefore, we can apply the argument in Subsection \ref{seq: complex Feynman-Kac transform} and get that
+}
+    From \eqref{eq: upper bound of psi'(v)}, we know that for each $\theta\in \mathbb R$, \added{$(t,x) \mapsto |\psi'(x,-U_tf(x))|$}\deleted{$(t,x) \mapsto |\psi'(x,-v_f(t,x,\theta))|$} is locally bounded (i.e. bounded on $[0,T]\times E$ for each $T \geq 0$).
+    Therefore, we can apply the argument in Subsection \ref{seq: complex Feynman-Kac transform} and get that
+\deleted{
+\[
+    \frac{\partial}{\partial \theta} U_{t-r}(\theta f)(x) + \Pi_{r,x} \Big[\int_r^t \psi'\big(\xi_s,- U_{t-s}(\theta f)\big)\frac{\partial}{\partial \theta} U_{t-s}(\theta f)(\xi_s)~ds\Big]
+    = \Pi_{r,x} [i f(\xi_t)],
+\]}
 \begin{equation}
-	%\frac{\partial}{\partial \theta} v_f(t-r, x, \theta) - \Pi_{r,x} \Big[\int_r^t \psi'\big(\xi_s, v_f(t-s,\xi_s,\theta)\big)\frac{\partial}{\partial \theta} v_f(t-s, \xi_s, \theta)~ds\Big]
-    \frac{\partial}{\partial \theta} v_f(t-r, x, \theta) + \Pi_{r,x} \Big[\int_r^t \psi'\big(\xi_s,- v_f(t-s,\xi_s,\theta)\big)\frac{\partial}{\partial \theta} v_f(t-s, \xi_s, \theta)~ds\Big]
-	= \Pi_{r,x} [i f(\xi_t)],
+    \deleted{\frac{\partial}{\partial \theta} v_f(t-r, x, \theta) + \Pi_{r,x} \Big[\int_r^t \psi'\big(\xi_s,- v_f(t-s,\xi_s,\theta)\big)\frac{\partial}{\partial \theta} v_f(t-s, \xi_s, \theta)~ds\Big]
+    = \Pi_{r,x} [i f(\xi_t)],}
 \end{equation}
-%new added
     and
+\deleted{
+\begin{align}
+    \frac{\partial}{\partial \theta} U_{t-r}(\theta f)(x) + \Pi_{r,x} \Big[\int_r^t e^{\int_r^s \beta(\xi_u)du}\psi_0'\big(\xi_s,- U_{t-s}(\theta f)\big)\frac{\partial}{\partial \theta} U_{t-s}(\theta f)(\xi_s)~ds\Big]
+    = \Pi_{r,x} [i e^{\int_r^t \beta(\xi_s)ds}f(\xi_t)].
+\end{align}}
+\deleted{
 \begin{align}
     &\frac{\partial}{\partial \theta} v_f(t-r, x, \theta) + \Pi_{r,x} \Big[\int_r^t e^{\int_r^s \beta(\xi_u)du}\psi_0'\big(\xi_s,- v_f(t-s,\xi_s,\theta)\big)\frac{\partial}{\partial \theta} v_f(t-s, \xi_s, \theta)~ds\Big]
     \\&= \Pi_{r,x} [i e^{\int_r^t \beta(\xi_s)ds}f(\xi_t)].
 \end{align}
-%end added
-	Integrating the aboves with respect to $\theta$, using \eqref{eq: path integration representation of psi(v)}, \eqref{eq: upper bound of psi'(v)}, \eqref{eq: upper bounded for derivative of v(theta)} and Fubini's theorem, we have
+}
+    Integrating the aboves with respect to $\theta$ \added{ on [0,1]}, using \eqref{eq: path integration representation of psi(v)}, \eqref{eq: upper bound of psi'(v)}, \eqref{eq: upper bounded for derivative of v(theta)} and Fubini's theorem, we have
+\deleted{
 \begin{equation}
-	%v_f(t-r,x,\theta) - \Pi_{r,x} \Big[\int_r^t \psi\big(\xi_s,v_f(t-s,\xi_s,\theta)\big) ~ds\Big]
-    v_f(t-r,x,\theta) - \Pi_{r,x} \Big[\int_r^t \psi\big(\xi_s,-v_f(t-s,\xi_s,\theta)\big) ~ds\Big]
-	\\= i\theta \Pi_{r,x} [f(\xi_t)],
+    U_{t-r}f(x) - \Pi_{r,x} \Big[\int_r^t \psi\big(\xi_s,-U_{t-s}f\big) ~ds\Big]
+    = i\theta \Pi_{r,x} [f(\xi_t)],
+\end{equation}}
+\begin{equation}
+    \deleted{v_f(t-r,x,\theta) - \Pi_{r,x} \Big[\int_r^t \psi\big(\xi_s,-v_f(t-s,\xi_s,\theta)\big) ~ds\Big]
+    = i\theta \Pi_{r,x} [f(\xi_t)],}
 \end{equation}
-%new added
     and similarly,
+\deleted{
 \begin{equation}
-    v_f(t-r,x,\theta) - \Pi_{r,x} \Big[\int_r^t e^{\int_r^s \beta(\xi_u)du} \psi_0\big(\xi_s,-v_f(t-s,\xi_s,\theta)\big) ~ds\Big]
-    \\= i\theta \Pi_{r,x} [e^{\int_r^t\beta(\xi_u)du}f(\xi_t)].
+    U_{t-r}f(x) - \Pi_{r,x} \Big[\int_r^t e^{\int_r^s \beta(\xi_u)du} \psi_0\big(\xi_s,- U_{t-s}f\big) ~ds\Big]
+    = i\Pi_{r,x} [e^{\int_r^t\beta(\xi_u)du}f(\xi_t)].
+\end{equation}}
+\begin{equation}
+    \deleted{v_f(t-r,x,\theta) - \Pi_{r,x} \Big[\int_r^t e^{\int_r^s \beta(\xi_u)du} \psi_0\big(\xi_s,-v_f(t-s,\xi_s,\theta)\big) ~ds\Big]
+    = i\theta \Pi_{r,x} [e^{\int_r^t\beta(\xi_u)du}f(\xi_t)].}
 \end{equation}
-%end added
-    %Taking $r = 0$, we get that \eqref{eq: complex FKPP-equation} is true if $f\in b\mathscr B_E$.
     Taking $r = 0$, we get that \eqref{eq: complex FKPP-equation} and \eqref{eq: complex FKPP-equation with FK-transform} is true if $f\in b\mathscr B_E$.
 
     %Now assume that $f\in L_2(\xi)$.
@@ -2259,27 +2367,40 @@ and
     Set $n \in \mathbb N$.
     Writing $f_n := (f^+ \wedge n) - (f^- \wedge n)$, then $f_n \xrightarrow[n\to \infty]{} f$ pointwisely.
     From what we have proved, we have
+\deleted{
 \begin{equation}
 \label{eq: complex FKPP-equation for fn}
-    v_{(f_n)}(t,x,\theta) - \Pi_{x} \Big[\int_0^t \psi\big(\xi_s,v_{(f_n)}(t-s,\xi_s,\theta)\big) ~ds\Big]
-    \\= i\theta \Pi_{x} [f_n(\xi_t)].
+    U_tf_n(x) - \Pi_{x} \Big[\int_0^t \psi\big(\xi_s, - U_{t-s}f_n\big) ~ds\Big]
+    = i \Pi_{x} [f_n(\xi_t)].
+\end{equation}}
+\begin{equation}
+%\label{eq: complex FKPP-equation for fn}
+    \deleted{v_{(f_n)}(t,x,\theta) - \Pi_{x} \Big[\int_0^t \psi\big(\xi_s,v_{(f_n)}(t-s,\xi_s,\theta)\big) ~ds\Big]
+    = i\theta \Pi_{x} [f_n(\xi_t)].}
 \end{equation}
     Notice the following:
 \begin{itemize}
 \item
     It is clear that $\Pi_{x}[f_n(\xi_t)] \xrightarrow[n\to \infty]{} \Pi_{x}[f(\xi_t)]$.
 \item
-    $v_{(f_n)}(t,x,\theta) \xrightarrow[n\to \infty]{} v_f(t,x,\theta)$ due to \eqref{eq: N and characteristic exponent}, dominated convergence theorem and the fact that
+    \added{ $U_tf_n(x) \xrightarrow[n\to \infty]{} U_tf(x)$}\deleted{ $v_{(f_n)}(t,x,\theta) \xrightarrow[n\to \infty]{} v_f(t,x,\theta)$} due to \eqref{eq: N and characteristic exponent}, dominated convergence theorem and the fact that
 \[
-    |e^{i\theta W_t(f_n)} - 1| \leq |\theta| W_t(|f|);
+    |e^{i\deleted{\theta} W_t(f_n)} - 1| \leq \deleted{|\theta|} W_t(|f|);
     \quad \mathbb N_x[W_t(|f|)] = (P_t^\beta |f|)(x) < \infty.
 \]
 \item
-    $\Pi_{x} [\int_0^t \psi(\xi_s,v_{(f_n)}(t-s,\xi_s,\theta))ds] \xrightarrow[n\to \infty]{} \Pi_{x} [\int_0^t \psi(\xi_s,v_{f}(t-s,\xi_s,\theta))ds]$ due to donimated convergence theorem, \eqref{eq: domination of psi(v)} and the fact (see \eqref{eq: upper bound of psi(v)}) that
+    \added{ $\Pi_{x} [\int_0^t \psi(\xi_s,- U_{t-s}f_n)ds] \xrightarrow[n\to \infty]{} \Pi_{x} [\int_0^t \psi(\xi_s,- U_{t-s}f)ds]$}\deleted{ $\Pi_{x} [\int_0^t \psi(\xi_s,v_{(f_n)}(t-s,\xi_s,\theta))ds] \xrightarrow[n\to \infty]{} \Pi_{x} [\int_0^t \psi(\xi_s,v_{f}(t-s,\xi_s,\theta))ds]$} due to donimated convergence theorem, \eqref{eq: domination of psi(v)} and the fact (see \eqref{eq: upper bound of psi(v)}) that
+\added{
+\begin{align}
+    \big|\psi(\xi_s,- U_{t-s}f_n)\big|
+    \leq C_{\ref{eq: upper bound of psi'(v)}.1} P_{t-s}^\beta|f|(\xi_s)+C_{\ref{eq: upper bound of psi'(v)}.2} P_{t-s}^\beta|f|(\xi_s)^2.
+\end{align}}
+\deleted{
 \begin{align}
     \big|\psi\big(\xi_s,v_{(f_n)}(t-s,\xi_s,\theta)\big)\big|
     \leq c_0|\theta|~(P^\beta_{t-s} |f|)(\xi_s)+c_1 |\theta|^2 ~(P^\beta_{t-s} |f|)(\xi_s)^2.
 \end{align}
+}
 \end{itemize}
     Using the above arguements, letting $n \to \infty$ in \eqref{eq: complex FKPP-equation for fn}, we get the desired result.
 \end{proof}
