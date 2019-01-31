@@ -937,6 +937,8 @@ $\mathbb{P}_{\mu}$-a.s and in $L^{1+\gamma}(\mathbb{P}_{\mu})$. So $W_{\infty}$ 
 \end{align}	
 }
 \end{proof}
+
+\deleted{
 As $\|X_t\|$ is an continuous state branching process with initial mass $\|\mu\|$.
 for any $\lambda>0$, $\|X_t\|$ satisfies, see \cite[Chapter 3]{Li2011Measure-valued}, for example.
 \begin{align}\label{CSBP}
@@ -952,14 +954,35 @@ In this paper, for any $\beta\in (0,1)$, $v_t(\lambda)$ has explicit expression 
     v_t(\lambda)=\frac{e^{\alpha t} \lambda}{[1+\frac{1}{\alpha}(e^{\alpha \beta t}-1)\lambda^{\beta}]^{1/\beta}}=\frac{\alpha^{1/\beta}}{(\alpha\lambda^{-\beta}e^{-\alpha \beta t}+1-e^{-\alpha \beta t})^{1/\beta}},\quad t\geq 0,\lambda\geq 0.
 \end{align*}
 If we fix $t>0$, $v_t(\lambda)$ is increasing corresponding to $\lambda$.
-
-Recall that the superprocess $X$'s extinction probability $\mathbb{P}_{\mu}(D)=e^{-\alpha^*\|\mu\|}$, where $\alpha^*=\alpha^{1/\beta}$ is the larger roots of $\psi(z)=0$. Denote $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$, by equation (3.48) in \cite{Li2011Measure-valued} and formula \eqref{CSBP}, we easily get
-\begin{align}
-    \mathbb{\tilde{P}}_{\mu}[e^{-\lambda \|X_t\|}]&=\frac{e^{-\|\mu\|v_t(\lambda)}-e^{-\|\mu\|v_t(\lambda+\alpha^*)}}{1-e^{-\|\mu\|\alpha^*}}\nonumber\\
-        &\leq \frac{\|\mu\|}{1-e^{-\|\mu\|\alpha^*}}\left|v_t(\lambda)-v_t(\lambda+\alpha^*)\right|. \label{laplaceexpress}
+}
+\added{
+    According to \cite[Example 3.1]{Li2011Measure-valued}, we have
+\begin{align}\label{CSBP}
+    \mathbb{P}_{\mu} [e^{-\lambda\|X_t\|}]
+    =e^{-\|\mu\|v_t(\lambda)},
+    \quad \lambda \geq 0, t\geq 0,
 \end{align}
+    where
+\[
+    v_t(\lambda)=\frac{\alpha^{1/\beta}}{(\alpha\lambda^{-\beta}e^{-\alpha \beta t}+1-e^{-\alpha \beta t})^{1/\beta}},\quad t\geq 0,\lambda\geq 0.
+\]
+}
 
-We want to prove the following Lemma
+    Recall that the \deleted{superprocess $X$'s} extinction probability \added{of the superprocess is} $\mathbb{P}_{\mu}(D)=e^{-\alpha^*\|\mu\|}$ where $\alpha^*=\alpha^{1/\beta}$ is the larger roots of $\psi(z)=0$. 
+    Denote \added{by} $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$. 
+    \added{According to \eqref{CSBP} and the markovian property we have for each $\mu \in \mathcal M_c(\mathbb R^d), \lambda \geq 0$ and 
+    $t\geq 0$,}
+\added{
+\begin{align}
+    \label{laplaceexpress}
+    \mathbb{\tilde{P}}_{\mu}[e^{-\lambda \|X_t\|}]
+    &=\frac{ \mathbb P_\mu[e^{-\lambda \|X_t\| }\mathbb P_\mu(D^c| \mathscr F_t)] }{\mathbb P_\mu(D^c)}
+    =\frac{ \mathbb P_\mu[e^{-\lambda \|X_t\| }(1-e^{-\alpha^*\|X_t\|})] }{\mathbb P_\mu(D^c)}
+    \\&=\frac{e^{-\|\mu\|v_t(\lambda)}-e^{-\|\mu\|v_t(\lambda+\alpha^*)}}{1-e^{-\|\mu\|\alpha^*}}
+    \leq \frac{\|\mu\|}{1-e^{-\|\mu\|\alpha^*}}\left|v_t(\lambda)-v_t(\lambda+\alpha^*)\right|. 
+\end{align}
+}
+    \deleted{We want to prove the following Lemma}
 \added{
 \begin{lem}\label{lem: control of XT}
 	For each $\mu\in \mathcal M_c(\mathbb R^d)$, there is a constant $C>0$ such that for each function $f:[0,\infty)\to [1,\infty)$ and each $t\geq 0$ we have
@@ -1001,7 +1024,7 @@ Notice that
     \beta+1}}\mathbf{1}_{\{t\leq 1\}}+\frac{1}{(1-e^{-\alpha\beta t})^{1/\beta+1}}\mathbf{1}_{t\geq 1}\\
     &\added{\leq \frac{s^{1+\beta}e^{\alpha(1+\beta)}}{\alpha^{1/\beta +1}}+\frac{1}{(1-e^{-\alpha\beta })^{1/\beta+1}}.}
 \end{align*}
-This is to say \added{for each $\lambda \in [0,1]$,
+\added{Therefore, for each $\lambda \in [0,1]$,
 \begin{align*}
     \sup_{s\in [\lambda,\lambda+\alpha^*]}w_t(s)^{-1/\beta-1}
     &\leq\sup_{s\in [\lambda,\lambda+\alpha^*]}\frac{s^{1+\beta}e^{\alpha(1+\beta)}}{\alpha^{1/\beta +1}}+\frac{1}{(1-e^{-\alpha\beta })^{1/\beta+1}}\\
@@ -1040,135 +1063,97 @@ This is to say \added{for each $\lambda \in [0,1]$,
     $$\mathbb{\tilde{P}}_{\mu}\left(\|X_t\|\leq \|\mu\|e^{(\alpha-\epsilon)t}\right)\leq C_0 e^{-\beta\epsilon t}, $$
     \added{for some constant $C_0>0$ not related to $\epsilon>0$ and $t\geq 0$.}
 \deleted{To finish the proof we write $C_{\ref{lem: control of AT}}=C_{\ref{lem: control of XT}}+1/\mathbb{P}_{\mu}(D^c)$ and $\delta_{\ref{lem: control of AT}}=\beta\epsilon $.}
-\begin{comment}
-\begin{align*}
-    \mathbb{\tilde{P}}_{\mu}\left(\mathcal{A}_t(\epsilon)^c\right)\leq \mathbb{\tilde{P}}_{\mu}(\|X_t\|\geq\|\mu\|e^{(\alpha+\epsilon)t})+\mathbb{P}_{\mu}\left(\|X_t\|\leq \|\mu\|e^{(\alpha-\epsilon)t}\right)\leq(C_4+\frac{1}{\mathbb{P}_{\mu}(D^c)})e^{-\beta \epsilon t }
-\end{align*}
-\end{comment}
 \end{proof}
 
-%\subsection{Parameter $m_k[g]$}
+
 \subsection{Parameters}
-\added{
  Recall the definition of operator $Z_1$ in \eqref{eq: def of Zf} and the invariant density $\varphi$ in \eqref{invariantdensity}, define
  \begin{align}\label{parameter_mk}
       m_t[f]:=e^{-\alpha (t+1)}\int_{\mathbb R^d} (Z_1T_t^{\alpha}f)(x)\varphi(x)dx,\quad t\geq 0, f\in \mathcal P.
  \end{align}
- }
- \added{
- Using the same argument as in the proof of \cite[Lemma2.7, Lemma4.2 \& Lemma 5.1]{MM}, we can show that
- \begin{lem}\label{lem: control of mk}
-For each $f\in\mathcal{P}$, there is a constant $C>0$ such that for each $t\geq 0$, we have
-$$|m_t[f]|\leq C_{\ref{lem: control of mk}} e^{(\alpha\beta-\kappa_fb(1+\beta))t}.$$
-Therefore, $m_t[f]$ is well-defined.
-\end{lem}
-Let
-\begin{align}
-    \phi(x)=\sum_{|p|=\kappa_f}\langle f, \phi_p\rangle\phi_p(x),~x\in \mathbb{R}^d, p \in\mathbb{N}_0^d.
-\end{align}
-i.e. $\phi$ is the projection of $f$ onto the $\kappa_f$-eigenspace.
-\begin{lem}\label{lemma210}
-Let $f \in \mathcal{P}$, $\kappa_f\geq 1$ and $\alpha\beta=\kappa(f)b(1+\beta)$, then the following limit exists:
-\begin{align}
-    \tilde{m}[f]:=\lim_{t\rightarrow \infty}\frac{1}{t}\sum_{k=0}^{\added{\lfloor t \rfloor}}m_k[f]=\langle\Psi_0(-i\phi),\varphi\rangle.
-\end{align}
-\end{lem}
-
-\begin{lem}\label{lemma211}
-Let $f\in \mathcal{P}$, assume $\alpha\beta<\kappa_fb(1+\beta)$, if $\kappa_f\geq 1$, the series $\sum_{k=0}^{\infty}m_k[f]$ is absolutely convergent, hence we can define
-\begin{align}
-    m[f]:=\int_{\mathbb{R}^d}\int_0^{\infty} e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}f)(x)~ds~\varphi(x)~dx \label{msmallcase}
-\end{align}
-\end{lem}
- }
-\deleted{
-\begin{proof}[proof of Lemma 2.14]
-
-	Let $(R,S)$ be the $(1+\beta)$-control-pair corresponding to \ref{lem: upper bound for usgx}(7).
-	For each $t\geq 0$,
-\begin{align}
-    |Z_1(T^{\alpha}_t f)|
-    \leq R|T^{\alpha}_tf|
-    \leq R (e^{(\alpha-\kappa_fb)t}Qf)
-    \leq S(e^{(\alpha-\kappa_fb)t}Qf)
-    =e^{(\alpha-\kappa_fb)(1+\beta)t}SQf.
-    \end{align}
-Therefore,
+ \deleted{Using the same argument as in the proof of \cite[Lemma2.7, Lemma4.2 \& Lemma 5.1]{MM}, we can show that}
+\added{According to \cite[Lemma 2.7]{MM}, for each $f\in\mathcal{P}$, there is a constant $C>0$ such that 
 \[
-	|m_t[f]|\leq e^{-\alpha}e^{-\alpha t}e^{(\alpha-\kappa_fb)(1+\beta)t}\int_{\mathbb R^d}SQf(x)\varphi(x)dx.
-	\qedhere
+    |m_t[f]|
+    \leq C e^{(\alpha\beta-\kappa_fb(1+\beta))t},
+    \quad t\geq 0.
 \]
+}
+\deleted{Therefore, $m_t[f]$ is well-defined.}
 
-\end{proof}
-
-$m_k[f],~f\in \mathcal{P}$ can be expressed in a new way which is convenient for us to consider the limit behavior of itself. Note that,
+\added{
+    Let $f \in \mathcal{P}$.
+    Suppose that $\kappa_f\geq 1$ and $\alpha\beta=\kappa_f b(1+\beta)$.
+    Denote by
+\[
+    \phi(x)
+    =\sum_{|p|=\kappa_f}\langle f, \phi_p\rangle\phi_p(x),
+    \quad x\in \mathbb{R}^d, p \in\mathbb Z_+^d,
+\]
+    the projection of $f$ onto the $\kappa_f$-eigenspace.
+    Then accodting to \cite[Lemma 4.2]{MM} the following limit exists:
 \begin{align}
-    m_k[f]=e^{-\alpha(k+1)}\int_{\mathbb{R}^d}\int_0^1 T_{1-s}^{\alpha}\Psi_0(-iT_{s+k}^{\alpha}f)(x)~ds~\varphi(x)~dx,~~k\in\mathbb{N}.
+\label{lemma210}
+    \tilde{m}[f]:=\lim_{t\rightarrow \infty}\frac{1}{t}\sum_{k=0}^{\lfloor t \rfloor}m_k[f]=\langle\Psi_0(-i\phi),\varphi\rangle.
 \end{align}
 
-Using Fubini's Theorem and the fact $\varphi(x)$ is an invariant measure of $(T)_{t\geq 0}$, we get
+    Let $f\in \mathcal{P}$.
+    Suppose that $\kappa_f\geq 1$ and $\alpha\beta<\kappa_fb(1+\beta)$. Then, according to \cite[Lemma 5.1]{MM}, the following series and integral absolutely convergence:
 \begin{align}
-    m_k[f]=\int_{\mathbb{R}^d}\int_k^{k+1} e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}f)(x)~ds~\varphi(x)~dx,~~k\in \mathbb{N}.\label{mkeq}
+    m[f]
+    :=e^{-\alpha}\sum_{k=0}^\infty m_k[f]
+    =\int_{\mathbb{R}^d}\int_0^{\infty} e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}f)(x)~ds~\varphi(x)~dx. \label{msmallcase}
 \end{align}
+}
 
-Let
+\added{
+    Note that $m_t[\theta f]$ can be rewritten as follows:
+\[
+    m_t[\theta f]= e^{-\alpha (t+1)}\int_{\mathbb R^d} dx~\varphi(x)\int_0^1 T_{1-s}^\alpha (-i\theta T_{s+t}^\alpha f)^{1+\beta}(x)~ds,
+    \quad \theta \in \mathbb R.
+\]
+    The following Lemma says that function $\theta \mapsto \exp(m_t[\theta f])$ is the characteristic function of a $(1+\beta)$-stable random variable.
+\begin{lem}
+    Let $q$ be a measure on $\mathbb R^d\setminus\{0\}$ with $\int |x|^{1+\beta} q(dx) \in (0,\infty)$. 
+    Then $$\theta \mapsto  \exp\Big\{\int_{\mathbb R^d\setminus\{0\}} (i\theta \cdot x)^{1+\beta} q(dx)\Big\}$$
+    is the characteristic function of a $(1+\beta)$-stable random variable.
+\end{lem}
+\begin{proof}
+    From the measure theory, there is a measure $\lambda$ on $S:= \{\xi\in \mathbb R^d:|\xi| = 1\}$ and a kernel $k(\xi,dt)$ from $S$ to $\mathbb R_+$ such that 
+\[
+    \int_{\mathbb R^d\setminus \{0\}} f(x)q(dx) = \int_S \int_{\mathbb R^+} f(\xi t)k(\xi,dt) \lambda(d\xi),\quad 
+    f\in \mathscr B(\mathbb R^d\setminus \{0\}, \mathbb R_+).
+\]
+    Define another measure $\lambda_0$ on $S$ by
+\[
+    \lambda_0(d\xi) := \frac{1}{\Gamma(-1-\beta)} \int_0^\infty t^{1+\beta}k(\xi,dt) \lambda (d\xi).
+\]
+    Then $\lambda_0$ is a non-zero finite measure, since
+\[
+    \lambda_0(S) = \frac{1}{\Gamma(-1-\beta)} \int_S \int_0^\infty |t\xi|^{1+\beta}k(\xi,dt) \lambda (d\xi)
+    = \frac{1}{\Gamma(-1-\beta)} \int_{\mathbb R^d\setminus\{0\}} |x|^{1+\beta} q(dx) \in (0,\infty).
+\]
+    Define a measure $\nu$ on $\mathbb R^d\setminus\{0\}$ by
+\[
+    \int_{\mathbb R^d/\{0\}}f(x)\nu(dx)= \int_{S} \int_0^\infty f(r\xi) \frac{dr}{r^{2+\beta}} \lambda_0(d\xi).
+\]
+    Then, according to \cite[Remark 14.4]{Sato1999Levy}, $\nu$ is the L\`evy measure of an $(1+\beta)$-stable distribution on $\mathbb R^d$, say $\mu$, whose characteristic function is \[\hat \mu(\theta)=\exp\Big\{\int_{\mathbb R^d/\{0\}} (e^{-i\theta \cdot y}-1+i\theta \cdot y) \nu(dy)\Big\}.\]
+    The final step, we verify that
 \begin{align}
-    \phi(x)=\sum_{|p|=\kappa_f}\langle f, \phi_p\rangle\phi_p(x),~x\in \mathbb{R}^d, p \in\mathbb{N}_0^d.
+    &\int_{\mathbb R^d/\{0\}} (e^{-i\theta \cdot y}-1+i\theta \cdot y) \nu(dy)
+    = \int_S \int_0^\infty (e^{-ir\theta \cdot \xi}-1+ir\theta \cdot \xi) \frac{dr}{r^{2+\beta}}\lambda_0(d\xi)
+\\&\quad = \int_S \int_0^\infty (e^{-ir\theta \cdot \xi}-1+ir\theta \cdot \xi) \frac{dr}{\Gamma(-1-\beta)r^{2+\beta}}\int_0^\infty t^{1+\beta} k(\xi,dt) \lambda (d\xi)
+\\&\quad = \int_S (i\theta\cdot \xi)^{1+\beta} \int_0^\infty t^{1+\beta} k(\xi,dt) \lambda (d\xi)
+= \int_S \int_0^\infty (i\theta \cdot t\xi)^{1+\beta} k(\xi,dt)\lambda(d\xi)
+\\&\quad = \int_{\mathbb R^d} (i\theta \cdot x)^{1+\beta} q(dx).
+\qedhere
 \end{align}
-i.e. $\phi$ is the projection of $f$ onto the $\kappa_f$-eigenspace. Easily we get $\kappa_f=\kappa_{\phi}$ and $\kappa_{f-\phi}\geq \kappa_f+1$.
-
-
-\begin{proof}[Proof of Lemma 2.15]
-
-    Notice that
-        \begin{align}\label{parameter of mkphi}
-        m_k[\phi]&=\int_{\mathbb{R}^d}\int_k^{k+1} e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}\phi)(x)~ds~\varphi(x)~dx\\
-        &=\int_{\mathbb{R}^d}\Psi_0(-i\phi(x))\varphi (x)~dx=\langle \Psi_0(-i\phi),\varphi\rangle.
-    \end{align}
-    
-    According to Lemma \ref{lem: Lip of power function}, for any $s\geq 0$,
-    \begin{align}
-        &\Big|\Psi_0(-iT^{\alpha}_s f)-\Psi_0(-iT^{\alpha}_s\phi)\Big|\leq C_{\ref{lem: Lip of power function}}(|T^{\alpha}_sf|^{\beta}+|T^{\alpha}_s\phi|^{\beta})|T^{\alpha}_s(f-\phi)|
-        \\& \leq C_{\ref{lem: Lip of power function}}e^{(\alpha-\kappa_f b)(1+\beta)s}e^{-bs}\big((Qf)^{\beta}+(Q\phi)^{\beta}\big)Q(f-\phi).
-    \end{align}
-    Therefore, by the condition $\alpha\beta=\kappa_fb(1+\beta)$,
-    \begin{align}
-        |m_k[f]-m_k[\phi]|&\leq\int_{\mathbb{R}^d}\int_k^{k+1}e^{-\alpha s}\Big|\Psi_0(-iT^{\alpha}_s f)-\Psi_0(-iT^{\alpha}_s\phi)\Big|(x)~ds~\varphi(x)~ds.
-        \\&\leq C_{\ref{lem: Lip of power function}}\int_{\mathbb{R}^d}\int_{k}^{k+1} e^{-bs}\big((Qf)^{\beta}+(Q\phi)^{\beta}\big)Q(f-\phi)~ds~ \varphi(x)~dx.
-        \\&\leq C_{\ref{lem: Lip of power function}}\langle((Qf)^{\beta}+(Q\phi)^{\beta})Q(f-\phi), \varphi\rangle e^{-bk},\quad k \in \mathbb{N}.
-    \end{align}
-    Therefore, the limits of $(1/t)\sum_{k=0}^tm_k[f]$ is the same with that of $(1/t)\sum_{k=0}^tm_k[\phi]$.
-    
-   From \eqref{parameter of mkphi}, for any $k\in \mathbb{N}$,
-    \begin{align}
-        \lim_{t\rightarrow \infty}\frac{1}{t}\sum_{k=0}^{\lfloor t\rfloor}m_k[f]=\lim_{t\rightarrow \infty}\frac{1}{t}\sum_{k=0}^{\lfloor t \rfloor}m_k[\phi]=\langle\Psi_0(-i\phi),\varphi\rangle.
-    \end{align}
-\end{proof}
-
-\begin{proof}[Proof of Lemma 2.16]
-
-    By Lemma \ref{lem: control of mk}, we have $|m_k[f]|\leq C_{\ref{lem: control of mk}} e^{(\alpha\beta-\kappa_fb(1+\beta))k},~k\in\mathbb{N}$, which implies $\sum_{k=0}^{\infty}|m_k[f]|<\infty$.
-
-    On the other hand, denote by $(R,S)$ the $(1+\beta)$-control-pair for Lemma \ref{lem: upper bound for usgx}(3), for any $s\geq 0$,
-    \begin{align}
-        |e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}f)|\leq e^{-\alpha s}R|T^{\alpha]_s}f|\leq e^{-\alpha s}R(e^{(\alpha-\kappa_fb)s}Qf)=e^{(\alpha\beta-\kappa_fb(1+\beta))s}RQf.
-    \end{align}
-    This implies
-    \begin{align}
-        \sum_{k=0}^{\infty}\int_{\mathbb{R}^d}\int_k^{k+1} e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}f)(x)ds\varphi(x)dx< \infty.
-    \end{align}
-    and
-    \begin{align}
-            m[f]:=\sum_{k=0}^{\infty}m_k[f]=\sum_{k=0}^{\infty}\int_{\mathbb{R}^d}\int_k^{k+1} e^{-\alpha s}\Psi_0(-iT_{s}^{\alpha}f)(x)ds\varphi(x)dx
-    \end{align}
-    is well defined.
 \end{proof}
 }
 \section{Proof of main results}
 
 In this section, we will prove the main results of this paper. Recall that $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$ and let $F_k(\nu)=\left(e^{\alpha k}\|\nu\|\right)^{\frac{1}{1+\beta}},~ \nu\in \mathcal{M}(\mathbb{R}^d)$.
 
-{\bf In Milos' paper, he says $e^{\theta^{1+\beta}e^{\alpha}m_k[f]}$ is a characteristic function, but no explanation.}
 \begin{lem}\label{lemma31}
 For any $x,y\in \mathbb{C}$, $|e^x-e^y|\leq (e^{Re(x)}\vee e^{Re(y)})|x-y|$.
 \end{lem}
@@ -1178,6 +1163,7 @@ let $z=Re(y)+iIm(x)$,
     |e^x-e^y|\leq|e^x-e^z|+|e^z-e^y|\leq |e^{Re(x)}-e^{Re(y)}|+e^{Re(y)}|x-y|\leq (e^{Re(x)}\vee e^{Re(y)})|x-y|.
 \end{align}
 \end{proof}
+{\bf Zhenyao: The proof of the above lemma is not right. The proof of the following lemma is not accurate.}
 \begin{lem}\label{lemma32}
 Recall $\mathcal{A}_t(\epsilon)=\{\|X_t\|\in\|\mu\|(e^{(\alpha-\epsilon_0)t},e^{(\alpha+\epsilon_0)t})\},~\epsilon,t>0$, then for any $\epsilon>0$, we have
 \begin{align}
@@ -1193,7 +1179,7 @@ Recall $\mathcal{A}_t(\epsilon)=\{\|X_t\|\in\|\mu\|(e^{(\alpha-\epsilon_0)t},e^{
 
     For any $\omega \in D^c$, there exists $\delta>0$ such that $W_{\infty}(\omega)\in(\delta,\frac{1}{\delta})$,\deleted{$~\mathbb{P}_{\mu}$-a.s}. As $W_t$ converges to $W_{\infty}$ $\mathbb{P}_{\mu}$-a.s, there exists $S_1>0$ such that for any $t\geq S_1$, we have $\frac{\delta}{2}\leq W_t(\omega)\leq 2\delta,$\deleted{$~\mathbb{P}_{\mu}$-a.s}. Taking $S_2>0$ such that for any $t>S_2$, $\|\mu\|e^{-\epsilon t}<\frac{\delta}{2}$ and $\|\mu\|e^{-\epsilon t}>2\delta$, then $\omega\in \mathcal{A}_t(\epsilon),~t>S:=\max\{S_1,S_2\}$ implies $\omega \in \liminf_{t\rightarrow \infty}\mathcal{A}_t(\epsilon):=\cup_{S>0}\cap_{t\geq S}\mathcal{A}_t(\epsilon)$.
 \end{proof}
-
+\deleted{
 \begin{lem}
 For any $f\in \mathcal{P}$ and $k\in \mathbb{N}$, let $m_k[f]$ be the parameter defined in \eqref{parameter_mk}, then the function $\theta\mapsto \exp(\theta^{1+\beta}e^{\alpha}m_k[f])$ defined on $\theta\in(0,\infty)$ is a characteristic function of some $(1+\beta)$-stable random variable.
 \end{lem}
@@ -1206,9 +1192,9 @@ Thus
 \begin{align}
     \exp(\theta^{1+\beta}e^{\alpha}m_k[f])=\exp\big(J e^{-\alpha k}\cos\frac{(1+\beta)\pi}{2}\cdot\theta^{1+\beta}\big(1+i\tan\frac{(1+\beta)\pi}{2}\big)\big)
 \end{align}
-B \cite[Theorem 14.15]{Sato1990Levy}, we get the result.
+B \cite[Theorem 14.15]{Sato1999Levy}, we get the result.
 \end{proof}
-{\bf Jianjie: I think the proof has some problem, as we are not sure $J$ is negative or not,}
+}
 \begin{lem}\label{lemma33}
 
  Let $f\in \mathcal{P}$, assume that $\alpha\beta\leq \kappa(f)b(1+\beta)$, then for any  $k\in\mathbb{N}$ and $\mu \in \mathcal{M}(\mathbb{R}^d)$ with compact support, under $\mathbb{P}_{\mu}(\cdot | D ^c)$, we have
@@ -1707,9 +1693,9 @@ Then we get $  \left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\rightarrow
     The rest of the proof follows the arguement in \cite[Section 10.14]{Rudin1987Real}.
 \end{proof}
 
-\added{
+{ \color{blue}
 \subsection{}
-	In this subsection, we give more analytic results that will be used in this paper.
+	In this subsection, we give some analytical facts that will be used in this paper.
 	For each $z\in \mathbb C\setminus (-\infty,0]$ define
 \[
 	\log z := \log |z| + i \arg z
@@ -1725,6 +1711,7 @@ Then we get $  \left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\rightarrow
 	Then it is known, see \cite[Theorem 6.1]{SteinShakarchi2003Complex} for example, $z\mapsto \log z$ is holomophic on $\mathbb C\setminus (-\infty,0]$.
 	Therefore, so is $z\mapsto z^\gamma$, for each $\gamma \in \mathbb C$.
 	For convention, define $0^\gamma := \mathbf 1_{\gamma = 0}$ for each $\gamma \in \mathbb C$.
+    From this definition we can verify that $(z_1z_0)^\gamma = z_1^\gamma z_0^\gamma$ provided $\arg (z_1z_0)=\arg z_1 + \arg(z_0)$.
 
 
     Recall $\Gamma$ the Gamma function defined by
@@ -1743,25 +1730,20 @@ Then we get $  \left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\rightarrow
     := \int_0^\infty t^{x-1} \Big(e^{-t} - \sum_{k=0}^{n-1} \frac{(-t)^k}{k!}\Big) dt,
     \quad -n< x< -n+1, n\in \mathbb N.
 \end{align}
-    It is known that
-\begin{equation}
-    \Gamma(x+1) = x\Gamma(x),
-    \quad x>0~\text{or}~-n< x< -n+1, n\in \mathbb N.
-\end{equation}
 
     Fix a $\beta \in (0,1)$.
-    We can verify that
+    Using \cite[Theorem 3.2. \& Theorem 3.5.]{SchillingSongVondracek2010Bernstein}, we can verify that
 \begin{equation}
     z^{\beta}
 	= \int_0^\infty (e^{-zy}-1) \frac{dy}{\Gamma(-\beta)y^{1+\beta}},
     \quad z\in \mathbb C_+,
 \end{equation}
-	by observing that the both sides
+	by showing that the both sides
 \begin{itemize}
 \item
     are extension of the real function $x\mapsto x^{\beta}$ on $[0,\infty)$;
 \item
-    are holomorphic on $\mathbb C_+^0:= \{x+iy:x\in (0,\infty), y\in \mathbb R\}$ (For the right side, use \cite[Theorem 3.2. \& Theorem 3.5.]{SchillingSongVondracek2010Bernstein});
+    are holomorphic on $\mathbb C_+^0:= \{x+iy:x\in (0,\infty), y\in \mathbb R\}$;
 \item
     are continuous on $\mathbb C_+ :=\{x+iy: x\in [0,\infty), y\in \mathbb R\}$.
 \end{itemize}
@@ -1868,7 +1850,7 @@ $
 
 \subsection{}
 \label{sec: definition of characteristic exponent}
-    According to Levy-Khintchine formula \cite[Theorem 8.1]{Sato1990Levy}, an $\mathbb R$-valued random variable $\{Y; P\}$ is infinitely divisible if and only if
+    According to Levy-Khintchine formula \cite[Theorem 8.1]{Sato1999Levy}, an $\mathbb R$-valued random variable $\{Y; P\}$ is infinitely divisible if and only if
 \begin{equation}
 \label{eq: characteristic function of an infinitely divisible random variable}
     P[e^{i\theta Y}]
@@ -1899,7 +1881,7 @@ $
 
     Suppose that $\{Y;P\}$ is an infinitely divisible random variable with characteristic exponent \eqref{eq: Characteristic exponent}.
     Suppose that $P[|Y|]< \infty$.
-    According to \cite[Corollary 25.8.]{Sato1990Levy}, $\int_{|x|>1} |x|\nu(dx) < \infty$.
+    According to \cite[Corollary 25.8.]{Sato1999Levy}, $\int_{|x|>1} |x|\nu(dx) < \infty$.
 
     We claim that, $h$ is differentiable on $\mathbb R$.
     In fact, according to Lemma \ref{lem: estimate of exponential remaining}, we have for any compact $K \subset \mathbb R$,
@@ -2384,7 +2366,7 @@ De Gruyter Studies in Mathematics, 37. Walter de Gruyter \& Co., Berlin, 2010.
 \MR{2598208}
 
 
-\bibitem{Sato1990Levy}
+\bibitem{Sato1999Levy}
 Sato, K.:
 \emph{Lévy processes and infinitely divisible distributions.}
 Cambridge Studies in Advanced Mathematics, 68. Cambridge University Press, Cambridge, 1999.
