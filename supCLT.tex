@@ -1,4 +1,5 @@
 %%%----Versions-----------------------------
+% supclt1213.tex 2018/12/13 by Yanxia
 % supclt1213.tex 2018/12/13 by Renming
 % supclt1209.tex 2018/12/07 by Zhenyao
 % supclt1207.tex 2018/12/07 by Renming
@@ -90,19 +91,17 @@
 %---Contents-----------------------
 \begin{abstract}
     Consider a super-OU process $\{X_t, t\geq 0\}$ with branching mechanism $\psi(z)=-\alpha z +z^{1+\beta}$, where $\alpha >0$ and $\beta\in (0,1)$. For each testing function $f$ of at most polynomial growth,
-    denote by $\kappa_f$ the order of $f$ in 
-%term of the spectral decomposition of $f$ in terms of the spectrum of the the mean semigroup of $X$. 
-the spectral decomposition of $f$ in terms of the spectrum of the the mean semigroup of $X$. 
+    denote by $\kappa_f$ the order of $f$ in
+the spectral decomposition of $f$ in terms of the spectrum of the the mean semigroup of $X$.
     Conditioned on no-extinction, we establish some spatial central limit theorems for $\langle f, X_t \rangle$ in three different regimes: In the small branching rate case, $\alpha\beta< \kappa_f b(1+\beta)$, $\langle f,X_t\rangle/\|X_t\|^{\frac{1}{+\beta}}$ converges weakly.
     In the critical branching rate case, $\alpha\beta= \kappa_f b(1+\beta)$,  $\langle f,X_t\rangle/(t\|X_t\|)^{\frac{1}{+\beta}}$ converges weakly.
     In the large branching rate case,  $\alpha\beta> \kappa_f b(1+\beta)$, $e^{-(\alpha-\kappa(f)b)t}\langle f,X_t\rangle$ converges almost surely and in $L^{1+\gamma}$, for any $\gamma \in (0,\beta)$.
 \end{abstract}
 \maketitle
 \section{Introduction}
-%\subsection{Model}
 \subsection{Model}\label{ss:1.1}
     Let $d \in \mathbb N:= \{1,2,\dots\}$ and
-    $\xi=\{(\xi_t)_{t\geq 0}; (\Pi_x)_{x\in \mathbb R^d}\}$ be an $\mathbb R^d$-valued Ornstein-Uhlenbeck prcess (OU process) with infinitesimal generator 
+    $\xi=\{(\xi_t)_{t\geq 0}; (\Pi_x)_{x\in \mathbb R^d}\}$ be an $\mathbb R^d$-valued Ornstein-Uhlenbeck prcess (OU process) with infinitesimal generator
 \begin{equation}
 \label{eq: OU generator}
     Lf(x)
@@ -142,7 +141,7 @@ the spectral decomposition of $f$ in terms of the spectrum of the the mean semig
     = e^{-\alpha^* \|\mu\|},
 \end{equation}
     where $\alpha^* := \sup\{\lambda \geq 0: \psi(\lambda) = 0\}$.
-    Define 
+    Define
 \begin{equation}\label{meansemigroup}
     T^{\alpha}_t f(x)
     :=
@@ -173,12 +172,16 @@ the spectral decomposition of $f$ in terms of the spectrum of the the mean semig
     := \int_{\mathbb{R}^d}f_1(x)f_2(x)\varphi(x) dx, \quad f_1,f_2 \in L^2(\varphi).
 \end{equation}
      Let $\mathbb N = \{1,2,\dots\}$ and $\mathbb Z_+ := \mathbb N\cup\{0\}$.
-    For each $p = (p_k)_{k = 1}^d \in \mathbb{N}_0^{d}$, let $|p| \added{ :}=\sum_{k=1}^d p_k$, $p!:= \prod_{k= 1}^d p_k !$ and $\partial x^p:= \prod_{k = 1}^d\partial x_k^{p_k}$.
+ %   For each $p = (p_k)_{k = 1}^d \in \mathbb{N}_0^{d}$,
+  For each $p = (p_k)_{k = 1}^d \in \mathbb{Z}_+^{d}$,
+    let $|p| \added{ :}=\sum_{k=1}^d p_k$, $p!:= \prod_{k= 1}^d p_k !$ and $\partial x^p:= \prod_{k = 1}^d\partial x_k^{p_k}$.
     The Hermite polynomials are defined by
 \begin{equation}
     H_p(x)
     :=(-1)^{|p|}\exp(|x|^2) \frac{\partial ^{|p|}}{\partial x^p} \exp(-|x|^2) ,
-    \quad x\in \mathbb R^d, p \in \mathbb{N}_0^{d}.
+    \quad x\in \mathbb R^d,
+    %p \in \mathbb{N}_0^{d}.
+    p \in \mathbb{Z}_+^{d}.
 \end{equation}
     It is known that $(T_t)$ is a strongly continuous semigroup on $L^2(\varphi)$ and $L$ has
     discrete spectrum $\sigma(L)= \{-bk: k \in \mathbb Z_+\}$.
@@ -221,19 +224,26 @@ where
 \end{equation}
     It is clear that $\mathcal{P} \subset L^2(\varphi)$.
     For all $\kappa \in \mathbb Z_+$ and $f\in \mathcal P$, define
-$
-	Q_\kappa f := \sup_{t\geq 0} e^{\kappa b t}|T_t f|
-$
+%$
+%	Q_\kappa f := \sup_{t\geq 0} e^{\kappa b t}|T_t f|
+%$
+\begin{equation}\label{Q_k}
+Q_\kappa f := \sup_{t\geq 0} e^{\kappa b t}|T_t f|,
+\end{equation}
 and
-$
-	Q f:= Q_{\kappa_f}f.
-$
+%$
+%	Q f:= Q_{\kappa_f}f.
+%$
+\begin{equation}\label{Q}
+Q f:= Q_{\kappa_f}f.
+\end{equation}
+
     Then according to \cite[Fact 1.2]{MM}, $Q$ is an operator from $\mathcal P$ to $\mathcal P$.
 \subsection{}
     Let $X$ be the super OU-process discussed in Subsection \ref{ss:1.1}.
     Its branching mechanism $\psi$ can be extended to $\mathbb C_+:=\{x+iy: x\in [0, \infty), y\in \mathbb R\}$:
- $$\psi(z) := -\alpha z + z^{1+\beta}, \quad z\in \mathbb C_+.$$ 
-    According to the analysis in Subsection A.1, 
+ $$\psi(z) := -\alpha z + z^{1+\beta}, \quad z\in \mathbb C_+.$$
+    According to the analysis in Subsection A.1,
     $\psi$ is continuous on $\mathbb C_+$ and is holomorphic on $\mathbb C_+^0:=
     \{x+iy: x\in (0, \infty), y\in \mathbb R\}$ with derivative
 \begin{equation}
@@ -241,7 +251,10 @@ $
     \psi'(z) := -\alpha + (1+\beta)z^{\beta},
     \quad z\in \mathbb C_+.
 \end{equation}
-    Write $\psi_0(z) := \psi(z) + \alpha z$. Then $\psi'_0(z) = \psi'(z) + \alpha=(1+\beta)z^{\beta}$.
+   % Write $\psi_0(z) := \psi(z) + \alpha z$.
+   Write $\psi_0(z) := \psi(z) + \alpha z=z^{1+\beta}$.
+  %  Then $\psi'_0(z) = \psi'(z) + \alpha=(1+\beta)z^{\beta}$.
+   Then $\psi'_0(z) = \psi'(z) + \alpha=(1+\beta)z^{\beta}=(1+\beta)z^\beta$.
     For all $f\in \mathcal B(\mathbb R^d, \mathbb C_+)$ and $x\in \mathbb R^d$, define $\Psi_0f(x) := \psi_0(f(x))$ and $\Psi'_0 f(x) := \psi'_0(f(x))$.
     For all $t\in [0,\infty), x\in \mathbb R^d $ and $f \in \mathcal{P}$, define $U_tf(x) := \operatorname{Log} \mathbb P_{\delta_x}[e^{i\theta \langle f, X_t\rangle}]|_{\theta = 1}$, the value of the L\'evy exponent of the infinite divisible random variable $\langle f, X_t\rangle$ at $1$.
     From \eqref{eq: -v has positive real part}, we know that $-U_tf(x)$ takes values in $\mathbb C_+$. Furthermore, we know from Proposition \ref{prop: complex FKPP-equation} that
@@ -255,31 +268,27 @@ $
 \subsection{Main Result}
 We will use $\mathcal M_c(\mathbb R_d)$ to denote the space of all
 finite Borel measures of compact support on $\mathbb R^d$.
-In this subsection, we will give the main results of this paper. 
-%Suppose $\mu\in \mathcal M_c(\mathbb R_d)$ has compact support.
+In this subsection, we will give the main results of this paper.
 \subsubsection{Large branching rate}
 
-For each $p\in \mathbb{N}_+^d$, we define
+%For each $p\in \mathbb{N}_+^d$, we define
+For each $p\in \mathbb{Z}_+^d$, we define
 $$H_t^p:= e^{-(\alpha-|p|b)t}\langle\phi_p,X_t\rangle,\quad t\geq 0.$$
-  For any $\gamma\in (0, \beta)$, we will prove (see Lemma \ref{lemma26}) that, if $\alpha\beta>|p|b(1+\beta)$, $H_t^p$ is a $\mathbb{P}_{\mu}$-martingale bounded in 
-%  $L^{1+\gamma}(\mathbb{P}_{\mu})$, 
-$L^{1+\gamma}(\mathbb{P}_{\mu})$ for any $\mu\in \mathcal M_c(\mathbb R_d)$,
+  For any $\gamma\in (0, \beta)$, we will prove (see Lemma \ref{lemma26}) that, if $\alpha\beta>|p|b(1+\beta)$, $H_t^p$ is a $\mathbb{P}_{\mu}$-martingale bounded in
+   $L^{1+\gamma}(\mathbb{P}_{\mu})$ for any $\mu\in \mathcal M_c(\mathbb R_d)$,
   thus the limit $H^p_{\infty}:=\lim_{t\rightarrow \infty}H_t^p$ exists $\mathbb{P}_{\mu}$-almost surely and in $L^{1+\gamma}(\mathbb{P}_{\mu})$.
  \begin{thm}\label{Theorem11}
-     If $f \in \mathcal{P}$ satisfies $\alpha\beta>\kappa(f)b(1+\beta)$, then for 
-%     any $\gamma\in (0, \beta)$,
+     If $f \in \mathcal{P}$ satisfies $\alpha\beta>\kappa(f)b(1+\beta)$, then for
 any $\gamma\in (0, \beta)$ and any $\mu\in \mathcal M_c(\mathbb R_d)$,
      as $t\rightarrow \infty$,
      $$e^{-(\alpha-\kappa_fb)t}\langle f, X_t\rangle \rightarrow\sum_{|p|=\kappa_f}\langle f, \phi_p\rangle_{\varphi} H_{\infty}^p \quad in~ L^{1+\gamma}(\mathbb{P}_{\mu}).$$
 
-     Moreover, if $f$ is twice differentiable and all its second order partial derivatives are in $\mathcal{P}$, then we also have almost sure convergence. 
+     Moreover, if $f$ is twice differentiable and all its second order partial derivatives are in $\mathcal{P}$, then we also have almost sure convergence.
  \end{thm}
 For any $t>0$, let $H_t:=e^{-\alpha t}\|X_t\|$, then $H_t$ is equal to $H_t^0$ and is a non-negative martingale with limit $H_{\infty}:=\lim_{t\rightarrow\infty}H_t$,  $\mathbb{P}_{\mu}$-a.s. and in $L^{1+\gamma}(\mathbb{P}_{\mu})$, for all $\gamma\in (0, \beta)$ and $\mu\in \mathcal M_c(\mathbb R_d)$.
  \begin{rem}
-%    If $\kappa_f=0$, 
-Let $f \in \mathcal{P}$.  If $\kappa_f=0$, 
-    $\langle f, \phi_{\kappa_f}\rangle_{\varphi}$ reduces to $\langle f,\varphi\rangle$. Hence by Theorem \ref{Theorem11},  
-%    for any $\gamma\in (0, \beta)$, as $t\rightarrow \infty$
+Let $f \in \mathcal{P}$.  If $\kappa_f=0$,
+    $\langle f, \phi_{\kappa_f}\rangle_{\varphi}$ reduces to $\langle f,\varphi\rangle$. Hence by Theorem \ref{Theorem11},
 for any $\gamma\in (0, \beta)$ and any $\mu\in \mathcal M_c(\mathbb R_d)$, as $t\rightarrow \infty$,
      $$e^{-\alpha t}\langle f, X_t\rangle \rightarrow \langle f, \varphi\rangle H_{\infty} \quad in~ L^{1+\gamma}(\mathbb{P}_{\mu})$$
     Moreover, if $f$ is twice differentiable and all its second order partial derivatives are in $\mathcal{P}$, then we also have almost sure convergence.
@@ -299,19 +308,18 @@ for any $\gamma\in (0, \beta)$ and any $\mu\in \mathcal M_c(\mathbb R_d)$, as $t
     Denote by $D$ the extinction event of the super OU-process.
 \begin{thm}
 \label{Theorem12}
-    If $f\in\mathcal{P}$ satisfies  $\alpha\beta=\kappa_fb(1+\beta)$, 
-%    then, under 
-   then for any $\mu\in \mathcal M_c(\mathbb R_d)$, under 
+    If $f\in\mathcal{P}$ satisfies  $\alpha\beta=\kappa_fb(1+\beta)$,
+   then for any $\mu\in \mathcal M_c(\mathbb R^d)$, under
     $\tilde{\mathbb P}_\mu := \mathbb{P}_{\mu}(\cdot|D^c)$, it holds that
 \[
     \frac{\langle f,X_t\rangle}{\left(t\|X_t\|\right)^{\frac{1}{1+\beta}}}
-    \xrightarrow{d} \eta_1, 
+    \xrightarrow{d} \eta_1,
     \quad t\rightarrow \infty,
 \]
     where $\eta_1$ is a $(1+\beta)$-stable random variable with
 \[
     \mathbb{E} [e^{i\theta \eta_1}]
-    =\exp(\tilde{m}[\theta f]), 
+    =\exp(\tilde{m}[\theta f]),
     \quad \theta\in \mathbb R.
 \]
 \end{thm}
@@ -321,16 +329,15 @@ for any $\gamma\in (0, \beta)$ and any $\mu\in \mathcal M_c(\mathbb R_d)$, as $t
 For $f\in \mathcal{P}$, define
 \[
     m[f]
-    :=\int_{\mathbb{R}^d}\int_0^{\infty} e^{-\alpha s}(-iT_{s}^{\alpha}f)^{1+\beta}(x)~ds~\varphi(x)~dx
+    :=\int_{\mathbb{R}^d}\int_0^{\infty} e^{-\alpha s}(-iT_{s}^{\alpha}f)^{1+\beta}(x)~ds~\varphi(x)~dx.
 \]
 \begin{thm}
 \label{Theorem13}
-    If $f\in\mathcal{P}$ satisfies  $\alpha\beta<\kappa_f b(1+\beta)$, 
-%    then, under 
-   then for any $\mu\in \mathcal M_c(\mathbb R_d)$, under 
+    If $f\in\mathcal{P}$ satisfies  $\alpha\beta<\kappa_f b(1+\beta)$,
+   then for any $\mu\in \mathcal M_c(\mathbb R_d)$, under
     $\mathbb{P}_{\mu}(\cdot|D^c)$, it holds that
     $$\frac{\langle f,X_t\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}\xrightarrow{d} \eta_2, \quad t\rightarrow \infty,$$
-    where $\eta_2$ is a $(1+\beta)$-stable random variable with 
+    where $\eta_2$ is a $(1+\beta)$-stable random variable with
     $$\mathbb{E} [e^{i\theta \eta_2}]=\exp(m[\theta f]), \quad \theta\in \mathbb R.$$
 \end{thm}
 
@@ -343,7 +350,7 @@ For $f\in \mathcal{P}$, define
     We say an operator $A$ is $\gamma$-controllable on $\mathcal D \subset \mathcal P^*$ for some $\gamma \in \mathbb R$ if $A: \mathcal D \to \mathcal P^*$ and there  is a $\gamma$-control pair $(R,S)$ such that $|Af|\leq R|f| (\le S|f|)$ for all $f\in \mathcal D$.
     In this case we say $A$ is $\gamma$-controlled by the $\gamma$-control-pair $(R,S)$ on $\mathcal D$.
     We say a family of operator $(A_s)_{s\in \Lambda}$ is uniformly $\gamma$-controllable on $\mathcal D\subset \mathcal P^*$ for some $\gamma \in \mathbb R$ if there is a $\gamma$-control pair $(R,S)$ such that, for each $s\in \Lambda$, $A_s$ is $\gamma$-controlled by $(R, S)$ on $\mathcal D$.
- 
+
 	For two operators $A: \mathcal D_A \subset \mathcal P^*\to \mathcal P^*$ and $B: \mathcal D_B \subset \mathcal P^*\to \mathcal P^*$, define $(A\times B)f (x):= Af(x) \times Bf(x)$ for all $f\in \mathcal D_A \cap \mathcal D_B$ and $x\in \mathbb R^d$.
     For any $a > 0$, define $A^{\times a}f(x):= (Af(x))^a$ for all $f\in \mathcal D_A$ and $x\in \mathbb R^d$.
     One of the reason for considering $\gamma$-controllable operators is that they have good algebraic properties:
@@ -391,7 +398,7 @@ For $f\in \mathcal{P}$, define
 \end{itemize}
 	Finally, note that for each $\delta\in \Delta, \lambda\in\Lambda$ and $f\in \mathcal D$, $|B_{\delta}A_{\lambda}f|\leq R_B|A_{\lambda}f|\leq R_BR_A|f|$ which says that $(B_\delta\times A_\lambda)_{\delta \in \Delta, \lambda \in \Lambda}$ is uniformly $(\beta\gamma)$-controlled by $(R_BR_A,S_BS_A)$.
 
-   The proofs of (3) and (4) are similar to that of (2). 
+   The proofs of (3) and (4) are similar to that of (2).
 \end{proof}
 \subsection{}
     For all $f \in \mathcal{P}$, $x\in \mathbb{R}^d$ and $t\geq 0$, define
@@ -468,13 +475,17 @@ The following statements are true for our super-OU process:
 
 \subsection{}
 
- In this subsection,  we want to bound the $(1+\gamma)$-th moment of $\langle g ,X_t \rangle$ for $\gamma \in (0,\beta)$. 
- %Denote by $\mathcal{M}_c(\mathbb{R}^d)$ by the space of all finite Borel measures on $\mathbb{R}^d$ with compact support.
+ In this subsection,  we want to bound the $(1+\gamma)$-th moment of $\langle g ,X_t \rangle$ for $\gamma \in (0,\beta)$.
 	For all $0 \leq a_1 \leq a_2 <\infty$ and  random variable $Y$ with finite mean, define
-$
-   	\mathcal I_{a_1}^{a_2} Y
-    := \mathbb P[Y|\mathscr F_{a_2}] - \mathbb P[Y|\mathscr F_{a_1}].
-$
+%$
+%  	\mathcal I_{a_1}^{a_2} Y
+%   := \mathbb P[Y|\mathscr F_{a_2}] - \mathbb P[Y|\mathscr F_{a_1}].
+%$
+$$
+	\mathcal I_{a_1}^{a_2} Y
+  := \mathbb P_\mu[Y|\mathscr F_{a_2}] - \mathbb P_\mu[Y|\mathscr F_{a_1}].
+$$
+
 \begin{lem}
 \label{lem: control pair for P(M>lambda)}
     There is a $(1+\beta)$-control-pair $(R,S)$ such that for all $0\leq t\leq 1$, $g\in \mathcal P$, $\lambda >0$ and $\mu\in \mathcal M_c(\mathbb R^d)$, we have
@@ -501,8 +512,11 @@ $
 	For all $h \in \mathcal P^+$ and $\mu \in \mathcal M_c(\mathbb{R}^d)$, there exists a constant $C > 0$ such that for all $\kappa \in \mathbb Z_+ $ and $0\leq r\leq s\leq t$ with $s-r \leq 1$, we have
 \[
     \sup_{g \in \mathcal P: Q_\kappa g\leq h}\mathbb P_{\mu}(|\mathcal I_r^s\langle g, X_t\rangle|>\lambda)
-    \leq \frac{ C}{\lambda^{1+\beta}} e^{(1+\beta)(t-s)(\alpha- \kappa b)+ \alpha r}.
+    \leq \frac{ C}{\lambda^{1+\beta}} e^{(1+\beta)(t-s)(\alpha- \kappa b)+ \alpha r},
 \]
+%new added
+where $Q_kg$ is defined by \eqref{Q_k} with $f$ replaced by $g$.
+%end new
 \end{lem}
 \begin{proof}
     Denote by $(R,S)$ the $(1+\beta)$-control-pair in Lemma \ref{lem: control pair for P(M>lambda)}.
@@ -583,9 +597,10 @@ $
     Using the triangle inequality, for all $\kappa\in \mathbb Z_+$, $g \in \mathcal P$ with $Q_\kappa g \leq h$ and $t\geq 0$, we have
 \begin{align}
     &\|\langle g,X_t\rangle\|_{\mathbb P_\mu;1+\gamma}
-    \\ &\leq \sum_{k=0}^{\lfloor t\rfloor - 1}\big\| \mathcal{I}_{t-k-1}^{t-k}\langle g,X_t\rangle \big\|_{\mathbb P_\mu;1+\gamma}+\big\| \mathcal{I}_{0}^{t-\lfloor t \rfloor}\langle g,X_t\rangle  \big\|_{\mathbb P_\mu;1+\gamma}
+    % k is replaced by l to avoide confusing between k and \kappa.
+    \\ &\leq \sum_{l=0}^{\lfloor t\rfloor - 1}\big\| \mathcal{I}_{t-l-1}^{t-l}\langle g,X_t\rangle \big\|_{\mathbb P_\mu;1+\gamma}+\big\| \mathcal{I}_{0}^{t-\lfloor t \rfloor}\langle g,X_t\rangle  \big\|_{\mathbb P_\mu;1+\gamma}
     + |\langle T^\alpha_t g,\mu\rangle|
-    \\ &\leq C^{\frac{1}{1+\gamma}} e^{\frac{\alpha}{1+\gamma}t} \sum_{k=0}^{\lfloor t\rfloor} e^{\frac{\gamma\alpha-\kappa (1+\gamma)b}{1+\gamma} k} + e^{(\alpha - \kappa b)t} \langle h,\mu\rangle. 
+    \\ &\leq C^{\frac{1}{1+\gamma}} e^{\frac{\alpha}{1+\gamma}t} \sum_{l=0}^{\lfloor t\rfloor} e^{\frac{\gamma\alpha-\kappa (1+\gamma)b}{1+\gamma} l} + e^{(\alpha - \kappa b)t} \langle h,\mu\rangle.
 \end{align}
     By calculating the sum on the right, we get the desired result.
 \end{proof}
@@ -599,8 +614,7 @@ $
     The following lemma says that $\{M_t^{f,a}: t\geq 0\}$ is a martingale with respect to $(\mathscr{F}_t)_{t\geq 0}$.
 \begin{lem}
 \label{lemma25}
-    Let $f\in \mathcal{P}\cap C^2(\mathbb{R}^d)$ be such that $Lf \in \mathcal{P}$ and let $a\in \mathbb R$. 
-%    Then the process $(M_t^{f,a})_{t\geq 0}$ is an $(\mathscr F_t)$-martingale.
+    Let $f\in \mathcal{P}\cap C^2(\mathbb{R}^d)$ be such that $Lf \in \mathcal{P}$ and let $a\in \mathbb R$.
 Then, for any $\mu\in \mathcal M_c(\mathbb{R}^d)$, the process $(M_t^{f,a})_{t\geq 0}$ is a $\mathbb P_\mu$-martingale with respect to $(\mathscr F_t)_{t\geq 0}$.
 \end{lem}
 \begin{proof}
@@ -633,7 +647,6 @@ Let $0\leq s\leq t$,
 \]
 
 \begin{lem}\label{lemma26}
-%    $(H^p_t)_{t\geq 0}$ is a martingale with respect to $(\mathscr F_t)$.
     For any $\mu\in \mathcal M_c(\mathbb{R}^d)$, $(H^p_t)_{t\geq 0}$ is a $\mathbb P_\mu$-martingale with respect to $(\mathscr F_t)$.
     Moreover, if $\alpha\beta>|p|b(1+\beta)$, then for any $\gamma\in (0, \beta)$ and $\mu \in \mathcal M_c(\mathbb R^d)$, we have $\sup_{t\geq 0}\|H_t^p\|_{\mathbb P_\mu;1+\gamma}< \infty$ and
 \[
@@ -643,20 +656,17 @@ Let $0\leq s\leq t$,
 exists $\mathbb{P}_{\mu}$-a.s and in $L^{1+\gamma}(\mathbb{P}_{\mu}).$
 \end{lem}
 \begin{proof}
-%   It follows from Lemma \ref{lemma25} that $(H_t^p)_{t\geq 0}$ is a martingale.
   It follows from Lemma \ref{lemma25} that $(H_t^p)_{t\geq 0}$ is a $\mathbb P_\mu$-martingale for any $\mu\in \mathcal M_c(\mathbb{R}^d)$.
-  
+
     There exists $\gamma_0 \in (0,\beta)$ close enough to $\beta$ such that for $\gamma\in [\gamma_0, \beta)$, $\alpha\gamma>|p|(1+\gamma)b$.
-    Using  Lemma \ref{lem: control moment} and the fact $\kappa_{\phi_p}=|p|$, 
-%    we get that there exists 
-   we get, for $\gamma\in [\gamma_0, \beta)$, that there exists 
+    Using  Lemma \ref{lem: control moment} and the fact $\kappa_{\phi_p}=|p|$,
+   we get, for $\gamma\in [\gamma_0, \beta)$, that there exists
     a constant $C_{\gamma, \mu, p}>0$ (depending on $\gamma$, $\mu$ and $p$)  such that
 \[
  	\|H_t^p\|_{\mathbb P_\mu;1+\gamma}
     \leq C_{\gamma, \mu, p} e^{-(\alpha-|p|b)t}e^{(\alpha-|p|b)t}
     =C_{\gamma, \mu, p}, \quad t\geq 0.
 \]
-%    For any $\gamma\in (0, \gamma_0)$, note that
    For any $\gamma\in (0, \gamma_0)$ and any $\mu\in \mathcal M_c(\mathbb{R}^d)$, note that
 \[
 	\|H_t^p\|_{\mathbb P_\mu;1+\gamma}
@@ -665,8 +675,7 @@ exists $\mathbb{P}_{\mu}$-a.s and in $L^{1+\gamma}(\mathbb{P}_{\mu}).$
 	\quad t\geq 0.
 \]
 
-%    Hence, for each $\gamma \in (0,\beta)$, 
-   Hence, for each $\gamma \in (0,\beta)$ and any $\mu\in \mathcal M_c(\mathbb{R}^d)$, 
+   Hence, for each $\gamma \in (0,\beta)$ and any $\mu\in \mathcal M_c(\mathbb{R}^d)$,
     the martingale is bounded in $L^{1+\gamma}(\mathbb{P}_{\mu})$ and hence converges in $L^{1+\gamma}(\mathbb{P}_{\mu}) $ and almost surely, by \cite[Theorem 5.4.5]{Durrett2010Probability}.
 \end{proof}
 
@@ -682,7 +691,9 @@ In particular, when $p=0$, $H_t^0$ reduces to $H_t:=e^{-\alpha t}\|X_t\|$, thus,
 
 \begin{proof}
      Fix $\gamma \in (0,\beta)$ and $\mu\in \mathcal M_c(\mathbb R^d)$.
- According to Lemma \ref{lem: control of mgtrs}, there exists a constant $C_0>0$ such that for all $0\leq r\leq s $ with $s-r\leq1$, we have
+% According to Lemma \ref{lem: control of mgtrs},
+Using Lemma \ref{lem: control of mgtrs} with $g=1$ and $k=0$,
+ there exists a constant $C_0>0$ such that for all $0\leq r\leq s $ with $s-r\leq1$, we have
     \begin{align}
         \mathbb{P}_{\mu}\big[\big|e^{\alpha(t-s)}\|X_s\|-e^{\alpha(t-r)}\|X_r\|\big|^{1+\gamma}\big]
         \leq C_0e^{\alpha t+(t-s)\alpha\gamma}.
@@ -701,7 +712,6 @@ In particular, when $p=0$, $H_t^0$ reduces to $H_t:=e^{-\alpha t}\|X_t\|$, thus,
 \end{align}	
 \end{proof}
 
-%Write $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$.
 From now on, we write $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$.
 \begin{lem}
 \label{lem: control of XT}
@@ -766,7 +776,10 @@ Therefore, for each $\lambda \in [0,1]$,
     &\leq\sup_{s\in [\lambda,\lambda+\alpha^*]}\frac{s^{1+\beta}e^{\alpha(1+\beta)}}{\alpha^{1/\beta +1}}+\frac{1}{(1-e^{-\alpha\beta })^{1/\beta+1}}\\
     &\leq \frac{(1+\alpha^*)^{1+\beta}e^{\alpha(1+\beta)}}{\alpha^{1/\beta+1}}+\frac{1}{(1-e^{-\alpha\beta })^{1/\beta+1}} =: C_1.
 \end{align*}
-Finally, plugging $\lambda = f(t)^{-1} \in [0,1]$ back to \eqref{eq: inequality before take lambda} and using the above inequality, we get the desired result.
+Finally, plugging
+%$\lambda = f(t)^{-1} \in [0,1]$
+$\lambda = f(t)^{-1} \in (0,1]$
+back to \eqref{eq: inequality before take lambda} and using the above inequality, we get the desired result.
 \end{proof}
 
 \subsection{Parameters}
@@ -793,7 +806,7 @@ Finally, plugging $\lambda = f(t)^{-1} \in [0,1]$ back to \eqref{eq: inequality 
     \phi
     :=\sum_{p\in \mathbb Z_+^d:|p|=\kappa_f}\langle f, \phi_p\rangle\phi_p.
 \]
-    According to \cite[Lemma 5.1]{MM}, if $f\in \mathcal{P}$ satisfies that $\alpha\beta<\kappa_fb(1+\beta)$, then 
+    According to \cite[Lemma 5.1]{MM}, if $f\in \mathcal{P}$ satisfies that $\alpha\beta<\kappa_fb(1+\beta)$, then
 \begin{align}
     m[f]
     :=\sum_{k=0}^\infty m_k[f]
@@ -814,7 +827,7 @@ and both the series and the integral converge absolutely.
 \]
     Define another measure $\lambda_0$ on $S$ by
 \[
-    \lambda_0(d\xi) := \frac{\int_0^\infty t^{1+\beta}k(\xi,dt)}{\Gamma(-1-\beta)} \lambda (d\xi)
+    \lambda_0(d\xi) := \frac{\int_0^\infty t^{1+\beta}k(\xi,dt)}{\Gamma(-1-\beta)} \lambda (d\xi).
 \]
     Then $\lambda_0$ is a non-zero finite measure, since
 \[
@@ -826,7 +839,7 @@ and both the series and the integral converge absolutely.
     \int_{\mathbb R^d\setminus\{0\}}f(x)\nu(dx)= \int_{S} \lambda_0(d\xi) \int_0^\infty f(r\xi) \frac{dr}{r^{2+\beta}} .
 \]
     Then, according to \cite[Remark 14.4]{Sato1999Levy}, $\nu$ is the L\`evy measure of a $(1+\beta)$-stable distribution on $\mathbb R^d$, say $\mu$, whose characteristic function is \[\hat \mu(\theta)=\exp\Big\{\int_{\mathbb R^d\setminus\{0\}} (e^{-i\theta \cdot y}-1+i\theta \cdot y) \nu(dy)\Big\}.\]
-Finally, 
+Finally,
 \begin{align}
     &\int_{\mathbb R^d\setminus\{0\}} (e^{-i\theta \cdot y}-1+i\theta \cdot y) \nu(dy)
     = \int_S \lambda_0(d\xi) \int_0^\infty (e^{-ir\theta \cdot \xi}-1+ir\theta \cdot \xi) \frac{dr}{r^{2+\beta}}
@@ -840,23 +853,23 @@ Finally,
 
 \begin{cor}
 \label{cor: alpha stable rv}
-	For all $t\geq 0$ and $f\in \mathcal P$, 
+	For all $t\geq 0$ and $f\in \mathcal P$,
 \begin{enumerate}
-\item 
+\item
 \label{it: first stable}
     $\theta \mapsto \exp(m_t[\theta f])$ is the characteristic function of a $(1+\beta)$-stable random variable;
-\item 
+\item
 \label{it: second stable}
     $\theta \mapsto \exp(\tilde m[\theta f])$ is the characteristic function of a $(1+\beta)$-stable random variable, provided $\alpha\beta=\kappa_f b(1+\beta)$;
-\item 
+\item
 \label{it: third stable}
     $\theta \mapsto \exp(m[\theta f])$ is the characteristic function of a $(1+\beta)$-stable random variable, provided $\alpha\beta < \kappa_f b(1+\beta)$.
 \end{enumerate}
 \end{cor}
 \begin{proof}
-    \eqref{it: first stable}: 
+    \eqref{it: first stable}:
 	Fix $t\geq 0$ and $f\in \mathcal P$.
-	Note that $m_t[\theta f]$ can be rewritten as 
+	Note that $m_t[\theta f]$ can be rewritten as
 \[
     m_t[\theta f]= e^{-\alpha (t+1)}\int_{\mathbb R^d} dx~\varphi(x)\int_0^1 T_{1-s}^\alpha (-i\theta T_{s+t}^\alpha f)^{1+\beta}(x)~ds,
     \quad \theta \in \mathbb R.
@@ -901,7 +914,7 @@ Then for all $k\geq 0$ and $\mu \in \mathcal{M}_c(\mathbb{R}^d)$, under $\mathbb
 \end{align}
 	In fact, once we prove this, we can replace $f$ by $\theta f$, with $\theta \in \mathbb R$ being  arbitrary,  to get the desired result.
 	In the rest of the proof we fix a $\mu \in \mathcal M_c(\mathbb R^d)$ and an $f\in \mathcal P$.
-	Define 
+	Define
 \[
 	A_t(\epsilon):=\{ \|X_t\| \geq \|\mu\|e^{(\alpha - \epsilon)t} \},\quad t\geq 0, \epsilon > 0.
 \]
@@ -923,8 +936,8 @@ Then for all $k\geq 0$ and $\mu \in \mathcal{M}_c(\mathbb{R}^d)$, under $\mathbb
 	\\\theta_{t,k}
 	&:= (e^{\alpha k}\|X_{t-k-1}\|)^{-\frac{1}{1+\beta}}.
 \end{align}
-In fact, from the definitions of $U_1, \tilde U_1$ and $Z_1$, we have that for all 
-$k\geq 0, t\geq k+1$, 
+In fact, from the definitions of $U_1, \tilde U_1$ and $Z_1$, we have that for all
+$k\geq 0, t\geq k+1$,
 \begin{align}
 \label{eq: need1}
     &\mathbb{P}_{\mu}[e^{i\gamma_{t,k}}|\mathscr{F}_{t-k-1}]
@@ -956,7 +969,9 @@ $k\geq 0, t\geq k+1$,
 Step 2.  We will show that there exists a $C>0$ such that for all $k\geq 0$, $t\geq k+1$ and $\epsilon> 0$,
     \begin{align}
     \label{lemma31q}
-      J_1(k,t,\epsilon)\leq C\exp\Big\{-\Big(\alpha\frac{\beta}{1+\beta}-\epsilon\frac{1+2\beta}{1+\beta}\Big)(t-k-1)\Big\}.
+      %J_1(k,t,\epsilon)
+      J_1(t,k,\epsilon)
+      \leq C\exp\Big\{-\Big(\alpha\frac{\beta}{1+\beta}-\epsilon\frac{1+2\beta}{1+\beta}\Big)(t-k-1)\Big\}.
     \end{align}
 	In fact, let $(R,S)$ be the $(1+2\beta)$-control-pair in Lemma \ref{lem: upper bound for usgx}.(6).
 	Then, we have for all $k\geq 0$, $t\geq k+1$ and $\epsilon> 0$,
@@ -967,15 +982,23 @@ Step 2.  We will show that there exists a $C>0$ such that for all $k\geq 0$, $t\
     \leq S \Big(\frac{e^{(\alpha-\kappa_fb)k}}{(e^{\alpha k}\|\mu\|e^{(\alpha-\epsilon)(t-k-1)})^\frac{1}{1+\beta}}Qf\Big)
    \\&\leq \Big(\frac{e^{(\alpha-\kappa_fb)k}}{(e^{\alpha k}\|\mu\|e^{(\alpha-\epsilon)(t-k-1)})^\frac{1}{1+\beta}}\Big)^{1+2\beta}SQf
    \\&=\|\mu\|^{-\frac{(1+2\beta)}{(1+\beta)}}e^{\frac{1+2\beta}{1+\beta}(\alpha\beta-\kappa_fb(1+\beta))k}e^{-\frac{(\alpha-\epsilon)(1+2\beta)(t-k-1)}{1+\beta}}SQf
-   \\&\leq\|\mu\|^{-\frac{(1+2\beta)}{(1+\beta)}} e^{-\frac{(\alpha-\epsilon)(1+2\beta)(t-k-1)}{1+\beta}}SQf.
+   \\&\leq\|\mu\|^{-\frac{(1+2\beta)}{(1+\beta)}} e^{-\frac{(\alpha-\epsilon)(1+2\beta)(t-k-1)}{1+\beta}}SQf,
 \end{align}
+%new added
+where $Q$ is defined by \eqref{Q}.
+%end new
 Thus for all $k\geq 0$, $t\geq k+1$ and $\epsilon> 0$,
 \begin{align}
 \label{eq: estimate of J1}
-     J_1(k,t,\epsilon)&
+     %J_1(k,t,\epsilon)&
+     J_1(t,k,\epsilon)&
      \leq \|\mu\|^{-\frac{(1+2\beta)}{(1+\beta)}} e^{-\frac{(\alpha-\epsilon)(1+2\beta)(t-k-1)}{1+\beta}}\mathbb{P}_{\mu}[\langle SQf,X_{t-k-1}\rangle]\\
-     & \leq \|\mu\|^{-\frac{1+2\beta}{1+\beta}} \langle Q_0 SQf, \mu \rangle \exp\Big\{-\Big(\alpha\frac{\beta}{1+\beta}-\epsilon\frac{1+2\beta}{1+\beta}\Big)(t-k-1)\Big\}.
+     & \leq \|\mu\|^{-\frac{1+2\beta}{1+\beta}} \langle Q_0 SQf, \mu \rangle \exp\Big\{-\Big(\alpha\frac{\beta}{1+\beta}-\epsilon\frac{1+2\beta}{1+\beta}\Big)(t-k-1)\Big\},
 \end{align}
+%new added
+where $Q_0$ is defined by \eqref{Q_k} with $k=0$.
+%end new
+
 	Step 3.
 	Fix a $\gamma\in(0,\beta)$ small enough so that $\alpha \gamma < b < (1+\gamma)b$.
 	Then there exists a constant $C > 0$ such that for all $k\geq 0$, $t\geq k+1$ and $\epsilon> 0$,
@@ -993,8 +1016,9 @@ Thus for all $k\geq 0$, $t\geq k+1$ and $\epsilon> 0$,
 Therefore, for all $k\geq 0$, $t\geq k+1$ and $\epsilon> 0$,
 \begin{align}
 \label{eq: prevJ2}
-&J_2(k,t,\epsilon)
-	\\&= \mathbb P_\mu\big[|\langle Z_1(\theta_{t,k}T_k^{\alpha}f),X_{t-k-1}\rangle-e^{\alpha}m_k[f]|;A_{t-k-1}(\epsilon)\big]
+%&J_2(k,t,\epsilon)\\&=
+J_2(t,k,\epsilon)&
+	= \mathbb P_\mu\big[|\langle Z_1(\theta_{t,k}T_k^{\alpha}f),X_{t-k-1}\rangle-e^{\alpha}m_k[f]|;A_{t-k-1}(\epsilon)\big]
     \\&=e^{-\alpha k}\mathbb{P}_{\mu}\bigg[\Big|\frac{\langle Z_1T^{\alpha}_k f,X_{t-k-1}\rangle}{\|X_{t-k-1}\|}-\langle  Z_1T^{\alpha}_k f,\varphi\rangle\Big|;A_{t-k-1}(\epsilon)\bigg]\nonumber\\
     &\leq \|\mu\|^{-1} e^{-\alpha k}e^{-(\alpha-\epsilon)(t-k-1)}e^{(\alpha-\kappa_f b)(1+\beta)k} \mathbb{P}_{\mu}\left[\left|\langle g_k,X_{t-k-1}\rangle\right|\right],
 \end{align}
@@ -1024,8 +1048,9 @@ According to \cite[Lemma 2.8]{MM}, there exists $h \in \mathcal P$ such that
 \end{align}
 Therefore, according to \eqref{eq: prevJ2}, we have for all $k\geq 0$, $t\geq k+1$ and $\epsilon> 0$,
 \begin{align}
-	&J_2(k,t,\epsilon)
-	\leq  \|\mu\|^{-1}e^{-\alpha k}e^{-(\alpha-\epsilon)(t-k-1)}e^{(\alpha-\kappa_f b)(1+\beta)k} \mathbb{P}_{\mu}\left[\left|\langle g_k,X_{t-k-1}\rangle\right|\right]
+%	&J_2(k,t,\epsilon)
+	J_2(t,k, \epsilon)&
+\leq  \|\mu\|^{-1}e^{-\alpha k}e^{-(\alpha-\epsilon)(t-k-1)}e^{(\alpha-\kappa_f b)(1+\beta)k} \mathbb{P}_{\mu}\left[\left|\langle g_k,X_{t-k-1}\rangle\right|\right]
 	\\&\leq \|\mu\|^{-1}C e^{-\alpha k}e^{-(\alpha-\epsilon)(t-k-1)}e^{(\alpha-\kappa_f b)(1+\beta)k} e^{\frac{\alpha}{1+\gamma}(t-k-1)}
 	\\&= \|\mu\|^{-1}C e^{(\alpha \beta - \kappa_f b(1+\beta))k}e^{-(\frac{\alpha\gamma}{1+\gamma}-\epsilon)(t-k-1)}
 	\\&\leq \|\mu\|^{-1}C e^{-(\frac{\alpha\gamma}{1+\gamma}-\epsilon)(t-k-1)},
@@ -1034,13 +1059,15 @@ Therefore, according to \eqref{eq: prevJ2}, we have for all $k\geq 0$, $t\geq k+
 
 	Step 4. We will show that, for each $\epsilon\in (0,  \alpha]$, there exist $C,\delta>0$ such that for all $k\geq0, t\geq k+1$,
 \begin{align}\label{ineq: control of J3}
-    J_3(k,t,\epsilon)\leq Ce^{-\delta (t-k-1)}.
+ %   J_3(k,t,\epsilon)\leq Ce^{-\delta (t-k-1)}.
+ J_3(t,k,\epsilon)\leq Ce^{-\delta (t-k-1)}.
 \end{align}
 	In fact, we have that for all $t\geq 0, \epsilon >0$,
 \begin{align}
 	&\mathbb P_{\mu}(A_{t}(\epsilon), D) = \mathbb P_{\mu}[\mathbb P_{\mu}(D|\mathscr F_t);A_t(\epsilon)]
 	\\&= \mathbb P_\mu[e^{-\alpha^*\|X_t\|};A_t(\epsilon)]
-	\leq \exp({-\alpha^* e^{(\alpha - \epsilon)t}}).
+%	\leq \exp({-\alpha^* e^{(\alpha - \epsilon)t}}).
+\leq \exp({-\alpha^* \|\mu\|e^{(\alpha - \epsilon)t}}).
 \end{align}
 According to Lemma \ref{lem: control of XT}, there is a constant $C>0$ such that
 for all $t\geq 0, \epsilon >0$,
@@ -1049,13 +1076,12 @@ for all $t\geq 0, \epsilon >0$,
 \end{align}
 	Combining these, we get the desired result in step 4.
 
-	Step 5.  Combining the results in Steps 1-4, noticing that, if $\epsilon>0$ is chosen small enough then $J_{i}, i = 1,2,3$ converge to $0$ exponentially fast as $t\rightarrow\infty$, 
+	Step 5.  Combining the results in Steps 1-4, noticing that, if $\epsilon>0$ is chosen small enough then $J_{i}, i = 1,2,3$ converge to $0$ exponentially fast as $t\rightarrow\infty$,
 we immediately get the desired result.
 \end{proof}
 
 \begin{cor}\label{cor: used in next corollary}
-%Let $f\in \mathcal{P}$ and $\Theta >0$.
-Let $f\in \mathcal{P}$, and $\Theta >0$ and $\mu\in \mathcal M_c(\mathbb R^d)$.
+Let $f\in \mathcal{P}$, $\Theta >0$ and $\mu\in \mathcal M_c(\mathbb R^d)$.
 Assume that $\alpha\beta\leq \kappa_fb(1+\beta)$.
 Then there exist $C>0$ and $\delta>0$ such that for all $k \geq 0, t\geq k+1$ and $|\theta|\leq \Theta$,
 \begin{align}
@@ -1077,11 +1103,11 @@ Then there exist $C>0$ and $\delta>0$ such that for all $k \geq 0, t\geq k+1$ an
      \\& = |\theta|^{1+2\beta} \|\mu\|^{-\frac{1+2\beta}{1+\beta}} \langle Q_0 SQf, \mu \rangle \exp\Big\{-\Big(\alpha\frac{\beta}{1+\beta}-\epsilon\frac{1+2\beta}{1+\beta}\Big)(t-k-1)\Big\},
 \end{align}
 	where $(R,S)$ is the $(1+2\beta)$-control-pair in Lemma \ref{lem: upper bound for usgx}.(6).
-	From the definitions of $Z_1$ and $m_t$ we get that for all $g\in \mathcal P, \theta \geq 0, t\geq 0$, 
+	From the definitions of $Z_1$ and $m_t$ we get that for all $g\in \mathcal P, \theta \geq 0, t\geq 0$,
 \[
 	Z_1( \pm \theta g) = \theta^{1+\beta} Z_1(\pm g), \quad m_t[\pm \theta g] = \theta^{1+\beta} m_t[\pm g].
 \]
-	Therefore, we have for all $\theta >0, k \geq 0, t\geq k+1, \epsilon > 0$, 
+	Therefore, we have for all $\theta >0, k \geq 0, t\geq k+1, \epsilon > 0$,
 \[
 J^{\pm \theta f}_2(t,k,\epsilon)
 	:= \theta^{1+\beta} J_2^{\pm f}(t,k,\epsilon).
@@ -1096,9 +1122,13 @@ J^{\pm \theta f}_2(t,k,\epsilon)
 \end{proof}
 
 \begin{prop}\label{corollary31}
-%Let $f\in \mathcal{P}$ and $\Theta>0$. 
 Let $f\in \mathcal{P}$, and $\Theta >0$ and $\mu\in \mathcal M_c(\mathbb R^d)$.
-Assume that $\alpha\beta\leq\kappa_fb(1+\beta)$. Then there exist $C,\delta>0$ such that for all $T\geq 0$, $n \in \{0,...,\lfloor t \rfloor\}$ and $(\theta_0,...,\theta_n)\in \mathbb{R}^{n+1}$ satisfying $|\theta_i|\leq \Theta$, we have
+Assume that $\alpha\beta\leq\kappa_fb(1+\beta)$. Then there exist $C,\delta>0$ such that
+%for all $T\geq 0$,
+for all $t\geq 0$,
+%$n \in \{0,...,\lfloor t \rfloor\}$ and $(\theta_0,...,\theta_n)\in \mathbb{R}^{n+1}$
+$n \in \{0, \cdots, \lfloor t \rfloor\}$ and $(\theta_0, \cdots, \theta_n)\in \mathbb{R}^{n+1}$
+satisfying $|\theta_i|\leq \Theta$, we have
 \begin{align}
 \label{32corollary}
     \Big|\mathbb{\tilde{P}}_{\mu}\Big[\prod_{k=0}^n\exp\Big(i\theta_k \frac {\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{(e^{\alpha k}\|X_{t-k-1}\|)^\frac{1}{1+\beta}}\Big)-\prod_{k=0}^n\exp(e^{\alpha}m_k[\theta_k f])\Big]\Big|\leq C e^{-\delta(t-n)}.
@@ -1107,7 +1137,9 @@ Assume that $\alpha\beta\leq\kappa_fb(1+\beta)$. Then there exist $C,\delta>0$ s
 \begin{proof}
 	Let $C,\delta > 0$ be the constants in Corollary \ref{cor: used in next corollary}.
     Recall that \[\gamma_{t,k}:=\frac {\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{(e^{\alpha k}\|X_{t-k-1}\|)^\frac{1}{1+\beta}},\quad k \geq 0, t\geq k+1. \]
-    Fix $t\geq 0$, $n \in \{0,...,\lfloor t \rfloor\}$ and $(\theta_0,...,\theta_n)\in \mathbb{R}^{n+1}$ satisfying $|\theta_i|\leq \Theta$.
+    %Fix $t\geq 0$, $n \in \{0,...,\lfloor t \rfloor\}$ and $(\theta_0,...,\theta_n)\in \mathbb{R}^{n+1}$ 
+    Fix $t\geq 0$, $n \in \{0, \cdots, \lfloor t \rfloor\}$ and $(\theta_0, \cdots, \theta_n)\in \mathbb{R}^{n+1}$ 
+    satisfying $|\theta_i|\leq \Theta$.
     For each $k\in\{-1,...,n\}$, we define
     \[a_k:=\prod_{l=0}^{k}\exp(e^{\alpha}m_l[\theta_lf])\mathbb{\tilde{P}}_{\mu}\Big(\prod_{l=k+1}^{n}\exp\left(i\theta_l\gamma_{t,l}\right)\Big),\]
      where by convention the product is $1$ for $k=-1$. Then we get for each $k > -1$,
@@ -1116,7 +1148,9 @@ Assume that $\alpha\beta\leq\kappa_fb(1+\beta)$. Then there exist $C,\delta>0$ s
         \\&=\mathbb{P}_{\mu}(D^c)^{-1}\prod_{l=0}^{k-1}e^{e^{\alpha}m_l[\theta_l f]}\mathbb{P}_{\mu}\Big[(e^{i\theta_{k}\gamma_{t,k}}-e^{e^{\alpha}m_k[\theta_k f]})\prod_{l=k+1}^ne^{i\theta_{l}\gamma_{t,l}};D^c\Big]
         \\&=\mathbb{P}_{\mu}(D^c)^{-1}\prod_{l=0}^{k-1}e^{e^{\alpha}m_l[\theta_l f]}\mathbb{P}_{\mu}\Big[\mathbb P_\mu[e^{i\theta_{k}\gamma_{t,k}}-e^{e^{\alpha}m_k[\theta_k f]}; D^c|\mathscr F_{t-k-1}]\prod_{l=k+1}^ne^{i\theta_{l}\gamma_{t,l}}\Big].
     \end{align*}
-    According to Corollary \ref{cor: alpha stable rv} and Corollary \ref{cor: used in next corollary}, there exist $C,\delta>0$ such that for any $k\in\{0,1,...,n\}$, we have
+    According to Corollary \ref{cor: alpha stable rv} and Corollary \ref{cor: used in next corollary}, there exist $C,\delta>0$ such that for any 
+    % $k\in\{0,1,...,n\}$, we have
+    $k\in\{0, 1, \cdots, n\}$, we have
     \begin{align*}
         &|a_{k-1}- a_k|
         \\&\leq \frac{1}{\mathbb{P}_{\mu}(D^c)}\mathbb{P}_{\mu}\Big[\big|\mathbb P_\mu[e^{i\theta_{k}\gamma_{t,k}}-e^{e^{\alpha}m_k[\theta_k f]}; D^c\big|\mathscr{F}_{t-k-1}]\big|\Big]
@@ -1132,35 +1166,50 @@ Therefore,
 \end{proof}
 \subsection{Proof of Theorem \ref{Theorem12}}
 \label{sec: proof of thm 1.3}
-    Fix $f\in\mathcal{P}$. 
+    Fix $f\in\mathcal{P}$.
     Chose $t_0 > 0$ large enough so that $\lceil t_0-\ln t_0\rceil \leq \lfloor t_0 \rfloor - 1.$
     Write
     \begin{align*}
         &(t\|X_t\|)^{-\frac{1}{1+\beta}}\langle f,X_t\rangle
-        \\ &=\sum_{k=0}^{\lfloor t-\ln t \rfloor} \frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{(t\|X_t\|)^{\frac{1}{1+\beta}}}+\Big(\sum_{k=\lceil t-\ln t \rceil}^{\lfloor t \rfloor-1} \frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{(t\|X_t\|)^{\frac{1}{1+\beta}}}+\frac{\mathcal I_0^{t-\lfloor t \rfloor}\langle f ,X_t\rangle}{(t\|X_t\|)^{\frac{1}{1+\beta}}}\Big) + \frac{\langle P^\alpha_tf,X_0\rangle}{(t\|X_t\|)^{\frac{1}{1+\beta}}}.
-        \\&=:I_1(t)+I_2(t) + I_3(t), 
+        \\ &=\sum_{k=0}^{\lfloor t-\ln t \rfloor} \frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{(t\|X_t\|)^{\frac{1}{1+\beta}}}+\Big(\sum_{k=\lceil t-\ln t \rceil}^{\lfloor t \rfloor-1} \frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{(t\|X_t\|)^{\frac{1}{1+\beta}}}+\frac{\mathcal I_0^{t-\lfloor t \rfloor}\langle f ,X_t\rangle}{(t\|X_t\|)^{\frac{1}{1+\beta}}}\Big) + 
+     %   \frac{\langle P^\alpha_tf,X_0\rangle}{(t\|X_t\|)^{\frac{1}{1+\beta}}}.
+         \frac{\langle T^\alpha_tf,X_0\rangle}{(t\|X_t\|)^{\frac{1}{1+\beta}}}.
+        \\&=:I_1(t)+I_2(t) + I_3(t),
         \quad t\geq t_0.
     \end{align*}
     Define
 \[
     \tilde I_1(t)
-    :=\sum_{k=0}^{\lfloor t-\ln t \rfloor}\frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{(t e^{\alpha(k+1)}\|X_{t-k-1}\|)^{\frac{1}{1+\beta}}}, 
+    :=\sum_{k=0}^{\lfloor t-\ln t \rfloor}\frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{(t e^{\alpha(k+1)}\|X_{t-k-1}\|)^{\frac{1}{1+\beta}}},
     \quad t\geq t_0.
 \]
-    Fix $\mu \in \mathcal M_c(\mathbb R^d)$ and $\theta\in \mathbb{R}$. Taking $\theta_k=(t e^{\alpha})^{-\frac{1}{1+\beta}} \theta $ and $n={\lfloor t-\ln t \rfloor}$ in Corollary \ref{corollary31}, we get that there exist $C,\delta>0$ such that,
+    Fix $\mu \in \mathcal M_c(\mathbb R^d)$ and $\theta\in \mathbb{R}$. Taking $\theta_k=(t e^{\alpha})^{-\frac{1}{1+\beta}} \theta $ and $n={\lfloor t-\ln t \rfloor}$ 
+    %in Corollary \ref{corollary31},
+    in Proposition \ref{corollary31},
+    we get that there exist $C,\delta>0$ such that,
 \begin{align*}
         \Big|\mathbb{\tilde{P}}_{\mu} [e^{i\theta\tilde{I}_1(t)}]-\exp\Big(\frac{1}{t}\sum_{k=0}^{\lfloor t-\ln t \rfloor}m_k[\theta f]\Big)\Big|\leq C \frac{1}{t^{\delta}},
         \quad t\geq t_0.
 \end{align*}
     According to \eqref{para: critical case},  $\tilde{I}_1(t)\xrightarrow[t\to \infty]{d}\eta_1$ under $\tilde {\mathbb P}_\mu$.
-    Therefore, we only need to prove $|\mathbb{\tilde{P}}_{\mu}[e^{i\theta I_1(t)}]-\mathbb{\tilde{P}}_{\mu}[e^{i\theta\tilde{I}_1(t)}]|\xrightarrow[t\to \infty]{} 0$ and $I_i(t)\xrightarrow[t\to \infty]{d} 0$ for $i = 2,3$ under $\tilde {\mathbb P}_\mu$.
+    Therefore, we only need to prove
+  %   $|\mathbb{\tilde{P}}_{\mu}[e^{i\theta I_1(t)}]-\mathbb{\tilde{P}}_{\mu}[e^{i\theta\tilde{I}_1(t)}]|\xrightarrow[t\to \infty]{} 0$
+ \begin{equation}\label{toprove-1}|\mathbb{\tilde{P}}_{\mu}[e^{i\theta I_1(t)}]-\mathbb{\tilde{P}}_{\mu}[e^{i\theta\tilde{I}_1(t)}]|\xrightarrow[t\to \infty]{} 0,
+ \end{equation}
+      and 
+      %$I_i(t)\xrightarrow[t\to \infty]{d} 0$ for $i = 2,3$ under $\tilde {\mathbb P}_\mu$.
+     \begin{equation}\label{toprove-2}
+     I_i(t)\xrightarrow[t\to \infty]{d} 0,\quad i = 2,3,  \mbox{ under } \tilde {\mathbb P}_\mu.\end{equation}
+      
 
 By \cite[Lemma 3.4.3]{Durrett2010Probability},
-\begin{align}\label{ineq: control of I1t}
+%\begin{align}\label{ineq: control of I1t}
+\begin{equation}\label{ineq: control of I1t}
     |\mathbb{\tilde{P}}_{\mu}[e^{i\theta I_1(t)}] - \mathbb{\tilde{P}}_{\mu} [e^{i\theta\tilde{I}_1(t)}]|
     \leq \sum_{k=0}^{\lfloor t-\ln t \rfloor}\mathbb{\tilde{P}}_{\mu}\big[|Y_{t,k}|\big],
     \quad t\geq t_0,
-\end{align}
+%\end{align}
+\end{equation}
     where for all $k \geq 0$ and $t\geq k+1$,
 \begin{align*}
     Y_{t,k}
@@ -1186,7 +1235,7 @@ By \cite[Lemma 3.4.3]{Durrett2010Probability},
     \mathbb{\tilde{P}}_{\mu}\big[|Y_{t,k}|\mathbf{1}_{\mathcal{D}^c_{t,k}}\big]
     \leq C e^{-\delta (t-k)}.
 \end{align}
-    In fact, let $C_1$ be the constant in  Lemma \ref{lem: control of Wt} corresponding to this fixed $\gamma$ and $C_2$ be the constant in Lemma \ref{lem: control of XT}. 
+    In fact, let $C_1$ be the constant in  Lemma \ref{lem: control of Wt} corresponding to this fixed $\gamma$ and $C_2$ be the constant in Lemma \ref{lem: control of XT}.
     By Chebyshev's inequality, there exists $C>0$ such that for all $k \geq 0$ and $t\geq k+1$,
 \begin{align}
 \label{eq: prob of Dtkc}
@@ -1232,7 +1281,7 @@ By \cite[Lemma 3.4.3]{Durrett2010Probability},
     \\&\leq \frac{1}{1+\beta} \max\{e^{\eta_1 (t-k-1)}, \frac{1}{2}e^{\eta_1(t-k-1)}\}^{\frac{\beta}{1+\beta}}e^{-\eta_0(t-k-1)}
     \\&\leq \frac{1}{1+\beta} e^{\eta_1 (t-k-1)} e^{-\eta_0(t-k-1)}
     =\frac{1}{1+\beta}  e^{-(\eta_0 - \eta_1)(t-k-1)},
-    \quad \text{ on } \mathcal D_{t,k}, 
+    \quad \text{ on } \mathcal D_{t,k},
 \end{align*}
     and
 \begin{align*}
@@ -1247,7 +1296,9 @@ By \cite[Lemma 3.4.3]{Durrett2010Probability},
      \leq C e^{-(\eta_0 - 3\eta_1)(t-k-1)},
      \quad k \geq 0, t\geq k+1.
 \end{align}
-    According to Lemma \ref{lem: control of mgtrs}, \eqref{eq: control of Ykt}, \eqref{ineq: control of Kkt}, there exist constants $C,C'>0$ such that  for all $k\geq 0$ and $t\geq k+1$,
+   % According to Lemma \ref{lem: control of mgtrs}, \eqref{eq: control of Ykt}, \eqref{ineq: control of Kkt}, 
+   According to Lemma \ref{lem: control of mgtrs}, \eqref{eq: control of Ykt} and  \eqref{ineq: control of Kkt}, 
+    there exist constants $C,C'>0$ such that  for all $k\geq 0$ and $t\geq k+1$,
 \begin{align}
 \label{eq: Y in D}
     &\mathbb{\tilde{P}}_{\mu}\big[|Y_{t,k}|\mathbf{1}_{\mathcal{D}_{t,k}}\big]
@@ -1256,7 +1307,7 @@ By \cite[Lemma 3.4.3]{Durrett2010Probability},
     \\&\leq \frac{C}{\mathbb{P}_{\mu}(D^c)}|\theta|e^{-\frac{\alpha}{1+\beta}t}\|\mathcal{I}_{t-k-1}^{t-k}\langle f,X_t\rangle\|_{\mathbb P_\mu; 1+\gamma} e^{-(\eta_0 - 3\eta_1)(t-k - 1)}
     \\&\leq C' e^{-\frac{\alpha}{1+\beta}t}e^{\frac{\alpha}{1+\gamma}t}e^{\frac{\gamma \alpha-\kappa_f(1+\gamma)b}{1+\gamma}k}e^{-(\eta_0 - 3\eta_1)(t-k)}\\&= C' e^{(\frac{\alpha}{1+\gamma}-\frac{\alpha}{1+\beta})(t-k)}e^{-(\eta_0 - 3\eta_1)(t-k-1)},
 \end{align}
-    as desired in this step. 
+    as desired in this step.
     In the last equality, we used the fact that
 \[
     -(\frac{\alpha}{1+\gamma}-\frac{\alpha}{1+\beta})
@@ -1266,25 +1317,33 @@ By \cite[Lemma 3.4.3]{Durrett2010Probability},
 \]
 
     Step 3. We will show that there exist $C, \delta> 0$ such that for $t$ large enough,
-\[
+%\[
+\begin{equation}\label{domi-difference of Is}
     |\mathbb{\tilde{P}}_{\mu}[e^{i\theta I_1(t)}] - \mathbb{\tilde{P}}_{\mu}[e^{i\theta\tilde{I}_1(t)}]|
     \leq C t^{-\delta}.
-\]
+%\]
+\end{equation}
     In fact, according to \eqref{thm121} and \eqref{thm122}, there exist $C,\delta > 0$ such that
     for all $k \geq 0$ and $t\geq k+1$ we have,
 \[
-    \tilde{\mathbb P}_\mu\big[|Y_{t,k}|\big] 
+    \tilde{\mathbb P}_\mu\big[|Y_{t,k}|\big]
     \leq C e^{-\delta(t-k)}.
 \]
     Therefore, there exist $C, \delta > 0$ and $C'$ such that for all $t \geq 1$,
 \begin{align}
     &\sum_{k=0}^{\lfloor t-\ln t \rfloor} \tilde {\mathbb P}_\mu\big[|Y_{t,k}|\big]
     \leq C\sum_{k=0}^{\lfloor t-\ln t \rfloor} e^{-\delta(t-k)}
-    = C e^{-\delta t}\sum_{k=0}^{\lfloor t-\ln t \rfloor} e^{\delta k} 
-    \\&\leq C' e^{-\delta t}e^{\delta (t-\ln t)} 
+    = C e^{-\delta t}\sum_{k=0}^{\lfloor t-\ln t \rfloor} e^{\delta k}
+    \\&\leq C' e^{-\delta t}e^{\delta (t-\ln t)}
     = C'\frac{1}{t^{\delta}},
 \end{align}
-    giving the desired result in this step.
+%    giving the desired result in this step.
+which implies \eqref{domi-difference of Is}  by \eqref{ineq: control of I1t}.
+    
+    %new added
+    Letting $t\to\infty$ in \eqref{domi-difference of Is}, we get \eqref{toprove-1}.
+    
+    %end new
 
     Step 4. We will show that $I_2(t) \xrightarrow[t\to \infty]{d} 0$ with respect to $\mathbb{\tilde{P}}_{\mu}$.
     In fact, let $\mathcal{E}_t:=\{\|X_t\|>t^{-1/2}e^{\alpha t}\}$. According to Lemma \ref{lem: control of XT}, there exists $C>0$ such that
@@ -1312,11 +1371,13 @@ By \cite[Lemma 3.4.3]{Durrett2010Probability},
 \end{align*}
 	From this and \eqref{Theorem123}, we get the desired result in this step.
 
-	Step 5. We will show that $I_3(t) \xrightarrow[t\to \infty]{\tilde {\mathbb P}_\mu \text{-} a.s.} 0$. 
-	In fact, we can write
+	Step 5. We will show that $I_3(t) \xrightarrow[t\to \infty]{\tilde {\mathbb P}_\mu \text{-} a.s.} 0$.
+	%In fact, we can write
+In fact, we have
 \begin{align}
-	&|I_3(t)| 
-	\leq \frac{\langle |P^\alpha_tf|,X_0\rangle}{(t\|X_t\|)^{\frac{1}{1+\beta}}}
+	&|I_3(t)|
+	%\leq \frac{\langle |P^\alpha_tf|,X_0\rangle}{(t\|X_t\|)^{\frac{1}{1+\beta}}}
+\leq \frac{\langle |T^\alpha_tf|,X_0\rangle}{(t\|X_t\|)^{\frac{1}{1+\beta}}}
 	\leq \frac{\langle e^{\alpha t - \kappa_f b t}Qf,X_0\rangle}{(te^{\alpha t} H_t)^{\frac{1}{1+\beta}}}
 	\\& = t^{-\frac{1}{1+\beta}} e^{\frac{\beta \alpha t}{1+\beta} - k_fbt} H_t^{-\frac{1}{1+\beta}} \langle Qf,X_0\rangle
 	\\& = t^{-\frac{1}{1+\beta}} H_t^{-\frac{1}{1+\beta}} \langle Qf,X_0\rangle
@@ -1341,7 +1402,7 @@ By \cite[Lemma 3.4.3]{Durrett2010Probability},
     \sum_{p\in \mathbb Z_+^d:|p|= \kappa_f}\langle f,\phi_p\rangle_\varphi H_t^p+e^{-(\alpha-\kappa_fb)t} \langle \tilde{f},X_t\rangle,
     \quad t\geq 0.
 \end{align*}
-	According to Lemma \ref{lemma26}, 
+	According to Lemma \ref{lemma26},
 	we have
 \begin{align}
 \label{as convergence}
@@ -1357,18 +1418,21 @@ $\mathbb{P}_{\mu}$-a.s. and in $L^{1+\gamma}(\mathbb{P}_{\mu})$ for any $\gamma\
 \end{align}
 	converges in $L^{1+\gamma}(\mathbb{P}_{\mu})$ for any $\gamma\in(0,\beta)$, and converges a.s. provided $f\in C^2(\mathbb R^d)$.
 
-	Step 1. Let $g\in \mathcal P$. 
-	Let $a > 0$ be such that $a< \kappa_g$ and $a < \frac{\alpha \beta}{b(1+\beta)}$. 
+	Step 1. Let $g\in \mathcal P$.
+	Let $a > 0$ be such that $a< \kappa_g$ and $a < \frac{\alpha \beta}{b(1+\beta)}$.
 	We will show that for each $\gamma\in (0,\beta)$ there exist constants $C,\delta > 0$ such that
 \[
-	\|e^{-(\alpha - ab)t} \langle g, X_t\rangle\|_{\mathbb P_\mu;1+\gamma} 
+	\|e^{-(\alpha - ab)t} \langle g, X_t\rangle\|_{\mathbb P_\mu;1+\gamma}
 	\leq C e^{-\delta t},
 	\quad t\geq 0.
-\] 
-	In order to do this, we choice a $\gamma_0 \in (0,\beta)$ close enough to $\beta$ such that, for each $\gamma \in [\gamma_0, \beta)$, we have $a < \frac{\alpha\gamma}{b(1+\gamma)}$.
+\]
+	In order to do this, 
+%we choice a $\gamma_0 \in (0,\beta)$ close enough to $\beta$ such that, 
+we choose a $\gamma_0 \in (0,\beta)$ close enough to $\beta$ such that, 
+for each $\gamma \in [\gamma_0, \beta)$, we have $a < \frac{\alpha\gamma}{b(1+\gamma)}$.
 	Then, according to Lemma \ref{lem: control moment}, we have, for each $\gamma \in (0,\beta)$,
 \begin{enumerate}
-\item 
+\item
 	if $\gamma \in [\gamma_0, \beta)$ and $\alpha\gamma> \kappa_g (1+\gamma)b$, then there exists $C>0$ such that
 \[
     \|e^{-(\alpha - ab)t} \langle g, X_t\rangle\|_{\mathbb P_\mu;1+\gamma}
@@ -1376,7 +1440,7 @@ $\mathbb{P}_{\mu}$-a.s. and in $L^{1+\gamma}(\mathbb{P}_{\mu})$ for any $\gamma\
     \leq C  e^{-(\kappa_g - a)bt},
     \quad t\geq 0;
 \]
-\item 
+\item
 	if $\gamma \in [\gamma_0, \beta)$ and $\alpha\gamma=\kappa_g(1+\gamma)b$, then there exists $C>0$ such that
 \[
      \|e^{-(\alpha - ab)t} \langle g, X_t\rangle\|_{\mathbb P_\mu;1+\gamma}
@@ -1384,7 +1448,7 @@ $\mathbb{P}_{\mu}$-a.s. and in $L^{1+\gamma}(\mathbb{P}_{\mu})$ for any $\gamma\
      = C t e^{-(\frac{\alpha \gamma}{1+\gamma} - ab)t},
      \quad t\geq 0;
 \]
-\item 
+\item
 	if $\gamma \in [\gamma_0, \beta)$ and $\alpha\gamma < \kappa_g (1+\gamma)b$, then there exists $C>0$ such that
 \[
     \|J_t\|_{\mathbb{P}_{\mu};1+\gamma}
@@ -1392,16 +1456,18 @@ $\mathbb{P}_{\mu}$-a.s. and in $L^{1+\gamma}(\mathbb{P}_{\mu})$ for any $\gamma\
      = C  e^{-(\frac{\alpha \gamma}{1+\gamma} - ab)t},
      \quad t\geq 0;
 \]
+{\bf Question: $J_t$ should be $e^{-(\alpha - ab)t} \langle g, X_t\rangle$, right?}
 \item
-	if $\gamma \in (0,\gamma_0)$ then, thanks to (1)--(3) above, and the fact that $\|J_t\|_{\mathbb{P}_{\mu};1+\gamma} 
+	if $\gamma \in (0,\gamma_0)$ then, thanks to (1)--(3) above, and the fact that $\|J_t\|_{\mathbb{P}_{\mu};1+\gamma}
 	\leq \|J_t\|_{\mathbb{P}_{\mu};1+\gamma_0}$, there exist $C, \delta >0$ such that
 \[
-	\|J_t\|_{\mathbb{P}_{\mu};1+\gamma} 
+	\|J_t\|_{\mathbb{P}_{\mu};1+\gamma}
 	\leq Ce^{-\delta t},
 	\quad t\geq 0.
 \]
+{\bf Question: the above $J_t$ should be replaced by $e^{-(\alpha - ab)t} \langle g, X_t\rangle$, right?}
 \end{enumerate}
-	Thus, the desired conclusion in this step is valid. 
+	Thus, the desired conclusion in this step is valid.
 	In particular, by taking $g = \tilde f$ and $a = \kappa_f$, we get that $J_t$ converges to $0$ in $L^{1+\gamma}(\mathbb{P}_{\mu})$ for any $\gamma\in(0,\beta)$.
 
 	Step 2.
@@ -1414,10 +1480,10 @@ $\mathbb{P}_{\mu}$-a.s. and in $L^{1+\gamma}(\mathbb{P}_{\mu})$ for any $\gamma\
 and
 \begin{align}
     Y_t^{g,a}
-    :=\int_0^t e^{-(\alpha-ab)s}|\langle (L+ab)g,X_s\rangle|ds, 
+    :=\int_0^t e^{-(\alpha-ab)s}|\langle (L+ab)g,X_s\rangle|ds,
     \quad g\in \mathcal P\cap C^2(\mathbb R^d).
 \end{align}
-	Now choose $a_0 \in (\kappa_{f}, \kappa_f + 1)$ close enough to $\kappa_f$ so that $a_0 < \frac{\alpha \beta}{b(1+\beta)}$. 
+	Now choose $a_0 \in (\kappa_{f}, \kappa_f + 1)$ close enough to $\kappa_f$ so that $a_0 < \frac{\alpha \beta}{b(1+\beta)}$.
 	According to \eqref{defmartingale}, we have
 \begin{align*}
     J_t
@@ -1427,9 +1493,9 @@ and
 	So we only need to show that
 \begin{align*}
     e^{-(a_0-\kappa_f)b t}M_t^{\tilde{f},a_0}
-    \xrightarrow[t\to \infty]{} 0, 
+    \xrightarrow[t\to \infty]{} 0,
     \quad e^{-(a_0-\kappa_f)b t}L_t^{\tilde{f},a_0}
-    \xrightarrow[t\to \infty]{} 0 
+    \xrightarrow[t\to \infty]{} 0
     \quad \mathbb{P}_{\mu}\text{-a.s.}
 \end{align*}
 	Notice that $\kappa_{(L+a_0 b)\tilde{f}}=\kappa_{\tilde{f}}\geq \kappa_f+1 > a_0$.
@@ -1456,28 +1522,30 @@ Since $Y_t^{\tilde{f},a_0}$ is increasing in $t$, it converges to some finite ra
 \begin{align*}
     \|M_t^{\tilde{f},a_0}\|_{\mathbb{P}_{\mu};1+\gamma}\leq  \|e^{-(\alpha-a_0 b)t}\langle \tilde{f},X_t\rangle)\|_{\mathbb{P}_{\mu};1+\gamma}+\|L_t^{\tilde{f},a_0}\|_{\mathbb{P}_{\mu};1+\gamma}\leq C(e^{-\delta t}+\frac{1}{\delta}),\quad t\geq 0.
 \end{align*}
-	This implies that the martingale converges almost surely. 
-	As a consequence, 
+	This implies that the martingale converges almost surely.
+	As a consequence,
 \[
 	\lim_{t\rightarrow\infty} e^{-(a_0-\kappa_f)bt}M_t^{\tilde{f},a}
 	=0,
 	\quad \mathbb P_\mu\text{-a.s.}
-\] 
+\]
 	
 	The proof is now complete.
 
 \subsection{Proof of Theorem \ref{Theorem13}}
-	Let $f\in \mathcal P$ be such that $\alpha \beta < \kappa_f b(1+\beta)$. 
-	Let $t_0 > 1$ be large enough so that 
+	Let $f\in \mathcal P$ be such that $\alpha \beta < \kappa_f b(1+\beta)$.
+	Let $t_0 > 1$ be large enough so that
 \[
-	\lceil t - \ln t\rceil 
+	\lceil t - \ln t\rceil
 	\leq \lfloor t \rfloor - 1,
 	\quad t\geq t_0.
 \]
 	Write
 \begin{align*}
 	&\frac{\langle f,X_t\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}
-	\\&=\sum_{k=0}^{\lfloor t-\ln t \rfloor} \frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}+ \Big(\sum_{k=\lceil t-\ln t \rceil}^{\lfloor t \rfloor-1} \frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}+\frac{\mathcal I_0^{t-\lfloor t \rfloor}\langle f ,X_t\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}\Big) + \frac{\langle P_t^\alpha f, X_0\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}
+	\\&=\sum_{k=0}^{\lfloor t-\ln t \rfloor} \frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}+ \Big(\sum_{k=\lceil t-\ln t \rceil}^{\lfloor t \rfloor-1} \frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}+\frac{\mathcal I_0^{t-\lfloor t \rfloor}\langle f ,X_t\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}\Big) + 
+%\frac{\langle P_t^\alpha f, X_0\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}
+\frac{\langle T_t^\alpha f, X_0\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}
 	\\&=:I'_1(t)+I'_2(t)+I'_3(t),
 	\quad t\geq t_0.
 \end{align*}
@@ -1487,8 +1555,11 @@ Since $Y_t^{\tilde{f},a_0}$ is increasing in $t$, it converges to some finite ra
  	:=\sum_{k=0}^{\lfloor t-\ln t \rfloor}\frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{( e^{\alpha(k+1)}\|X_{t-k-1}\|)^{\frac{1}{1+\beta}}},
  	\quad t > t_0,
  \]
-    Let $\theta\in \mathbb{R}$ and $\mu\in \mathcal M_c(\mathbb R^d)$. 
-    Taking $\theta_k=(e^{\alpha})^{-\frac{1}{1+\beta}} \theta $ and $n={\lfloor t-\ln t \rfloor}$ in Corollary \ref{corollary31}, we get that there exist $C,\delta > 0$ such that
+    Let $\theta\in \mathbb{R}$ and $\mu\in \mathcal M_c(\mathbb R^d)$.
+    Taking $\theta_k=(e^{\alpha})^{-\frac{1}{1+\beta}} \theta $ and $n={\lfloor t-\ln t \rfloor}$ in 
+  %  Corollary \ref{corollary31}, 
+  Proposition \ref{corollary31},
+    we get that there exist $C,\delta > 0$ such that
 \begin{align*}
     \Big|\mathbb{\tilde{P}}_{\mu} [e^{i\theta\tilde I'_1(t)} ]-\exp\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor}m_k[\theta f]\Big)\Big|
     \leq C e^{-\delta(t - \lfloor t - \ln t\rfloor)}
@@ -1504,7 +1575,7 @@ Since $Y_t^{\tilde{f},a_0}$ is increasing in $t$, it converges to some finite ra
     Y'_{t,k}
     :=\exp\Big(i\theta\frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{( e^{\alpha(k+1)}\|X_{t-k-1}\|)^{\frac{1}{1+\beta}}}\Big)-\exp\Big(i\theta\frac{\mathcal I_{t-k-1}^{t-k}\langle f ,X_t\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}\Big).
 \end{align*}
-	Then we have 
+	Then we have
 \begin{align}
 \label{ineq: control of I1tb}
     |\mathbb{\tilde{P}}_{\mu}[e^{i\theta I'_1(t)}] - \mathbb{\tilde{P}}_{\mu} [e^{i\theta\tilde{I}'_1(t)}]|
@@ -1528,7 +1599,7 @@ Since $Y_t^{\tilde{f},a_0}$ is increasing in $t$, it converges to some finite ra
     \\& \leq C e^{-\frac{\alpha}{1+\beta} t} \|\mathcal I_{t-k-1}^{t-k}\langle f, X_t\rangle \|_{\mathbb P_\mu; 1+\gamma}e^{-(\eta_0 - 3\eta_1)(t-k)} + Ce^{-\delta(t-k)}
     \\& \leq C'( e^{-\frac{\alpha}{1+\beta}t}e^{\frac{\alpha}{1+\gamma}t}e^{\frac{\gamma \alpha-\kappa_f(1+\gamma)b}{1+\gamma}k}e^{-(\eta_0 - 3\eta_1)(t-k)}+ e^{-\delta(t-k)}).
 \end{align*}
-Since $\alpha\beta<\kappa_f(1+\beta)b$,  we have  
+Since $\alpha\beta<\kappa_f(1+\beta)b$,  we have
 \begin{align}
 \label{eq: condition for supercritical}
 	&-(\frac{\alpha}{1+\gamma}-\frac{\alpha}{1+\beta})
@@ -1545,15 +1616,15 @@ Since $\alpha\beta<\kappa_f(1+\beta)b$,  we have
 \end{align*}
 Now we can use the same argument as in Step 3 in Section \ref{sec: proof of thm 1.3} to prove $|\mathbb{\tilde{P}}_{\mu}[e^{i\theta I'_1(t)}]-\mathbb{\tilde{P}}_{\mu}[e^{i\theta\tilde I'_1(t)}]|\xrightarrow[t\to \infty]{} 0$.
 
-	Step 2. 
-	We will show that $I'_2(t)\xrightarrow[t\to \infty]{d} 0$. 
+	Step 2.
+	We will show that $I'_2(t)\xrightarrow[t\to \infty]{d} 0$.
 	Let $\gamma \in (0,\beta)$.
 	According to \eqref{eq: condition for supercritical}, we can choose $\epsilon > 0$ small enough so that
 \[
-	q:= - \frac{\alpha \gamma-\kappa_f(1+\gamma)b}{1+\gamma} 
+	q:= - \frac{\alpha \gamma-\kappa_f(1+\gamma)b}{1+\gamma}
 	> \frac{\alpha}{1+\gamma}-\frac{\alpha}{1+\beta} + \frac{2\epsilon}{1+\beta} > 0.
 \]
-	Let 
+	Let
 \[
 	\mathcal E_t
 	:=\{\|X_t\|>e^{(\alpha-\epsilon )t}\},
@@ -1569,7 +1640,7 @@ Now we can use the same argument as in Step 3 in Section \ref{sec: proof of thm 
     \quad t\geq t_0.
 \end{align}
 	According to Lemma \ref{lem: control of mgtrs}, there exist $C,C',C''>0$ such that for all
-	$t\ge t_0$, 
+	$t\ge t_0$,
 \begin{align*}
     &|\mathbb{\tilde{P}}_{\mu} [ (e^{i\theta I'_2(t)}-1)\mathbf{1}_{\mathcal{E}_t}]|
     \leq |\theta| \mathbb{\tilde{P}}_{\mu} \big[ |I'_2(t)|\mathbf{1}_{\mathcal{E}_t}\big]
@@ -1582,11 +1653,13 @@ Now we can use the same argument as in Step 3 in Section \ref{sec: proof of thm 
 \end{align*}
 	Therefore, we get the desired result in this step.
 
-	Step 3. We will show that $I'_3(t) \xrightarrow[t\to \infty]{\tilde {\mathbb P}_\mu \text{-} a.s.} 0$. 
-	In fact, we can write
+	Step 3. We will show that $I'_3(t) \xrightarrow[t\to \infty]{\tilde {\mathbb P}_\mu \text{-} a.s.} 0$.
+%	In fact, we can write
+In fact, we have
 \begin{align}
-	&|I'_3(t)| 
-	\leq \frac{\langle |P^\alpha_tf|,X_0\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}
+	&|I'_3(t)|
+	%\leq \frac{\langle |P^\alpha_tf|,X_0\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}
+     \leq \frac{\langle |T^\alpha_tf|,X_0\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}
 	\leq \frac{\langle e^{\alpha t - \kappa_f b t}Qf,X_0\rangle}{(e^{\alpha t} H_t)^{\frac{1}{1+\beta}}}
 	\\& = e^{(\frac{\beta \alpha }{1+\beta} - k_fb)t} H_t^{-\frac{1}{1+\beta}} \langle Qf,X_0\rangle
 	\xrightarrow[t\to \infty]{\tilde {\mathbb P}_\mu \text{-} a.s.} 0.
@@ -1630,7 +1703,7 @@ Now we can use the same argument as in Step 3 in Section \ref{sec: proof of thm 
 
 \begin{lem}
 \label{lem: extension lemma for branching mechanism}
-    Suppose that  $\nu$ is a measure on $(0,\infty)$ with $\int_{(0,\infty)} (u \wedge u^2) \nu(du)< \infty$. 
+    Suppose that  $\nu$ is a measure on $(0,\infty)$ with $\int_{(0,\infty)} (u \wedge u^2) \nu(du)< \infty$.
     Then functions
 \begin{equation}
     h (z) = \int_{(0,\infty)} (e^{-zu} - 1 + zu) \nu(du), \quad z \in \mathbb C_+
@@ -1641,27 +1714,27 @@ and
     h'(z) = \int_{(0,\infty)}(1- e^{-uz})u \nu(du), \quad z \in \mathbb C_+
 \end{equation}
     are well defined, continuous on $\mathbb C_+$ and holomorphic on $\mathbb C_+^0$.
-    Moreover, 
+    Moreover,
 \[
     \frac{h(z)-h(z_0)}{z-z_0} \xrightarrow[\mathbb C_+\ni z \to z_0]{} h'(z_0),\quad z_0 \in \mathbb C_+.
-\] 
+\]
 \end{lem}
 \begin{proof}
-    From Lemma \ref{lem: estimate of exponential remaining}, we know that $h$ and $h'$ are well defined on $\mathbb C_+$. 
+    From Lemma \ref{lem: estimate of exponential remaining}, we know that $h$ and $h'$ are well defined on $\mathbb C_+$.
     According to \cite[Theorem 3.2. \& Theorem 3.5]{SchillingSongVondracek2010Bernstein}, $h'$ is continuous on $\mathbb C_+$ and holomorphic on $\mathbb C_+^0$.
-    
+
     From Lemma \ref{lem: estimate of exponential remaining}, for each $z_0 \in \mathbb C_+$, we have that there exists $C>0$ such that for $z \in \mathbb C_+$ close enough to $z_0$ and any
     $u>0$,
 \begin{align}
     &\Big| \frac{e^{-zu} - e^{-z_0u}+(z-z_0) u}{z-z_0} \Big|
     = \frac{1}{|z-z_0|}\Big| \int_0^1 \big(-ue^{-(\theta z+(1-\theta)z_0)u}+u\big)(z-z_0)d\theta\Big|
-    \\ &\leq u\int_0^1 |1-e^{-(\theta z +(1-\theta)z_0)u}| d\theta 
+    \\ &\leq u\int_0^1 |1-e^{-(\theta z +(1-\theta)z_0)u}| d\theta
     \leq (2u) \wedge\Big( u^2\int_0^1|\theta z+(1-\theta)z_0|d\theta\Big)
     \leq C(u\wedge u^2).
 \end{align}
     Using this and the dominated convergence theorem, we have
 \begin{align}
-    &\frac{h(z)-h(z_0)}{z-z_0} = \int_{(0,\infty)} \frac{e^{-zu}+zu -(e^{-z_0u}+z_0u)}{z-z_0}  \nu(du) 
+    &\frac{h(z)-h(z_0)}{z-z_0} = \int_{(0,\infty)} \frac{e^{-zu}+zu -(e^{-z_0u}+z_0u)}{z-z_0}  \nu(du)
     \\&\xrightarrow[\mathbb C_+\ni z\to z_0]{} \int_{(0,\infty)}(1 - e^{-z_0u} )u\nu(du) = h'(z_0),
 \end{align}
     which says that $h$ is continuous on $\mathbb C_+$ and holomorphic on $\mathbb C_+^0$.
@@ -1685,7 +1758,8 @@ $
     From this definition we can show that $(z_1z_0)^\gamma = z_1^\gamma z_0^\gamma$ provided $\arg (z_1z_0)=\arg z_1 + \arg(z_0)$.
 
 
-    Recall that $\Gamma$ the Gamma function defined by
+%    Recall that $\Gamma$ the Gamma function defined by
+ Recall that the Gamma function  $\Gamma$ is defined by
 \begin{equation}
     \Gamma (x) := \int_0^\infty t^{x-1} e^{-t}dt,
     \quad x>0.
@@ -1694,7 +1768,7 @@ $
 \[
 	\Gamma(z+1) = z \Gamma(z),\quad z\in \mathbb C\setminus\{0, -1,-2,\dots\}.
 \]
-	Using this recursively, one get that
+	Using this recursively, one gets that
 \begin{align}
 \label{eq: definition of Gamma function}
     \Gamma(x)
@@ -1741,7 +1815,7 @@ $
     Notice that
 \begin{align}
 \label{eq: upper bound for beta power of z}
-	|z^\beta| 
+	|z^\beta|
 	= |e^{\beta \log |z| +i\beta \operatorname {arg}z}| = e^{\beta \log |z|} = |z|^\beta,
 	\quad z \in \mathbb C\setminus (-\infty, 0].
 \end{align}
@@ -1761,10 +1835,10 @@ $
 \end{align}
 \end{proof}
 
-	Suppose that $\varphi(\theta)$ is a continuous function from $\mathbb R$ into $\mathbb C$ such that $\varphi(0) = 1$ and $\varphi(\theta) \neq 0$ for all $\theta \in \mathbb R$. 
-	Then according to \cite[Lemma 7.6]{Sato1999Levy}, there is a unique continuous function $f(\theta)$ from $\mathbb R$ into $\mathbb C$ such that $f(0) = 0$ and $e^{f(\theta)} = \varphi(\theta)$. 
+	Suppose that $\varphi(\theta)$ is a continuous function from $\mathbb R$ into $\mathbb C$ such that $\varphi(0) = 1$ and $\varphi(\theta) \neq 0$ for all $\theta \in \mathbb R$.
+	Then according to \cite[Lemma 7.6]{Sato1999Levy}, there is a unique continuous function $f(\theta)$ from $\mathbb R$ into $\mathbb C$ such that $f(0) = 0$ and $e^{f(\theta)} = \varphi(\theta)$.
 	Such a function $f$ is called the distinguished logarithm of the function $\varphi$ and is denoted as $\operatorname{Log} \varphi(\theta)$.
-	In particular, let $\varphi$ be the characteristic function of an infinitely divisible random variable $Y$, then $h$ is called the L\'evy exponent of $Y$. 
+	In particular, let $\varphi$ be the characteristic function of an infinitely divisible random variable $Y$, then $h$ is called the L\'evy exponent of $Y$.
 	This distinguished logarithm should not be confused with the $\log$ function defined on $\mathbb C\setminus (-\infty, 0]$.
 
 \subsection{Feynman-Kac formula with complex values}
@@ -1780,7 +1854,7 @@ $
 
 \begin{lem}
     Let $t \geq 0$. Suppose that $\beta,\rho\in \mathcal B_b([0,t] \times E, \mathbb C)$ and $f\in \mathcal B_b(E, \mathbb C)$.
-    Then 
+    Then
 \begin{equation}
     g(r,x) := \Pi_{r,x}[ H_{(r,t)}^{(\beta+\rho)} f(\xi_t)],\quad r \in [0,t], x\in E,
 \end{equation}
@@ -1881,7 +1955,8 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M_E^1$ th
     Let $X$ be the non-presistent superprocess defined in Subsection \ref{sec: definition of superprocess} with its Kuznestov measure denoted by $(\mathbb N_x)_{x\in E}$.
     Define the mean semigroup
 \begin{equation}
-    P_t^\beta f(x)
+   % P_t^\beta f(x)
+   T_t^\beta f(x)
     := \Pi_{x}[e^{\int_0^t \beta(\xi_s)ds}f(\xi_t) \mathbf 1_{t< \zeta}],
     \quad t\geq 0, x\in E, f\in \mathcal B_b(E,\mathbb R_+).
 \end{equation}
@@ -1889,9 +1964,11 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M_E^1$ th
 \begin{equation}
 \label{eq: mean formula for superprocesses}
     \mathbb N_{\mu}[W_t(f)]
-    =\mathbf P_{\mu}[X_t(f)]=\mu(P^\beta_t f).
+    =\mathbf P_{\mu}[X_t(f)]=
+    %\mu(P^\beta_t f).
+    \mu(T^\beta_t f).
 \end{equation}
-    
+
     Define
 \begin{align}
     L_1(\xi)
@@ -1907,14 +1984,14 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M_E^1$ th
 \end{equation}
     This says that random variables $X_t(f)$ are well defined under probability $\mathbf P_{\delta_x}$ provided $f\in L_1(\xi)$.
     According to the branching property of the superprocess, they are infinitely divisible random variables.
-    Therefore, we can write 
+    Therefore, we can write
 \[
     U_t(\theta f)(x) := \operatorname{Log} \mathbf P_{\delta_x}[e^{i \theta X_t(f)}],
     \quad t\geq 0, f\in L_1(\xi), \theta \in \mathbb R, x\in E,
-\] 
+\]
     as their characteristic exponent.
     According to Campbell's formula, see \cite[Theorem 2.7]{Kyprianou2014Fluctuations} for example, we have
-\[   
+\[
     \mathbf P_{\delta_x} [e^{i\theta X_t(f)}]
     = \exp(\mathbb N_x[ e^{i\theta W_t(f)} - 1]),
     \quad t>0, f\in L_1(\xi), \theta \in \mathbb R, x\in E.
@@ -1931,7 +2008,9 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M_E^1$ th
 \begin{align}
 \label{eq: upper bound of psi(v)}
     \big|\psi\big(x,-U_tf\big)\big|
-    \leq C_1 P^\beta_t |f|(x)+C_2 P^\beta_t |f| (x)^2.
+    \leq C_1 P^\beta_t |f|(x)+
+    %C_2 P^\beta_t |f| (x)^2.
+     C_2 (T^\beta_t |f| (x))^2.
 \end{align}
 \end{lem}
 \begin{proof}
@@ -1954,13 +2033,16 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M_E^1$ th
 \label{eq: upper bound for vf}
     |U_tf(x)| \leq \mathbb N_x[|e^{i W_t(f)} - 1|]
     \leq \mathbb N_x[|i W_t(f)|]
-    \leq (P^\beta_t |f|)(x).
+ %   \leq (P^\beta_t |f|)(x).
+  \leq (T^\beta_t |f|)(x).
 \end{equation}
     Notice that, for any compact $K \subset \mathbb R$,
 \begin{equation}
 \label{eq: estimate of deriavetive of v(theta)}
     \mathbb N_x\Big[\sup_{\theta \in K} \Big|\frac{\partial}{\partial \theta} (e^{i\theta W_t(f)} - 1) \Big|\Big]
-    \leq \mathbb N_x[|W_t(f)|] \sup_{\theta \in K}|\theta| \leq (P^\beta_t |f|)(x) \sup_{\theta \in K}|\theta| < \infty.
+    \leq \mathbb N_x[|W_t(f)|] \sup_{\theta \in K}|\theta| 
+    %\leq (P^\beta_t |f|)(x) \sup_{\theta \in K}|\theta| < \infty.
+    \leq (T^\beta_t |f|)(x) \sup_{\theta \in K}|\theta| < \infty.
 \end{equation}
     Therefore, according to \cite[Theorem A.5.2.]{Durrett2010Probability},
     $U_t(\theta f)(x)$ is differentiable in $\theta \in \mathbb R$ with
@@ -1973,7 +2055,8 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M_E^1$ th
 \begin{equation}
 \label{eq: upper bounded for derivative of v(theta)}
     \sup_{\theta \in \mathbb R}\Big| \frac{\partial}{\partial \theta}U_t(\theta f)(x)\Big|
-    \leq ( P^\beta_t |f|)(x).
+    %\leq ( P^\beta_t |f|)(x).
+    \leq ( T^\beta_t |f|)(x).
 \end{equation}
     From the dominate convergence theorem, we can verify that $(\partial/\partial \theta)U_tf(x)$ is continuous in $\theta$.
     In other words, $\theta \mapsto -U_t(\theta f)(x)$ is a $C^1$ map from $\mathbb R$ to $\mathbb C_+$.
@@ -1990,8 +2073,12 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M_E^1$ th
     \\&= \Big| -\beta(x)- 2\alpha(x) U_tf(x)+ \int_{(0,\infty)} y (1- e^{y U_tf(x)} ) \pi(x,dy)\Big|
     \\&= \Big| - \beta(x)- 2\alpha(x)\mathbb N_x[e^{i W_{t}(f)} - 1]  + \int_{(0,\infty)} y \mathbf P_{y \delta_x}[1-e^{i X_{t}(f)}] \pi(x,dy) \Big|
 \\ &\leq \|\beta\|_\infty + 2\alpha(x)\mathbb N_x[W_t(|f|)]+ \int_{(0,\infty)} y\mathbf P_{y\delta_x}[2\wedge X_t(|f|)] \pi(x,dy)
-\\ &\leq \|\beta\|_\infty + 2\|\alpha\|_\infty  P^\beta_t |f|(x) + \Big(\sup_{x\in E}\int_{(0,1]}y^2 \pi(x,dy)\Big)~P^\beta_t |f|(x) + 2\sup_{x\in E}\int_{(1,\infty)} y \pi(x,dy)
-\\ &=: C_1 + C_2(P^\beta_t |f|)(x),
+\\ &\leq \|\beta\|_\infty + 2\|\alpha\|_\infty 
+% P^\beta_t |f|(x) + \Big(\sup_{x\in E}\int_{(0,1]}y^2 \pi(x,dy)\Big)~P^\beta_t |f|(x)
+T^\beta_t |f|(x) + \Big(\sup_{x\in E}\int_{(0,1]}y^2 \pi(x,dy)\Big)~T^\beta_t |f|(x)
+  + 2\sup_{x\in E}\int_{(1,\infty)} y \pi(x,dy)
+%\\ &=: C_1 + C_2(P^\beta_t |f|)(x),
+\\ &=: C_1 + C_2(T^\beta_t |f|)(x),
 \end{split}
 \end{equation}
     where $C_1, C_2$ are constants independent on $f,x$ and $t$.
@@ -2006,9 +2093,9 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M_E^1$ th
     \in \mathbb C,
     \quad x\in E, t\geq 0.
 \]
-    are well defined. 
+    are well defined.
 
-    In fact, using Jensen's inequality and the Markov property, we have 
+    In fact, using Jensen's inequality and the Markov property, we have
 \begin{align}
 \label{eq: domination of psi(v)}
     &\Pi_x\Big[\int_0^t \big|\psi \big(\xi_s,-U_{t-s}f\big)\big|ds\Big]
@@ -2018,7 +2105,7 @@ Let $E$ be locally compact separable metric space. Denote by $\mathcal M_E^1$ th
 \end{align}
 
 \subsection{}
-	Let $X$ be the non-persistent superprocess discussed in Subsection \ref{sec: definition of vf}. 
+	Let $X$ be the non-persistent superprocess discussed in Subsection \ref{sec: definition of vf}.
 	In this subsection, we will prove the following:
 	\begin{prop}
 \label{prop: complex FKPP-equation}
@@ -2032,9 +2119,10 @@ and
 \begin{equation}
 \label{eq: complex FKPP-equation with FK-transform}
     U_tf(x) -  \int_0^t P_{t-s}^{\beta} \psi_0\big(\cdot,-U_sf\big) (x)~ds
-    \\= iP_t^\beta f(x).
+   % \\= iP_t^\beta f(x).
+   \\= iT_t^\beta f(x).
 \end{equation}
-\end{prop} 
+\end{prop}
 
     To prove this, we will need the generalized spine decomposition theorem from \cite{RenSongSun2017Spine} which we now recall.
     Let $X$ be the non-persistent superprocess discussed in Subsection \ref{sec: definition of vf}.
@@ -2042,10 +2130,11 @@ and
     Suppose that $\mathbf P_{\delta_x}[X_T(f)] = \mathbb N_x[W_T(f)] = P^\beta_T f(x) \in (0,\infty)$, then we can define the following probability transforms:
 \begin{equation}
     d\mathbf P_{\delta_x}^{X_T(f)}
-    := \frac{X_T(f)}{P_T^\beta f(x)} d\mathbf P_{\delta_x};
+   := \frac{X_T(f)}{P_T^\beta f(x)} d\mathbf P_{\delta_x};
     \quad d\mathbb N_x^{W_T(f)}
     :=  \frac{W_T(f)}{P_T^\beta f(x)} d\mathbb N_x.
 \end{equation}
+({\bf Remark: I changed $P^\beta$ to $T^\beta$ above. But I find that is it not good to make this kind of changes is not good for above equation. So, I stop to make changes. Should we use $P^\beta$?})
     Following the definition in \cite{RenSongSun2017Spine}, we say that $\{\xi, \mathbf n;\mathbf Q_{x}^{(f,T)}\}$ is a spine representation of $\mathbb N_x^{W_T(f)}$ if
 \begin{itemize}
 \item
@@ -2157,7 +2246,7 @@ and
     U_{t-r}f(x) - \Pi_{r,x} \Big[\int_r^t \psi\big(\xi_s,-U_{t-s}f\big) ~ds\Big]
     = i\theta \Pi_{r,x} [f(\xi_t)]
 \end{equation}
-    and 
+    and
 \begin{equation}
     U_{t-r}f(x) - \Pi_{r,x} \Big[\int_r^t e^{\int_r^s \beta(\xi_u)du} \psi_0\big(\xi_s,- U_{t-s}f\big) ~ds\Big]
     = i\Pi_{r,x} [e^{\int_r^t\beta(\xi_u)du}f(\xi_t)].
