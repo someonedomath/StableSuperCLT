@@ -1,130 +1,253 @@
-\documentclass{article}
-
-\usepackage{cite}
+%%%----Versions-----------------------------
+% supCLT1.tex 2018/6/24 by Zhenyao
+% supCLT.tex 2018/6/29 by Jianjie
+%---The preamble----------------------
+\documentclass[12pt, a4paper]{amsart}
+\setlength{\textwidth}{\paperwidth}\addtolength{\textwidth}{-2in}\calclayout
 \usepackage[utf8]{inputenc}
-\usepackage{hyperref,amsmath,amssymb,amscd}
-\usepackage{amsthm}
-\usepackage{color}
+\usepackage{hyperref}
+\def\MR#1{\href{http://www.ams.org/mathscinet-getitem?mr=#1}{MR-#1}}
+\def\ARXIV#1{\href{https://arxiv.org/abs/#1}{arXiv:#1}}
+\usepackage{mathrsfs}
 \usepackage{bbm}
-\usepackage{appendix} 
-\newtheorem{proposition}{Proposition}
-\newtheorem{assumption}{Assumption}
-
-\newtheorem{remark}{Remark}[section]
-\newtheorem{lemma}{Lemma}[section]
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{notation}{Notation}[section]
-\newtheorem{definition}{Definition}[section]
-\newtheorem{conjecture}{Conjecture}[section]
-
-\title{Central Limit Theorems for Super Ornstein-Uhlenbeck Processes with stable Branching}
-\author{Jianjie Zhao }
-
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+\usepackage{stackrel}
+\usepackage{color}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{asp}{Assumption}
+\numberwithin{equation}{section}
+\allowdisplaybreaks
+%---Top matter------------------------------
 \begin{document}
-%%给公式前加章节编号
-\makeatletter
-\@addtoreset{equation}{section}
-\makeatother
-\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
-
+\title
+    %{\large Central Limit Theorems for Super Ornstein-Uhlenbeck Processes with stable Branching}
+    [CLT for Super-OU processes]
+    {CLT for Super-OU Processes with stable Branching}
+\author
+    [Y.-X. Ren, Z. Sun and J. Zhao]
+    {Yan-Xia Ren, Zhenyao Sun and Jianjie Zhao}
+%---Yan-Xia Ren
+\address
+    {Yan-Xia Ren\\
+    School of Mathematical Sciences\\
+    Peking University\\
+    Beijing, P. R. China, 100871}
+\email{yxren@math.pku.edu.cn}
+\thanks{The research of Yan-Xia Ren is supported in part by NSFC (Grant Nos. 11671017  and 11731009).}
+%---Zhenyao Sun
+\address
+    {Zhenyao Sun\\
+    School of Mathematical Sciences\\
+    Peking University\\
+    Beijing, P. R. China, 100871}
+\email{zhenyao.sun@pku.edu.cn}
+%---Jianjie Zhao
+\address
+    {Jianjie Zhao\\
+    School of Mathematical Sciences\\
+    Peking University\\
+    Beijing, P. R. China, 100871}
+\email{???@pku.edu.cn}
+%\begin{abstract}
+%\end{abstract}
+%\subjclass[2010]{60J80, 60F05}
+%\keywords{}
+%\date{}
 \maketitle
-
+%---Contents-----------------------
 \section{Introduction}
 \subsection{Model}
-
-We first fix our notation, for a vector $x\in \mathbb{R}^d$, we denote by $|x|$  its Euclidean norm. Let $\xi=\{\xi_t : t\geq 0\}$ be an Ornstein-Uhlenbeck prcess, short for OU process, on $\mathbb{R}^d$, with infinitesimal generator $L$. For any $f \in C^2(\mathbb{R}^d)$,
+%We first fix our notation, for a vector $x\in \mathbb{R}^d$, we denote by $|x|$  its Euclidean norm. Let $\xi=\{\xi_t : t\geq 0\}$ be an Ornstein-Uhlenbeck prcess, short for OU process, on $\mathbb{R}^d$, with infinitesimal generator $L$. For any $f \in C^2(\mathbb{R}^d)$,
+%\begin{equation}\label{generatior}
+%Lf(x)= \frac{1}{2}\sigma^2\Delta f(x)-b (x \cdot \nabla f(x))   
+%\end{equation}
+%where $\sigma>0$ is the diffusion parameter, $b>0$ is the drift parameters. What's more, we respectively use $\Delta$ and $\nabla$ to express the Laplace operator and gradient operator as usual.
+Let $d \in \mathbb N:= \{1,2,\dots\}$.
+For each $x\in \mathbb{R}^d$, write $|x|$ for its Euclidean norm. 
+Let $\xi=\{(\xi_t)_{t\geq 0}; (\Pi_x)_{x\in \mathbb R^d}\}$ be an $\mathbb R^d$-valued Ornstein-Uhlenbeck prcess (OU process) with infinitesimal generator $L$ such that
 \begin{equation}\label{generatior}
-Lf(x)= \frac{1}{2}\sigma^2\Delta f(x)-b (x \cdot \nabla f(x))   
+    Lf(x)
+    %= \frac{1}{2}\sigma^2\Delta f(x)-b (x \cdot \nabla f(x)), 
+    = \frac{1}{2}\sigma^2\Delta f(x)-b x \cdot \nabla f(x), 
+    \quad f \in C^2(\mathbb{R}^d), 
 \end{equation}
-where $\sigma>0$ is the diffusion parameter, $b>0$ is the drift parameters. What's more, we respectively use $\Delta$ and $\nabla$ to express the Laplace operator and gradient operator as usual.  
-
-For any $x\in \mathbb{R}^d$, We denote by $\Pi_x$ the law of $\xi$ starting from $x$. The semigroup of $\xi$ will be denoted by $\{T_t: t\geq 0\}$.
-
-In this paper, we consider a branching mechanism of the form  
+where $\sigma>0$ and $b>0$. 
+%For any $x\in \mathbb{R}^d$, We denote by $\Pi_x$ the law of $\xi$ starting from $x$. The semigroup of $\xi$ will be denoted by $\{T_t: t\geq 0\}$.
+Denoted by $(T_t)_{t\geq 0}$ the transition semigroup of $\xi$.
+%In this paper, we consider a branching mechanism of the form  
+%\begin{equation}\label{mechanism}
+%\psi(\lambda)=-\alpha \lambda + \lambda^{(1+\beta)}, \lambda \geq 0
+%\end{equation}
+%Where $\alpha = -\psi'(0+)>0$ and $\beta \in (0,1) $.
+Let $\psi$ be a function on $\mathbb C_+:= \{x+iy: x\in [0,\infty), y\in \mathbb R\}$ with
 \begin{equation}\label{mechanism}
-\psi(\lambda)=-\alpha \lambda + \lambda^{(1+\beta)}, \lambda \geq 0
+    \psi(z)
+    := - \alpha z + z^{1+\beta}, 
+    \quad z \in \mathbb C_+,
 \end{equation}
-Where $\alpha = -\psi'(0+)>0$ and $\beta \in (0,1) $.
-
-Let $\mathcal{M}(\mathbb{R}^d)$ be the space of finite measures on $\mathbb{R}^d$. We say a $\mathcal{M}(\mathbb{R}^d)$-value branching Markov process $X=\{(X_t)_{t\geq 0},\mathbb{P}_{\mu}\}$ is a super Ornstein-Uhlenbeck process (super-OU process) with branching mechanism $\psi$, if for any $t \geq 0$, positive bounded measurable functions $f$ on $\mathbb{R}^d$ and any $\mu \in \mathcal{M}(\mathbb{R}^d)$, we have 
+where $\alpha > 0$ and $\beta \in (0,1) $.
+%Let $\mathcal{M}(\mathbb{R}^d)$ be the space of finite measures on $\mathbb{R}^d$. 
+Denote by $\mathcal{M}(\mathbb{R}^d)$ the space of finite measures on $\mathbb{R}^d$.
+%We say a $\mathcal{M}(\mathbb{R}^d)$-value branching Markov process $X=\{(X_t)_{t\geq 0},\mathbb{P}_{\mu}\}$ is a super Ornstein-Uhlenbeck process (super-OU process) with branching mechanism $\psi$, if for any $t \geq 0$, positive bounded measurable functions $f$ on $\mathbb{R}^d$ and any $\mu \in \mathcal{M}(\mathbb{R}^d)$, we have 
+%\begin{equation} \label{super}
+%    \mathbb{P}_{\mu}(e^{-\langle f,X_t \rangle})=e^{-\langle u_f(\cdot , t), \mu \rangle},
+%\end{equation}
+%where  $u_f(\cdot , t)$ is the unique locally bounded positive solution to the equation
+%\begin{equation}\label{eq1}
+%     u_f(x , t) + \Pi_x \left( \int_0^t\psi(u_f(\xi_s,t-s))~ds\right) =\Pi_x [f(\xi_t)],
+%\end{equation}
+%In this paper, we write $\int f(x)\mu(dx)$ as $\langle f,\mu\rangle$. Put $\|\mu\|=\langle 1,\mu\rangle$. We assume that the parameter $\alpha$ in branching mechanism $\psi$ is larger than zero, i.e. $X$ is  supercritical.
+In this paper, we write $\int f(x)\mu(dx)$ as $\langle f,\mu\rangle$. Put $\|\mu\|=\langle 1,\mu\rangle$.
+We say a $\mathcal{M}(\mathbb{R}^d)$-value Markov process $X = \{(X_t)_{t\geq 0}; (\mathbb{P}_{\mu})_{\mu \in \mathcal M(\mathbb R^d)}\}$ is a super Ornstein-Uhlenbeck process (super-OU process) with branching mechanism $\psi$, if for each non-negative bounded measurable function $f$ on $\mathbb{R}^d$, we have
 \begin{equation} \label{super}
-    \mathbb{P}_{\mu}(e^{-\langle f,X_t \rangle})=e^{-\langle u_f(\cdot , t), \mu \rangle},
+    \mathbb{P}_{\mu}[e^{-\langle f,X_t \rangle}]
+    = e^{-\langle u_f(\cdot , t), \mu \rangle}, 
+    \quad t\geq 0, \mu \in \mathcal M(\mathbb R^d),
 \end{equation}
-where  $u_f(\cdot , t)$ is the unique locally bounded positive solution to the equation
+where $(x,t) \mapsto u_f(x, t)$ is the unique locally bounded positive solution to the equation
 \begin{equation}\label{eq1}
-     u_f(x , t) + \Pi_x \left( \int_0^t\psi(u_f(\xi_s,t-s))~ds\right) =\Pi_x [f(\xi_t)],
+     u_f(x , t) + \Pi_x \Big[ \int_0^t\psi\big(u_f(\xi_s,t-s)\big)~ds\Big] 
+     = \Pi_x [f(\xi_t)],
+     \quad x\in \mathbb R^d, t\geq 0.
 \end{equation}
-According to \cite[section 2]{ZL}, is equivalent to
+
+%According to \cite[section 2]{Li2011Measure}, is equivalent to
+According to \cite[section 2]{Li2011Measure}, the above is equivalent to
 \begin{equation}\label{eq2}
      u_f(x , t) + \int_0^t T_{t-s}\psi(u_f(\cdot,s))(x)~ds=T_tf(x),\quad x \in \mathbb{R}^d,~ t\geq 0.
 \end{equation}
 
-In this paper, we write $\int f(x)\mu(dx)$ as $\langle f,\mu\rangle$. Put $\|\mu\|=\langle 1,\mu\rangle$. We assume that the parameter $\alpha$ in branching mechanism $\psi$ is larger than zero, i.e. $X$ is  supercritical.
+    The existence of such superprocesses is well known, see \cite{EB} for instance. 
+    %Let $||X_t||=\langle 1, X_t \rangle$ be the total mass of the process $X$ at time $t$, then $\{\|X_t\|; t \geq 0\}$ is a continuous-state branching process with branching mechanism $\psi$.  
+    Note that $(\|X_t\|)_{t\geq 0}$ is a continuous-state branching process with branching mechanism $\psi$. 
+    %The fact $\psi(\infty)=\infty$ implies that the probability of extinction event $D:=\{\lim_{t \rightarrow \infty}||X_t||=0\}$ is contained in $(0,1)$, see, for example,  \cite[section 10.2.2]{Kyprianou2014Fluctuations}. 
+    The fact $\psi(\infty)=\infty$ implies that the probability of extinguish event $D:=\{\lim_{t \rightarrow \infty}||X_t||=0\}$ is contained in $(0,1)$, see \cite[Theorem 12.7]{Kyprianou2014Fluctuations} for example. 
+    %Let $\alpha^{\ast}$ be the larger root of $\psi=0$, we have $$\mathbb{P}_{\mu}\left(\lim_{t\rightarrow \infty}\|X_t\|=0\right)=e^{-\alpha^{\ast}\|\mu\|}.$$
+    In fact, 
+\begin{equation}
+    \mathbb{P}_{\mu} (\lim_{t \to \infty}\|X_t\|=0 )
+    = e^{-\alpha^* \|\mu\|},
+\end{equation}
+    where $\alpha^* := \sup\{\lambda \geq 0: \psi(\lambda) = 0\}$.
 
- The existence of such superprocesses is well known, see \cite{EB} for instance. Let $||X_t||=\langle 1, X_t \rangle$ be the total mass of the process $X$ at time $t$, then $\{\|X_t\|; t \geq 0\}$ is a continuous-state branching process with branching mechanism $\psi$.  The fact $\psi(\infty)=\infty$ implies that the probability of extinction event $D:=\{\lim_{t \rightarrow \infty}||X_t||=0\}$ is contained in $(0,1)$, see, for example,  \cite[section 10.2.2]{AK}. Let $\alpha^{\ast}$ be the larger root of $\psi=0$, we have
-$$\mathbb{P}_{\mu}\left(\lim_{t\rightarrow \infty}\|X_t\|=0\right)=e^{-\alpha^{\ast}\|\mu\|}.$$
-
-For any $f \in \mathcal{P}$, define the {\em Feyman-Kac semigroup} 
+%For any $f \in \mathcal{P}$, define the {\em Feyman-Kac semigroup}
+    Define the \emph{Fenyman-Kac semigroup} by  
 \begin{equation}\label{meansemigroup}
-    T^{\alpha}_t f(x) := \Pi_x [e^{\alpha t}f(\xi_t)], \quad x\in \mathbb{R}^d,t\geq 0,
+    T^{\alpha}_t f(x) 
+    := \Pi_x [e^{\alpha t}f(\xi_t)],
+    %\quad x\in \mathbb{R}^d,t\geq 0, 
+    \quad x\in \mathbb{R}^d,t\geq 0, f\in \mathscr B^+(\mathbb R^d).
 \end{equation}
-which is konwn as the {\em mean semigroup} of the superprocess $X$, in the sense that
+%which is konwn as the {\em mean semigroup} of the superprocess $X$, in the sense that
+    It is konwn that, see \cite[Proposition 2.27]{Li2011Measure} for example, $(T^\alpha_t)_{t\geq 0}$ is the \emph{mean semigroup} of $X$, in the sense that
 \begin{equation}\label{meanformula}
-    \mathbb{P}_{\mu}[\langle f, X_t \rangle] = \langle T_t^{\alpha t}f, \mu \rangle.
+    \mathbb{P}_{\mu}[\langle f, X_t \rangle] 
+    = \langle T_t^\alpha f, \mu \rangle,
+%new
+    \quad t\geq 0, f\in \mathscr B^+(\mathbb R^d).
+%end new
 \end{equation}
-see \cite[Proposition 2.27]{ZL}.  Notice that $T^{\alpha}_t f =e^{\alpha t}T_t f$.
+%see \cite[Proposition 2.27]{Li2011Measure}. 
+%Notice that $T^{\alpha}_t f =e^{\alpha t}T_t f$.
+Notice that $T^{\alpha}_t =e^{\alpha t}T_t$ for each $t \geq 0$.
+
+%The purpose of this paper is to establish some spatial central limit theorems for the super OU-process with stable branching \eqref{mechanism}. More precisely, consider the limit of 
+%$$\frac{\langle f,X_t\rangle-\|X_t\|\langle f, \varphi \rangle}{F_t},$$
+%we want to find $(F_t)_{t\geq0}$, for suitable test functions $f$, such that the former formula convergence to some non-degenerate random variable as $t\rightarrow \infty$.
 
 
-The purpose of this paper is to establish some spatial central limit theorems for the super OU-process with stable branching \eqref{mechanism}. More precisely, consider the limit of 
-$$\frac{\langle f,X_t\rangle-\|X_t\|\langle f, \varphi \rangle}{F_t},$$
-we want to find $(F_t)_{t\geq0}$, for suitable test functions $f$, such that the former formula convergence to some non-degenerate random variable as $t\rightarrow \infty$.
-
-
-\subsection{OU semigroup and Eigenfunctions}
-
+%\subsection{OU semigroup and Eigenfunctions}
+\subsection{OU semigroup}
+({\bf Do we have a good reference about those following result about the OU semigroup?})
 Recall that $\xi$ is an OU process with generator $L$. It is known that $\xi$ has an invariant density
 \begin{equation}\label{invariantdensity}
-    \varphi (x) =\left (\frac{b}{\pi \sigma^2}\right )^{\frac{d}{2}}\exp \left(-\frac{b}{\sigma^2}|x|^2 \right ),\quad x\in \mathbb{R}^d.
+    \varphi (x) 
+    =\Big (\frac{b}{\pi \sigma^2}\Big )^{\frac{d}{2}}\exp \Big(-\frac{b}{\sigma^2}|x|^2 \Big),\quad x\in \mathbb{R}^d.
 \end{equation}
 Let $L^2(\varphi):= \left\{ h: \int_{\mathbb{R}^d} |h(x)|^2 \varphi(x) dx < \infty \right\}$, then $L^2(\varphi)$ is an Hilbert space with inner product
-$$\langle f_1, f_2 \rangle_{\varphi} = \int_{\mathbb{R}^d}f_1(x)f_2(x)\varphi(x) dx, \quad f_1,f_2 \in L^2(\varphi).$$
+\begin{equation}
+\langle f_1, f_2 \rangle_{\varphi} 
+%= 
+:=
+\int_{\mathbb{R}^d}f_1(x)f_2(x)\varphi(x) dx, \quad f_1,f_2 \in L^2(\varphi).
+\end{equation}
 
-For $p=(p_1,p_2,...,p_d) \in \mathbb{Z}_+^{d}$, let $|p|=p_1+...+p_d$, $p!=p_1 \cdot ... \cdot p_n$ and $\partial x^p =\partial x_1^{p_1} \cdot ... \cdot \partial x_d^{p_d}$. We recall the Hermite polynomials $H_p$ in $\mathbb{R}^d$
-
-$$H_p(x):=(-1)^{|p|}e^{|x|^2} \frac{\partial ^{|p|}}{\partial x^p} \left ( e^{-|x|^2} \right ).$$
-It is known that, see \cite{GD} as an example, the eigenvalues of $L$ are $\{-bk: k =0,1,2,...\}$ and the eigenspace $A_k$ corresponding to $-bk$ is
-$$A_k = {\rm Span} \{\phi_p : |p|=k\},$$
+    %For $p=(p_1,p_2,...,p_d) \in \mathbb{Z}_+^{d}$, let $|p|=p_1+...+p_d$, $p!=p_1 \cdot ... \cdot p_n$ and $\partial x^p =\partial x_1^{p_1} \cdot ... \cdot \partial x_d^{p_d}$. We recall the Hermite polynomials $H_p$ in $\mathbb{R}^d$
+    For each $p = (p_k)_{k = 1\dots d} \in \mathbb{N}_0^{d}$, let $|p|=\sum_{k=1}^d p_k$, $p!= \prod_{k= 1}^d p_k !$ and $\partial x^p = \prod_{k = 1}^d\partial x_k^{p_k}$. 
+    The Hermite polynomials are defined by
+\begin{equation}
+    H_p(x)
+    %:=(-1)^{|p|}e^{|x|^2} \frac{\partial ^{|p|}}{\partial x^p} \left ( e^{-|x|^2} \right ).
+    :=(-1)^{|p|}\exp(|x|^2) \frac{\partial ^{|p|}}{\partial x^p} \exp(-|x|^2) ,
+    \quad x\in \mathbb R^d, p \in \mathbb{N}_0^{d}.
+\end{equation}
+%It is known that, see \cite{GD} as an example, the eigenvalues of $L$ are $\{-bk: k =0,1,2,...\}$ and the eigenspace $A_k$ corresponding to $-bk$ is
+%$$A_k = {\rm Span} \{\phi_p : |p|=k\},$$
+It is known that, see \cite{GD} for example, the generator $L$ of OU process $\xi$ can be viewed as an operator 
+%on $L^2(\phi)$ 
+on $L^2(\varphi)$ 
+with eigenvalues $\sigma(L)= \{-bk: k \in \mathbb N_0\}$.
+For each $k \in \mathbb N_0$, the eigenspace $A_k$ corresponding to eigenvalue $-bk$ of this operator is
+\begin{equation}
+    A_k 
+    %= \operatorname{Span} \{\phi_p : |p|=k\},
+    = \operatorname{Span} \{\phi_p : p\in \mathbb N_0^d, |p|=k\},
+\end{equation}
 where
 \begin{equation}\label{eigenfunction}
-    \phi_p(x)= \frac{1}{\sqrt{p!2^{|p|}}}H_p \left(\frac{\sqrt{b}}{\sigma}x \right ),\quad x\in \mathbb{R}^d, p\in \mathbb{Z}_+^d.
+	\phi_p(x) 
+    := \frac{1}{\sqrt{ p! 2^{|p|} }} H_p \Big(\frac{ \sqrt{b} }{\sigma}x \Big),
+    %\quad x\in \mathbb{R}^d, p\in \mathbb{Z}_+^d.
+    \quad x\in \mathbb{R}^d, p\in \mathbb N_0^d.
 \end{equation}
- The function $\phi_p$ is an eigenfunction of $L$ corresponding to the eigenvalue $-b|p|$, and satisfies 
+ %The function $\phi_p$ is an eigenfunction of $L$ corresponding to the eigenvalue $-b|p|$, and satisfies 
+ It is known that 
 \begin{equation}\label{semigroupformula}
-    T_t\phi_p(x)=e^{-b|p|t}\phi_p(x),\quad x\in \mathbb{R}^d.
+    T_t\phi_p(x)
+    =e^{-b|p|t}\phi_p(x),
+    \quad t\geq 0, x\in \mathbb{R}^d, p\in \mathbb N_0^d.
 \end{equation}
-Moreover, The polynomials $\{\phi_p(x)\}_{p \in \mathbb{Z}_+^d}$ form a complete orthonormal basis of $L^2(\varphi)$. Thus, for any $f\in L^2(\varphi)$, we have
-\begin{align}
-    f=\sum_{k=0}^{\infty}\sum_{|p|=k}a_p \varphi_p \quad {\rm in~} L^2(\varphi), \label{semicomp1}
-\end{align}
-where $a_p=\langle f, \phi_p \rangle_{\varphi}$. Let
+%Moreover, The polynomials $\{\phi_p(x)\}_{p \in \mathbb{Z}_+^d}$ form a complete orthonormal basis of $L^2(\varphi)$. Thus, for any $f\in L^2(\varphi)$, we have
+Moreover, it is known that $\{\phi_p: p \in \mathbb N_0^d\}$ forms a complete orthonormal basis of $L^2(\varphi)$. 
+Therefore, for each $f\in L^2(\varphi)$, 
+\begin{equation}\label{semicomp1}
+    f
+    =\sum_{k=0}^{\infty}\sum_{|p|=k}\langle f, \phi_p \rangle_{\varphi} \phi_p, 
+    \quad \text{in~} L^2(\varphi).
+\end{equation}
+%where $a_p=\langle f, \phi_p \rangle_{\varphi}$. 
+Let
 \begin{equation}\label{order}
-    \kappa(f):=\inf \left \{k\geq 0: \exists ~ p\in \mathbb{Z}_+^d,{\rm ~s.t.~}|p|=k {\rm ~and~}  a_p \neq 0\right \}
+    \kappa(f)
+    %:=\inf \left \{k\geq 0: \exists ~ p\in \mathbb{Z}_+^d,{\rm ~s.t.~}|p|=k {\rm ~and~}  a_p \neq 0\right \}
+    :=\inf \left \{k\geq 0: \exists ~ p\in \mathbb{Z}_+^d,{\rm ~s.t.~}|p|=k {\rm ~and~}  \langle f, \phi_p \rangle_{\varphi}\neq 0\right \}
 \end{equation}
 denote the order of function $f$ in $L^2(\varphi)$. Then $ \kappa(f)\geq 0$, in particular, the order of constant functions is zero.
 
 In this paper, we consider functions in the space of functions of ploynomial growth $\mathcal{P}$ defined as
-\begin{align*}
-     \mathcal{P}:=\big \{f\in \mathcal{B}(\mathbb{R}^d):\exists~ C, n>0, {\rm ~s.t.~} \forall x\in \mathbb{R}^d,~ |f(x)|\leq C(1+|x|)^n\big\}
-\end{align*}
-
-
-It is easy to see that $\mathcal{P} \subset L^2(\phi)$. What's more, for any $f \in \mathcal{P}$, there exists $R \in \mathcal{P}$ such that for any $t\geq 0$
-\begin{equation}\label{semigroupineq}
-    |T_tf(x)| \leq e^{-\kappa(f)bt}R(x) 
+\begin{equation}
+     \mathcal{P}
+     %:=\big \{f\in \mathcal{B}(\mathbb{R}^d):\exists~ C, n>0, {\rm ~s.t.~} \forall x\in \mathbb{R}^d,~ |f(x)|\leq C(1+|x|)^n\big\}.
+     :=\big \{f\in \mathcal{B}(\mathbb{R}^d):\exists~ C>0, n \in \mathbb N_0, {\rm ~s.t.~} \forall x\in \mathbb{R}^d,~ |f(x)|\leq C(1+|x|)^n\big\}.
 \end{equation}
-
-That is to say the rate of decay of the semigroup depending on $\kappa(f)$. The readers can find the prove in \cite[Fact 1.2]{MM}. 
+%It is easy to see that $\mathcal{P} \subset L^2(\phi)$. 
+It is easy to see that $\mathcal{P} \subset L^2(\varphi)$. 
+%What's more, 
+According to \cite[Fact 1.2]{MM},
+for any $f \in \mathcal{P}$, there exists $R \in \mathcal{P}$ such that for any $t\geq 0$,
+\begin{equation}\label{semigroupineq}
+    |T_tf(x)| \leq e^{-\kappa(f)bt}R(x).
+\end{equation}
+%That is to say the rate of decay of the semigroup depending on $\kappa(f)$. 
+%The readers can find the prove in \cite[Fact 1.2]{MM}. 
 
 \subsection{Characteristic functions}
  Let $X$ be a super OU-process with initial configuration $\mu$. For any $f \in \mathcal{P}$,
@@ -137,7 +260,7 @@ where $w_f(x,t,\theta)=\log \mathbb{P}_{\delta_x}e^{i\theta\langle f,X_t\rangle}
     w_f(x,t,\theta)-\int_0^t T_{t-s} \left(\psi (-w_f(\cdot,s,\theta))\right)(x)ds=i\theta T_tf(x)
 \end{equation}
 
-Recall the branching mechanism $\psi$ and Feynman-Kac semigroup $T^{\alpha}_t$, and apply \cite[Proposition 2.9]{ZL} to \eqref{charequation}, we have that
+Recall the branching mechanism $\psi$ and Feynman-Kac semigroup $T^{\alpha}_t$, and apply \cite[Proposition 2.9]{Li2011Measure} to \eqref{charequation}, we have that
 \begin{equation}\label{chareq2}
         w_f(x,t,\theta)-\int_0^t T^{\alpha}_{t-s} \left( (-w_f(\cdot,s,\theta))^{1+\beta}\right)(x)ds=i\theta T^{\alpha}_t f(x)
 \end{equation}
@@ -150,21 +273,21 @@ In this subsection, we will give the main results of this paper. In the remainde
 For each $p\in \mathbb{Z}_+^d$, we define 
 $$H_t^p:= e^{-(\alpha-|p|b)t}\langle\phi_p,X_t\rangle,\quad t\geq 0.$$
  We will prove (see Lemma \ref{lemma26}) that, if $\alpha\beta>|p|b(1+\beta)$, $H_t^p$ is a $\mathbb{P}_{\mu}$-martingale bounded in $L^{1+\gamma}(\mathbb{P}_{\mu})$ for any $0\leq\gamma<\beta$, thus the limit $H^p_{\infty}:=\lim_{t\rightarrow \infty}H_t^p$ exists $\mathbb{P}_{\mu}$-as and in $L^{1+\gamma}(\mathbb{P}_{\mu})$.
- \begin{theorem}\label{Theorem11}
+ \begin{thm}\label{Theorem11}
      If $g \in \mathcal{P}$ satisfies $\alpha\beta>\kappa(g)b(1+\beta)$, then as $t\rightarrow \infty$,
      $$e^{-(\alpha-\kappa(g)b)t}\langle g, X_t\rangle \rightarrow\sum_{|p|=\kappa(g)}\langle g, \phi_p\rangle_{\varphi} H_{\infty}^p \quad in~ L^{1+\gamma}(\mathbb{P}_{\mu})$$
      for any $0\leq\gamma<\beta$.
      
      Moreover, if $g$ is twice differentiable and its twice derivative $D^2 g$ satisfies $|D^2 g| \in \mathcal{P}$, then the convergence is almost sure. 
- \end{theorem}
+ \end{thm}
 For any $t>0$, let $W_t:=e^{-\alpha t}\|X_t\|$, then $W_t$ is equal to $H_t^0$ and is a non-negative martingale with limit $W_{\infty}:=\lim_{t\rightarrow\infty}W_t$,  $\mathbb{P}_{\mu}$-a.s. and in $L^{1+\gamma}(\mathbb{P}_{\mu})$.  
- \begin{remark}
+ \begin{rem}
     If $\kappa(g)=0$, $\langle g, \phi_{\kappa(g)}\rangle_{\varphi}$ reduces to $\langle g,\varphi\rangle$. Hence by Theorem \ref{Theorem11}, we get, as $t\rightarrow \infty$
      $$e^{-\alpha t}\langle g, X_t\rangle \rightarrow \langle g, \varphi\rangle W_{\infty} \quad in~ L^{1+\gamma}(\mathbb{P}_{\mu})$$
     for any $0\leq\gamma<\beta$.
     
     Moreover, if $g$ is twice differentiable and $|D^2 g| \in \mathcal{P}$, then the convergence is almost sure. 
- \end{remark}
+ \end{rem}
 
 \subsubsection{Critical Branching Rate}
 For $g\in \mathcal{P}$, define 
@@ -172,24 +295,24 @@ $$\tilde{m}[g]:= \langle(-i\phi)^{1+\beta},\varphi\rangle$$
 {\color{red}where} 
 $$\phi(x)=\sum_{|p|=\kappa(g)}\langle g,\phi_p\rangle\phi_p(x).$$
 See Lemma \ref{lemma210} for more details about $\tilde{m}[g]$.
-\begin{theorem}\label{Theorem12}
+\begin{thm}\label{Theorem12}
 Let $g\in\mathcal{P}$, assume that  $\alpha\beta=\kappa(g)b(1+\beta)$, then, under $\mathbb{P}_{\mu}(\cdot|D^c)$, it holds that
 $$\frac{\langle g,X_t\rangle}{\left(t\|X_t\|\right)^{\frac{1}{1+\beta}}}\xrightarrow{d} \eta_1, \quad t\rightarrow \infty,$$
 where $\eta_1$ is a $(1+\beta)$-stable random variable with characteristic function given by 
 $$\mathbb{E} [e^{i\theta \eta_1}]=\exp(\theta^{1+\beta}\tilde{m}[g]).$$
-\end{theorem}
+\end{thm}
 
 \subsubsection{Small Branching Rate}
 
 For $g\in \mathcal{P}$, define
 $$m[g]:=\int_{\mathbb{R}^d}\int_0^{\infty} e^{-\alpha s}(-iT_{s}^{\alpha}g)^{1+\beta}(x)~ds~\varphi(x)~dx$$
 In Lemma \ref{lemma211}, we will prove that $|m[g]|<\infty$.
-\begin{theorem}\label{Theorem13}
+\begin{thm}\label{Theorem13}
     If $g\in\mathcal{P}$ satisfies  $\alpha\beta<\kappa(g)b(1+\beta)$, then, under $\mathbb{P}_{\mu}(\cdot|D^c)$, it holds that
     $$\frac{\langle g,X_t\rangle}{\|X_t\|^{\frac{1}{1+\beta}}}\xrightarrow{d} \eta_2, \quad t\rightarrow \infty,$$
     where $\eta_2$ is a $(1+\beta)$-stable random variable with characteristic function given by 
     $$\mathbb{E} [e^{i\theta \eta_2}]=\exp(\theta^{1+\beta}m[g]).$$
-\end{theorem}
+\end{thm}
 
 \section{Preliminaries}
 In this section, we will estimate the characteristic function and the $(1+\gamma)$-th moments of super OU-process, where $\gamma \in [0,\beta)$. Fix $g\in \mathcal{P}$ and for notational convenience we omit it in formulations of most of lemmas below.
@@ -209,14 +332,14 @@ If $k=t$, let $M_t^t[g]:=\langle g_t,\mu\rangle$, where $\mu $ is the initial co
 \subsection{Approximate expansion of characteristic function}
 
 In this subsection, we will estimate the characteristic function of $M_k^t[g]$ near $0$. First, we will prove the following inequality which controls $w_{g_k}(x,s,\theta)$.
-\begin{lemma}\label{lemma1}
+\begin{lem}\label{lemma1}
 There exists $R \in \mathcal{P}$, such that for any $k \in \mathbb{N}$, $x\in\mathbb{R}^d$ and $\theta\in \mathbb{R}$, we have
 $$e^{-(\alpha-\kappa(g)b) s}|w_{g_k}(x,s,\theta)|\leq |\theta|e^{(\alpha-\kappa(g)b)k} R(x), \quad s\geq 0.$$
-\end{lemma}
+\end{lem}
 Recall some result about the Kuznestov measures of $\{X_t, t\geq 0\}$. Let $\mathbb{D}$ be the collection of $\mathcal{M}(\mathbb{R}^d)$-valued right continuous functions $t\rightarrow \omega_t$ on $(0,\infty)$ having zero as a trap. Denote by $\{\omega_t, t\geq0\}$ the coordinate process of $\mathbb{D}$ and
  $(\mathcal{C},\mathcal{C}_t)$ the natural $\sigma$-algebras on $\mathbb{D}$ generated by the coordinate process.
 
-It's known by \cite[section 8.4]{ZL} that  one can associate with $\{\mathbb{P}_{\delta_x}:x\in\mathbb{R}^d\}$ a family of $\sigma$-finite measures $\{\mathbb{N}_x:x \in \mathbb{R}^d\}$ defined on $(\mathbb{D},\mathcal{C})$ such that $\mathbb{N}_x\{0\}=0$, 
+It's known by \cite[section 8.4]{Li2011Measure} that  one can associate with $\{\mathbb{P}_{\delta_x}:x\in\mathbb{R}^d\}$ a family of $\sigma$-finite measures $\{\mathbb{N}_x:x \in \mathbb{R}^d\}$ defined on $(\mathbb{D},\mathcal{C})$ such that $\mathbb{N}_x\{0\}=0$, 
 \begin{equation}\label{Nmeasure}
    \int_{\mathbb{D}}(1-e^{-\langle f,\omega_t\rangle})\mathbb{N}_x(d\omega)=-\log \mathbb{P}_{\delta_x}(e^{-\langle f, X_t \rangle}), \quad f \in \mathcal{B}_b^+(\mathbb{R}^d), t>0,
 \end{equation}
@@ -231,13 +354,13 @@ For any $\mu \in \mathcal{M}(\mathbb{R}^d)$, if $\mathcal{N}$ is a Poisson rando
 \begin{align*}
     \tilde{X}_t(\cdot):=\int_{\mathbb{D}}\omega_t(\cdot)\mathcal{N}(d\omega), \quad t\geq 0.
 \end{align*}
-See \cite[Theorem 8.24]{ZL} for a proof.
+See \cite[Theorem 8.24]{Li2011Measure} for a proof.
 
 What's more, if $\mathbb{P}_{\delta_x}|\langle f, X_t\rangle|<\infty$, then
 \begin{equation}\label{Nmean}
     \mathbb{N}_x(\langle f,\omega_t \rangle) = \mathbb{P}_{\delta_x}(\langle f, X_t\rangle)=T^{\alpha}_t f(x).
 \end{equation}
-See \cite[Lemma 3.3]{RSS} for example.
+See \cite[Lemma 3.3]{RenSongSun2017Spine} for example.
 
 \begin{proof}[Proof of Lemma \ref{lemma1}]
 
@@ -257,10 +380,10 @@ Hence, it is important to estimate the function $w_{g_k}(x,1,\theta)$. For any $
     \tilde{w}_{f}(x,t,\theta)=i\theta T^{\alpha}_t f(x) + \int_0^t T^{\alpha}_{t-s}(-i\theta T_s^{\alpha}f)^{1+\beta}(x)ds
 \end{equation}
 
-\begin{lemma}\label{lemma2}
+\begin{lem}\label{lemma2}
 There exists $R \in \mathcal{P}$ and $p_1 >1+\beta$ such that for any $k \in \mathbb{N}$ and $0\leq s \leq 1$, we have 
 $$|w_{g_k}(x,s,\theta)-\tilde{w}_{g_k}(x,s,\theta)|\leq |\theta e^{(\alpha-\kappa(g)b)k}|^{p_1}R(x),\quad x\in \mathbb{R}^d,\theta\in \mathbb{R}.$$
-\end{lemma}
+\end{lem}
 \begin{proof}
  Using the fact that 
  \begin{align}
@@ -294,13 +417,13 @@ and let $Z_f(x)=Z_f(x,1)$. We observe that
     Z_f(x,\theta)=\theta^{1+\beta}Z_f(x).
 \end{equation}
 
-\begin{corollary}\label{corollary2}
+\begin{cor}\label{corollary2}
   There exists $R \in \mathcal{P}$ such that for any $k\in\{0,1,...,t\}$, $x\in \mathbb{R}^d$ and $\theta\in \mathbb{R}$, we have 
   \begin{align}
        &|Z_{g_k}(x,\theta)|\leq |\theta|^{1+\beta}e^{(\alpha-\kappa(g)b)(1+\beta)k}R(x) \label{zineq1},\\
        &|Z_{g_k}(x)|\leq e^{(\alpha-\kappa(g)b)(1+\beta)k}R(x). \label{zineq2}
   \end{align}
-  \end{corollary}
+  \end{cor}
   
 \begin{proof}
      By \eqref{semigroupineq}, we have
@@ -309,11 +432,11 @@ and let $Z_f(x)=Z_f(x,1)$. We observe that
 \end{proof}
 
 
-\begin{corollary}\label{corollary1}
+\begin{cor}\label{corollary1}
 There exists $R \in \mathcal{P}$ and $p_2 >1+\beta$ such that for any $k \in \mathbb{N}$ and $\theta \in \mathbb{R}$, we have 
 $$\mathbb{P}_{\mu}e^{i\theta(\langle g_k, X_1\rangle-\langle T_1^{\alpha}g_k,\mu \rangle)}=1+\langle Z_{g_k}(\cdot,\theta),\mu\rangle+\langle err(\cdot,\theta),\mu\rangle$$
 where $err(\cdot,\theta)\leq |\theta e^{(\alpha-\kappa(g)b)k}|^{p_2}R(\cdot)$.
-\end{corollary}
+\end{cor}
 
 \begin{proof}
     Let $ w_f(x,\theta)=w_f(x,1,\theta)$, $\tilde{w}_f(x,\theta)=\tilde{w}_f(x,1,\theta)$ for short, and denote
@@ -334,26 +457,26 @@ Using Lemma \ref{lemma2}, \eqref{Zineq} and the fact that if $ {\rm Re~} z\leq 0
 \end{align*}
 where $\theta_k=\theta e^{(\alpha-\kappa(g)b)k}$. By implicitly assuming that $|\theta_k|\leq 1$, and taking $p_2=\min \{2(1+\beta), 2+\beta\}$, we get the desired result.
 \end{proof}  
-\begin{remark}\label{remark1}
+\begin{rem}\label{remark1}
    For $0<s\leq 1$, let 
    $$Z_f(x,s,\theta):=\int_0^s T^{\alpha}_{s-u}(-i\theta T_u^{\alpha}f)^{1+\beta}(x)du ,$$
    which has the same estimation with \eqref{zineq1}. moreover, the decomposition in Corollary \ref{corollary1} is also hold for $\langle g_k, X_s\rangle-\langle T_s^{\alpha}g_k,\mu \rangle)$, this is to say,
    $$\mathbb{P}_{\mu}e^{i\theta(\langle g_k, X_s\rangle-\langle T_s^{\alpha}g_k,\mu \rangle)}=1+\langle Z_{g_k}(\cdot,s,\theta),\mu\rangle+\langle err(\cdot,\theta),\mu\rangle$$
    where $err(\cdot,\theta)\leq |\theta e^{(\alpha-\kappa(g)b)k}|^{p_2}R(\cdot)$, for some $R\in \mathcal{P}, p>1+\beta$.
-\end{remark}
+\end{rem}
 
 \subsection{Moment}
 
  In this subsection, for any $\gamma \in [0,\beta)$, we want to bound the $(1+\gamma)$-th moment of $\langle g ,X_t \rangle $ by an exponential function depending on $\kappa(g)$.
-\begin{lemma}\label{lemma23}
+\begin{lem}\label{lemma23}
 For any $0\leq \gamma < \beta$ there exists a constant $C>0$ such that
 $$\|M_k^t[g]\|_{1+\gamma}\leq C e^{\frac{\alpha}{1+\gamma}t}e^{\frac{\gamma \alpha-\kappa(g)(1+\gamma)b}{1+\gamma}k},$$
 for any $k \in \{0,...,t\}$.
-\end{lemma}
+\end{lem}
 
 \begin{proof}
     Let $C_k=e^{(\alpha-\kappa(g)b)k}$, and, for convenience, define $A:=\{|M_t^k[g]|>C_k\}$, $A_{\mu}:=\{|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\mu\rangle|>C_k\}$.
-$$\mathbb{P}_{\mu}|M_k^t[g]|^{1+\gamma}=\mathbb{P}_{\mu}|M_k^t[g]\mathbbm{1}_{A^c}|^{1+\gamma}+\mathbb{P}_{\mu}|M_k^t[g]\mathbbm{1}_{A}|^{1+\gamma}=I+II.$$
+$$\mathbb{P}_{\mu}|M_k^t[g]|^{1+\gamma}=\mathbb{P}_{\mu}|M_k^t[g]\mathbf{1}_{A^c}|^{1+\gamma}+\mathbb{P}_{\mu}|M_k^t[g]\mathbf{1}_{A}|^{1+\gamma}=I+II.$$
 For the first part,
 \begin{align*}
     I\leq C_k^{1+\gamma}=&e^{(\alpha-\kappa(g)b)k(1+\gamma)}=e^{-\alpha(t-k)}e^{\alpha t}e^{(\gamma \alpha-\kappa(g)(1+\gamma)b)k}\\
@@ -364,15 +487,15 @@ as $k\leq t$.
 For the second part, recall that $M_k^t[g]=\langle T_k^{\alpha}g, X_{t-k}\rangle-\langle T_{k+1}^{\alpha}g,X_{t-k-1}\rangle$,
 under the condition of $\sigma$-algebra $\mathcal{F}_{t-k-1}$, by the Markov property of $X$, we have
 \begin{align*}
-    II=\mathbb{P}_{\mu}\left[\mathbb{P}_{\nu}\left[|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|^{1+\gamma}\mathbbm{1}_{A_{\nu}}\right]|_{\nu=X_{t-k-1}}\right]
+    II=\mathbb{P}_{\mu}\left[\mathbb{P}_{\nu}\left[|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|^{1+\gamma}\mathbf{1}_{A_{\nu}}\right]|_{\nu=X_{t-k-1}}\right]
 \end{align*}
 Observe that, for any $\nu \in \mathcal{M}(\mathbb{R}^d)$
 \begin{align}
     &\mathbb{P}_{\nu}\left[|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|^{1+\gamma}\right] \label{temp1}\\ 
-    &=(1+\gamma)\int_0^{\infty}\lambda^{\gamma}\mathbb{P}_{\nu}\left(|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|\mathbbm{1}_{A_{\nu}}>\lambda\right)d\lambda \nonumber\\
+    &=(1+\gamma)\int_0^{\infty}\lambda^{\gamma}\mathbb{P}_{\nu}\left(|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|\mathbf{1}_{A_{\nu}}>\lambda\right)d\lambda \nonumber\\
     &\leq (1+\gamma)\int_{C_{k}}^{\infty}\lambda^{\gamma}\mathbb{P}_{\nu}\left(|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|>\lambda\right)d\lambda.\nonumber
 \end{align}
-Using the element inequality $\mathbb{P}(|Y|>2/u)\leq u^{-1}\int_{-u}^{u}(1-\varphi(t))dt$, see,\cite[Chaper 3]{DR}, for example, where $Y$ is a random variable corresponding to characteristic function $\varphi(t)$, $u\geq 0$, we have
+Using the element inequality $\mathbb{P}(|Y|>2/u)\leq u^{-1}\int_{-u}^{u}(1-\varphi(t))dt$, see,\cite[Chaper 3]{Durrett2010Probability}, for example, where $Y$ is a random variable corresponding to characteristic function $\varphi(t)$, $u\geq 0$, we have
 
 $$\mathbb{P}_{\nu}\left(|\langle T_k^{\alpha}g, X_1\rangle-\langle T_{k+1}^{\alpha}g,\nu\rangle|>\lambda\right)\leq \frac{\lambda}{2}\int_{-2/\lambda}^{2/\lambda}(1-\varphi_{\nu}(\theta))d\theta,$$
 where $\varphi_{\nu}(\theta))$ has been defined in Corollary \eqref{corollary1}. What's more, as $g_k=T_k^{\alpha}g$, by Corollary \eqref{corollary1} and Corollary \eqref{corollary2}, we get, for any $\theta\in\mathbb{R}$, there exists $R_1,R_2 \in \mathcal{P}$ and $p>\beta$, such that 
@@ -400,17 +523,17 @@ for some $C_2>0$. At last, using the mean formula \eqref{meanformula} and \eqref
 \end{align*}
 for some $C_3>0$. Combining with the result of $I$ and $II$, we complete the proof.
 \end{proof}
-\begin{remark}\label{remark2}
+\begin{rem}\label{remark2}
    When $t\notin \mathbb{N}$, on the interval $[\lfloor t \rfloor , t]$, similar with $M_k^t[g]$, we can define 
    $$M_{t,\lfloor t \rfloor}[g]:=\langle g,X_t\rangle-\langle T^{\alpha}_{t-\lfloor t \rfloor}g,X_{\lfloor t \rfloor}\rangle,$$
    which satisfies 
    $$\|M_{t,\lfloor t \rfloor}[g]\|_{1+\gamma}\leq C e^{\frac{\alpha}{1+\gamma}t},$$
    For some $C>0$. This can be proved by using Remark \ref{remark1} and following the same method in Lemma \ref{lemma23}.
-\end{remark}
+\end{rem}
 
 Recall that,$\langle g,X_t\rangle$ is the sum of $M_k^{t}[g], k=0,1,...,t$. We obtain the following lemma. 
 
-\begin{lemma}\label{lemma24}
+\begin{lem}\label{lemma24}
 For any $0\leq \gamma < \beta$ there exists a constant $C>0$, we have the result:
 
 i) When $\alpha\gamma > \kappa(g)(1+\gamma)b$,
@@ -422,14 +545,14 @@ $$\|\langle g,X_t\rangle\|_{1+\gamma}\leq C te^{\frac{\alpha}{1+\gamma}t}.$$
 iii) When $\alpha\gamma < \kappa(g)(1+\gamma)b$,
 $$\|\langle g,X_t\rangle\|_{1+\gamma}\leq C e^{\frac{\alpha}{1+\gamma}t}.$$
 
-\end{lemma}
+\end{lem}
 \begin{proof}
 Using the triangle inequality and Lemma \eqref{lemma23}, for some $C_1>0$
 $$\|\langle g,X_t\rangle\|_{1+\gamma}\leq \sum_{k=0}^{t}\|M_k^t[g]\|_{1+\gamma}\leq C_1 e^{\frac{\alpha}{1+\gamma}t}\sum_{k=0}^t e^{\frac{\gamma\alpha-\kappa(g)(1+\gamma)b}{1+\gamma}k}.$$
 By calculating the sum on the right, we easily get the result. 
 \end{proof} 
 
-\begin{remark}
+\begin{rem}
     The Lemma \eqref{lemma24} offers insights how to guess $\{F_t, t\geq0\}$ raised in Introduction. indeed
     
     Large branching rate: when $\alpha\gamma > \kappa(g)(1+\gamma)b$, $F_t\approx e^{(\alpha-\kappa(g)b)t} $; 
@@ -438,15 +561,15 @@ By calculating the sum on the right, we easily get the result.
     
     
     Small branching rate: when $\alpha\gamma < \kappa(g)(1+\gamma)b$, $F_t\approx e^{\frac{\alpha t}{1+\beta}}\approx \|X_t\|^{\frac{1}{1+\beta}}$.
-\end{remark}
+\end{rem}
 \subsection{Martingales}
 
 In this subsection, we will prove the almost sure and $L^{1+\gamma}(\mathbb{P}_{\mu})$ convergence of some martingales, for $0\leq\gamma<\beta$. Recall that $L$ is the infinitesimal generator of OU-process. Let $a\in \mathbb{R}$ and $f\in \mathcal{P}$ such that $Lf \in \mathcal{P}$ ,we define that
 $$M_t^{f,a}:=e^{-(\alpha-ab)t}\langle f,X_t\rangle-\int_0^t e^{-(\alpha-ab)s}\langle \bar{f}, X_s\rangle~ ds$$
 Where $\bar{f}=(L+ab)f$. The following lemma says that $\{M_t^{f,a}: t\geq 0\}$ is a martingale corresponding to the $\sigma$-algebra $\{\mathcal{F}_t\}_{t\geq 0}$.
-\begin{lemma}\label{lemma25}
+\begin{lem}\label{lemma25}
 For any $a \in \mathbb{R}$ and $f\in\mathcal{P}$ such that $L f\in\mathcal{P}$, Then $\{M_t^{f,a},\mathcal{F}_t:t\geq 0\}$ is a martingale.
-\end{lemma}
+\end{lem}
 
 \begin{proof} 
 For any $0\leq s\leq t$,
@@ -464,11 +587,11 @@ Take it to the \eqref{martingale1}, we obtain the desired result.
 Let $p=(p_1,...,p_d)\in \mathbb{Z}_+^d$, recall that $\phi_p$ is an eigenfunction of $L$ corresponding to the eigenvalue $-|p|b$. Define
 $$H_t^p:=e^{-(\alpha-|p|b)t}\langle\phi_p,X_t\rangle, \quad t\geq 0.$$
 
-\begin{lemma}\label{lemma26}
+\begin{lem}\label{lemma26}
 $\{H_t^p: t\geq0\}$ is a martingale with respect to $\mathcal{F}_t$. If $\alpha\beta>|p|b(1+\beta)$, then for any $0\leq \gamma<\beta$, we have $\sup_t\|H_t^p\|_{1+\gamma}< \infty$. Thus the limit
 $$H_{\infty}^p:=\lim_{t\rightarrow \infty}H_t^p$$
 exists $\mathbb{P}_{\mu}$-a.s and in $L^{1+\gamma}(\mathbb{P}_{\mu}).$
-\end{lemma}
+\end{lem}
 \begin{proof}
     By taking $a=|p|$ and $f=\phi_p$ in Lemma \ref{lemma25}, we get $\{H_t^p, \mathcal{F}_t:t\geq 0\}$ is a martingale.
 
@@ -483,11 +606,11 @@ exists $\mathbb{P}_{\mu}$-a.s and in $L^{1+\gamma}(\mathbb{P}_{\mu}).$
 Recall that $\|X_t\|=\langle 1,X_t\rangle$. By Lemma \eqref{lemma26}, it is not to hard to prove that, under $\mathbb{P}_{\mu}$, the process $W_t=e^{-\alpha t}\|X_t\|$ is a positive martingale satisfying
 $$\lim_{t\rightarrow \infty} W_t= W_{\infty}$$
 $\mathbb{P}_{\mu}$-a.s and in $L^{1+\gamma}(\mathbb{P}_{\mu})$. So $W_{\infty}$ is non-degenerate and the $(1+\gamma)$-th moment is finite. Moreover, we have $\mathbb{P}_{\mu}(W_{\infty})=\|\mu\|$ and $\{W_{\infty}=0\}=D$ which is the extinction event.
-\begin{lemma}\label{lemma27}
+\begin{lem}\label{lemma27}
  For any $\gamma\in [0,\beta)$ and $0\leq s<t$, we have 
  $$\|W_t-W_s\|_{1+\gamma}\leq C e^{-\alpha s/2},$$
  for some C just depending on $\gamma$.
-\end{lemma}
+\end{lem}
 
 \begin{proof}
     Let $n\in \mathbb{N}$, in Lemma \eqref{lemma23}, we take $t=n+k,g=1$, then $\kappa(g)=0$, moreover, the following inequality holds.
@@ -500,10 +623,10 @@ $\mathbb{P}_{\mu}$-a.s and in $L^{1+\gamma}(\mathbb{P}_{\mu})$. So $W_{\infty}$ 
  When we take any $0\leq s\leq t$,there will appear two terms corresponding to the interval $[s,[s]+1]$ and $[[t],t]$, which are  handled by using Remark \ref{remark2} with the same method, then we complete our proof.
 \end{proof}
 
-\begin{lemma}\label{lemma28}
+\begin{lem}\label{lemma28}
   For any $\epsilon>0$, let $\mathcal{A}_t(\epsilon):=\left\{ \|X_t\|\in \|\mu\|\left(e^{(\alpha-\epsilon)t},e^{(\alpha+\epsilon)t}\right)\right\}$, there exists $C>0$ and $\delta>0$ such that 
   $$\mathbb{P}_{\mu}\left(\mathcal{A}_t(\epsilon)^c|D^c\right)\leq C e^{-\delta t},\quad t\geq 0.$$
-\end{lemma}
+\end{lem}
 
 \begin{proof}
     First, for any $\delta_1>0$, using Markov inequality, we get
@@ -515,17 +638,18 @@ $\mathbb{P}_{\mu}$-a.s and in $L^{1+\gamma}(\mathbb{P}_{\mu})$. So $W_{\infty}$ 
    For some $C,\delta_2>0$.  We get the desired result.
 \end{proof}
 
-\subsection{Parameter $m_k[g]$}
+%\subsection{Parameter $m_k[g]$}
+\subsection{Parameters}
  In this subsection, we will introduce an important parameter $m_k[g]$ which is a parameter of $(1+\beta)$-stable distribution. Recall the definition of $Z_f(x)$
  $$Z_f(x)=\int_0^1 T^{\alpha}_{1-s}(-iT_s^{\alpha}f)^{1+\beta}(x)~ds,$$
  Let
  \begin{align}
       m_k[g]:=e^{-\alpha(k+1)}\langle Z_{g_k},\varphi\rangle.
  \end{align}
-\begin{lemma}\label{mgineq1}
+\begin{lem}\label{mgineq1}
 There exists $R\in \mathcal{P}$ and constant $C>0$ such that for any $k\in \{0,1,...,t\}$, we have 
 $$|m_k[g]|\leq C e^{(\alpha\beta-\kappa(g)b(1+\beta))k}.$$
-\end{lemma}
+\end{lem}
 \begin{proof}
     By \eqref{zineq2} and simply calculating, we obtain the result.
 \end{proof}
@@ -541,12 +665,12 @@ Using Fubini's Theorem and the fact $\varphi(x)$ is an invariant measure of $T$,
 Next, we describe the parameter of limiting distribution in the critical case. Let 
 $$\phi(x)=\sum_{|p|=\kappa(g)}\langle g, \phi_p\rangle\phi_p(x)$$
 i.e. $\phi$ is the projection of $g$ onto the $\kappa(g)$-eigenspace.
-\begin{lemma}\label{lemma210}
+\begin{lem}\label{lemma210}
 Let $g \in \mathcal{P}$, $\kappa(g)\geq 1$ and $\alpha\beta=\kappa(g)b(1+\beta)$, then the following limit exists:
 \begin{align}
     \tilde{m}[g]:=\lim_{t\rightarrow \infty}\frac{1}{t}\sum_{k=0}^{t}m_k[g]=\langle(-i\phi)^{1+\beta},\varphi\rangle.
 \end{align}
-\end{lemma}
+\end{lem}
 
 \begin{proof}
     We want to show the gap between $m_k[g]$ and $m_k[\phi]$ is very small. By the definition of $m_k[g]$, 
@@ -570,12 +694,12 @@ Let $g \in \mathcal{P}$, $\kappa(g)\geq 1$ and $\alpha\beta=\kappa(g)b(1+\beta)$
 \end{proof}
 
 For the small branching rate case: $\alpha\beta<\kappa(g)b(1+\beta)$.
-\begin{lemma}\label{lemma211}
+\begin{lem}\label{lemma211}
 Assume $\alpha\beta<\kappa(g)b(1+\beta)$, if $\kappa(g)\geq 1$, the series $\sum_{k=0}^{\infty}m_k[g]$ is absolutely convergent, hence we can define
 \begin{align}
     m[g]:=\int_{\mathbb{R}^d}\int_0^{\infty} e^{-\alpha s}(-iT_{s}^{\alpha}g)^{1+\beta}(x)ds\varphi(x)dx \label{msmallcase}
 \end{align}
-\end{lemma}
+\end{lem}
 \begin{proof}
     By Lemma \ref{mgineq1}, we have $|m_k[g]|\leq C e^{(\alpha\beta-\kappa(g)b(1+\beta))k}$, for some $C>0$, which implies $\sum_{k=0}^{\infty}|m_k[g]|<\infty$ as $\alpha\beta<\kappa(g)b(1+\beta)$. Hence
     $$m[g]:=\sum_{k=0}^{\infty}m_k[g]=\sum_{k=0}^{\infty}\int_{\mathbb{R}^d}\int_k^{k+1} e^{-\alpha s}(-iT_{s}^{\alpha}g)^{1+\beta}(x)ds\varphi(x)dx$$
@@ -587,14 +711,14 @@ Assume $\alpha\beta<\kappa(g)b(1+\beta)$, if $\kappa(g)\geq 1$, the series $\sum
 \section{Proof of main results}
 
 In this section, we will prove the main results of this paper. Let $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$.
- \begin{lemma}\label{lemma31}
+ \begin{lem}\label{lemma31}
  Assume that $\alpha\beta\leq \kappa(g)b(1+\beta)$, let $F_k(\nu)=\left(e^{\alpha k}\|\nu\|\right)^{\frac{1}{1+\beta}}$, then for any  $k\in\mathbb{N}$, under $\mathbb{P}_{\mu}(\cdot | D ^c)$, we have
  \begin{align}
       \frac{M_k^t[g]}{F_k(X_{t-k-1})}\xrightarrow{d}\zeta_k, \quad t\rightarrow \infty, \label{limitdistribution1}
  \end{align}
  where $\zeta_k$ is a $(1+\beta)$-stable random variable with characteristic function
  $$\mathbb{E}e^{i\theta\zeta_k}=\exp\left[\theta^{1+\beta}e^{\alpha}m_k[g]\right].$$
- \end{lemma}
+ \end{lem}
 \begin{proof}
     Recall that $w_{g_k}(x,\theta)=w_{g_k}(x,1,\theta),\tilde{w}_{g_k}(x,\theta)=\tilde{w}_{g_k}(x,1,\theta)$. For any $k\in\mathbb{N}$ and $t>k$, we have
     \begin{align*}
@@ -605,11 +729,11 @@ In this section, we will prove the main results of this paper. Let $\mathbb{\til
     \end{align*}
     Our aim now is showing that the on the event $\mathcal{A}_{t-k-1}$, the characteristic functions of random variables on both sides in \eqref{limitdistribution1} are much the same. Let $c=|\theta e^{\alpha}m_k[g]|$, $\tilde{\theta}_{t,k}=\frac{\theta}{F_k(X_{t-k-1})}$. Then
     \begin{align*}
-        &\left|\mathbb{\tilde{P}}_{\mu}\left([\exp(i\theta \frac {M_k^t[g]}{F_k(X_{t-k-1})})]-\exp(\theta^{1+\beta}e^{\alpha}m_k[g])\right)\mathbbm{1}_{\mathcal{A}_{t-k-1}}\right|\\
+        &\left|\mathbb{\tilde{P}}_{\mu}\left([\exp(i\theta \frac {M_k^t[g]}{F_k(X_{t-k-1})})]-\exp(\theta^{1+\beta}e^{\alpha}m_k[g])\right)\mathbf{1}_{\mathcal{A}_{t-k-1}}\right|\\
         &=\bigg|\big(\mathbb{\tilde{P}}_{\mu}\exp(\langle w_{g_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{w}_{g_k}(\cdot, \tilde{\theta}_{t,k}),X_{t-k-1}\rangle+\langle Z_{g_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle)\\
-        &-\exp(\theta^{1+\beta}e^{\alpha}m_k[g])\big)\mathbbm{1}_{\mathcal{A}_{t-k-1}}\bigg|\\
-        &\leq e^c\mathbb{\tilde{P}}_{\mu}\left[\left|\langle w_{g_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{w}_{g_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\right|\mathbbm{1}_{\mathcal{A}_{t-k-1}}\right]\\
-        &+e^c\mathbb{\tilde{P}}_{\mu}\left[\left|\langle Z_{g_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[g]\right|\mathbbm{1}_{\mathcal{A}_{t-k-1}}\right]=I+II.
+        &-\exp(\theta^{1+\beta}e^{\alpha}m_k[g])\big)\mathbf{1}_{\mathcal{A}_{t-k-1}}\bigg|\\
+        &\leq e^c\mathbb{\tilde{P}}_{\mu}\left[\left|\langle w_{g_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{w}_{g_k}(\cdot,\tilde{\theta}_{t,k}), X_{t-k-1}\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}}\right]\\
+        &+e^c\mathbb{\tilde{P}}_{\mu}\left[\left|\langle Z_{g_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[g]\right|\mathbf{1}_{\mathcal{A}_{t-k-1}}\right]=I+II.
     \end{align*}
     The first equation holds because that $w_{g_k}-i\theta T_1^{\alpha}g_k=w_{g_k}-\tilde{w}_{g_k}+Z_{g_k}$. the inequality holds by mean value theorem and triangular inequality.
     
@@ -626,7 +750,7 @@ In this section, we will prove the main results of this paper. Let $\mathbb{\til
     
     For part $II$, notice that $\langle Z_{g_k}(\cdot,\tilde{\theta}_k),X_{t-k-1}\rangle=\theta^{1+\beta}e^{-\alpha k}\frac{\langle Z_{g_k},X_{t-k-1}\rangle}{\|X_{t-k-1}\|} \rangle$ and $\theta^{1+\beta}e^{\alpha}m_k[g]=\theta^{1+\beta}e^{-\alpha k}\langle Z_{g_k},\varphi\rangle$. Therefore,
 \begin{align}
-    II&=e^c|\theta|^{1+\beta}e^{-\alpha k}\mathbb{\tilde{P}}_{\mu}\left[\left|\frac{\langle Z_{g_k},X_{t-k-1}\rangle}{\|X_{t-k-1}\|}-\langle Z_{g_k},\varphi\rangle\right|\mathbbm{1}_{\mathcal{A}_{t-k-1}}\right]\nonumber\\
+    II&=e^c|\theta|^{1+\beta}e^{-\alpha k}\mathbb{\tilde{P}}_{\mu}\left[\left|\frac{\langle Z_{g_k},X_{t-k-1}\rangle}{\|X_{t-k-1}\|}-\langle Z_{g_k},\varphi\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}}\right]\nonumber\\
     &\leq e^c|\theta|^{1+\beta}e^{-\alpha k}e^{-(\alpha-\epsilon)(t-k-1)}\mathbb{\tilde{P}}_{\mu}\left[\left|\langle h_k,X_{t-k-1}\rangle\right|\right],\label{II1}
 \end{align}
     where $h_k=Z_{g_k}-\langle Z_{g_k}, \varphi\rangle$. To estimate $h_k$, we claim that for any $f \in \mathcal{P}$, $T_t f$ is differential and $\frac{\partial (T_t f)}{\partial x_i} \in \mathcal{P}, i=1,...,d$. We firstly admit the claim and continue our proof.
@@ -664,7 +788,7 @@ for some $C_2,\delta_2>0$.
 At last, Using Lemma \ref{lemma28}, on the event $\mathcal{A}^c_{t-k-1}$, we get
 
 \begin{align}
-    \left|\mathbb{\tilde{P}}_{\mu}\left([\exp(i\theta \frac {M_k^t[g]}{F_k(X_{t-k-1})})]-\exp(\theta^{1+\beta}e^{\alpha}m_k[g])\right)\mathbbm{1}_{\mathcal{A}^c_{t-k-1}}\right|&\leq C_3\mathbb{\tilde{P}}_{\mu}(\mathcal{A}^c_{t-k-1})\nonumber\\
+    \left|\mathbb{\tilde{P}}_{\mu}\left([\exp(i\theta \frac {M_k^t[g]}{F_k(X_{t-k-1})})]-\exp(\theta^{1+\beta}e^{\alpha}m_k[g])\right)\mathbf{1}_{\mathcal{A}^c_{t-k-1}}\right|&\leq C_3\mathbb{\tilde{P}}_{\mu}(\mathcal{A}^c_{t-k-1})\nonumber\\
     &\leq C_3 e^{-\delta_3(t-k)},\label{lemma33q}
 \end{align}
 Combine with \eqref{lemma31q},\eqref{lemma32q} and \eqref{lemma33q}, by letting $t \rightarrow \infty$, We obtain the desired result. 
@@ -684,18 +808,18 @@ where $\varphi_t(x)=\left(\frac{b}{\pi \sigma_t^2}\right)^{\frac{d}{2}} \exp\lef
     &=\frac{-2bx_i}{\sigma_t^2}e^{-bt}T_t f(x)\in \mathcal{P}.
 \end{align*}
 \end{proof}
-\begin{remark}
+\begin{rem}
    i) For any $k\in\mathbb{N}$, $e^{\theta^{1+\beta}e^{\alpha}m_k[g]}$ is the characteristic function of some $1+\beta$-stable distribution, hence $|e^{\theta^{1+\beta}e^{\alpha}m_k[g]}|\leq 1$.
    
    ii) the parameters $\delta_1,\delta_2, \delta_3$ in Lemma \ref{lemma31} are just depending on $b,\beta$.
-\end{remark}
+\end{rem}
 
-\begin{corollary}\label{corollary31}
+\begin{cor}\label{corollary31}
 Let $\Theta>0$, assume that $\alpha\beta\leq\kappa(g)b(1+\beta)$. There exists $C,\delta>0$ such that for any $n \in \{0,...,t\}$ and $(\theta_0,...,\theta_n)\in \mathbb{R}^{n+1}$ satisfying $|\theta_i|\leq \Theta$, we have
 \begin{align*}
     \left|\mathbb{\tilde{P}}_{\mu}\left(\prod_{k=0}^n\exp(i\theta_k \frac {M_k^t[g]}{(e^{\alpha k}\|X_{t-k-1}\|)^\frac{1}{1+\beta}})-\prod_{k=0}^n\exp(\theta_k^{1+\beta}e^{\alpha}m_k[g])\right)\right|\leq Ce^{-\delta(t-n)}
 \end{align*}
-\end{corollary}
+\end{cor}
 \begin{proof}
     Denote $\gamma_{t,k}=\frac {M_k^t[g]}{(e^{\alpha k}\|X_{t-k-1}\|)^\frac{1}{1+\beta}} $, we define 
     $$\varphi^k_t(\theta_0,...,\theta_n):=\prod_{l=0}^{k}\exp\left(\theta_l^{1+\beta}e^{\alpha}m_l[g]\right)\mathbb{\tilde{P}}_{\mu}\left(\prod_{l=k+1}^{n}\exp\left(i\theta_l\gamma_{t,l}\right)\right)$$
@@ -718,16 +842,16 @@ Let $\Theta>0$, assume that $\alpha\beta\leq\kappa(g)b(1+\beta)$. There exists $
     $$\mathbb{\tilde{P}}_{\mu}\left(e^{i\theta \gamma_{t,k}}|\mathcal{F}_{t-k-1}\right)=\exp(\langle w_{g_k}(\cdot,\tilde{\theta}_{t,k})-\tilde{w}_{g_k}(\cdot, \tilde{\theta}_{t,k}),X_{t-k-1}\rangle+\langle Z_{g_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle).$$
     In Lemma \ref{lemma31}, we have proved that (see \eqref{lemma31q} and \eqref{lemma32q}), if $|\theta|\leq\Theta$ and $k\in\{0,...,t\}$,
     \begin{align*}
-        &\mathbb{\tilde{P}}_{\mu}\left[\left|\langle w_{g_k}(\cdot,\tilde{\theta}_k)-\tilde{w}_{g_k}(\cdot,\tilde{\theta}_k), X_{t-k-1}\rangle\right|\mathbbm{1}_{\mathcal{A}_{t-k-1}}\right]\leq C_1 e^{-\delta_1 (t-k)}\\
-        &\mathbb{\tilde{P}}_{\mu}\left[\left|\langle Z_{g_k}(\cdot,\tilde{\theta}_k),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[g]\right|\mathbbm{1}_{\mathcal{A}_{t-k-1}}\right]\leq C_1 e^{-\delta_1(t-k)}
+        &\mathbb{\tilde{P}}_{\mu}\left[\left|\langle w_{g_k}(\cdot,\tilde{\theta}_k)-\tilde{w}_{g_k}(\cdot,\tilde{\theta}_k), X_{t-k-1}\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}}\right]\leq C_1 e^{-\delta_1 (t-k)}\\
+        &\mathbb{\tilde{P}}_{\mu}\left[\left|\langle Z_{g_k}(\cdot,\tilde{\theta}_k),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[g]\right|\mathbf{1}_{\mathcal{A}_{t-k-1}}\right]\leq C_1 e^{-\delta_1(t-k)}
     \end{align*}
 for some $C_1,\delta_1>0$. Define 
 \begin{align*}
-    \mathcal{B}_{t-k-1}:=\left\{\left|\langle w_{g_k}(\cdot,\tilde{\theta}_k)-\tilde{w}_{g_k}(\cdot,\tilde{\theta}_k), X_{t-k-1}\rangle\right|\mathbbm{1}_{\mathcal{A}_{t-k-1}}\leq C_1 e^{-\frac{\delta_1}{2}(t-k)}\right\}.
+    \mathcal{B}_{t-k-1}:=\left\{\left|\langle w_{g_k}(\cdot,\tilde{\theta}_k)-\tilde{w}_{g_k}(\cdot,\tilde{\theta}_k), X_{t-k-1}\rangle\right|\mathbf{1}_{\mathcal{A}_{t-k-1}}\leq C_1 e^{-\frac{\delta_1}{2}(t-k)}\right\}.
 \end{align*}
 Applying Markov's inequality, we get $\mathbb{\tilde{P}}_{\mu}(\mathcal{B}_{t-k-1})\geq 1- e^{-\frac{\delta_1}{2}(t-k)}$. Similarly, define
 \begin{align*}
-    \mathcal{C}_{t-k-1}:=\left\{\left|\langle Z_{g_k}(\cdot,\tilde{\theta}_k),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[g]\right|\mathbbm{1}_{\mathcal{A}_{t-k-1}}\leq C_1 e^{-\frac{\delta_1}{2}(t-k)}\right\},
+    \mathcal{C}_{t-k-1}:=\left\{\left|\langle Z_{g_k}(\cdot,\tilde{\theta}_k),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[g]\right|\mathbf{1}_{\mathcal{A}_{t-k-1}}\leq C_1 e^{-\frac{\delta_1}{2}(t-k)}\right\},
 \end{align*}
  which satisfies  $\mathbb{\tilde{P}}_{\mu}(\mathcal{C}_{t-k-1})\geq 1- e^{-\frac{\delta_1}{2}(t-k)}$.
 
@@ -786,19 +910,19 @@ In next three subsection, we just use $C$ as a constant positive real number, wh
     \end{align*}
     for some $C,\delta>0$. Hence
     \begin{align}
-        \mathbb{\tilde{P}}_{\mu}|Y_{t,k}|\mathbbm{1}_{\mathcal{D}^c_{t,k}}\leq 2 C e^{-\delta(t-k-1)}.\label{thm121}
+        \mathbb{\tilde{P}}_{\mu}|Y_{t,k}|\mathbf{1}_{\mathcal{D}^c_{t,k}}\leq 2 C e^{-\delta(t-k-1)}.\label{thm121}
     \end{align}
     
     Using the element inequality $|e^{ix}-e^{iy}|\leq|x-y|$,
     \begin{align*}
-        \mathbb{\tilde{P}}_{\mu}|Y_{t,k}|\mathbbm{1}_{\mathcal{D}_{t,k}}&\leq|\theta|t^{-\frac{1}{1+\beta}}\mathbb{\tilde{P}}_{\mu}|M_k^t[g]|\left|\frac{1}{\left(e^{\alpha(k+1)\|X_{t-k-1}\|}\right)^{\frac{1}{1+\beta}}}-\frac{1}{\|X_t\|^{\frac{1}{1+\beta}}}\right|\mathbbm{1}_{\mathcal{D}_{t,k}}\\
-        &\leq|\theta|t^{-\frac{1}{1+\beta}}e^{-\frac{\alpha}{1+\beta}t}\mathbb{\tilde{P}}_{\mu}|M_k^t[g]|\left|\frac{W_t^{\frac{1}{1+\beta}}-W_{t-k-1}^{\frac{1}{1+\beta}}}{W_t^{\frac{1}{1+\beta}}W_{t-k-1}^{\frac{1}{1+\beta}}}\right|\mathbbm{1}_{\mathcal{D}_{t,k}}.
+        \mathbb{\tilde{P}}_{\mu}|Y_{t,k}|\mathbf{1}_{\mathcal{D}_{t,k}}&\leq|\theta|t^{-\frac{1}{1+\beta}}\mathbb{\tilde{P}}_{\mu}|M_k^t[g]|\left|\frac{1}{\left(e^{\alpha(k+1)\|X_{t-k-1}\|}\right)^{\frac{1}{1+\beta}}}-\frac{1}{\|X_t\|^{\frac{1}{1+\beta}}}\right|\mathbf{1}_{\mathcal{D}_{t,k}}\\
+        &\leq|\theta|t^{-\frac{1}{1+\beta}}e^{-\frac{\alpha}{1+\beta}t}\mathbb{\tilde{P}}_{\mu}|M_k^t[g]|\left|\frac{W_t^{\frac{1}{1+\beta}}-W_{t-k-1}^{\frac{1}{1+\beta}}}{W_t^{\frac{1}{1+\beta}}W_{t-k-1}^{\frac{1}{1+\beta}}}\right|\mathbf{1}_{\mathcal{D}_{t,k}}.
     \end{align*}
     When $t$ is large enough, $t^{-\frac{1}{1+\beta}}\leq 1$. What's more, by Lemma \ref{lemma23}
     $$\mathbb{\tilde{P}}_{\mu}|M_k^t[g]|\leq C e^{\frac{\alpha}{1+\gamma}t}e^{\frac{\gamma \alpha-\kappa(g)(1+\gamma)b}{1+\gamma}k},$$
 for some constant $C \geq 0$ and any $0\leq\gamma<\beta$.
 We denote
-$$K_{t,k}:=\left|\frac{W_t^{\frac{1}{1+\beta}}-W_{t-k-1}^{\frac{1}{1+\beta}}}{W_t^{\frac{1}{1+\beta}}W_{t-k-1}^{\frac{1}{1+\beta}}}\right|\mathbbm{1}_{\mathcal{D}_{t,k}}.$$
+$$K_{t,k}:=\left|\frac{W_t^{\frac{1}{1+\beta}}-W_{t-k-1}^{\frac{1}{1+\beta}}}{W_t^{\frac{1}{1+\beta}}W_{t-k-1}^{\frac{1}{1+\beta}}}\right|\mathbf{1}_{\mathcal{D}_{t,k}}.$$
  On the event $\mathcal{D}_{t,k}$, by mean value theorem of integrals, we get
  \begin{align*}
      \left|W_t^{\frac{1}{1+\beta}}-W_{t-k-1}^{\frac{1}{1+\beta}}\right|\leq \max \left\{W_t^{-\frac{\beta}{1+\beta}},W_{t-k-1}^{-\frac{\beta}{1+\beta}}\right\}\left|W_t-W_{t-k-1}\right|,
@@ -818,13 +942,13 @@ Hence,
 \end{align*}
 This is to say on the event $\mathcal{D}_{t,k}$, we get $K_{t,k}\leq C e^{-\frac{3\alpha}{32}(t-k-1)}$. Moreover, recall that $\alpha\beta=\kappa(g)(1+\beta)b$, we get
 \begin{align}
-    \mathbb{\tilde{P}}_{\mu}|Y_{t,k}|\mathbbm{1}_{\mathcal{D}_{t,k}}&\leq C e^{-\frac{\alpha}{1+\beta}t}e^{\frac{\alpha}{1+\gamma}t}e^{\frac{\gamma \alpha-\kappa(g)(1+\gamma)b}{1+\gamma}k}e^{-\frac{3\alpha}{32}(t-k-1)}\label{thm125}\\
+    \mathbb{\tilde{P}}_{\mu}|Y_{t,k}|\mathbf{1}_{\mathcal{D}_{t,k}}&\leq C e^{-\frac{\alpha}{1+\beta}t}e^{\frac{\alpha}{1+\gamma}t}e^{\frac{\gamma \alpha-\kappa(g)(1+\gamma)b}{1+\gamma}k}e^{-\frac{3\alpha}{32}(t-k-1)}\label{thm125}\\
     &\leq C e^{(\frac{\alpha}{1+\gamma}-\frac{\alpha}{1+\beta})(t-k)}e^{-\frac{3\alpha}{32}(t-k-1)}.\nonumber
 \end{align}
 
 Now we take $\gamma$ so close to $\beta$ such that $\frac{1}{1+\gamma}-\frac{1}{1+\beta}<\frac{1}{32}$, then 
 \begin{align}
-     \mathbb{\tilde{P}}_{\mu}|Y_{t,k}|\mathbbm{1}_{\mathcal{D}_{t,k}}\leq  e^{-\frac{\alpha}{16}(t-k)}.\label{thm122}
+     \mathbb{\tilde{P}}_{\mu}|Y_{t,k}|\mathbf{1}_{\mathcal{D}_{t,k}}\leq  e^{-\frac{\alpha}{16}(t-k)}.\label{thm122}
 \end{align}
 At last, combining \eqref{thm121} and \eqref{thm122}, we get 
 $$\left|\mathbb{\tilde{P}}_{\mu}e^{i\theta I_t}-\mathbb{\tilde{P}}_{\mu}e^{i\theta\tilde{I}_t}\right|\leq C t^{-\delta},$$
@@ -839,7 +963,7 @@ Let $\mathcal{E}_t:=\{\|X_t\|>\|\mu\|t^{-1/2}e^{\alpha t}\}$. Recall that branch
 \begin{align}
     \mathbb{\tilde{P}}_{\mu}(\mathcal{E}^c_t)\leq\mathbb{P}^{\ast}(\|Z_t\|\leq\|\mu\|t^{-1/2}e^{\alpha t})\leq C t^{-\delta}, \quad t\geq0,\label{Theorem123}
 \end{align}
-for some $C,\delta>0$. Hence $\left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\mathbbm{1}_{\mathcal{E}^c_{t,k}}\leq 2\mathbb{\tilde{P}}_{\mu}(\mathcal{E}^c_t)\leq Ct^{-\delta}$.
+    for some $C,\delta>0$. Hence $\left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\mathbf{1}_{\mathcal{E}^c_{t,k}}\leq 2\mathbb{\tilde{P}}_{\mu}(\mathcal{E}^c_t)\leq Ct^{-\delta}$.
 
 On the event $\mathcal{E}_t$, by using the element inequality $|e^{i z}-1|\leq |z|$,
 \begin{align*}
@@ -958,50 +1082,596 @@ $C,\delta >0$ such that  $\mathbb{\tilde{P}}_{\mu}(\mathcal{E}_t^c)\leq C e^{-\d
     \|M_k^t[g]\|\leq \|M_k^t[g]\|_{1+\gamma}\leq C_{\gamma} e^{\frac{\alpha}{1+\gamma}t}e^{\frac{\gamma \alpha-\kappa(g)(1+\gamma)b}{1+\gamma}k}\leq C_{\gamma} e^{-pk}e^{\frac{\alpha}{1+\gamma}(t-k)}e^{\frac{\alpha}{1+\beta}k}
 \end{align*}
 Then we get $  \left|\mathbb{\tilde{P}}_{\mu}e^{i\theta J_t}-1\right|\rightarrow 0$ as $ t\rightarrow \infty$, by following the similar way in critical case.
+
+%new added
+\section{Appendix}
+
+\subsection{}
+    We first present two analytic results which are useful.
+\begin{lem}
+\label{lem: estimate of exponential remaining}
+	Suppose that $z\in \mathbb C_+:= \{x+iy: x \in [0,\infty), y \in \mathbb R\}$. Then
+\begin{equation}
+\label{eq: estimate of exponential remaining}
+	\Big|e^{-z} - \sum_{k=0}^n \frac{(-z)^k}{k!} \Big| 
+	\leq \frac{|z|^{n+1}}{(n+1)!} \wedge \frac{2|z|^{n}}{n!}, \quad n\in \mathbb N_0.
+\end{equation}
+\end{lem}
+\begin{proof}
+	Notice that $|e^{-z}| = e^{- \operatorname{Re} z} \leq 1$. 
+	Therefore, according to \cite[Theorem 7.20.]{Rudin1987Real},
+\begin{equation}
+	|e^{-z} - 1| = \Big| \int_0^1 e^{-\theta z} z d\theta\Big|
+	\leq |z|. 
+\end{equation}
+	Also, notice that $|e^{-z} - 1| \leq |e^{-z}|+1 \leq 2$.
+	So we have \eqref{eq: estimate of exponential remaining} is true when $n = 0$.
+	Now, suppose that \eqref{eq: estimate of exponential remaining} is true when $n = m$ for some $m \in \mathbb N_0$.
+	According to \cite[Theorem 7.20.]{Rudin1987Real},
+\begin{align}
+	&\Big|e^{-z} - \sum_{k=0}^{m+1} \frac{(-z)^k}{k!}\Big|
+	= \Big| \int_0^1\Big(e^{-\theta z} - \sum_{k=0}^m \frac{(-\theta z)^k}{k!} \Big) z d\theta \Big|
+	\\&\quad \leq  \Big(\int_0^1 \frac{|\theta z|^{m+1}}{(m+1)!} z d\theta\Big) \wedge \Big(\int_0^1 \frac{2|\theta z|^{m}}{m!} z d\theta\Big)
+	= \frac{|z|^{m+2}}{(m+2)!} \wedge \frac{2|z|^{m+1}}{(m+1)!},
+\end{align}
+	which says that \eqref{eq: estimate of exponential remaining} is true for $n = m + 1$.
+	Finally, use induction.
+\end{proof}
+
+\begin{lem}
+\label{lem: extension lemma for branching mechanism}
+	Suppose that  $\nu$ is a measure on $(0,\infty)$ such that $\int_{(0,\infty)} (u \wedge u^2) \nu(du)< \infty$. Then the following function $h: \mathbb C_+ \to \mathbb C$ is well defined:
+\begin{equation}
+	h (z) = \int_{(0,\infty)} (e^{-zu} - 1 + zu) \nu(du), \quad z \in \mathbb C_+.
+\end{equation}
+	Moreover, $h$ is continuous on $\mathbb C_+$ and is holomorphic on $\mathbb C_+^0:=\{x+iy:x \in (0,\infty), y\in \mathbb R\}$ with deriavative
+\begin{equation}
+\label{eq: deriavetive of the Poission part}
+	h'(z) = \int_{(0,\infty)}(1- e^{-uz})u \nu(du).
+\end{equation}
+\end{lem}
+\begin{proof}
+	From Lemma \ref{lem: estimate of exponential remaining}, we know that $h$ is well defined on $\mathbb C_+$.
+	According to \cite[Theorem 3.2. \& Theorem 3.5.]{SchillingSongVondracek2010Bernstein}, \eqref{eq: deriavetive of the Poission part} defines a continuous function $h'$ on $\mathbb C_+$ which is holomorphic on $\mathbb C_+^0$. 
+	Let $z_0, z \in \mathbb C_+$. 
+	Let $\gamma: [0,1]\mapsto \mathbb C_+$ be a $C^1$ path with $\gamma(0) = z_0$ and $\gamma(1) = z$.
+	Notice that, according to Lemma \ref{lem: estimate of exponential remaining},
+\begin{align}
+	&\int_0^1 \int_0^\infty |1-e^{-u\gamma(\theta)}|u~\nu(du)~d\theta
+	\\ &= \int_0^1~d\theta~ \Big( \int_0^1 |1-e^{-u\gamma(\theta)}|u~\nu(du) + \int_1^\infty |1-e^{-u\gamma(\theta)}|u~\nu(du) \Big)
+	\\ &\leq \int_0^1~d\theta~ \Big( |\gamma(\theta)|\int_0^1 u^2~\nu(du) + 2\int_1^\infty u~\nu(du) \Big) 
+	< \infty.
+\end{align}
+	Therefore, according to Fubini's theorem,
+\begin{align}
+\label{eq: path integration representation of h}
+	\int_\gamma h'(z)dz
+	&=\int_0^1 h'(\gamma(\theta))\gamma'(\theta) ~d\theta 
+	= \int_0^1 \int_0^\infty (1-e^{-u\gamma(
+	\theta)}) u~\nu(du)~ \gamma'(\theta) ~d\theta
+	\\&= \int_0^\infty \int_0^1 (1-e^{-u\gamma(
+	\theta)})~ \gamma'(\theta) u ~d\theta~ \nu(du)
+	= h(z) - h(z_0).
+\end{align}
+	The rest of the proof follows the arguement in \cite[Section 10.14]{Rudin1987Real}.
+\end{proof}
+
+\subsection{}
+\label{seq: complex Feynman-Kac transform}
+	Suppose that $\{(\xi_t)_{t \in [r,\infty)}; (\Pi_{r,x})_{r\in [0,\infty), x\in E}\}$ is a (possibly non-homogeneous) Hunt process in a locally compact seperable metric space $E$. 
+	For brevity, for each $0< s< t< \infty$ and each bounded complex valued measurable function $\rho$ on $[0,\infty) \times E$, we write
+\begin{equation}
+	H^{(\rho)}_{(s,t)}:= \exp\Big\{\int_s^t \rho(u,\xi_u) du\Big\}.
+\end{equation}
+	Notice that
+\begin{equation}
+\label{eq: crucial for Feynman-Kac}
+	\frac{\partial}{\partial s} H^{(\rho)}_{(s,t)}= -H^{(\rho)}_{(s,t)}\rho(s,\xi_s),
+	\quad s> 0.
+\end{equation}
+	Suppose that $\beta$, $\rho$ are complex valued bounded measurable functions on $[0,\infty) \times E$; $F$ is a complex valued bounded measurable function on $E$.
+    Fix a time $t >0$.  
+	Define
+\begin{equation}
+	g(r,x) := \Pi_{r,x}[ H_{(r,t)}^{(\beta+\rho)} F(\xi_t)],\quad r \in [0,t], x\in E.
+\end{equation}
+    Notice that
+\begin{align}
+    \Pi_{r,x} \Big[ \int_r^t | H_{(r,t)}^{(\beta)}\rho(s,\xi_s) H_{(s,t)}^{(\rho)} F(\xi_t)| ~ds \Big] 
+    \leq  \int_r^t e^{(t-r)\|\beta\|_\infty}e^{(t-s)\|\rho\|_\infty}\|\rho\|_\infty\|F\|_\infty ~ds 
+    < \infty.
+\end{align}
+	Therefore, from the Markov property of $\xi$, \eqref{eq: crucial for Feynman-Kac}, Fubini's theorem and above, we can verify that
+\begin{align}
+	&\Pi_{r,x} \Big[ \int_r^tH_{(r,s)}^{(\beta)}~(\rho g)(s,\xi_s)~ds \Big]
+	=\Pi_{r,x} \Big[ \int_r^t H_{(r,s)}^{(\beta)}\rho(s,\xi_s) \Pi_{s,\xi_s}[ H_{(s,t)}^{(\beta+\rho)} F(\xi_t)]~ds \Big]
+	\\&= \Pi_{r,x} \Big[ \int_r^t H_{(r,t)}^{(\beta)}\rho(s,\xi_s) H_{(s,t)}^{(\rho)} F(\xi_t) ~ds \Big]
+	= \Pi_{r,x} [ H_{(r,t)}^{(\beta)}F(\xi_t)(H_{(r,t)}^{(\rho)} - 1)]
+	\\&= g(r,x) - \Pi_{r,x} [ H_{(r,t)}^{(\beta)} F(\xi_t)].
+\end{align}
+
+\subsection{}
+\label{sec: definition of characteristic exponent}
+	According to Levy-Khintchine formula \cite[Theorem 8.1]{Sato1990Levy}, an $\mathbb R$-valued random variable $\{Y; P\}$ is infinitely divisible if and only if
+\begin{equation}
+\label{eq: characteristic function of an infinitely divisible random variable}
+	P[e^{i\theta Y}] 
+	= \exp\Big( ia \theta - \frac{1}{2}\sigma^2 \theta^2 + \int_{\mathbb R}(e^{i\theta x} - 1 - i \theta x\mathbf 1_{|x|< 1}) \nu(dx)\Big),
+    \quad \theta \in \mathbb R,
+\end{equation}
+	where $a\in \mathbb R$, $\sigma \in \mathbb R$ and $\nu$ is a measure on $\mathbb R\setminus\{0\}$ with $\int_{\mathbb R}(1\wedge x^2) \nu(dx)< \infty$.
+	Suppose that $\{Y;P\}$ is an infinitely divisible random variable with characteristic function \eqref{eq: characteristic function of an infinitely divisible random variable}, then
+\begin{equation}
+\label{eq: Characteristic exponent}
+	h(\theta) 
+	:= ia \theta - \frac{1}{2}\sigma^2 \theta^2 + \int_{\mathbb R}(e^{i\theta x} - 1 - i \theta x\mathbf 1_{|x|< 1}) \nu(dx),
+	\quad \theta \in \mathbb R, 
+\end{equation}
+    is a continuous function.
+    In fact, for any compact $K \subset \mathbb R$, since due to Lemma \ref{lem: estimate of exponential remaining},
+\begin{equation}
+\int_{\mathbb R}\sup_{\theta \in K} |e^{i\theta x} - 1 - i \theta x\mathbf 1_{|x|< 1}|~\nu(dx)
+\leq (\sup_{\theta \in K} \theta^2)\int_{[0,1)} | x|^2 \nu(dx) + 2 \int_{[1,\infty)} \nu(dx) < \infty,
+\end{equation}
+    we can verify the continuity of $h$ from the dominant convergence theorem.
+    Now, according to \cite[Proposition 1.9.1.]{Linde1986Probability}, 
+	$h$ is the unique continuous function from $\mathbb R$ to $\mathbb C$ with $h(0) = 0$ and $P[e^{i\theta Y}] = \exp\big(h(\theta)\big)$.
+	We refer to function $h$ the characteristic exponent of random variable $Y$ and write $\operatorname{Log} P[e^{i\theta Y}] = h(\theta)$.
+
+\subsection{}
+	
+	Suppose that $\{Y;P\}$ is an infinitely divisible random variable with characteristic exponent \eqref{eq: Characteristic exponent}.
+	Suppose that $P[|Y|]< \infty$.
+	According to \cite[Corollary 25.8.]{Sato1990Levy}, $\int_{|x|>1} |x|\nu(dx) < \infty$.
+	
+	We claim that, $h$ is differentiable on $\mathbb R$.
+	In fact, according to Lemma \ref{lem: estimate of exponential remaining}, we have for any compact $K \subset \mathbb R$,
+\begin{align}
+	&\int_{\mathbb R} \sup_{\theta \in K} \Big|\frac{\partial}{\partial \theta}(e^{i\theta x} - 1 - i \theta x\mathbf 1_{|x|< 1})\Big| \nu(dx) 
+    = \int_{\mathbb R} \sup_{\theta \in K} | e^{
+    i\theta x} ix - ix \mathbf 1_{|x|< 1} | \nu(dx)
+    \\&\leq(\sup_{\theta \in K}|\theta|) \int_{[0,1)}|x^2| \nu(dx)+\int_{[1,\infty)} |x|  \nu(dx)
+    < \infty,
+    \quad \epsilon > 0.
+\end{align}
+	Therefore, according to \cite[Theorem A.5.2.]{Durrett2010Probability},
+	we have that $h$ is differentiable on $\mathbb R$ with derivative
+\begin{equation}
+	h'(\theta) = ia - \sigma^2 \theta + i \int_{\mathbb R} (xe^{i\theta x} - x\mathbf 1_{|x|<1}) \nu(dx).
+\end{equation}
+	
+	Therefore, according to \cite[Theorem 3.2.4.]{Cuppens1975Decomposition}, we have that map $\theta \mapsto \mathbf P[e^{i\theta Y}]$ from $\mathbb R$ to $\mathbb C$ is differentiable with
+\begin{equation}
+\label{eq: derivative of characteristic exponent}
+	iP[Y e^{i\theta Y}]
+	=\frac{d}{d \theta} P[e^{i\theta Y}] 
+	= P[e^{i\theta Y}] \frac{d}{d \theta} h(\theta),
+	\quad \theta \in \mathbb R.
+\end{equation}
+
+\subsection{}
+\label{sec: definition of superprocess}
+	We say $X=\{(X_t)_{t\geq 0}; (\mathbf P_\mu)_{\mu \in \mathcal M^1_E}\}$ is a $(\xi,\psi)$-superprocess if
+\begin{itemize}
+\item
+	The sample space $E$ is a locally compact separable metric space. 
+	Denote by $\mathcal M_E^1$ the collection of all the finite measures on $E$ equipped with weak topology.
+\item
+	The spatial motion $\xi=\{(\xi_t)_{t\geq 0};(\Pi_x)_{x\in E}\}$ is an $E$-valued Hunt process with its lifetime denoted by $\zeta$.
+\item
+	the branching mechanism $\psi: E\times[0,\infty) \to \mathbb R$ is given by 
+\begin{equation}
+\label{eq: branching mechanism}
+	\psi(x,z)=
+	- \beta(x) z + \alpha (x) z^2 + \int_{(0,\infty)} (e^{-zy} - 1 + zy) \pi(x,dy).
+\end{equation}
+	where $\beta \in \mathscr B_b(E)$, $\alpha \in \mathscr B^+_b(E)$ and $\pi(x,dy)$ is a kernel from $E$ to $(0,\infty)$ such that $\sup_{x\in E} \int_{(0,\infty)} (y\wedge y^2) \pi(x,dy) < \infty$.
+\item
+	$X=\{(X_t)_{t\geq 0}; (\mathbf P_\mu)_{\mu \in \mathcal M^1_E}\}$ is an $\mathcal M^1_E$-valued Hunt process with is transition probability determined by
+\begin{align}
+	\mathbf P_\mu [e^{-X_t(f)}] = e^{-\mu(u_f(t,\cdot))},
+	\quad t\geq 0, \mu \in \mathcal M_E^1, f\in \mathscr B^+_b(E),
+\end{align}
+	where the function $u_f:(t,x) \mapsto u_f(t,x)$ on $[0,\infty) \times E$ is the unique locally bounded positive solution to the equation
+\begin{align}\label{eq:FKPP_in_definition}
+	u_f(t,x) + \Pi_x \Big[  \int_0^{t\wedge \zeta} \psi \big(\xi_s,u_f(t-s,\xi_s)\big) ds \Big]
+	= \Pi_x [ f(\xi_t)\mathbf 1_{t<\zeta} ],
+	\quad t \geq 0, x \in E.
+\end{align}
+\end{itemize}
+	We refer our reader to \cite{Li2011Measure} for more discussion about the definition and the existence of superprocesses.
+    To avoid triviality, we assume that $\psi(x,z)\neq -\beta(x)z$ for some $x \in E$ and $z \geq 0$; and that $\Pi_x(\zeta>t)>0$ for each $x \in E$ and $t \geq 0$.
+
+\subsection{}
+\label{sec: extension of branching mechanism}
+    Let $X$ be the superprocess defined in Subsection \ref{sec: definition of superprocess}.	
+	Notice that, the branching mechanism $\psi$ can be extended as a map from $E \times \mathbb C_+$ to $\mathbb C$ using \eqref{eq: branching mechanism}.
+	Define
+\begin{equation}
+	\psi'(x,z):= - \beta(x) + 2\alpha(x) z + \int_{(0,\infty)} (1-e^{-zy})y\pi(x,dy),
+	\quad x\in E, z\in \mathbb C_+.
+\end{equation}
+	Then according to Lemma \ref{lem: extension lemma for branching mechanism}, for each $x \in E$, $z \mapsto \psi(x,z)$ is a holomorphic function on $\mathbb C_+^0$ with deriavetive $z \mapsto \psi'(x,z)$. 
+	Define $\psi_0(x,z) := \psi(x,z)+ \beta(x)z $ and $\psi'_0(x,z) := \psi'(x,z) + \beta(x)$.
+
+\subsection{}
+	Let $X$ be the superprocess defined in Subsection \ref{sec: definition of superprocess}.
+	Denote by $\mathbb W$ the space of $\mathcal M_E^1$-valued c\`{a}dl\`{a}g paths whis its conanical path denoted by $(W_t)_{t\geq 0}$.
+	We say $X$ is \emph{non-persistent} if $\mathbf P_{\delta_x}(\|X_t\|= 0) > 0$ for all $x\in E$ and $t> 0$.
+	Suppose that $(X_t)_{t\geq 0}$ is non-persistent, then according to \cite[Section 8.4]{Li2011Measure},
+	there is a family of measures $(\mathbb N_x)_{x\in E}$ on $\mathbb W$ such that
+\begin{itemize}
+\item
+	$\mathbb N_x (\forall t \geq 0, \|W_t\|=0) =0$;
+\item
+	$\mathbb N_x(\|W_0 \|\neq 0) = 0$;
+\item
+	For any $\mu \in \mathcal M_E^1$, if $\mathcal N$ is a Poisson random measure defined on some probability space
+	with intensity $\mathbb N_\mu(\cdot):= \int_E \mathbb N_x(\cdot )\mu(dx)$,
+	then the superprocess $\{X;\mathbf P_\mu\}$ can be realized by $\widetilde X_0 := \mu$ and $\widetilde X_t(\cdot) := \mathcal N[W_t(\cdot)]$ for each $t>0$.
+\end{itemize}
+	We refer to $(\mathbb N_x)_{x\in E}$ the Kuznetsov measures of $X$.
+\subsection{}
+\label{sec: definition of vf}
+	Let $X$ be the superprocess defined in Subsection \ref{sec: definition of superprocess}.
+	Define the mean semigroup
+\begin{equation}
+	P_t^\beta f(x)
+	:= \Pi_{x}[e^{\int_0^t \beta(\xi_s)ds}f(\xi_t) \mathbf 1_{t< \zeta}],
+	\quad t\geq 0, x\in E, f\in b\mathscr B^+_E. 
+\end{equation}
+	It is know from \cite[Proposition 2.27]{Li2011Measure} and \cite[Theorem 2.7]{Kyprianou2014Fluctuations} that for any $t > 0$, $\mu \in \mathcal M_E^1$ and $f\in b\mathscr B^+_E$,
+\begin{equation}
+\label{eq: mean formula for superprocesses}
+    \mathbb N_{\mu}[W_t(f)]
+    =\mathbf P_{\mu}[X_t(f)]=\mu(P^\beta_t f).
+\end{equation}
+	Define 
+\begin{align}
+    L_1(\xi)
+    &:= \{f\in \mathscr B_E: \forall x\in E, t\geq 0, \quad \Pi_x[|f(\xi_t)|]< \infty\},
+	\\L_2(\xi)
+    &:= \{f \in \mathscr B_E: |f|^2 \in L_1(\xi)\}.
+\end{align}
+	Let $f\in L_1(\xi), t >0$ and $x\in E$.
+    Evaluating \eqref{eq: mean formula for superprocesses} by monotonicity and linearity, we have
+\begin{equation}
+    \mathbb N_x[W_t(f)]
+    =\mathbf P_{\delta_x}[X_t(f)]=P^\beta_t f(x) \in \mathbb R.
+\end{equation}
+	Notice that, from the branching property of the superprocess $X$, $\{X_t(f); \mathbf P_{\delta_x}\}$ is an infinitely divisible random variable with finite moment. 
+	Denote by $v_f(t,x,\theta) := \operatorname{Log} \mathbf P_{\delta_x}[e^{i\theta X_t(f)}]$ the charateristic exponent of random variable $\{X_t(f); \mathbf P_{\delta_x}\}$.
+	Assume that the superprocess $X$ is non-presistent with its Kuznestov measure denoted by $(\mathbb N_x)_{x\in E}$.
+	According to Campbell's formula, see \cite[Theorem 2.7]{Kyprianou2014Fluctuations} for example, for each $\theta \in \mathbb R$,
+$	\mathbf P_{\delta_x} [e^{i\theta X_t(f)}] 
+	= \exp(\mathbb N_x[ e^{i\theta W_t(f)} - 1]).
+$
+	Notice that $\theta \mapsto \mathbb N_x[e^{i\theta W_t(f)} - 1]$ is a continuous function. 
+	Also notice that $\mathbb N_x[e^{i\theta W_t(f)} - 1] = 0$ if $\theta = 0$.
+	Therefore, according to the discussion in Subsection \ref{sec: definition of characteristic exponent}, we have 
+\begin{equation}
+\label{eq: N and characteristic exponent}
+	v_f(t,x,\theta) = \mathbb N_x[e^{i\theta W_t(f)} - 1],
+	\quad \theta \in \mathbb R.
+\end{equation}
+
+\subsection{}
+    Let $X$ be the non-persistent superprocess discussed in Subsection \ref{sec: definition of vf}. 
+    Fix $t > 0,x\in E$ and $f\in L^1(\xi)$.
+	Noticing that
+\[
+	e^{\operatorname{Re} v_f(t,x,\theta)} = |e^{v_f(t,x,\theta)}|
+	= |\mathbf P_{\delta_x}[e^{i\theta X_t(f)}]| \leq 1,
+	\quad \theta\in \mathbb R,
+\]
+    we have
+\begin{equation}
+\label{eq: v has positive real part}
+	\operatorname{Re} v_f(t,x,\theta) \geq 0,\quad \theta \in \mathbb R.
+\end{equation}
+	According to Lemma \ref{lem: estimate of exponential remaining}, we have that
+\begin{equation}
+	|v_f(t,x,\theta)| \leq \mathbb N_x[|e^{i\theta W_t(f)} - 1|]
+	\leq \mathbb N_x[|i\theta W_t(f)|]
+	\leq |\theta| ~(P^\beta_t |f|)(x),
+	\quad \theta \in \mathbb R.
+\end{equation}
+	Notice that, for any compact $K \subset \mathbb R$, 
+\begin{equation}
+\label{eq: estimate of deriavetive of v(theta)}
+	\mathbb N_x\Big[\sup_{\theta \in K} \Big|\frac{\partial}{\partial \theta} (e^{i\theta W_t(f)} - 1) \Big|\Big]
+	\leq \mathbb N_x[|W_t(f)|] \leq (P^\beta_t |f|)(x) < \infty.
+\end{equation}
+	Therefore, according to \cite[Theorem A.5.2.]{Durrett2010Probability},
+	$v_f(t,x,\theta)$ is differentiable in $\theta \in \mathbb R$ with
+\[
+	\frac{\partial}{\partial \theta} v_f(t,x,\theta)
+	= i\mathbb N_x[W_t(f)e^{i\theta W_t(f)}],
+	\quad \theta \in \mathbb R.
+\]
+	Moreover, from the above, it is clear that
+\begin{equation}
+\label{eq: upper bounded for derivative of v(theta)}
+	\sup_{\theta \in \mathbb R}\Big| \frac{\partial}{\partial \theta} v_f(t,x,\theta)\Big|\leq ( P^\beta_t |f|)(x),
+    \quad \theta \in \mathbb R.
+\end{equation}
+    From \eqref{eq: estimate of deriavetive of v(theta)} and the dominate convergence theorem, we can verify that $(\partial/\partial \theta)v_f(t,x,\theta)$ is continuous in $\theta$.
+    In another words, $\theta \to v_f(t,x,\theta)$ is a $C^1$ map from $\mathbb R$ to $\mathbb C_+$.
+    According to this and \eqref{eq: path integration representation of h}, we can write
+\begin{equation}
+\label{eq: path integration representation of psi(v)}
+    \psi(x,v_f(t,x,\theta_0)) = \int_0^{\theta_0} \psi'(x,v_f(t,x,\theta)) \frac{\partial}{\partial \theta} v_f(t,x,\theta)~d\theta,
+    \quad \theta_0 \in \mathbb R.
+\end{equation}
+    Notice that
+\begin{align}
+\label{eq: upper bound of psi'(v)}
+    &\big|\psi'\big(x, v_f(t,x,\theta)\big)\big| 
+    \\&= \Big| -\beta(x)+ 2\alpha(x) v_f(t-s,x,\theta) 
+    + \int_{(0,\infty)} y (e^{-y v_f(t-s,x,\theta)} - 1) \pi(x,dy)\Big|
+    \\&= \Big| - \beta(x)+ 2\alpha(x)\mathbb N_x(e^{i\theta W_{t}(f)} - 1)  + \int_{(0,\infty)} y \mathbf P_{y \delta_x}[e^{i\theta W_{t}(f)} - 1] \pi(x,dy) \Big|
+\\ &\leq \|\beta\|_\infty + 2\alpha(x)\mathbb N_x[|\theta| W_t(|f|)]+ \int_{(0,\infty)} y\mathbf P_{y\delta_x}\big[2\wedge\big(|\theta| W_t(|f|)\big)\big] \pi(x,dy)
+\\ &\leq \|\beta\|_\infty + 2\|\alpha\|_\infty  |\theta|~ (P^\beta_t |f|)(x) + \Big(\sup_{x\in E}\int_{(0,1]}y^2 \pi(x,dy)\Big)~ |\theta| ~(P^\beta_t |f|)(x) 
+\\ & \qquad + 2\sup_{x\in E}\int_{(1,\infty)} y \pi(x,dy)
+\\ &= c_0 +c_1 |\theta| ~(P^\beta_t |f|)(x),
+\quad \theta \in \mathbb R.
+\end{align}
+    where $c_0,c_1 \geq 0$ are constants not dependent on $f,x,t$ and $\theta$.
+    Now, using \eqref{eq: path integration representation of psi(v)}, \eqref{eq: upper bounded for derivative of v(theta)} and \eqref{eq: upper bound of psi'(v)}, we have
+\begin{align}
+\label{eq: upper bound of psi(v)}
+    \big|\psi\big(x,v_f(t,x,\theta)\big)\big| 
+    \leq c_0|\theta|~(P^\beta_t |f|)(x)+c_1 |\theta|^2 ~(P^\beta_t |f|)(x)^2,
+    \quad \theta \in \mathbb R.
+\end{align}
+
+    Assume that $f \in L_2(\xi) \subset L_1(\xi)$.
+    Then, using Jensen's inequality and the above, we have that 
+\begin{align}
+\label{eq: domination of psi(v)}
+    &\Pi_x\Big[\int_0^t |\psi(\xi_s,v_f(t-s,\xi_s,\theta))|ds\Big] 
+\\&\leq \Pi_x\Big[\int_0^t \big(c_0|\theta| (P_{t-s}^\beta|f|)(\xi_s)+c_1|\theta|^2(P_{t-s}^\beta|f|)(\xi_s)^2\big)ds\Big]
+\\ &\leq \int_0^t \big(c_0|\theta|e^{t\|\beta\|}\Pi_x \big[ \Pi_{\xi_s}[|f(\xi_{t-s})|] \big]+c_1|\theta|^2e^{2t\|\beta\|}\Pi_x \big[ \Pi_{\xi_s}[|f (\xi_{t-s})|]^2 \big]\big)~ds
+\\ &\leq \int_0^t (c_0|\theta|e^{t\|\beta\|}\Pi_x [ |f(\xi_{t})|]+c_1|\theta|^2e^{2t\|\beta\|}\Pi_x [ |f (\xi_{t})|^2 ])~ds < \infty.
+\end{align}
+    As a consequence, expectation
+\[
+    \Pi_x\Big[\int_0^t \psi(\xi_s,v_f(t-s,\xi_s,\theta))ds\Big]
+    \in \mathbb C
+\]
+    is well defined for all $f\in L_2(\xi)$.
+\subsection{}
+	Let $X$ be the non-persistent superprocess discussed in Subsection \ref{sec: definition of vf}.
+	Let $f\in b\mathscr B_E^{++}$, $T >0$ and $x\in E$.
+	The fact that $\mathbf P_{\delta_x}[X_T(f)] = \mathbb N_x[W_T(f)] = P^\beta_T f(x) \in (0,\infty)$ allows us to define the following probability transforms:
+\begin{equation}
+	d\mathbf P_{\delta_x}^{X_T(f)}
+	:= \frac{X_T(f)}{T_t^\beta f(x)} d\mathbf P_{\delta_x};
+	\quad d\mathbb N_x^{W_T(f)}
+	:=  \frac{W_T(f)}{T_t^\beta f(x)} d\mathbb N_x.
+\end{equation}
+	Following the definition in \cite{RenSongSun2017Spine}, we say that $\{\xi, \mathbf n;\mathbf Q_{x}^{(f,T)}\}$ is a spine representation of $\mathbb N_x^{W_T(f)}$ if
+\begin{itemize}
+\item
+    The spine process $\{(\xi_t)_{0\leq t\leq T}; \mathbf Q^{(f,T)}_x\}$ is a copy of $\{(\xi_t)_{0\leq t\leq T}; \Pi^{(f,T)}_{x}\}$, 
+    where
+\begin{equation}
+    d\Pi_x^{(f,T)} := \frac{f(\xi_T)e^{\int_0^T \beta(\xi_s)ds}}{P^\beta_T f(x)} d \Pi_x;
+\end{equation}
+\item
+    Given $\{(\xi_t)_{0\leq t\leq T}; \mathbf Q^{(f,T)}_x\}$, the immigration measure $\{\mathbf n(\xi,ds,dw); \mathbf Q^{(f,T)}_x[\cdot |(\xi_t)_{0\leq t\leq T}]\}$ is a Poisson random measure on $[0,T] \times \mathbb W$ with intensity
+\begin{align}
+    \mathbf m(\xi,ds,dw)
+    := 2 \alpha(\xi_s) ds \cdot \mathbb N_{\xi_s}(dw) + ds \cdot \int_{(0,\infty)} y \mathbf P_{y\delta_{\xi_s}}(X\in dw) \pi(\xi_s,dy);
+\end{align}
+\item
+    $\{(Y_t)_{0\leq t\leq T}; \mathbf Q^{(f,T)}_x\}$ is an $\mathcal M^1_E$-valued process defined by
+\begin{align}
+    Y_t
+    := \int_{(0,t] \times \mathbb W} w_{t-s} \mathbf n(\xi,ds,dw),
+    \quad 0 \leq t\leq T.
+\end{align}
+\end{itemize}
+	According to the spine decomposition theorem \cite{RenSongSun2017Spine}, we have that
+\begin{align}
+\label{eq: Spine decomposition 1}
+	\{(X_s)_{s \geq 0};\mathbf P_{\delta_x}^{X_T(f)}\}
+	\overset{f.d.d.}{=} \{(X_s + W_s)_{s \geq 0};\mathbf P_{\delta_x} \otimes \mathbb N_x^{W_T(f)} \}
+\end{align}
+    and
+\begin{align}
+\label{eq: Spine decomposition 2}
+    \{(W_s)_{0\leq s\leq T};\mathbb N_x^{W_T(f)}\}
+    \overset{f.d.d.}{=} \{(Y_s)_{s \geq 0};\mathbf Q_x^{(f,T)}\}.
+\end{align}
+\subsection{}
+    Let $X$ be the non-persistent superprocess discussed in Subsection \ref{sec: definition of vf}.
+\begin{prop}
+	Let $f\in L_2(\xi)$. Then for each $t\geq 0$, $x\in E$ and $\theta \in \mathbb R$,
+\begin{equation}
+\label{eq: complex FKPP-equation}
+	v_f(t,x,\theta) - \Pi_{x} \Big[\int_0^t \psi\big(\xi_s,v_f(t-s,\xi_s,\theta)\big) ds \Big]
+	\\= i\theta \Pi_{x} [f(\xi_t)].
+\end{equation}
+\end{prop}
+\begin{proof}
+    Assume that $f\in b\mathscr B_E$.
+	Set $t>0, r\in [0,t), x\in E, \theta \in \mathbb R$ and $g\in b\mathscr B_E^{++}$.
+	Denoted by $\{\xi, \mathbf n; \mathbf Q_x^{(g,t)}\}$ the spine representation of $\mathbb N_x^{W_t(g)}$.
+    Given $\{\xi; \mathbf Q_x^{(g,t)}\}$, denote by $\mathbf m(\xi, ds,dw)$ the conditional intensity of $\mathbf n$.
+    Denote by $\Pi_{r,x}$ the probability of Hunt process $\{\xi; \Pi\}$ initiated at time $r$ and position $x$.
+    From Lemma \ref{lem: estimate of exponential remaining}, we have $\mathbf Q^{(g,t)}_{x}$-a.s.ly
+\begin{align}
+&\int_{[0,t]\times \mathbb W}|e^{i\theta w_{t-s}(f)} - 1| \mathbf m(\xi, ds,dw)
+    \leq \int_{[0,t]\times \mathbb W}\big(|\theta w_{t-s}(f)| \wedge 2\big) \mathbf m(\xi, ds,dw)
+    \\&\leq \int_0^t \Big(2\alpha(\xi_s)\mathbb N_{\xi_s}\big(|\theta | W_{t-s}(|f|)\big)  + \int_{(0,1]} y \mathbf P_{y \delta_{\xi_s}}[|\theta| X_{t-s}(|f|)] \pi(\xi_s,dy) 
+    \\&\qquad\qquad+ 2\int_{(1,\infty)}y\pi(\xi_s,dy)\Big) ds
+     \\&\leq \int_0^t |\theta|(P_{t-s}^\beta |f|)(\xi_s)\Big(2\alpha(\xi_s)  + \int_{(0,1]} y^2 \pi(\xi_s,dy)\Big) ds + 2t \sup_{x\in E}\int_{(1,\infty)}y\pi(x,dy)
+    \\&\leq \Big(2\|\alpha\|_\infty +\sup_{x\in E}\int_{(0,1]} y^2 \pi(x,dy)\Big) t |\theta| e^{t\|\beta\|_\infty}\|f\|_\infty + 2t \sup_{x\in E}\int_{(1,\infty)}y\pi(x,dy)
+    < \infty.
+\end{align}
+    According to this, Fubini's theorem, \eqref{eq: N and characteristic exponent}, \eqref{eq: v has positive real part} and the argument in Subsection \ref{sec: extension of branching mechanism}, we have $\mathbf Q^{(g,t)}_{x}$-a.s.ly,
+\begin{align}
+	&\int_{[0,t]\times \mathbb N}(e^{i\theta w_{t-s}(f)} - 1) \mathbf m(\xi, ds,dw)
+	\\&=\int_0^t \Big(2\alpha(\xi_s)\mathbb N_{\xi_s}(e^{i\theta W_{t-s}(f)} - 1)  + \int_{(0,\infty)} y \mathbf P_{y \delta_{\xi_s}}[e^{i\theta W_{t-s}(f)} - 1] \pi(\xi_s,dy)\Big) ds
+	\\&=\int_0^t \Big( 2\alpha(\xi_s) v_f(t-s,\xi_s,\theta) 
+	+ \int_{(0,\infty)} y (e^{-y v_f(t-s,\xi_s,\theta)} - 1) \pi(\xi_s,dy) \Big) ds
+	\\&= \int_0^t \psi'_0\big(\xi_s, v_f(t-s,\xi_s,\theta)\big)ds.
+\end{align}
+	Therefore, according to \eqref{eq: Spine decomposition 2}, Campbell's formula and above, we have that 
+\begin{align}
+\label{eq: N to Pi}
+	\mathbb N_x^{W_t(g)}[e^{i\theta W_t(f)}]
+	&=\mathbf Q_x^{(g,t)} \Big[\exp\Big\{\int_{[0,t]\times \mathbb N}(e^{i\theta w_{t-s}(f)} - 1) \mathbf m(\xi, ds,dw)\Big\}\Big]
+	\\&= \Pi_x^{(g,t)} [e^{\int_0^t \psi'_0(\xi_s, v_f(t-s,\xi_s,\theta))ds}]
+	\\&= \frac{1}{T_t^\beta g (x)} \Pi_x[ g(\xi_t) e^{\int_0^t \psi'(\xi_s, v_f(t-s,\xi_s,\theta))ds} ].
+\end{align}
+    Let $\epsilon >0$.
+    Define $f^+ = (f \vee 0) + \epsilon$ and $f^- = (-f) \vee 0 + \epsilon$, then $f^\pm \in b\mathscr B^{++}_E$ and $f = f^+ - f^-$. 
+    According to \eqref{eq: Spine decomposition 1}, we have that
+\begin{equation}
+    \frac{\mathbf P_{\delta_x}[X_t(f^{\pm})e^{i\theta X_t(f)}]}{\mathbf P_{\delta_x}[X_t(f^{\pm})]} 
+    = \mathbf P_{\delta_x}[e^{i\theta X_t(f)}] \mathbb N_x^{W_t(f^{\pm})}[e^{i\theta X_t(f)}].
+\end{equation}
+    Using \eqref{eq: N to Pi} and above, we have
+\begin{align}
+	\frac{\mathbf P_{\delta_x}[X_t(f)e^{i\theta X_t(f)}] }{\mathbf P_{\delta_x}[e^{i\theta X_t(f)}]} 
+	&= \mathbf P_{\delta_x}[X_t(f^+)] \mathbb N_x^{W_t(f^+)} [e^{i\theta X_t(f)}] - \mathbf P_{\delta_x}[X_t(f^-)]\mathbb N_x^{W_t(f^-)}[e^{i\theta X_t(f)}]
+	\\& = \Pi_x[ f(\xi_t) e^{\int_0^t \psi'(\xi_s, v_f(t-s,\xi_s,\theta)) ds}  ].
+\end{align}
+	Therefore, according to \eqref{eq: derivative of characteristic exponent} and above, we have
+\begin{align}
+	\frac{\partial}{\partial \theta} v_f(t, x, \theta)
+	= \Pi_x[ if(\xi_t) e^{\int_0^t \psi'(\xi_s, v_f(t-s,\xi_s,\theta)) ds} ].
+\end{align}
+	Since $\{(\xi_{r+t})_{t \geq 0}; \Pi_{r,x}\} \overset{d}{=} \{(\xi_{t})_{t\geq 0}; \Pi_{x}\} $, we have
+\begin{align}
+	&\frac{\partial}{\partial \theta} v_f(t - r, x, \theta)
+	= \Pi_x[ if(\xi_{t-r}) e^{\int_0^{t-r} \psi'(\xi_s, v_f(t-r-s,\xi_s,\theta)) ds} ]
+	\\&= \Pi_{r,x}[if(\xi_t)e^{\int_0^{t-r} \psi'(\xi_{r+s}, v_f(t-r-s,\xi_{r+s},\theta)) ds} ]
+	= \Pi_{r,x}[if(\xi_t)e^{\int_r^t \psi'(\xi_{s}, v_f(t-s,\xi_{s},\theta)) ds} ].
+\end{align}
+    From \eqref{eq: upper bound of psi'(v)}, we know that for each fixed $\theta \in \mathbb R$, $(t,x) \mapsto |\psi'(x,v_f(t,x,\theta))|$ is bounded above.
+	Therefore, we can apply the argument in Subsection \ref{seq: complex Feynman-Kac transform} and get that
+\begin{equation}
+	\frac{\partial}{\partial \theta} v_f(t-r, x, \theta) - \Pi_{r,x} \Big[\int_r^t \psi'\big(\xi_s, v_f(t-s,\xi_s,\theta)\big)\frac{\partial}{\partial \theta} v_f(t-s, \xi_s, \theta)~ds\Big]
+	= \Pi_{r,x} [i f(\xi_t)].
+\end{equation}
+	Integrating the above with respect to $\theta$, using \eqref{eq: path integration representation of psi(v)}, \eqref{eq: upper bound of psi'(v)}, \eqref{eq: upper bounded for derivative of v(theta)} and Fubini's theorem, we have
+\begin{equation}
+	v_f(t-r,x,\theta) - \Pi_{r,x} \Big[\int_r^t \psi\big(\xi_s,v_f(t-s,\xi_s,\theta)\big) ~ds\Big]
+	\\= i\theta \Pi_{r,x} [f(\xi_t)].
+\end{equation}
+    Taking $r = 0$, we get that \eqref{eq: complex FKPP-equation} is true if $f\in b\mathscr B_E$.
+
+    Now assume that $f\in L_2(\xi)$. Set $n \in \mathbb N$.
+    Writing $f_n := (f^+ \wedge n) - (f^- \wedge n)$, then $f_n \xrightarrow[n\to \infty]{} f$ pointwisely. 
+    From what we have proved, 
+\begin{equation}
+\label{eq: complex FKPP-equation for fn}
+    v_{(f_n)}(t,x,\theta) - \Pi_{x} \Big[\int_0^t \psi\big(\xi_s,v_{(f_n)}(t-s,\xi_s,\theta)\big) ~ds\Big]
+    \\= i\theta \Pi_{x} [f_n(\xi_t)].
+\end{equation}
+    Notice the following:
+\begin{itemize}
+\item
+    It is clear that $\Pi_{x}[f_n(\xi_t)] \xrightarrow[n\to \infty]{} \Pi_{x}[f(\xi_t)]$.
+\item
+    $v_{(f_n)}(t,x,\theta) \xrightarrow[n\to \infty]{} v_f(t,x,\theta)$ due to \eqref{eq: N and characteristic exponent}, dominated convergence theorem and the fact that
+\[
+    |e^{i\theta W_t(f_n)} - 1| \leq |\theta| W_t(|f|);
+    \quad \mathbb N_x[W_t(|f|)] = (P_t^\beta |f|)(x) < \infty.
+\]
+\item
+    $\Pi_{x} [\int_0^t \psi(\xi_s,v_{(f_n)}(t-s,\xi_s,\theta))ds] \xrightarrow[n\to \infty]{} \Pi_{x} [\int_0^t \psi(\xi_s,v_{f}(t-s,\xi_s,\theta))ds]$ due to donimated convergence theorem, \eqref{eq: domination of psi(v)} and the fact (see \eqref{eq: upper bound of psi(v)}) that
+\begin{align}
+    \big|\psi\big(\xi_s,v_{(f_n)}(t-s,\xi_s,\theta)\big)\big|
+    \leq c_0|\theta|~(P^\beta_{t-s} |f|)(\xi_s)+c_1 |\theta|^2 ~(P^\beta_{t-s} |f|)(\xi_s)^2.
+\end{align}
+\end{itemize}
+    Using the above arguements, letting $n \to \infty$ in \eqref{eq: complex FKPP-equation for fn}, we get the desired result.
+\end{proof}
+%end new add
+
   
 
 \begin{thebibliography} {10}
+
+\bibitem{BAM}
+Berestycki, J., Kyrianou, A.E., Murillo-Salas, A
+\newblock{\em The prolific backbone for supercritical superprocesses}. Stoch. Proc. Appl. 121, 1315-1331(2011)
+
+\bibitem{Cuppens1975Decomposition}
+Cuppens, R.:
+\emph{Decomposition of multivariate probabilities.}
+Probability and Mathematical Statistics, Vol. 29. Academic Press [Harcourt Brace Jovanovich, Publishers], New York-London, 1975.
+\MR{0517412}
+
+\bibitem{Durrett2010Probability}
+Durrett, R.:
+\emph{Probability: theory and examples.}
+Fourth edition. Cambridge Series in Statistical and Probabilistic Mathematics, 31. Cambridge University Press, Cambridge, 2010.
+\MR{2722836}
 
 \bibitem{EB}
 Dynkin,~E.B. 
 \newblock {\em Superprocesses and partial differential equations}, Ann. Probab (1993): 1185-1262.
 
-\bibitem{AK}
-Kyprianou,~A.E. 
-\newblock {\em Introductory Lectures on Fluctuations of Levy Processes with Application}, Springer, Berlin(2006)
+\bibitem{DK}
+Dynkin, E. B., Kuznetsov, S. E.: 
+\newblock {\em $\mathbb{N}$-measure  for branching exit Markov system and their applications to differential equations}, Probab. Theory Related Fields 130(2004) 135-150
 
-\bibitem{ZL}
-Z.~Li,
-\newblock {\em Measure-valued branching Markov processes}, Probability and its Applications (New York), Springer, Heidelberg, 2011. MR 2060602
+\bibitem{Kyprianou2014Fluctuations}
+Kyprianou, A. E.: 
+\emph{Fluctuations of L\'{e}vy processes with applications.}
+Introductory lectures. Second edition. Universitext. Springer, Heidelberg, 2014.
+\MR{3155252}
+
+\bibitem{Li2011Measure}
+Li, Z.:
+\emph{Measure-valued branching Markov processes.} 
+Probability and its Applications (New York), Springer, Heidelberg, 2011. 
+\MR{2060602}
+
+\bibitem{Linde1986Probability}
+Linde, W.:
+\emph{Probability in Banach spaces—stable and infinitely divisible distributions.}
+Second edition. A Wiley-Interscience Publication. John Wiley \& Sons, Ltd., Chichester, 1986.
+
+\bibitem{MM}
+Marks, R., Mil\'{o}s, P.:
+\newblock {\em CLT for supercritical branching processes with heavy-tailed branching law}. 
+\ARXIV{1803.05491}
 
 \bibitem{GD}
 Metafune,~G., Pallara,D.
 \newblock {\em Specturm of Ornstein-Uhlenbeck operators in $\mathcal{L}^p$ space with respect to invariant measures}. J. Funct. Anal. 196, 40-60(2002)
 
 \bibitem{RSZ}
-Y.-X.Ren, R. Song, R. Zhang,
+Ren, Y.-X., Song, R., Zhang, R.:
 \newblock {\em Central limit theorems for super Ornstein-Uhlenbeck processes}, Acta Appl. Math. 130(2014)9-49.
 
-\bibitem{MM}
-R.Marks, P.Mil\'{o}s
-\newblock {\em CLT for supercritical branching processes with heavy-tailed branching law}. arXiv preprint arXiv:1803.05491, 2018.
-
-\bibitem{DK}
-E.B.Dynkin, S.E. Kuznetsov,
-\newblock {\em $\mathbb{N}$-measure  for branching exit Markov system and their applications to differential equations}, Probab. Theory Related Fields 130(2004) 135-150
-
-\bibitem{DR}
-Durrett, Rick.
-\newblock {\em Probability: theory and examples}. Cambridge university press, 2010.
-
-\bibitem{BAM}
-Berestycki, J., Kyrianou, A.E., Murillo-Salas, A
-\newblock{\em The prolific backbone for supercritical superprocesses}. Stoch. Proc. Appl. 121, 1315-1331(2011)
-
-\bibitem{RSS}
-Y.-X.Ren, R. Song, Z. Sun,
+\bibitem{RenSongSun2017Spine}
+Ren, Y.-X., Song, R., Sun, Z.:
 \newblock{\em Spine decompositions and limit theorems for a class of critical superpeocesses,} arXiv preprint arXiv:1711.09188(2017).
 
+\bibitem{Rudin1987Real}
+Rudin, W.:
+\emph{Real and complex analysis.}
+Third edition. McGraw-Hill Book Co., New York, 1987.
+\MR{0924157}
+
+\bibitem{SchillingSongVondracek2010Bernstein}
+Schilling, R., Song, R., Vondra\v{c}ek, Z.:
+\emph{Bernstein functions. Theory and applications.} 
+De Gruyter Studies in Mathematics, 37. Walter de Gruyter \& Co., Berlin, 2010.
+\MR{2598208}
+
+
+\bibitem{Sato1990Levy}
+Sato, K.:
+\emph{Lévy processes and infinitely divisible distributions.}
+Cambridge Studies in Advanced Mathematics, 68. Cambridge University Press, Cambridge, 1999.
 
 \end{thebibliography}
 
