@@ -663,7 +663,7 @@ exists $\mathbb{P}_{\mu}$-a.s and in $L^{1+\gamma}(\mathbb{P}_{\mu}).$
     According to Lemma \ref{lemma25}, we get $(H_t^p)_{t\geq 0}$ is a martingale.
 
     There exists $\gamma_0 \in [0,\beta)$ close enough to $\beta$ such that for each $\gamma_0 \leq \gamma < \beta$, $\alpha\gamma>|p|(1+\gamma)b$.
-    Using  Lemma \ref{lemma24} and the fact $\kappa_{\phi_p}=|p|$, we get that, there exists a constant $C_{\gamma, \mu, p}>0$ (which depends on the choice of $\gamma$, $\mu$ and $p$)  such that
+    Using  Lemma \ref{lem: control moment} and the fact $\kappa_{\phi_p}=|p|$, we get that, there exists a constant $C_{\gamma, \mu, p}>0$ (which depends on the choice of $\gamma$, $\mu$ and $p$)  such that
  $$
  	\|H_t^p\|_{\mathbb P_\mu;1+\gamma}
     \leq C_{\gamma, \mu, p} e^{-(\alpha-|p|b)t}e^{(\alpha-|p|b)t}
@@ -678,26 +678,10 @@ $$
 $$
 
     Hence, for each $\gamma \in (0,\beta)$, the martingale is bounded in $L_{1+\gamma}(\mathbb{P}_{\mu})$ and this indicates the convergence in $L_{1+\gamma}(\mathbb{P}_{\mu}) $ and almost sure,
-%added
     according to \cite[Theorem 5.4.5]{Durrett2010Probability}.
-%end added
 \end{proof}
 
-\deleted{
-    Recall that $\|X_t\|=\langle 1,X_t\rangle$.
-    By Lemma \ref{lemma26},
-    %it is not to hard to prove that,
-    it is clear that,
-    under $\mathbb{P}_{\mu}$, the process $W_t=e^{-\alpha t}\|X_t\|$ is a positive martingale satisfying
-$\lim_{t\rightarrow \infty} W_t= W_{\infty},$
-$\mathbb{P}_{\mu}$-a.s and in $L^{1+\gamma}(\mathbb{P}_{\mu})$. So $W_{\infty}$ is non-degenerate and the $(1+\gamma)$-th moment is finite. Moreover,  we have $\mathbb{P}_{\mu}(W_{\infty})=\|\mu\|$ and $\{W_{\infty}=0\}=D,$ $\mathbb{P}_{\mu}$-a.s.
-
-%comment
-    {\bf Zhenyao: we need references for the last assertion. Also, we used three different notation $M, H$ and $W$ to denote one martingale. This is unnessary.}
-    }
-%end comment
-\added{
-In particular, when $p=0$, $H_t^0$ reduces to $H_t:=e^{-\alpha t}\|X_t\|$, thus, as $t\rightarrow \infty$, $H_t$ convergences to $H_{\infty}$ $\mathbb{P}_{\mu}$-a.s and in $L_{1+\gamma}(\mathbb{P}_{\mu})$.}
+In particular, when $p=0$, $H_t^0$ reduces to $H_t:=e^{-\alpha t}\|X_t\|$, thus, as $t\rightarrow \infty$, $H_t$ convergences to $H_{\infty}$, $\mathbb{P}_{\mu}$-a.s and in $L_{1+\gamma}(\mathbb{P}_{\mu})$.
 \begin{lem}\label{lem: control of Wt}
  %For any $\gamma\in [0,\beta)$ and $0\leq s<t$, we have
  For any $\gamma\in (0,\beta)$ and $\mu\in \mathcal M_c(\mathbb R^d)$, there exists a $C> 0$ such that for each $0\leq s<t$,
@@ -722,10 +706,12 @@ In particular, when $p=0$, $H_t^0$ reduces to $H_t:=e^{-\alpha t}\|X_t\|$, thus,
 	\leq \|H_{\lfloor s \rfloor+1}-H_s\|_{\mathbb{P}_{\mu};1+\gamma}+\sum_{k=\lfloor s \rfloor+1}^{\lfloor t \rfloor}\|H_{k+1}-H_{k}\|_{\mathbb{P}_{\mu};1+\gamma}+\|H_t-H_{\lfloor t \rfloor+1}\|_{\mathbb{P}_{\mu};1+\gamma}
 	\\& \leq C_0^{\frac{1}{1+\gamma}} \Big(e^{-\frac{\alpha \gamma s}{1+\gamma}}+\sum_{k=\lfloor s \rfloor+1}^{\lfloor t \rfloor}e^{-\frac{\alpha \gamma k}{1+\gamma}}+ e^{-\frac{\alpha \gamma t}{1+\gamma}}\Big)
 	\leq Ce^{-\frac{\alpha \gamma}{1+\gamma}s}\leq Ce^{-\frac{\alpha}{2}s}.
+    \qedhere
 \end{align}	
 \end{proof}
-   
-\added{Note that $(\|X_t\|)_{t\geq 0}$ is a continuous-state branching process with branching mechanism $\psi$. According to \cite[Example 3.1]{Li2011Measure-valued}, we have
+
+\deleted{
+Note that $(\|X_t\|)_{t\geq 0}$ is a continuous-state branching process with branching mechanism $\psi$. According to \cite[Example 3.1]{Li2011Measure-valued}, we have
 \begin{align}\label{CSBP}
     \mathbb{P}_{\mu} [e^{-\lambda\|X_t\|}]
     =e^{-\|\mu\|v_t(\lambda)},
@@ -735,8 +721,7 @@ In particular, when $p=0$, $H_t^0$ reduces to $H_t:=e^{-\alpha t}\|X_t\|$, thus,
 \[
     v_t(\lambda)=\frac{\alpha^{1/\beta}}{(\alpha\lambda^{-\beta}e^{-\alpha \beta t}+1-e^{-\alpha \beta t})^{1/\beta}},\quad t\geq 0,\lambda\geq 0.
 \]
-
-     Recall that the extinction probability of the superprocess is $\mathbb{P}_{\mu}(D)=e^{-\alpha^*\|\mu\|}$ where $\alpha^*=\alpha^{1/\beta}$ is the larger roots of $\psi(z)=0$}.
+    Recall that the extinction probability of the superprocess is $\mathbb{P}_{\mu}(D)=e^{-\alpha^*\|\mu\|}$ where $\alpha^*=\alpha^{1/\beta}$ is the larger roots of $\psi(z)=0$.
     Denote by $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$.
     By \eqref{CSBP} and the markovian property we have for each $\mu \in \mathcal M_c(\mathbb R^d), \lambda \geq 0$ and
     $t\geq 0$,
@@ -749,6 +734,9 @@ In particular, when $p=0$, $H_t^0$ reduces to $H_t:=e^{-\alpha t}\|X_t\|$, thus,
     \\&=\frac{e^{-\|\mu\|v_t(\lambda)}-e^{-\|\mu\|v_t(\lambda+\alpha^*)}}{1-e^{-\|\mu\|\alpha^*}}
     \leq \frac{\|\mu\|}{1-e^{-\|\mu\|\alpha^*}}\left|v_t(\lambda)-v_t(\lambda+\alpha^*)\right|.
 \end{align}
+}
+
+\added{Write $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$.}
 
 \begin{lem}\label{lem: control of XT}
 	For each $\mu\in \mathcal M_c(\mathbb R^d)$, there is a constant $C>0$ such that for each function $f:[0,\infty)\to [1,\infty)$ and each $t\geq 0$ we have
@@ -758,7 +746,33 @@ In particular, when $p=0$, $H_t^0$ reduces to $H_t:=e^{-\alpha t}\|X_t\|$, thus,
 \end{lem}
 
 \begin{proof}
- By Chebyshev's Inequality and formula \eqref{laplaceexpress}, we get
+\added{
+    Note that $(\|X_t\|)_{t\geq 0}$ is a continuous-state branching process with branching mechanism $\psi$. According to \cite[Example 3.1]{Li2011Measure-valued}, we have
+\begin{align}\label{CSBP}
+    \mathbb{P}_{\mu} [e^{-\lambda\|X_t\|}]
+    =e^{-\|\mu\|v_t(\lambda)},
+    \quad \lambda \geq 0, t\geq 0,
+\end{align}
+    where
+\[
+    v_t(\lambda)=\frac{\alpha^{1/\beta}}{(\alpha\lambda^{-\beta}e^{-\alpha \beta t}+1-e^{-\alpha \beta t})^{1/\beta}},\quad t\geq 0,\lambda\geq 0.
+\]
+    Recall that the extinction probability of the superprocess is $\mathbb{P}_{\mu}(D)=e^{-\alpha^*\|\mu\|}$ where $\alpha^*=\alpha^{1/\beta}$ is the larger roots of $\psi(z)=0$.
+    Denote by $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$.
+    By \eqref{CSBP} and the markovian property we have for each $\mu \in \mathcal M_c(\mathbb R^d), \lambda \geq 0$ and
+    $t\geq 0$,
+
+\begin{align}
+    \label{laplaceexpress}
+    \mathbb{\tilde{P}}_{\mu}[e^{-\lambda \|X_t\|}]
+    &=\frac{ \mathbb P_\mu[e^{-\lambda \|X_t\| }\mathbb P_\mu(D^c| \mathscr F_t)] }{\mathbb P_\mu(D^c)}
+    =\frac{ \mathbb P_\mu[e^{-\lambda \|X_t\| }(1-e^{-\alpha^*\|X_t\|})] }{\mathbb P_\mu(D^c)}
+    \\&=\frac{e^{-\|\mu\|v_t(\lambda)}-e^{-\|\mu\|v_t(\lambda+\alpha^*)}}{1-e^{-\|\mu\|\alpha^*}}
+    \leq \frac{\|\mu\|}{1-e^{-\|\mu\|\alpha^*}}\left|v_t(\lambda)-v_t(\lambda+\alpha^*)\right|.
+\end{align}
+}
+
+By Chebyshev's Inequality and formula \eqref{laplaceexpress}, we get
 
 \begin{align*}
     \mathbb{\tilde{P}}_{\mu}[\|X_t\|\leq f(t)]&=\mathbb{\tilde{P}}_{\mu}[e^{-\lambda\|X_t\|}\geq e^{-\lambda f(t)}]\leq e^{\lambda f(t)}\mathbb{\tilde{P}}_{\mu}[e^{-\lambda \|X_t\|}]\\
@@ -897,20 +911,10 @@ According to \cite[Lemma 2.7]{MM}, for each $f\in\mathcal{P}$, there is a consta
 \section{Proof of main results}
 
 In this section, we will prove the main results of this paper. Recall that $\mathbb{\tilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$ and let $F_k(\nu)=\left(e^{\alpha k}\|\nu\|\right)^{\frac{1}{1+\beta}},~ \nu\in \mathcal{M}(\mathbb{R}^d)$.
-\begin{comment}
-\begin{lem}\label{lemma31}
-For any $x,y\in \mathbb{C}$, $|e^x-e^y|\leq (e^{Re(x)}\vee e^{Re(y)})|x-y|$.
-\end{lem}
-\begin{proof}
-let $z=Re(y)+iIm(x)$,
-\begin{align}\label{estim}
-    |e^x-e^y|\leq|e^x-e^z|+|e^z-e^y|\leq |e^{Re(x)}-e^{Re(y)}|+e^{Re(y)}|x-y|\leq (e^{Re(x)}\vee e^{Re(y)})|x-y|.
-\end{align}
-\end{proof}
-\end{comment}
 
 \begin{lem}\label{lemma32}
-Recall $\mathcal{A}_t(\epsilon)=\{\|X_t\|\in\|\mu\|(e^{(\alpha-\epsilon)t},e^{(\alpha+\epsilon)t})\},~\epsilon,t>0$, then for any $\epsilon>0$, we have
+    \deleted{Recall} \added{Write} $\mathcal{A}_t(\epsilon)=\{\|X_t\|\in\|\mu\|(e^{(\alpha-\epsilon)t},e^{(\alpha+\epsilon)t})\},$ for each $\epsilon,t>0$. 
+    Then for any $\epsilon>0$, we have
 \begin{align}
     \lim_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)=D^c, ~~\mathbb{P}_{\mu}\text{-}{\rm a.s}.
 \end{align}
@@ -921,27 +925,38 @@ Recall $\mathcal{A}_t(\epsilon)=\{\|X_t\|\in\|\mu\|(e^{(\alpha-\epsilon)t},e^{(\
     \begin{align}
         D^c \subset \liminf_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)\subset \limsup_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)\subset D^c,~~\mathbb{P}_{\mu}\text{-}{\rm a.s}.
     \end{align}
-    for any $\omega\in D$, there exists $S>0$, such that $\|X_t(\omega)\|=0,~t\geq T$. Thus $\omega \notin \cup_{t\geq S}\mathcal{A}_t(\epsilon)$ and $\omega\notin  \limsup_{t\rightarrow\infty}\mathcal{A}_t(\epsilon):=\cap_{S\geq 0}\cup_{t\geq S}\mathcal{A}_t(\epsilon)$ imply that $\limsup_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)\subset D^c$.
 
-    For any $\omega \in \{H_{\infty}>0\}\cap\{\lim_{t\rightarrow \infty} H_t=H_{\infty}\}$, there exists $\delta>0$ such that $H_{\infty}(\omega)\in(\delta,\frac{1}{\delta})$ and there exists $S_1>0$ such that for any $t\geq S_1$, we have $\frac{\delta}{2}\leq H_t(\omega)\leq 2\delta,$. Taking $S_2>0$ such that for any $t>S_2$, $\|\mu\|e^{-\epsilon t}<\frac{\delta}{2}$ and $\|\mu\|e^{-\epsilon t}>2\delta$, then $\omega\in \mathcal{A}_t(\epsilon),~t>S:=\max\{S_1,S_2\}$ implies $\omega \in \liminf_{t\rightarrow \infty}\mathcal{A}_t(\epsilon):=\cup_{S>0}\cap_{t\geq S}\mathcal{A}_t(\epsilon)$. 
-    
-    According to \cite{LSR}, $D^c=\{H_{\infty}>0\}~ \mathbb{P}_{\mu}$-a.s, combining with the fact $\lim_{t\rightarrow \infty}H_t=H_{\infty}~\mathbb{P}_{\mu}$-a.s, we get the result.
+    On one hand, let $\omega\in D$. Then there exists $T(\omega)>0$, such that $\|X_t(\omega)\|=0,$ for each $t\geq T(\omega)$. 
+    Thus $\omega\notin  \limsup_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)=\cap_{s\geq 0}\cup_{t\geq s}\mathcal{A}_t(\epsilon)$.
+    This implies that $\limsup_{t\rightarrow\infty}\mathcal{A}_t(\epsilon)\subset D^c$.
+
+
+    On the other hand, let $\omega \in \{H_{\infty}>0\}\cap\{\lim_{t\rightarrow \infty} H_t=H_{\infty}\}$. 
+    Then, there exists $\delta>0$ such that $H_{\infty}(\omega)\in(\delta,\frac{1}{\delta})$ and there exists $S_1>0$ such that for any $t\geq S_1$, we have $\frac{\delta}{2}\leq H_t(\omega)\leq 2\delta$. 
+    Taking $S_2>0$ such that for any $t>S_2$, $\|\mu\|e^{-\epsilon t}<\frac{\delta}{2}$ and $\|\mu\|e^{\epsilon t}>2\delta$.
+    Then $\omega\in \mathcal{A}_t(\epsilon),$ for each $t>S:=\max\{S_1,S_2\}$. 
+    This implies that $\omega \in \liminf_{t\rightarrow \infty}\mathcal{A}_t(\epsilon):=\cup_{s>0}\cap_{t\geq s}\mathcal{A}_t(\epsilon)$. 
+    According to \cite{LSR}, $D^c=\{H_{\infty}>0\}\cap\{\lim_{t\rightarrow \infty} H_t=H_{\infty}\}, \mathbb{P}_{\mu}$-a.s.. Using this we get the desired result.
 \end{proof}
 }
 \begin{lem}\label{lemma33}
 
- Let $f\in \mathcal{P}$, assume that $\alpha\beta\leq \kappa_fb(1+\beta)$, then for any  $k\in\mathbb{N}$ and $\mu \in \mathcal{M}_c(\mathbb{R}^d)$, under $\mathbb{P}_{\mu}(\cdot | D ^c)$, we have
+Let $f\in \mathcal{P}$. 
+Assume that $\alpha\beta\leq \kappa_fb(1+\beta)$.
+Then for any  \deleted{$k\in\mathbb{N}$} \added{$k\geq 0$} and $\mu \in \mathcal{M}_c(\mathbb{R}^d)$, under $\mathbb{P}_{\mu}(\cdot | D ^c)$, we have
  \begin{align}
       \frac{I_{t-k-1}^{t-k}[\langle f ,X_t\rangle]}{F_k(X_{t-k-1})}\xrightarrow{d}\zeta_k, \quad t\rightarrow \infty, \label{limitdistribution1}
  \end{align}
  where $\zeta_k$ is a $(1+\beta)$-stable random variable with characteristic function
- $$\mathbb{E}e^{i\theta\zeta_k}=\exp\left[e^{\alpha}m_k[\theta f]\right].$$
+ $$\mathbb{E}(e^{i\theta\zeta_k})=\exp(e^{\alpha}m_k[\theta f]),\quad \theta \in \mathbb R.$$
  \end{lem}
 
  \begin{proof}
-For each $\theta \in \mathbb{R}$, let $\tilde{\theta}_{t,k}=\frac{\theta}{F_k(X_{t-k-1})}$. For any $k\in\mathbb{N}$ and $t>k+1$, we have
+For each $\theta \in \mathbb{R}$, let $\tilde{\theta}_{t,k}=\frac{\theta}{F_k(X_{t-k-1})}$. For any \deleted{$k\in\mathbb{N}$} \added{$k\geq 0$} and $t>k+1$, we have
+{\bf Zhenyao: Could you change $k\in \mathbb N$ to $k>0$ universilly?}
          \begin{align}
         &\mathbb{P}_{\mu}\big[\exp(i\theta\frac {I_{t-k-1}^{t-k}[\langle f ,X_t\rangle]}{F_k(X_{t-k-1})})\big|\mathscr{F}_{t-k-1}\big]\\
+        &\added{ = ...}\\
         &=\exp\big(\langle U_1(\tilde{\theta}_{t,k}T_k^{\alpha}f),X_{t-k-1}\rangle-i\tilde{\theta}_{t,k}\langle T_{k+1}^{\alpha}f, X_{t-k-1}\rangle\big).\\
         \label{condition mean}
         &=\exp\big(\langle U_1(\tilde{\theta}_{t,k}T_k^{\alpha}f)-\tilde{U}_1(\tilde{\theta}_{t,k}T_k^{\alpha}f),X_{t-k-1}\rangle+\langle Z_1(\tilde{\theta}_{t,k}T_k^{\alpha}f),X_{t-k-1}\rangle\big)\\
@@ -955,6 +970,8 @@ For each $\theta \in \mathbb{R}$, let $\tilde{\theta}_{t,k}=\frac{\theta}{F_k(X_
      \begin{align}
         \Big|\mathbb{P}_{\mu}\Big[\big(\exp(i\theta \frac {I_{t-k-1}^{t-k}[\langle f ,X_t\rangle]}{F_k(X_{t-k-1})})-\exp(e^{\alpha}m_k[\theta f])\big)\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\Big]\Big|\xrightarrow{t\rightarrow\infty} 0.
     \end{align}
+    {\bf Zhenyao: Give more detail about the above assertion. For example, We used the fact that $\exp(e^{\alpha}m_k[\theta f])$ is bounded.}
+
       According to \eqref{condition mean},
     \begin{align}
         &\Big|\mathbb{P}_{\mu}\Big[\big(\exp(i\theta \frac {I_{t-k-1}^{t-k}[\langle f ,X_t\rangle]}{F_k(X_{t-k-1})})-\exp(e^{\alpha}m_k[\theta f])\big)\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\Big]\Big|\\
@@ -963,18 +980,24 @@ For each $\theta \in \mathbb{R}$, let $\tilde{\theta}_{t,k}=\frac{\theta}{F_k(X_
         \label{ineqinlem31}
         &+\mathbb{P}_{\mu}\big[\big|\langle Z_1(\tilde{\theta}_{t,k}T_k^{\alpha}f),X_{t-k-1}\rangle-e^{\alpha}m_k[\theta f]\big|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\big].
     \end{align}
-Step 1.  We will show that for each $\mu \in\mathcal{M}_c(\mathbb{R}^d)$, there exists $C>0$, such that for any $\theta\in \mathbb{R}$, $k\in\mathbb{N}$ and $t>k+1$,
+{\bf Zhenyao: I think the last inequality for the above assertion needs more details. It seems that it use the result that $|e^x-e^y|\leq (|e^x|\wedge |e^y|)|x-y|$ for $x,y\in \mathbb C$.  }
+
+Step 1.  We will show that for each $\mu \in\mathcal{M}_c(\mathbb{R}^d)$, there exists $C>0$, such that for any $\theta\in \mathbb{R}$, \added{$k\geq 0$} and $t>k+1$,
     \begin{align}
     \label{lemma31q}
         \mathbb{P}_{\mu}\big[\big|\langle  U_1(\tilde{\theta}_{t,k}T_k^{\alpha}f)-\tilde{U}_1(\tilde{\theta}_{t,k}T_k^{\alpha}f), X_{t-k-1}\rangle\big|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\big]\leq C|\theta|^{1+2\beta}e^{-\frac{\alpha\beta}{2(1+\beta)}(t-k-1)}.
     \end{align}
-Let $(R,S)$ be the $(1+2\beta)$-control-pair in Lemma \ref{lem: upper bound for usgx} (6). For any $\theta\in\mathbb{R}$, $k \in \mathbb N$ and $t>k+1$, we have
+    \added{In fact,} let $(R,S)$ be the $(1+2\beta)$-control-pair in Lemma \ref{lem: upper bound for usgx} (6). For any $\theta\in\mathbb{R}$, $k \in \mathbb N$ and $t>k+1$, we have
 \begin{align}
-   & \big|U_1(\tilde{\theta}_{t,k}T_k^{\alpha}f)-\tilde{U}_1(\tilde{\theta}_{t,k}T_k^{\alpha}f)\big|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\leq R\big(|\tilde{\theta}_{t,k}T_k^{\alpha}f|\big)\leq R \Big(\frac{|\theta|e^{(\alpha-\kappa(f)b)k}}{(e^{\alpha k}\|\mu\|e^{(\alpha-\epsilon)(t-k-1)})^\frac{1}{1+\beta}}Qf\Big)
+   & \big|U_1(\tilde{\theta}_{t,k}T_k^{\alpha}f)-\tilde{U}_1(\tilde{\theta}_{t,k}T_k^{\alpha}f)\big|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}
+   \leq R\big(|\tilde{\theta}_{t,k}T_k^{\alpha}f|\big)\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}
+   \\&\leq R \Big(\frac{|\theta|e^{(\alpha-\kappa(f)b)k}}{(e^{\alpha k}\|\mu\|e^{(\alpha-\epsilon)(t-k-1)})^\frac{1}{1+\beta}}Qf\Big)
    \\& \leq S \Big(\frac{|\theta|e^{(\alpha-\kappa(f)b)k}}{(e^{\alpha k}\|\mu\|e^{(\alpha-\epsilon)(t-k-1)})^\frac{1}{1+\beta}}Qf\Big) 
    \leq \Big(\frac{|\theta|e^{(\alpha-\kappa(f)b)k}}{(e^{\alpha k}\|\mu\|e^{(\alpha-\epsilon)(t-k-1)})^\frac{1}{1+\beta}}\Big)^{1+2\beta}SQf
    \\&=\frac{1}{\|\mu\|^{(1+2\beta)/(1+\beta)}}|\theta|^{1+2\beta}e^{-\frac{\alpha(1+2\beta)(t-k-1)}{1+\beta}}e^{\frac{\epsilon_0(1+2\beta)(t-k-1)}{1+\beta}}SQf.
 \end{align}
+{\bf Zhenyao: I can't see the last step. It seems that you used the definition of $\epsilon_0$. Could you please explain more? Espicially, how $\kappa_f$ vanished, and how this is an equality?}
+
 Thus,
 \begin{align}
      &\mathbb{P}_{\mu}\big[\big|\langle  U_1(\tilde{\theta}_{t,k}T_k^{\alpha}f)-\tilde{U}_1(\tilde{\theta}_{t,k}T_k^{\alpha}f), X_{t-k-1}\rangle\big|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\big]\\
@@ -982,13 +1005,19 @@ Thus,
      & \leq \frac{1}{\|\mu\|^{(1+2\beta)/(1+\beta)}}|\theta|^{1+2\beta}e^{-\frac{\alpha(1+2\beta)(t-k-1)}{1+\beta}}e^{\frac{\epsilon_0(1+2\beta)(t-k-1)}{1+\beta}}e^{-\alpha(t-k-1)}\langle QSQf, \mu \rangle\\
      & \leq \frac{1}{\|\mu\|^{(1+2\beta)/(1+\beta)}}\langle QSQf,\mu\rangle|\theta|^{1+2\beta}e^{-\frac{\alpha\beta}{2(1+\beta)}(t-k-1)}.
 \end{align}
+{\bf Zhenyao: I can't see the last step either. It seems that you used the definition of $\epsilon_0$. Could you please explain more?}
+
 Step 2, for any $\mu \in \mathcal{M}_c(\mathbb{R}^d)$ and $\theta\in \mathbb{R}$, we will show that there exists $C>0$ such that
 \begin{align}
 \label{eq:31step3}
     &\mathbb{P}_{\mu}\big[\big|\langle Z_1(\tilde{\theta}_{t,k}T_k^{\alpha}f),X_{t-k-1}\rangle-e^{\alpha}m_k[\theta f]\big|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\big]\\
     &\leq C|\theta|^{1+\beta} e^{-\frac{p}{2}(t-k-1)},\quad k\in \mathbb{N}, t\geq k+1.
 \end{align}
-    Notice that $\langle Z_1(\tilde{\theta}_{t,k}T_k^{\alpha}f),X_{t-k-1}\rangle-e^{\alpha}m_k[\theta f]=\theta^{1+\beta}e^{-\alpha k}(\frac{\langle Z_{f_k},X_{t-k-1}\rangle}{\|X_{t-k-1}\|} \rangle-\langle Z_{f_k},\varphi\rangle)$. Therefore,
+    Notice that $\langle Z_1(\tilde{\theta}_{t,k}T_k^{\alpha}f),X_{t-k-1}\rangle-e^{\alpha}m_k[\theta f]=\theta^{1+\beta}e^{-\alpha k}(\frac{\langle Z_{f_k},X_{t-k-1}\rangle}{\|X_{t-k-1}\|} \rangle-\langle Z_{f_k},\varphi\rangle)$. 
+
+    {\bf Zhenyao: The above assertion is not right. $\theta^\beta$ has no meaning if $\theta < 0$. And we don't use notation $Z_f$ anymore. It seems to me that $m_t[\theta f] = |\theta|^{1+\beta}m_t[f\operatorname{sgn}\theta]$.}
+
+    Therefore,
     
 \begin{align}
         &\mathbb{P}_{\mu}\left[\left|\langle Z_1(\tilde{\theta}_{t,k}T_k^{\alpha}f),X_{t-k-1}\rangle-e^{\alpha}m_k[\theta f]\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]\\
@@ -1000,7 +1029,7 @@ where $h_k(x):= Z_1(T^{\alpha}_k f)(x)-\langle  Z_1(T^{\alpha}_k f),\varphi\rang
  \label{eq:31step2}
      |T_s h_k(x)|\leq e^{-bs}e^{(\alpha-\kappa_fb)(1+\beta)k}R_7(x).
  \end{align}
-\deleted{
+\added{
 Thus $h_k$ satisfies \eqref{eq:gcontrol1} with $C_{h_k}=e^{(\alpha-\kappa(f))(1+\beta)k}$, $\kappa=1$ and $R_0^{h_k}(x)=R_7(x)$, fix some $\gamma_0\in(0,\beta)$, according to Lemma \ref{lemma24}, there exist $C_8>0$,
 \begin{align}
     &\mathbb{P}_{\mu}\left[\left|\langle h_k,X_{t-k-1}\rangle\right|\right]\leq \|\langle h_k, X_{t-k-1}\rangle\|_{\mathbb{P}_{\mu,1+\gamma_0}}\\
@@ -1014,7 +1043,8 @@ Thus $h_k$ satisfies \eqref{eq:gcontrol1} with $C_{h_k}=e^{(\alpha-\kappa(f))(1+
 \end{align}
 }
 {\bf Jianjie: I think we should change the condition of Lemma \ref{lem: control moment} }
-We want to emphasize that, on the case $\alpha\gamma_0=(1+\gamma_0)b$, the second equation holds when $t$ is large enough. Thus
+We want to emphasize that, on the case $\alpha\gamma_0=(1+\gamma_0)b$, the second equation holds when $t$ is large enough. 
+Thus
 \begin{align}
     &\mathbb{P}_{\mu}\left[\left|\langle Z_{f_k}(\cdot,\tilde{\theta}_{t,k}),X_{t-k-1}\rangle-\theta^{1+\beta}e^{\alpha}m_k[f]\right|\mathbf{1}_{\mathcal{A}_{t-k-1}(\epsilon_0)}\right]
     \\ & \leq C_8 |\theta|^{1+\beta}e^{(\alpha\beta-\kappa(f)b(1+\beta))k}e^{-(p-\epsilon_0)(t-k-1)} \leq C_8 |\theta|^{1+\beta}e^{-\frac{p}{2}(t-k-1)}.
