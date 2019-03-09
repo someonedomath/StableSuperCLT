@@ -1,40 +1,3 @@
-%%----Versions-----------------------------
-%supCLT-8.tex 2019/03/08 by Zhenyao
-%supCLT-7.tex 2019/03/08 by Renming
-%supCLT-6.tex 2019/03/07 by Zhenyao
-%supCLT-5.tex 2019/03/07 by Jianjie
-%supCLT-4.tex 2019/03/07 by Yanxia
-%supCLT-3.tex 2019/03/06 by Jianjie
-%supCLT-2.tex 2019/03/05 by Renming
-%supCLT.tex 2019/03/04 by Zhenyao
-% supclt0220.tex 2019/02/20 by Jianjie
-% supclt0217.tex 2019/02/14 by Renming
-% supclt0214.tex 2019/02/14 by Yanxia
-% supclt0211.tex 2019/02/11 by Zhenyao
-% supCLT0128.tex 2019/01/28 by Renming
-% supCLT0127.tex 2019/01/27 by Yanxia
-% supCLT0124.tex 2019/01/24 by Jianjie
-% supCLT0114.tex 2019/01/14 by Yanxia
-% supCLT0107.tex 2019/01/07 by Jianjie
-% supclt1231.tex 2018/12/14 by Zhenyao
-% supclt1213.tex 2018/12/14 by Yanxia
-% supclt1213.tex 2018/12/13 by Renming
-% supclt1209.tex 2018/12/07 by Zhenyao
-% supclt1207.tex 2018/12/07 by Renming
-% supCLT1204.tex 2018/12/04 by Zhenyao
-% supCLT1130.tex 2018/11/30 by Jianjie
-% supCLT1124.tex 2018/11/24 by Zhenyao
-% supCLT1115.tex 2018/11/15 by Jianjie
-% supCLT9.tex ......... by Zhenyao
-% supCLT8.tex ......... by Jianjie
-% supCLT7.tex ......... by Zhenyao
-% supCLT6.tex ......... by Jianjie
-% supCLT5.tex ......... by Zhenyao
-% supCLT4.tex ......... by Jianjie
-% supCLT3.tex 2018/8/25 by Zhenyao
-% supCLT2.tex 2018/8/13 by Jianjie
-% supCLT1.tex 2018/7/24 by Zhenyao
-% supCLT.tex 2018/6/29 by Jianjie
 %---The preamble----------------------
 \documentclass[12pt,a4paper]{amsart}
 	\setlength{\textwidth}{\paperwidth}
@@ -82,7 +45,7 @@
 \address
     {Renming Song
     \\ Department of Mathematics
-    \\ University of Illinois of Illinois at Urbana-Champaign
+    \\ University of Illinois at Urbana-Champaign
     \\ Urbana, IL 61801, USA}
 \email{rsong@illinois.edu}
 \thanks{The Research of Renming Song is support in part by a grant from the Simons Foundation (\#429343, Renming Song)}
@@ -100,13 +63,8 @@
 \email{zhaojianjie@pku.edu.cn}
 \thanks{Jianjie Zhao is the corresponding author}
 \begin{abstract}
-Let $\xi$ be an Ornstein-Uhlenbeck process on $\mathbb R^d$ with generator $L = \frac{1}{2}\sigma^2\Delta - b x \cdot \nabla$, where $\sigma, b >0$.
-Let $\psi$ be a branching mechanism which is close to a function of the form
-$\widetilde{\psi}(z)=-\alpha z +\rho z^2+ \eta z^{1+\beta}$ with $\alpha>0$, $\rho\ge 0$, $\eta>0$ and $\beta\in (0, 1)$, in some sense. In this paper, we study asymptotic behaviors of
-$(\xi, \psi)$-superprocesses $(X_t)_{t\geq 0}$.
-    For any testing function $f$ of polynomial growth, denote by $\kappa_f$ the order of $f$ in the spectral decomposition of $f$ in terms of the spectrum of the mean semigroup of $X$.
-    Conditioned on non-extinction, we establish some stable central limit theorems for $\langle f, X_t \rangle$ in three different regimes:
-    the small branching rate regime $\alpha\beta< \kappa_f b(1+\beta)$; the critical branching rate regime $\alpha\beta = \kappa_f b(1+\beta)$; and the large branching rate regime $\alpha\beta > \kappa_f b(1+\beta)$.
+Let $\xi$ be an Ornstein-Uhlenbeck process on $\mathbb R^d$ with generator $L = \frac{1}{2}\sigma^2\Delta - b x \cdot \nabla$, where $\sigma, b >0$. Let $\psi$ be a branching mechanism which is close to a function of the form $\widetilde{\psi}(z)=-\alpha z +\rho z^2+ \eta z^{1+\beta}$ with $\alpha>0$, $\rho\ge 0$, $\eta>0$ and $\beta\in (0, 1)$, in some sense. In this paper, we study asymptotic behaviors of
+$(\xi, \psi)$-superprocesses $(X_t)_{t\geq 0}$. For any testing function $f$ of polynomial growth, denote by $\kappa_f$ the order of $f$ in the spectral decomposition of $f$ in terms of the spectrum of the mean semigroup of $X$. Conditioned on non-extinction, we establish some stable central limit theorems for $\langle f, X_t \rangle$ in three different regimes: the small branching rate regime $\alpha\beta< \kappa_f b(1+\beta)$; the critical branching rate regime $\alpha\beta = \kappa_f b(1+\beta)$; and the large branching rate regime $\alpha\beta > \kappa_f b(1+\beta)$.
 \end{abstract}
 \subjclass[2010]{60J68, 60F05}
 \keywords{Superprocesses, Ornstein-Uhlenbeck processes, Stable distribution, Central limit theorem, Law of large numbers, Branching rate regime}
@@ -470,7 +428,6 @@ Define
     \widetilde{m}[f]
         := \eta\int_{\mathbb R^d} \Big(-i\sum_{p\in \mathbb Z_+^d:|p|=\kappa_f}\langle f,\phi_p\rangle\phi_p(x)\Big)^{1+\beta} \varphi(x)~dx.
 \end{equation}
-%ZS: here and below, I changed all \wide to \widetilde without %
     According to Lemma \ref{lem: def of all m} below, $\widetilde m[f]$ is well-defined.
    We will prove in Lemma \ref{prop: alpha stable rv} that
    $\theta \mapsto \exp( \widetilde m[\theta f])$ is the characteristic function of a $(1+\beta)$-stable random variable.
@@ -1671,7 +1628,6 @@ Note that the left side is always bounded by $1$, so we can take $t_2 =0$ in the
 \end{proof}
     For each random variable $\{Y; \mathbb P\}$ and $p \in [1,\infty)$, we write
 \[
-    %\|Y\|_{\mathbb P;p}:= E[|Y|^p]^{1/p}.
     \|Y\|_{\mathbb P;p}:= \mathbb P[|Y|^p]^{1/p}.
 \]
 \begin{lem}
@@ -3182,10 +3138,8 @@ Applying Gronwall's inequality, we get that $h(r) =  0$ for $r\in [0,t]$.
     A process $X=\{(X_t)_{t\geq 0}; (\mathbf P_\mu)_{\mu \in \mathcal M(E)}\}$ is said to be a $(\xi,\psi)$-superprocess if
 \begin{itemize}
 \item
-    %The spatial motion $\xi=\{(\xi_t)_{t\geq 0};(\Pi_x)_{x\in E}\}$ is an $E$-valued Hunt process with its lifetime denoted by $\zeta$;
     the spatial motion $\xi=\{(\xi_t)_{t\geq 0};(\Pi_x)_{x\in E}\}$ is an $E$-valued Hunt process with its lifetime denoted by $\zeta$;
 \item
-    %The branching mechanism $\psi: E\times[0,\infty) \to \mathbb R$ is given by
     the branching mechanism $\psi: E\times[0,\infty) \to \mathbb R$ is given by
 \begin{equation}
 \label{eq: branching mechanism}
@@ -3229,7 +3183,6 @@ Applying Gronwall's inequality, we get that $h(r) =  0$ for $r\in [0,t]$.
 \item
     $\mathbb N_x(\|W_0 \|\neq 0) = 0$;
 \item
-    %For any $\mu \in \mathcal M(E)$, 
     for any $\mu \in \mathcal M(E)$, 
     if $\mathcal N$ is a Poisson random measure defined on some probability space with intensity $\mathbb N_\mu(\cdot):= \int_E \mathbb N_x(\cdot )\mu(dx)$,
     then the superprocess $\{X;\mathbf P_\mu\}$ can be realized by $\widetilde X_0 := \mu$ and $\widetilde X_t(\cdot) := \mathcal N[W_t(\cdot)]$ for each $t>0$.
@@ -3560,7 +3513,6 @@ Applying Gronwall's inequality, we get that $h(r) =  0$ for $r\in [0,t]$.
 \bigskip
 \noindent
 {\bf Acknowledgment:}
-	%We thank Zenghu Li for helpful conversations..
 	We thank Zenghu Li and Rui Zhang for helpful conversations.
 \bigskip
 
