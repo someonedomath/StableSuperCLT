@@ -16,3 +16,7 @@ representation/auto/
 *.snm
 
 *.toc
+
+*.gz
+
+*.el
