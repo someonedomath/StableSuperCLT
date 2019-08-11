@@ -18,30 +18,25 @@
 \setbeamerfont{title}{shape=\itshape,family=\rmfamily}
 \setbeamercolor{title}{fg=red!80!black,bg=red!20!white}
 % * Top matter
-\title[Stable CLT for Super OU]{Stable Central Limit Theorems for Super Ornstein-Uhlenbeck Processes}
-\author[Z. Sun]{ 
-  {\bf \Large Zhenyao Sun\inst{1}}
-\\
-{\scriptsize  Joint work with {\bf Yan-Xia Ren\inst{1}}, {\bf Renming Song\inst{2}} and {\bf Jianjie Zhao\inst{1} } }
+\title[Stable CLT for superprocesses]{Stable Central Limit Theorems for Super Ornstein-Uhlenbeck Processes}
+\author[Zhenyao Sun]{ 
+  {\bf \Large Zhenyao Sun  }
 }
-\institute[PKU]{
-\and
-\inst{1}
-	Peking University
-\and
-\inst{2}
-	University of Illinois at Urbana-Champaign
-}
-\date[SHNU, July, 2019]{
-	Shanghai Normal University,\\
-	July, 2019}
+\institute[WHU]{Wuhan University\\
+  Joint work with {\bf Yan-Xia Ren}, {\bf Renming Song} and {\bf Jianjie Zhao}}
+\date[]{
+	Peking University,
+ \\ August, 2019}
 \begin{document}
 
 \begin{frame}
   \titlepage
 \end{frame}
 
+% * Presentation
+% ** Model
 \section{Model}
+% *** Settints
 \subsection{Settings}
 \begin{frame}{Model/Settings}
 \begin{itemize}
@@ -51,17 +46,21 @@
 	$(\xi_t)_{t\geq 0}$: an $E$-valued Hunt process with semigroup $(P_t)_{t\geq 0}$. 
 \item
 	$\psi$: a function from $[0,\infty)$ to $\mathbb R$ given by 
-\begin{equation} \label{eq: honogeneou branching mechanism}
-    \psi(z)=
-    - {\color{red} \alpha} z + \rho z^2 + \int_{(0,\infty)} (e^{-zy} - 1 + zy) \pi(dy),
-    \quad  z \geq 0,
-\end{equation}
-	where ${\color{red}\alpha} > 0 $, $\rho \geq0$ and $\pi$ is a measure on $(0,\infty)$ with 
+  
+  \[\psi(z)=
+  - {\color{red} \alpha} z + \rho z^2 + \int_{(0,\infty)} (e^{-zy} - 1 + zy) {\color{blue}\pi(dy)},
+  \quad  z \geq 0,
+  \]
+
+	where ${\color{red}\alpha > 0}$, $\rho \geq0$ and $\pi$ is a measure on $(0,\infty)$ with 
+
 \[
-	\int_{(0,\infty)}(y\wedge y^2) \pi(dy)< \infty.
+	\int_{(0,\infty)}(y\wedge y^2) {\color{blue}\pi(dy)}
+  < \infty.
 \]
+
 \item
-  We call ${\color{red}\alpha}$ the {\color{red} branching rate}.
+  We call ${\color{red}\alpha}$ the {\color{red} branching rate}; ${\color{blue} \pi(dy)}$ the {\color{blue} L\'evy measure}.
 \end{itemize}
 \end{frame}
 
@@ -70,9 +69,9 @@
 \item
 	$\mathcal M(E)$: the space of all finite Borel measures on $E$ equipped with the weak topology.
 \item
-  $\left\langle f,\mu \right\rangle$: the integration of function $f$ and measure $\mu$ whenever it make senses.
+  $\mu(f)$ and $\langle f, \mu\rangle$: the integration of function $f$ and measure $\mu$ whenever it make senses.
 \item
-	Say a function $f$ on $\mathbb R_+\times E$ is \emph{locally bounded} if
+	Say a function $f$ on $\mathbb R_+\times E$ is locally bounded if
 \[
     \sup_{s\in [0,t],x\in E} |f(s,x)|
     <\infty,
@@ -81,6 +80,7 @@
 \end{itemize}
 \end{frame}
 
+% *** Superprocesses
 \subsection{Superprocesses}
 \begin{frame}{Model/Superprocesses}
 \begin{definition}[Superprocess]
@@ -102,93 +102,157 @@
 
 \begin{frame}{Model/Superprocesses}
 \begin{example}
-	Let $\alpha >0$ and $\beta \in (0,1)$.
-	Consider a Branching OU-process with
+	Let $\alpha >0$ and ${\color{red} \beta} \in (0,1)$.
+	Consider a branching Ornstein-Uhlenbeck(OU) process with
 \begin{itemize}
 \item
-	{\color{red} $k$} initial particles;
+	{\color{blue} $k$} initial particles at the origin;
 \item
-	killing rate  $2{\color{red}k}^\beta$;
+	killing rate  $2{\color{blue} k}^{\color{red}\beta}$;
 \item
 	offspring generating function
-\[
-	F_{\color{red}k}(x) =x +\frac{1}{2}(1-x)^{1+\beta} + \frac{-\alpha (1-x)}{2{\color{red}k}^\beta}.
-\]
+\(
+	F_{\color{blue} k}(x) =x +\frac{1}{2}(1-x)^{1+{\color{red}\beta}} + \frac{-\alpha (1-x)}{2{\color{blue} k}^{\color{red}\beta}}.
+\)
 \end{itemize}
 	Let $X^{({\color{red} k})}_t(A)$ be number of particles in a Borel set $A$ at time $t$. 
 	Then,
 \[
-	\Big(\frac{1}{\color{red} k} X^{({\color{red} k})}_t(\cdot)\Big)_{t\geq 0}
-	\xrightarrow[{\color{red}k}\to \infty]{w} (X_t)_{t\geq 0}
+	\Big(\frac{1}{\color{blue} k} X^{({\color{blue} k})}_t(\cdot)\Big)_{t\geq 0}
+	\xrightarrow[{\color{blue} k}\to \infty]{d} (X_t)_{t\geq 0}
 \]
-where $(X_t)_{t\geq 0}$ is a super OU process with branching mechanism \[\psi(z) = -\alpha z + z^{1+\beta}.\]
+where $(X_t)_{t\geq 0}$ is a super-OU process with branching mechanism \[\psi(z) = -\alpha z + z^{1+{\color{red}\beta}}.\]
 \end{example}
 \end{frame}
 
+% ** Background
 \section{Background}
+% *** Motivation
 \subsection{Motivation}
-
 \begin{frame}{Background/Motivation}
   \begin{block}{Motivation}
     We are interested in the spatial laws of large numbers (LLNs) and central limit theorems (CLT) for superprocesses.
-    More precisely, we want to find
+    More precisely, for a testing function $f$, we want to find
     $(F_t)_{t\geq 0}$ and $(G_t)_{t\geq 0}$ such that
-    \[
+    \[  
       \frac{\langle f, X_t \rangle -G_t}{F_t}
     \]
-\begin{itemize}
-\item
-converges in probability or in $L^p$ to a non-degenerate random variable (weak LLNs);
-\item
-converges almost surely to a non-degenerate random variable (strong LLNs);
-\item
-converges weakly to some non-degenerate random variable (CLTs).
-\end{itemize}
+
+    \begin{itemize}
+    \item
+      converges in probability or in $L^p$ to a non-degenerate random variable (weak LLNs);
+    \item
+      converges almost surely to a non-degenerate random variable (strong LLNs);
+    \item
+      converges weakly to some non-degenerate random variable (CLTs).
+    \end{itemize}
   \end{block}
 \end{frame}
-
+% *** LLNs of superprocesses
 \subsection{LLNs of superprocesses}
 \begin{frame}{Background/LLNs of superprocesses}
 \begin{itemize}
 \item
-{\color{red}Weak laws of large numbers} under different settings: Englander 2009, Englander and Winter 2006, Englander  and Turaev 2002.
-\item
-{\color{red}Strong law of large numbers} under different settings: Chen, Ren and Wang 2008, Wang 2010, Liu, Ren and Song 2013, Kouritzin and  Ren 2014, Chen, Ren, Song and Zhang 2015, Eckhoff, Kyprianou and Winkel 2015, Chen, Ren and Yang 2019.
+  {\color{red}Weak LLNs of supercritical superprocesses} under different settings: 
+  
+  \mbox{ $\circ$ J. Engl\"{a}nder and D. Turaev 2002 (AP);}
+  \mbox{ $\circ$ J. Engl\"{a}nder and A. Winter 2006 (AIHPPS);}
+  \mbox{ $\circ$ J. Engl\"{a}nder 2009 (AIHPPS);} 
 \end{itemize}
+\let\thefootnote\relax\footnotetext{
+  \mbox{(AP) = Ann. Probab.;} 
+  \mbox{(AIHPPS) = Ann. Inst. H. Poincar\'e Probab. Statist.}
+}
 \end{frame}
 
 \begin{frame}{Background/LLNs of superprocesses}
-\begin{example}[Chen, Ren and Yang 2019]
+\begin{itemize}
+\item
+  {\color{red} Strong LLNs of supercritical superprocesses} under different settings: 
+  
+  \mbox{ $\circ$ Z.-Q. Chen, Y.-X. Ren and H. Wang 2008 (JFA);} 
+  \mbox{ $\circ$ L. Wang 2010 (JTP);} 
+  \mbox{ $\circ$ R.-L. Liu, Y.-X. Ren and R. Song 2013 (AAM);} 
+  \mbox{ $\circ$ M. A. Kouritzin and Y.-X. Ren 2014 (SPA);} 
+  \mbox{ $\circ$ Z.-Q. Chen, Y.-X. Ren, R. Song and R. Zhang 2015 (FMC);} 
+  \mbox{ $\circ$ M. Eckhoff, A. E. Kyprianou and M. Winkel 2015 (AP);} 
+  \mbox{ $\circ$ Z.-Q. Chen, Y.-X. Ren and T. Yang 2019 (AAM).}
+\end{itemize}
+\let\thefootnote\relax\footnotetext{
+  \mbox{(JFA) = J. Funct. Anal.;}
+  \mbox{(JTP) = J. Theoret. Probab.;}
+  \mbox{(AAM) = Acta Appl. Math.;}
+  \mbox{(SPA) = Stochastic Process. Appl.;}
+  \mbox{(FMC) = Front. Math. China.}
+}
+\end{frame}
+
+\begin{frame}{Background/LLNs of superprocesses}
+\begin{example}
 	Suppose that $X$ is a super OU process with branching mechanism $\psi(z)=-\alpha z+ z^{1+\beta}$ with $\alpha>0$ and $\beta \in (0,1)$. Then, for each $\mu \in \mathcal M(\mathbb R^d)$ and each continuous bounded non-negative function $f$ on $\mathbb R^d$, we have
 \[
-	e^{-\alpha t} \langle f, X_t\rangle \xrightarrow[t\to \infty]{\mathbb P_\mu \text{-a.s.}, L^1(\mathbb P_\mu)} H_\infty \langle f, \varphi\rangle,
+	e^{-\alpha t} X_t(f) \xrightarrow[t\to \infty]{\mathbb P_\mu \text{-a.s.}, L^1(\mathbb P_\mu)} H_\infty \int f(x) \varphi(x) dx,
 \]
-	where $H_\infty$ is the limit of the non-negative martingale $e^{-\alpha t}\langle 1,X_t\rangle$ and $\varphi$ is the invariant density of the OU process $\xi$.
+	where $H_\infty$ is the limit of the non-negative martingale $e^{-\alpha t}\|X_t\|$ and $\varphi$ is the invariant probability density of the OU process $\xi$.
 \end{example}
 \end{frame}
 
-\subsection{CLTs for branching processes with 2rd moment conditions}
+\subsection{CLTs for branching processes with the 2rd moment condition}
 \begin{frame}{Background/CLTs for branching processes with 2rd moment conditions}
 \begin{itemize}
 \item
-	For CLT of supercritical {\color{red} Galton-Watson processes}, see Heyde 1970, Heyde and Brown 1971, Heyde and Leslie 1971.
+	{\color{red} CLT of supercritical Galton-Watson(GW) processes} with finite offspring variance: 
+  
+  \mbox{ $\circ$ C. C. Heyde 1970 (JAP);}
+  \mbox{ $\circ$ C. C. Heyde and B. M. Brown 1971 (ZWVG);}
+  \mbox{ $\circ$ C. C. Heyde and J. R. Leslie 1971 (BAMS).}
 \item 
-	For CLT of supercritical  {\color{red} multi-type Galton-Watson processes}, see Athreya 1969, Athreya 1969, Athreya 1971.
-\item
-	For CLT of some general supercritical {\color{red} branching Markov processes}, see Asmussen and Hering 1983.
-\item
-	For CLT of supercritical {\color{red} branching OU processes} with {\color{red} binary branching} mechanism, see Adamczak and Milos 2015.
+	{\color{red} CLT of supercritical multi-type GW processes} with a 2rd moment condition:
+  
+  \mbox{ $\circ$ K. B. Athreya 1969a (ZWVG);}
+  \mbox{ $\circ$ K. B. Athreya 1969b (ZWVG);} 
+  \mbox{ $\circ$ K. B. Athreya 1971 (ZWVG).}
 \end{itemize}
+\let\thefootnote\relax\footnotetext{
+  \mbox{(JAP) = J. Appl. Probability;}
+  \mbox{(ZWVG) = Z. Wahrsch. Verw. Gebiete;}
+  \mbox{(BAMS) = Bull. Austral. Math. Soc.}
+}
+\end{frame}
+
+\begin{frame}{Background/CLTs for branching processes with 2rd moment conditions}
+\begin{itemize} 
+\item
+  {\color{red} CLT of supercritical branching OU processes} with binary branching: 
+
+  \mbox{ $\circ$ R. Adamczak and P. Mi{\l}o{\'s} 2015 (EJP).}
+\item
+	{\color{red} CLT of some general supercritical branching Markov processes} with a 2rd moment condition:
+  
+  \mbox{ $\circ$ S. Asmussen and H. Hering 1983 (book);}
+  \mbox{ $\circ$ Y.-X. Ren, R. Song and R. Zhang 2014 (JFA);}
+  \mbox{ $\circ$ Y.-X. Ren, R. Song and R. Zhang 2017 (AP).}
+\end{itemize}
+\let\thefootnote\relax\footnotetext{
+  \mbox{(EJP) = Electron. J. Probab.}
+}
 \end{frame}
 
 \begin{frame}{Background/CLTs for Superprocesses with 2rd moment conditions}
 \begin{itemize}
 \item
-	For CLT of some supercritical {\color{red} superprocesses} with branching mechanisms satisfying a {\color{red} fourth moment condition}, see Milos 2018.
+	{\color{red} CLT of supercritical superprocesses} with a fourth moment condition:
+  
+  \mbox{ $\circ$ P. Mi{\l}o\'{s} 2018 (JTP).}
 \item
-	For CLT of supercritical {\color{red} super OU processes} with branching mechanisms satisfying only a {\color{red} second moment condition}, see Ren, Song and Zhang 2014.
+	{\color{red} CLT of supercritical super OU processes} with a 2rd moment condition:
+  
+  \mbox{ $\circ$ Y.-X. Ren, R. Song and R. Zhang 2014 (AAM).}
 \item
-	For a series of CLT for a large class of general supercritical {\color{red} branching Markov processes} and {\color{red} superprocesses} with {\color{red} spatially dependent branching mechanisms} satisfying a {\color{red} second moment condition}, see Ren, Song and Zhang 2014, Ren, Song and Zhang 2015, Ren, Song and Zhang 2017.
+	{\color{red} CLT for a large class of general supercritical superprocesses} with a 2rd moment condition:
+  
+  \mbox{ $\circ$ Y.-X. Ren, R. Song and R. Zhang 2015 (SPA);}
+  \mbox{ $\circ$ Y.-X. Ren, R. Song and R. Zhang 2017 (AAM).}
 \end{itemize}
 \end{frame}
 
@@ -196,293 +260,341 @@ converges weakly to some non-degenerate random variable (CLTs).
 \begin{frame}{Background/Stable CLTs without the 2rd moment condition}
 \begin{itemize}
 \item
-	For stable CLT for supercritical {\color{red} Galton-Watson process} whose {\color{red} offspring distribution
-    belongs to the domain of attraction of a stable law of index $\alpha\in (1, 2]$}, see Heyde 1971.
+	{\color{red} Stable CLT for supercritical GW processes:}
+
+  \mbox{ $\circ$ C. C. Heyde 1971 (JAP).}
 \item
-	For stable CLT for supercritical {\color{red} multi-type Galton-Watson process} and supercritical {\color{red} continuous time branching processes}, see Asmussen 1976.
+	{\color{red} Stable CLT for supercritical multi-type GW process:} 
+  
+  \mbox{ $\circ$ S. Asmussen 1976 (AP).}
 \item
-	Recently, some stable CLTs for supercritical {\color{red} branching OU processes} with offspring generating function
-\[
-    F(s)
+	{\color{red} Stable CLTs for supercritical branching OU processes} with offspring generating function
+
+\( \displaystyle
+    \qquad F(s)
     = ms -(m-1) +(m-1) (1-s)^{1+\beta},
     \quad |s|< 1
-\]
-	with $m>1$ and $\beta\in (0, 1)$ are established in Marks and Milos 2018.
+\)
+
+	where $m>1$ and $\beta\in (0, 1)$:
+
+  \mbox{ $\circ$ R. Marks and P. Mi{\l}o{\'s} 2018 (arXiv).}
 \item
-	Very recently, some stable fluctuation results of Biggins’ martingales in the context of {\color{red} branching random walks} are established in Iksanov, Kolesko and Meiners 2018.
+	{\color{red} Stable fluctuation results of Biggins’ martingales of branching random walks:} 
+
+  \mbox{ $\circ$ A. Iksanov, K. Kolesko and M. Meiners 2018 (SPA).}
 \end{itemize}
 \end{frame}
 
 
 \section{Settings}
-\begin{frame}{Settings}
+\begin{frame}{Settings/Assumption 1}
 \begin{itemize}
 \item
-	Let $E= \mathbb R^d$.
+	$E:= \mathbb R^d$.
 \item
-	Let $(\xi_t)_{t\geq 0}$ be an $\mathbb R^d$-valued Ornstein-Uhlenbeck (OU) process with generator
-\[
+  $\xi = (\xi_t)_{t\geq 0}$, an $\mathbb R^d$-valued OU process with generator
+  
+  \( \displaystyle \qquad
 	Lf(x)
 	=\frac{1}{2} \sigma^2 \Delta f(x)-bx\cdot\nabla f(x),
 	\quad x\in \mathbb R^d, f\in C^2(\mathbb R^d),
-\]
+  \)
+
 	where $\sigma,b>0$.
 \end{itemize}
-\end{frame}
-
-\begin{frame}{Settings/Assumption 1}
-
 \begin{block}{Assumption 1. (Grey's condition)}
-	There exists $z' > 0$ such that $\psi(z) > 0$ for all $z>z'$ and  $\int_{z'}^\infty \psi(z)^{-1}dz < \infty$.
+	There exists $z' > 0$ such that $\psi(z) > 0$ for all $z>z'$ and  
+  \centerline{ \( \displaystyle
+    \int_{z'}^\infty \psi(z)^{-1}dz 
+    < \infty.
+    \)}
 \end{block}
 \begin{itemize}
 \item
-	It is known  that, under Assumption 1, 
-	the \emph{extinction event} 
-	$D:=\{\exists t\geq 0,~\text{s.t.}~\|X_t\|=0\}$ has positive probability, with respect to $\mathbb P_\mu$ for each  $\mu \in \mathcal M(\mathbb R^d)$.
+	Under Assumption 1, write $D := \{\exists t\geq 0,~\text{s.t.}~\|X_t\|=0\}$, then
+
+  \centerline{ \( \displaystyle
+    \mathbb P_\mu(D)
+    > 0, 
+    \quad \mu \in \mathcal M(\mathbb R^d).
+  \)}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Settings/Assumption 2}
 \begin{itemize}
 \item
-	Denote by $\Gamma$ the gamma function.
-	For any $\sigma$-finite signed measure $\mu$, we use $|\mu|$ to denote the total variation measure of $\mu$.
+	$\Gamma$: the gamma function.
+\item
+	$|\mu|$: the total variation measure of some measure $\mu$.
+\item
+  Recall that $\pi$ is the L\'evy measure of the branching mechanism $\psi$.
 \end{itemize}
 \begin{block}{Assumption 2.}
-	There exist constants $\eta > 0$ and $\beta \in (0,1)$ such that
-\begin{equation}
-    \int_{(1,\infty)}y^{1+\beta +\delta}~\Big|\pi(dy)-\frac{\eta~dy}{\Gamma(-1-\beta)y^{2+\beta}}\Big| <\infty,
-\end{equation}
-	for some $\delta \in (0,1-\beta)$.
+	There exist (unique) constants ${\color{red}\eta} > 0$ and ${\color{red}\beta} \in (0,1)$ such that for some $\delta \in (0, 1- {\color{red}\beta})$ it holds that
+  \centerline{ \( \displaystyle	
+    \int_{(1,\infty)}y^{1+{\color{red}\beta} +\delta}~\Big|\pi(dy)-\frac{{\color{red}\eta}~dy}{\Gamma(-1-{\color{red}\beta})y^{2+{\color{red}\beta}}}\Big| 
+    <\infty.
+    \)}
 \end{block}
-\end{frame}
-
-\begin{frame}{Settings/Assumption 2}
 \begin{itemize}
 \item
-	Assumption 2 says that 
- there exist constants $\eta>0$ and $\beta > 0$ 
-    such that the L\'evy measure $\pi(dy)$ is not too far away from the measure $\eta \Gamma(-1-\beta)^{-1}y^{-2-\beta} dy$.
-\item
-    In particular, if \[\pi(dy)=\eta \Gamma(-1-\beta)^{-1}y^{-2-\beta} dy,\] then the branching mechanism takes the form: \[\psi(z)=-\alpha z + \rho z^2 + \eta z^{1+\beta},\quad z\geq 0.\]
+    In particular, if 
+    \( \displaystyle
+    \pi(dy)
+    =\frac{{\color{red}\eta} dy}{ \Gamma(-1-{\color{red}\beta})y^{2+{\color{red}\beta}}},
+    \) 
+    then the branching mechanism takes the form: 
+    \( 
+    \psi(z)
+    = -\alpha z + \rho z^2 + {\color{red}\eta} z^{1+{\color{red}\beta}}
+    ,\quad z\geq 0.
+    \)
 \end{itemize}
 \end{frame}
 
 \section{Preliminary}
-\begin{frame}{Preliminary/Invariant measure of OU semigroup}
+\begin{frame}{Preliminary/Hermite polynomials}
 \begin{itemize}
 \item
   Recall that $(P_t)_{t\geq 0}$ is the transition semigroup of the OU process $\xi$.
 \item
-  $(P_t)_{t\geq 0}$ has the invariant density
-\begin{equation}
-    \varphi(x)dx
-    :=\Big (\frac{b}{\pi \sigma^2}\Big )^{d/2}\exp \Big(-\frac{b}{\sigma^2}|x|^2 \Big)dx,
+  $(P_t)_{t\geq 0}$ has the invariant probability
+  
+  \centerline{ \( \displaystyle	
+    \varphi(x)~dx
+    := \Big(\frac{b}{\pi \sigma^2} \Big)^{\frac{d}{2}} e^{-\frac{b}{\sigma^2}|x|^2}~dx,
     \quad x\in \mathbb R^d.
-\end{equation}
+    \)}
 \item
-    Let $L^2(\varphi)$ be the Hilbert space with inner product
-\begin{equation}
+  $L^2(\varphi)$: the Hilbert space with inner product
+  
+  \centerline{ \( \displaystyle    
     \langle f_1, f_2 \rangle_{\varphi}
-    := \int_{\mathbb R^d}f_1(x)f_2(x)\varphi(x).
-\end{equation}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Preliminary/Hermite polynomials}
-\begin{itemize}
+    := \int_{\mathbb R^d}f_1(x)f_2(x)\varphi(x)~dx.
+    \)}
 \item
     For each multi-index $p = (p_k)_{k = 1}^d \in \mathbb{Z}_+^{d}$, write 
-\begin{equation}
-	|p|:=\sum_{k=1}^d p_k;
-	\quad p!:= \prod_{k= 1}^d p_k!;
-	\quad \frac{\partial^p} {\partial x^p}:= \prod_{k = 1}^d\frac{\partial^{p_k}}{\partial x_k^{p_k}}.
-\end{equation}
+  
+    \centerline{ \( \displaystyle	
+      |p|:=\sum_{k=1}^d p_k;
+      \quad p!:= \prod_{k= 1}^d p_k!;
+      \quad \frac{\partial^p} {\partial x^p}:= \prod_{k = 1}^d\frac{\partial^{p_k}}{\partial x_k^{p_k}}.
+      \)}
 \item
-    The \emph{Hermite polynomials} are given by
-\begin{equation}
-    H_p(x)
-    :=(-1)^{|p|}\exp(|x|^2) \frac{\partial ^{p}}{\partial x^p} \exp(-|x|^2) ,
-    \quad x\in \mathbb R^d,
-    p \in \mathbb{Z}_+^{d}.
-\end{equation}
+    Define the \emph{Hermite polynomials} by
+    
+    \centerline{ \( \displaystyle
+      H_p(x)
+      :=(-1)^{|p|}e^{|x|^2} \frac{\partial ^{p}}{\partial x^p} e^{-|x|^2} ,
+      \quad x\in \mathbb R^d,
+      p \in \mathbb{Z}_+^{d}.
+      \)}
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Preliminary/Spectrum of OU semigroup}
+\begin{block}{Fact}
+	$(P_t)_{t\geq 0}$ is a strongly continuous semigroup on $L^2(\varphi)$ and its generator $L$ has discrete spectrum $\sigma(L)= \{-bk: k \in \mathbb Z_+\}$.
+  For each $k \in \mathbb Z_+$, denote by $\mathcal{A}_k$ the eigenspace corresponding to the eigenvalue $-bk$, then
 
-\begin{lemma}[Metafune, Pallara and Priola 2002]
-	$(P_t)_{t\geq 0}$ is a strongly continuous semigroup in $L^2(\varphi)$ and its generator $L$ has discrete spectrum $\sigma(L)= \{-bk: k \in \mathbb Z_+\}$.
-    For each $k \in \mathbb Z_+$, denote by $\mathcal{A}_k$ the eigenspace corresponding to the eigenvalue $-bk$, then
-\[
+  \[
     \mathcal{A}_k
     = \operatorname{Span} \{\phi_p : p\in \mathbb Z_+^d, |p|=k\},
-\]
+  \]
+
     where
-\begin{equation}\label{eigenfunction}
+
+    \[
     \phi_p(x)
     := \frac{1}{\sqrt{ p! 2^{|p|} }} H_p \Big(\frac{ \sqrt{b} }{\sigma}x \Big),
     \quad x\in \mathbb R^d, p\in \mathbb Z_+^d.
-\end{equation}
-	Moreover, $\{\phi_p:p\in \mathbb Z_+^d\}$ forms a complete orthonormal basis for $L^2(\varphi)$.
-\end{lemma}
+    \]
+
+    Moreover, $\{\phi_p:p\in \mathbb Z_+^d\}$ forms a complete orthonormal basis for $L^2(\varphi)$.
+\end{block}
 \end{frame}
 
-\begin{frame}{Preliminary/Order of a testing function}
+\begin{frame}{Preliminary/Martingale limits}
+  \begin{lemma}
+    Write $\tilde u = \frac{u}{1+ u}$ for all $u \in (0,1)$.
+    For each $p\in \mathbb Z_+^d$ with $\alpha \tilde \beta > |p|b$, $\gamma \in (0,\beta)$ and $\mu \in \mathcal M(\mathbb R^d)$ with compact support, the following martingale
+    
+    \[  
+      H_t^p
+      := e^{-(\alpha-|p|b) t} \langle \phi_p, X_t\rangle
+      , \quad t\geq 0,
+    \]
+    is bounded in $L^{1+\gamma}(\mathbb P_\mu)$. 
+    Thus the limit $H_\infty^p:= \lim_{t\to \infty} H_t^p$ exists $\mathbb P_\mu$-almost surely and in $L^{1+\gamma}(\mathbb P_\mu)$.
+  \end{lemma}
+  \begin{itemize}
+\item
+  Roughly speaking, for all $p \in \mathbb Z_+^d$ and $\gamma \in (0,\beta)$, we can estimate that
+  
+  \centerline{ \( \displaystyle
+    \|H_{t+1}^p - H_t^p\|_{1+\gamma} 
+    \sim e^{- (\alpha\tilde\gamma - |p|b)t}.
+    \)}
+  So if $\alpha \tilde \beta < |p| b$ then there exists a $\gamma \in (0,\beta)$ such that $H_t^p$ is not a Cauchy sequence in $L^{1+\gamma}$. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Preliminary/Polynomial growth functions}
 \begin{itemize}
 \item
-    For each function $f\in L^2(\varphi)$, denote by
-\begin{equation}
-    \kappa_f
-    :=\inf \left \{k\geq 0: \exists ~ p\in \mathbb Z_+^d ,{\rm ~s.t.~}|p|=k {\rm ~and~}  \langle f, \phi_p \rangle_{\varphi}\neq 0\right \},
-\end{equation}
-    the order of the function $f$. 
+  $\mathcal P$: the collection of all functions of polynomial growth, i.e.
+  \[
+    \mathcal P 
+    := \{f \in \mathcal B(\mathbb R^d, \mathbb R) : \exists C, n > 0 \text{ s.t. } \forall x\in \mathbb R^d, |f(x)|\leq C(1+|x|)^n\}.
+  \]
 \item
-	We say a function $f\in \mathcal B(\mathbb R^d, \mathbb R)$ is of polynomial growth if there exists constants $C,n>0$ such that 
-\[
-	|f(x)|\leq C(1+|x|)^n,
-	\quad \forall x\in \mathbb R^d.
-\]
+  Recall that $\alpha$ is the branching rate and write $\tilde \beta = \frac{\beta}{1+\beta}$. Define
+\begin{align}  
+    &\mathcal{C}_s
+    :=\mathcal P \cap \overline{Span}\{\phi_p: \alpha \tilde\beta < |p|b \}; \\
+    &\mathcal{C}_c
+    :=\mathcal P\cap\overline{Span}\{\phi_p: \alpha \tilde\beta=|p|b \}; \\
+    &\mathcal{C}_l
+    :=\mathcal P\cap \overline{Span}\{\phi_p: \alpha \tilde \beta >|p|b \}. 
+\end{align}
 \item
-    $\mathcal P$: the collection of all functions of polynomial growth.
+  Then $\mathcal P = \mathcal C_s \oplus \mathcal C_c \oplus \mathcal C_l$, i.e. for each $f\in \mathcal P$ there exists unique $f_s\in \mathcal C_s, f_c\in \mathcal C_c, f_l\in \mathcal C_l$ such that 
+  \( \displaystyle
+  f = f_s+f_c+f_l.
+  \) 
+\item
+  The asymptotic behaviors of $X_t(f_s), X_t(f_c)$ and $X_t(f_l)$ will be different. 
 \end{itemize}
 \end{frame}
 
 \section{Results}
-\begin{frame}{Results/Phase transition}
-\begin{itemize}
-\item
-  Recall that $\alpha$ is the branching rate.
-\item
-	It turns out that the CLTs of $\left\langle f,X_t \right\rangle$ are different in three different regimes
-    depending on the sign of $\alpha-\frac{\kappa_f b (1+\beta)}{\beta}$:
-\begin{itemize}
-\item
-  small branching rate regime: $\alpha < \frac{\kappa_f b (1+\beta)}{\beta}$;
-\item
-  critical branching rate regime: $\alpha = \frac{\kappa_f b (1+\beta)}{\beta}$;
-\item
-  large branching rate regime: $\alpha > \frac{\kappa_f b (1+\beta)}{\beta}$.
-\end{itemize}
-\end{itemize}
-\end{frame}
-\begin{frame}{Results/Small branching rate regime/ CLT}
-\begin{theorem}[Ren, Song, S. and Zhao 2019+]
-    Let $f\in \mathcal{P}\setminus\{0\}$ satisfy $\alpha\beta<\kappa_f b(1+\beta)$.
-    Let $\mu\in \mathcal M(\mathbb R^d)$ have compact support. Then under $\mathbb{P}_{\mu}(\cdot|D^c)$, it holds that
-\[
-    \|X_t\|^{-\frac{1}{1+\beta}} \langle f,X_t\rangle\xrightarrow[t\rightarrow \infty]{d} \zeta.
-\]
-    Here, $\zeta$ is a $(1+\beta)$-stable random variable with characteristic function $\theta \mapsto \exp( m[\theta f])$ with 
-    \begin{equation}
-      m[\theta f]
-      :=\eta \int_0^{\infty} e^{-\alpha s} ~ds\int_{\mathbb R^d} \big(-i \theta P_s^\alpha f(x)\big)^{1+\beta} \varphi(x)~dx.
-    \end{equation}
-\end{theorem}
-\end{frame}
-
-\begin{frame}{Results/Critical branching rate regime/CLT}
-\begin{theorem}[Ren, Song, S. and Zhao 2019+]
-\label{thm: critical clt}
-    Let $f\in \mathcal{P}\setminus\{0\}$ satisfy $\alpha\beta=\kappa_f b(1+\beta)$.
-    Let $\mu\in \mathcal M(\mathbb R^d)$ have compact support. Then under $\mathbb{P}_{\mu}(\cdot|D^c)$, it holds that
-\[
-    (t\|X_t\|)^{-\frac{1}{1+\beta}} \langle f,X_t\rangle
-        \xrightarrow[t\to \infty]{d} \widetilde{\zeta}.
-\]
-    Here, $\widetilde{\zeta}$ is a $(1+\beta)$-stable random variable with
-    characteristic function $\theta \mapsto \exp( \widetilde m[\theta f])$ where
+\begin{frame}{Results/LLNs}
+  \begin{theorem}
+    Suppose that $f \in \mathcal{P}$ satisfies $\alpha \beta > \kappa_f b ( 1 + \beta)$ where
     \[
-      \widetilde{m}[\theta f]
-      := \eta\int_{\mathbb R^d} \left(-i \theta \sum_{p\in \mathbb Z_+^d:|p|=\kappa_f}\langle f,\phi_p\rangle_\varphi \phi_p(x)\right)^{1+\beta} \varphi(x)~dx.
+      \kappa_f :=\inf \{k \geq 0: \exists p \in \mathbb Z_+^d,\text{ s.t. }|p| = k \text{ and } \langle f, \phi_p\rangle_\varphi \neq 0\}.
     \]
-\end{theorem}
-\end{frame}
-
-\begin{frame}{Results/Large branching rate regime/ Martingale limit}
-\begin{lemma}[Ren, Song, S. and Zhao 2019]
-	For each multi-index $p\in \mathbb Z_+^d$ with $\alpha \beta > |p|b(1+\beta)$, each $\gamma \in (0,\beta)$ and each $\mu \in \mathcal M(\mathbb R^d)$ with compact support, the following martingale
-\[
-	H_t^p:= e^{-(\alpha-|p|b) t} \langle \phi_p, X_t\rangle, \quad t\geq 0,
-\]
-	is bounded in $L^{1+\gamma}(\mathbb P_\mu)$. 
-	Thus the limit $H_\infty^p:= \lim_{t\to \infty} H_t^p$ exists $\mathbb P_\mu$-almost surely and in $L^{1+\gamma}(\mathbb P_\mu)$.
-\end{lemma}
-\end{frame}
-
-\begin{frame}{Results/Large branching rate regime/LLNs}
-\begin{theorem}[Ren, Song, S. and Zhao 2019+]
-	Let $f \in \mathcal{P}\setminus\{0\}$ satisfy $\alpha\beta>\kappa_fb(1+\beta)$. 
-	Then for each $\gamma\in (0, \beta)$ and $\mu\in \mathcal M(\mathbb R^d)$ with compact support, it holds that
-\[
-    e^{-(\alpha-\kappa_fb)t}\langle f, X_t\rangle
-       \xrightarrow[t\to \infty]{}\sum_{p\in \mathbb Z_+^d:|p|=\kappa_f}\langle f, \phi_p\rangle_{\varphi} H_{\infty}^p
-    \quad in~ L^{1+\gamma}(\mathbb{P}_{\mu}).
-\]
+Then for all $\gamma\in (0, \beta)$ and  $\mu \in \mathcal M_c(\mathbb R^d)$,
+    \[
+      e^{-(\alpha-\kappa_fb)t}\langle f, X_t\rangle
+      \xrightarrow[t\to \infty]{}\sum_{p\in \mathbb Z_+^d:|p|=\kappa_f}\langle f, \phi_p\rangle_{\varphi} H_{\infty}^p
+      \quad in~ L^{1+\gamma}(\mathbb{P}_{\mu}).
+    \]
     Moreover, if $f$ is twice differentiable and all its second order partial derivatives are in $\mathcal{P}$, then we also have almost sure convergence.
+  \end{theorem}
+\end{frame}
+\begin{frame}{Results/A Lemma}
+  \begin{lemma}
+    Define a family of operators $(T_t)_{t\geq 0}$ on $\mathcal P$ by
+    \centerline{ \( \displaystyle      
+T_tf 
+      := \sum_{p \in \mathbb Z_+^d} e^{-\big| |p|b - \alpha \tilde \beta \big|t} \langle f, \phi_p \rangle_{\varphi} \phi_p,
+    \)}
+    and a family of $\mathbb C$-valued functionals $(m_t)_{t\geq 0}$ on $\mathcal P$ by
+   \centerline{ \( \displaystyle
+      m_t[f]
+      := \eta \int_t^{t+1} ~ds \int_{\mathbb R_d} \big(-iT_sf(x)\big)^{1+\beta} \varphi(x) ~dx ,
+    \)}
+    Then it holds that
+    \begin{itemize}
+    \item 
+      $(T_t)_{t\geq 0}$ and $(m_t)_{t\geq 0}$ are both well defined;
+    \item
+      if $f\in \mathcal C_s \oplus \mathcal C_l$, then
+      \( \displaystyle
+      m[f]
+      := \sum_{n \in \mathbb Z_+} m_n[f]
+      \in \mathbb C
+      \)
+      is well defined;
+    \item
+      if $f \in \mathcal C_c$, then
+      \( \displaystyle
+      \bar m[f]
+      := \lim_{t\to \infty}\frac{1}{t} \sum_{n=0}^t m_n[f]
+      \in \mathbb C
+      \)
+      is well defined.
+    \end{itemize}
+  \end{lemma}
+\end{frame}
+
+\begin{frame}{Results/Stable CLT}
+\begin{theorem}
+    Let $\mu\in \mathcal M(\mathbb R^d)\setminus \{0\}$ have compact support. Then under $\mathbb{P}_{\mu}(\cdot|D^c)$, the follows hold:
+\begin{itemize}
+\item
+  if $f_s\in \mathcal C_s\setminus\{0\}$, then 
+  \( \displaystyle  
+    \frac{X_t(f_s)}{\|X_t\|^{\frac{1}{1+\beta}}}
+    \xrightarrow[t\to \infty]{d} \zeta_s,\)
+    an $(1+\beta)$-stable law with characteristic function (ch.f.) $\theta \mapsto e^{m[\theta f_s]}$; 
+\item
+  if $f_c\in \mathcal C_c\setminus\{0\}$, then
+  \( \displaystyle
+    \frac{X_t(f_c)}{\|t X_t\|^{\frac{1}{1+\beta}}}
+    \xrightarrow[t\to \infty]{d} 
+    \zeta_c,
+    \)
+    an $(1+\beta)$-stable law with ch.f. $\theta \mapsto e^{\bar m[\theta f_c]}$;
+  \item
+    if $f_l\in \mathcal C_l\setminus\{0\}$, then
+    \centerline{ \( \displaystyle
+    \frac{X_t(f_l) - \sum_{p\in \mathbb Z^d_+:\alpha \tilde \beta>pb}\langle f_l,\phi_p\rangle_\varphi e^{(\alpha-|p|b)t}H^p_{\infty} }{\|X_t\|^{\frac{1}{1+\beta}}}
+    \xrightarrow[t\to \infty]{d}
+    \zeta_l,
+    \)}
+    an $(1+\beta)$-stable law with ch.f. $\theta \mapsto e^{m[- \theta f_l]}$.
+\end{itemize}
 \end{theorem}
 \end{frame}
 
-\begin{frame}{Results/Spectrum decomposition}
+\begin{frame}{Remark/Two effects}
 \begin{itemize}
 \item
-	Define
-\begin{align}
-	&\mathcal{C}_l
-   :=\overline{Span}\{\phi_p: \alpha\beta>|p|(1+\beta)b \}.
-	\\ &\mathcal{C}_c
-  :=\overline{Span}\{\phi_p: \alpha\beta=|p|(1+\beta)b \}.
-	\\&\mathcal{C}_s
-  :=\overline{Span}\{\phi_p: \alpha\beta >|p|(1+\beta)b \}.
-\end{align}
+	The phase transition phenomenon is due to an interplay of the {\color{red} coarsening effect} and the {\color{blue}smoothing effect}.
+  \mbox{ $\circ$ R. Adamczak and P. Mi{\l}o{\'s} 2015 (EJP).}
 \item
-	For any $f\in \mathcal P\setminus\{0\}$, there is a unique decomposition: 
-\[
-	f := f_l + f_c + f_s
-\]
-	where $f_l \in \mathcal C_l, f_c\in \mathcal C_c$ and $f_s\in \mathcal C_s$.
+	{\color{red}Coarsening effect} (increasing of the spatial inequality): 
+  A consequence of branching. 
+  An area with more particles will produce more offspring.
 \item
-	CLTs for $f_s$ and $f_c$ are already established.
+	{\color{blue}Smoothing effect} (decreasing of the spatial inequality):  
+	A consequence of the mixing property of the OU process. 
+  Each OU particles will ``forget'' its initial position exponentially fast.   
+\item
+  Roughly speaking, for all $p \in \mathbb Z_+^d$ and $\gamma \in (0,\beta)$, we can estimate that
+  
+  \centerline{ \( \displaystyle
+    \|H_{t+1}^p - H_t^p\|_{1+\gamma} 
+    \sim e^{- ( {\color{red}\alpha\tilde\gamma} - {\color{blue}|p|b})t}.
+    \)} 
 \end{itemize}
 \end{frame}
+\begin{frame} {Methods}
+  \begin{enumerate}
+    \item
+      The characteristic exponent $U_t f(x):= \log \mathbb P_{\delta_x}[e^{i \langle f, X_t \rangle}]$ can be characterized by a complex valued integral equation.
+      \mbox{ $\circ$ N-measure of the superprocesses}, E.-B. Dykin and S. E. Kuznetsov 2004 (PTRF).
 
-\begin{frame}{Results/Large branching rate regime/CLTs}
-\begin{theorem}[Ren, Song, S. and Zhao 2019+]
-\label{thm: large clt}
-    Let $f\in \mathcal{C}_l\setminus\{0\}$.
-    Let $\mu\in \mathcal M(\mathbb R^d)$ have compact support. 
-    Then under $\mathbb{P}_{\mu}(\cdot|D^c)$, it holds that
-\begin{align}\label{thm: large rate}
-    \frac{\langle f, X_t\rangle-\sum_{p\in\mathcal{N}}\langle f,\phi_p\rangle_\varphi e^{(\alpha-|p|b)t}H^p_{\infty}}{\|X_t\|^\frac{1}{1+\beta}}\xrightarrow[t\to \infty]{d}\bar{\zeta}.
-\end{align}
-    Here $\bar{\zeta}$ is a $(1+\beta)$-stable random variable with characteristic function $\theta \mapsto \exp( \bar m[\theta f])$ where
-\[
-	\bar{m}[\theta f]
-  := \eta\int_0^\infty e^{\alpha s}~ds \int_{\mathbb R^d} \big(i\theta I_sf(x)\big)^{1+\beta} \varphi(x)~dx,
-  \quad f\in \mathcal C_l
-\]
-and $(I_t)_{t\geq 0}$ are the inverse operator of $(P_t^\alpha)_{t\geq 0}$ on $\mathcal{C}_l$.
-\end{theorem}
-\end{frame}
+\mbox{ $\circ$ Generalized spine decomposition theorem for superprocesses,} Y.-X. Ren, R. Song and S. 2019 (AAM). 
 
-\begin{frame}{Remark/Phase transition}
-\begin{itemize}
+\mbox{ $\circ$ Discussions with Z. Li.}
+\item Some estimations of $|U_tf - iP_t^\alpha f|$ when $t\leq 1$.
+  \mbox{ $\circ$ Thanks to Assumption 2 and discussions with R. Zhang.}
+\item Tail probability estimation for random variable 
+  \(\mathbb P_\mu [\langle f, X_{T}\rangle | \mathscr F_t] - \mathbb P_\mu [\langle f, X_{T}\rangle | \mathscr F_{t+1}].\) 
 \item
-	Similar phase transition phenomenon in the context of branching OU processes is first observed by Adamczak and Milos 2015.
- 
-\item
-	Coarsening effect (increasing of the spatial inequalities): A consequence of branching. Simply an area with more particles will produce more offspring.
-\item
-	Smoothing effect (decreasing of the spatial inequalities):  
-	A consequence of the mixing property of the OU process. Simply each OU particles will ``forget'' its initial position exponentially fast.
-\item
-	The phase transition phenomenon is due to an interplay of the coarsening effect and the smoothing effect.
-\end{itemize}
+  CLT for $\langle f,X_T\rangle$.
+  \mbox{ $\circ$ Similar to the arguments in R. Marks and P. Mi{\l}o{\'s} 2018 (arXiv)} for branching OU processes. 
+  \mbox{ $\circ$ Ideas trace back to the CLT of martingales.}
+    \end{enumerate}
+    
 \end{frame}
 \begin{frame}
-  \centering \Large
-  \emph{Thanks!}
+  \[ \text{ \it \Large Thanks!}\]
 \end{frame}
 
 \end{document}
