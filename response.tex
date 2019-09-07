@@ -1,207 +1,213 @@
-% * The preamble
-% ! This TeX file uses 'amsart' for its document class.
+%%%----Documentstyles-----------------------
 \documentclass[12pt,a4paper]{amsart}
-\setlength{\textwidth}{\paperwidth}
-\addtolength{\textwidth}{-2in}
-\calclayout
-% ! 'amsmath', 'amsthm', 'amsfonts' package is automatically loaded by 'amsart' class.
-% ! Below is the configuration of 'amsmath' package.
-\numberwithin{equation}{section}
-\allowdisplaybreaks
-% ! Below is the configuration of 'amsthm' package.
-\theoremstyle{plain}
-\newtheorem{thm}{Theorem}[section]
-\newtheorem{lem}[thm]{Lemma}
-\newtheorem{prop}[thm]{Proposition}
-\newtheorem{cor}[thm]{Corollaray}
-\newtheorem{conj}[thm]{Conjecture}
-\theoremstyle{definition}
-\newtheorem{defi}[thm]{Definition}
-\newtheorem{exa}[thm]{Example}
-\newtheorem{asp}{Assumption}
-\newtheorem{iss}{Issue}
-\newtheorem{rem}[thm]{Remark}
-\newtheorem*{ack}{Acknowledgment}
-% ! 'inputenc' package is used to specify the set of characters allowed to input into this TeX file.
-% \usepackage[utf8]{inputenc}
-% ! 'foutenc' package is used to specify the set of characters allowed to output into the generated pdf file.
-% \usepackage[T1]{fontenc}
-% ! 'amssymb', 'mathrsfs' and 'mathtools' packages provide additional math symbols from the AMS default symbol fonts. They are compatible with the AMS class and is recommended to be used.
-\usepackage{amssymb}
-\usepackage{mathtools}
-\mathtoolsset{showonlyrefs}
-\usepackage{mathrsfs}
-% ! 'hyperref' package is used to handle cross-referencing in the generated pdf file.
-\usepackage[backref]{hyperref}
-% ! Other packages
-\usepackage{xcolor}
+\setlength{\textwidth}{\paperwidth}\addtolength{\textwidth}{-2in}\calclayout
+\usepackage{hyperref}
 \usepackage{comment}
-% * Top matter
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+%%%----Environments------------------------
+%\newtheorem{thm}{Theorem}[section]
+%\newtheorem{lem}[thm]{Lemma}
+%\newtheorem{prop}[thm]{Proposition}
+%\numberwithin{equation}{section}
+
+%%%---------Top matter----------------
+%YX \title
+%YX [Response]
+\title[Response]{\large Response to the referee's comments}
+%%%----Main-------------------------------
 \begin{document}
-\title
-[Response]
-{Response}
-\maketitle
-% * Document body
-We are grateful to the referees for their helpful comments.
-We have incorporated all the comments made by the referees.
-Here are the specific changes in response to the comments of the referees.
+\maketitle	
+	We are grateful to the referee for the very helpful comments.
+We have incorporated all the comments made by the referee.
+Here are the specific changes in response to the comments of the referee.
+
+
+There are many duplications in the current presentation, see the comments below for more details.
+With a more general formulation, these duplications can be removed reducing the number of pages
+dramatically. For example, it is realistic that the same content can be presented in 45 pages rather
+than 60 pages.
+
+\emph{We made a more general formulation. The paper has been rearranged and streamlined.
+See the details below. We were not able to reduce the length to 45 pages, but we are pretty close. The paper is now 46 pages.}
+
+Also, the authors should give stronger interpretations of the assumptions and the results. What
+do the the parameters $\alpha$, $\beta$, $\kappa_f$, $b$ represent, and why does the limit behavior change with these
+parameters? For example, what's the interpretation of the inequality $\alpha\beta > \kappa_f b(1 + \beta)$? Why is
+this referred to this as the large branching rate regime?
+
+\emph{We added some explanation about these at the end of Subsection 1.2.}
+
 \begin{enumerate}
 \item
-  P.2.L.-11. 
-  Please provide an interpretation of the form of $\psi$. 
-  If you were to approximate this superprocess by a branching particle system, what are the implications on the distribution of the number of off-springs? 
-  Does the term $\psi_1$ imply that the offspring distribution is heavy tailed? 
+  P.2.L.-11.
+  Please provide an interpretation of the form of $\psi$.
+  If you were to approximate this superprocess by a branching particle system, what are the implications on the distribution of the number of off-springs?
+  Does the term $\psi_1$ imply that the offspring distribution is heavy tailed?
 
-  \emph{We add an interpretation in Remark 1.1.}
+  \emph{We added an interpretation in Remark 1.1.
+   See also the bullet point about $\beta$ on page 7.
+    }
 \item
-  P.2.L.-8. 
-  Please provide an interpretation of the expression $\alpha\beta - \kappa f b(1+\beta)$?
-  
-\emph{We add some discussion about this in the middle of page 7.}.
-  
-  Perhaps it might be easier to interpret if you wrote the inequality $\alpha \beta > \kappa f b(1 + \beta)$ as $\alpha \frac{\beta}{1+\beta} > \kappa f b$.
-  This way the parameters on the left are branching related, whereas the parameters on the right are related to the Ornstein-Uhlenbeck process. 
+  P.2.L.-8.
+  %Please provide an interpretation of the expression $\alpha\beta - \kappa f b(1+\beta)$?
+   Please provide an interpretation of the expression $\alpha\beta - \kappa_f b(1+\beta)$?
+
+\emph{We added some discussion about this in the middle of page 7.}.
+
+  Perhaps it might be easier to interpret if you wrote the inequality $\alpha \beta > \kappa_f b(1 + \beta)$ as $\alpha \frac{\beta}{1+\beta} > \kappa_f b$.
+  This way the parameters on the left are branching related, whereas the parameters on the right are related to the Ornstein-Uhlenbeck process.
 
   \emph{We now write it as $\alpha \tilde \beta > \kappa b$ where $\tilde \beta := \frac{\beta}{1+\beta}$.}
 
-  Is there an intuitive explanation why $\rho$ doesn’t play a role? 
+  Is there an intuitive explanation why $\rho$ doesn't play a role?
   Why does $b$ come into play but $\sigma$ does not?
-  
-  \emph{We added some discussion about this at the end of subsection 1.2}.
+
+  \emph{We added some discussion about this at the end of Subsection 1.2}.
 \item
-  P.4.Equation.(1.5). 
-  Please provide an interpretation of the form of the invariant density. 
-  For example, you can mention that it has a mode at the origin, it is symmetric around the origin and $b$ determines the spread etc. 
-  
+  P.4.Equation.(1.5).
+  Please provide an interpretation of the form of the invariant density.
+  For example, you can mention that it has a mode at the origin, it is symmetric around the origin and $b$ determines the spread etc.
+
 \emph{We mentioned there that it is symmetric Gaussian.}
 
-  Please also give some intuition about the role of the $\sigma^2$ specific form of density in the results. 
+  Please also give some intuition about the role of the $\sigma^2$ specific form of density in the results.
   If the invariant density had different properties, would the results still hold?
-  
-  \emph{We added some discussion about this at the end of subsection 1.2}.
+
+  \emph{We added some discussion about this at the end of Subsection 1.2.
+We mentioned that we hope to prove spatial CLTs for superprocesses with general motions without the second moment assumption
+on the branching mechanism in a future project (see paragraph 2 of page 8)
+}.
 \item
-  P.5.L.-9. 
-  Please provide an interpretation of $\kappa_f$. 
+  P.5.L.-9.
+  Please provide an interpretation of $\kappa_f$.
   What does it mean for $\kappa_f$ to be large or small?
-  
-  \emph{We add some discussion about this in the middle of page 7.}.
+
+  \emph{We added some discussion about this in the middle of page 7.}
 
 \item
-  P.5.L.-3. 
+  P.5.L.-3.
   Please explain why the three cases are referred to as large, critical and small branching rate regimes?
-  
-  \emph{We add some explanation at the beginning of page 6.}
+
+  \emph{We added some explanation at the beginning of page 6.}
 \item
-  P.6. 
-  Why is Theorem 1.5 restricted to test functions in $\mathcal C_l$, whereas Theorem 1.6 and 1.7 allow $f$ to be in $\mathcal P$? 
-  Is this a limitation of the methodology used or there is a more substantial reason? 
+  P.6.
+  Why is Theorem 1.5 restricted to test functions in $\mathcal C_l$, whereas Theorem 1.6 and 1.7 allow $f$ to be in $\mathcal P$?
+  Is this a limitation of the methodology used or there is a more substantial reason?
   Please explain.
-  
+
   \emph{We added some explanation about this after Theorem 1.4.}
 \item
-  There is substantial repetition in the statements of Theorem 1.5, 1.6 and 1.7. 
+  There is substantial repetition in the statements of Theorem 1.5, 1.6 and 1.7.
   These can be combined into a single Theorem, and differences can be managed as different cases in the same proof.
-  
+
   \emph{They are now unified in the new Theorem 1.4.}
 \item
-  P.8. 
+  P.8.
   Definitions of $m(f ), \tilde m(f ), \bar m(f )$ can be combined into a single definition, and instead of using different notation $\tilde m, \bar m$, the definition of $m(f)$ can be extended to f in the critical and the large branching rate regimes by the formula given for $\tilde m$ and $\bar m$.
-  
-  \emph{Their definitions are now unified in (1.9).}
+
+  \emph{The definitions are now unified in (1.9).}
 \item
   P.8.
-  Instead of calling this section “some intuitive explanation”, it would be more appropriate to call it “an outline of the methodology”.
-  
+  Instead of calling this section "some intuitive explanation", it would be more appropriate to call it "an outline of the methodology".
+
   \emph{Done as suggested.}
 \item
   P.10.L.1.
   Please provide an interpretation of the examples for $\psi$?
   In which contexts do these examples arise?
-  
-  \emph{TBD.}
+
+  \emph{We added some explanation and gave two new references before the example.}
+
 \item
-  P.12. Lemma.2.4. 
-  There is substantial repetition in statements 2 and 3, please combine these into one statement. 
-  In fact, it would be even better if all the hypothesis on the operators, index sets , etc can be given at the beginning of the lemma, and then all the results can be listed without saying “Suppose that” each time. 
-  Similarly assumptions don’t need to be restated in the proof. 
-  There are duplications in the proof, these should be removed as well. 
-  For example you can say, “If $f,g \in \mathcal P^+$ with $f \leq g$, then $R_AR_Bf \leq R_AR_Bg$, and $R_A \times R_B f \leq R_A \times R_B g$ and $R_A +R_B f \leq (R_A +R_B)g$, and ...”. 
+  P.12. Lemma.2.4.
+  There is substantial repetition in statements 2 and 3, please combine these into one statement.
+  In fact, it would be even better if all the hypothesis on the operators, index sets , etc can be given at the beginning of the lemma, and then all the results can be listed without saying "Suppose that" each time.
+  Similarly assumptions don't need to be restated in the proof.
+  There are duplications in the proof, these should be removed as well.
+  For example you can say, "If $f,g \in \mathcal P^+$ with $f \leq g$, then $R_AR_Bf \leq R_AR_Bg$, and $R_A \times R_B f \leq R_A \times R_B g$ and $R_A +R_B f \leq (R_A +R_B)g$, and ...".
   These should reduce the length of Lemma 2.4 and and its proof by half.
-  
+
   \emph{The presentation of Lemma 2.4 is now rearranged and its proof is now omitted, since the results are easy to verify.}
 \item
-  P.16-17.Lemma 2.6., Proposition 2.7. 
-  If you use a single notation $m_t(f)$, instead of $m_t, \bar m$ and $\tilde m$ , you can simply say that $\theta \mapsto \exp(m_t[\theta f])$ is the characteristic function of ...” without repeating it 5 times. 
+  P.16-17.Lemma 2.6., Proposition 2.7.
+  If you use a single notation $m_t(f)$, instead of $m_t, \bar m$ and $\tilde m$ , you can simply say that $\theta \mapsto \exp(m_t[\theta f])$ is the characteristic function of ..." without repeating it 5 times.
   No need to provide separate statements for $m_t$ and $m$, since $m$ can be considered as a special case of $m_t$ for a suitable value of $t$, (e.g. $t = \infty$, or $t = \Delta$.)
-  
-  \emph{We now uses the single notation $m_t[f]$. Now the presentation of Lemma 2.6 and Proposition 2.7 is much shorter.}
+
+  \emph{We now use the single notation $m_t[f]$. Now the presentation of Lemma 2.6 and Proposition 2.7 is much shorter.}
 \item
   P.19.
   Combine Lemma 2.9 and 2.10 into a single Lemma.
-  
+
   \emph{We now unify them in the new Lemma 2.9.}
 \item
-  P.20.L.3. 
-  Please give a reference after the statement “It is well known that”.
-  
-  \emph{We add a new reference above equation (2.7) as suggested.}
+  P.20.L.3.
+  Please give a reference after the statement "It is well known that".
+
+  \emph{We added a new reference above equation (2.7) as suggested.}
 \item
-  P.22.L.8-12. 
-  The argument given here is not clear. 
+  P.22.L.8-12.
+  The argument given here is not clear.
   Please provide more details.
-  
+
   \emph{We rearranged that sentence. See the sentence right after (2.10).}
 \item
-  P.22. Equations. 2.18-2.19. 
-  These equations can be stated in a single line. 
-  For example, “if $0< \lambda \leq v_t(\lambda) < \bar v < v_t(\lambda^*)<\lambda^* < \infty$, then...”.
-  
+  P.22. Equations. 2.18-2.19.
+  These equations can be stated in a single line.
+  For example, if $0< \lambda \leq v_t(\lambda) < \bar v < v_t(\lambda^*)<\lambda^* < \infty$, then.
+
   \emph{We rearranged that sentence. See the last sentence of Page 18.}
-  
+
 \item
-  P.24. 
+  P.24.
   Please give more details about the argument from [10, Theorem 3.3.6].
 
   \emph{We added more details there. See the last display on page 20.}
-  
+
 \item
-  P.27.Line.-2. 
+  P.27.Line.-2.
   Typo. ``..is an eigenfunction of $L$, ...''.
-  
+
   \emph{Corrected as suggested.}
 \item
-  Page 31. Lemma 3.4 and Lemma 3.7 are nearly duplicates of each other. 
+  Page 31. Lemma 3.4 and Lemma 3.7 are nearly duplicates of each other.
   They should be written in a unifying way to cover both cases. Same applies to their proofs.
-  
-  \emph{We added a new subsection 3.2 which deals with the CLTs for one unite time intervals in a unified way.}
+
+  \emph{We added a new Subsection 3.2 which deals with the CLTs for unit time intervals in a unified way.}
 \item
-  Proof of Lemma 3.4. Please indicate clearly where $\alpha \beta \leq \kappa f b(1 + \beta)$ is used. 
-  Same goes for the case $\alpha beta > \kappa f b(1 + \beta)$.
-  
+  %Proof of Lemma 3.4. Please indicate clearly where $\alpha \beta \leq \kappa f b(1 + \beta)$ is used.
+  %Same goes for the case $\alpha beta > \kappa f b(1 + \beta)$.
+  Proof of Lemma 3.4. Please indicate clearly where $\alpha \beta \leq \kappa f b(1 + \beta)$ is used.
+  Same goes for the case $\alpha \beta > \kappa_f b(1 + \beta)$.
+
   \emph{It turns out that the proof of Lemma 3.4 doesn't use this condition. In the new version, We added a new subsection 3.2 which deals with the CLTs for one unite time intervals in a unified way.}
 
 \item
   P.40.
-  The proof of Theorem 1.7 is very similar to the proof of Theorem 1.6 with the exception of Step 2. 
+  The proof of Theorem 1.7 is very similar to the proof of Theorem 1.6 with the exception of Step 2.
   Please combine these two proofs into one, and deal with differences as separate cases in the same proof (case 1: $\alpha \beta = \kappa f b(1 + \beta)$, case 2: $\alpha \beta < \kappa_f b(1 + \beta)$.)
 
-  \emph{We agree that the structure of these two proofs are very similar. But there are differences lying in the details even out of the range of Step 2 which we believe is crucial. For example:  at the beginning, the scaling coefficient in case 1 is $\|tX_t\|^{\frac{1}{1+\beta}}$ but in case 2 is $\|X_t\|^{\frac{1}{1+\beta}}$; (ii) In Step 4, the exceptional event for case 1 is chosen as $\mathcal E_t = \{\|X_t\| > t^{-1/2} e^{\alpha t}\}$ but in case 2 is chosen as $ A_t(\epsilon) = \{\|X_t\|> e^{(\alpha - \epsilon )t}\}$. }
+  \emph{We agree that the structure of these two proofs are very similar. But there are
+differences lying in the details which we believe are pretty important:
+(i) the scaling coefficient in case 1 is $\|tX_t\|^{\frac{1}{1+\beta}}$ but in case 2 is $\|X_t\|^{\frac{1}{1+\beta}}$;
+ (ii) In Step 4, the exceptional event for case 1 is chosen as $\mathcal E_t = \{\|X_t\| > t^{-1/2} e^{\alpha t}\}$ but in case 2 is chosen as $ A_t(\epsilon) = \{\|X_t\|> e^{(\alpha - \epsilon )t}\}$. }
 
-\emph{    
+\emph{
     Nonetheless, in the new version, the proof of CLTs for three different cases (Subsection 3.3, 3.4 and 3.5) are rearranged in such a way that (1) their structure can be clearly compared; and (2) trivial duplications are avoided as much as possible.
 }
-  
+
 \item
-  P.45. 
+  P.45.
   The proof of Lemma 3.8. is very similar to the proof of Proposition 3.6, please revise Proposition 3.6 to cover the case in Lemma 3.8.
-  
+
   \emph{They are now unified in the new Corollary 3.6.}
 
 \item
   P.46.Lemma 3.9 and Lemma 3.10. should be stated before the proof of Theorem 1.6 in more general way, that they can be used in the proof of both cases of CLT $\alpha \beta \leq \kappa_f b(1 + \beta)$ and $\alpha \beta > \kappa_f b(1 + \beta).$
-  
-  \emph{These two lemmas are now deleted, and their proofs are moved into the new subsection 3.5. 
+
+  \emph{These two lemmas are now deleted, and their proofs are moved into the new Subsection 3.5.
 In the new version, the proof of CLTs for three different cases (Subsection 3.3, 3.4 and 3.5) are rearranged in such a way that (1) their structure can be clearly compared; and (2) trivial duplications are avoided as much as possible.}
 \end{enumerate}
 \end{document}
