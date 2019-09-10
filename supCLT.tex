@@ -1,4 +1,3 @@
-% * The preamble
 \documentclass[12pt,a4paper]{amsart}
 \setlength{\textwidth}{\paperwidth}
 \addtolength{\textwidth}{-2in}
@@ -25,7 +24,6 @@
 \newtheorem{asp}{Assumption}
 \numberwithin{equation}{section}
 \allowdisplaybreaks
-% * Top matter
 \begin{document}
 \title
 [stable CLT for super-OU processes]
@@ -68,7 +66,6 @@
   Some law of large numbers and $(1+\beta)$-stable central limit theorems are established for
   $(X_t(f) )_{t\geq 0}$, where the function $f$ is
   assumed to be of polynomial growth.
-%Some phase transitions arise  for the central limit theorems in the sense 
 A phase transition arises  for the central limit theorems in the sense 
 that the forms of the central limit theorem are different in three different regimes corresponding the branching rate 
 being relatively small, large or critical at a balanced value.
@@ -76,10 +73,7 @@ being relatively small, large or critical at a balanced value.
 \subjclass[2010]{60J68, 60F05}
 \keywords{Superprocesses, Ornstein-Uhlenbeck processes, Stable distribution, Central limit theorem, Law of large numbers, Branching rate regime}
 \maketitle
-% * Contents
-% ** Introduction
 \section{Introduction}
-% *** Motivation
 \subsection{Motivation}
 \label{subsec:M}
 Let $d \in \mathbb N:= \{1,2,\dots\}$ and $\mathbb R_+:= [0,\infty)$.
@@ -115,7 +109,7 @@ is a \emph{super Ornstein-Uhlenbeck process (super-OU process)} with branching m
 \end{align}
 where $(t,x) \mapsto V_tf(x)$ is the unique locally bounded non-negative solution to the equation
 \begin{align}
-  V_tf(x) + \Pi_x \Big[ \int_0^t\psi\big(V_{t-s}f(\xi_s)\big)~ds\Big]
+  V_tf(x) + \Pi_x \Big[ \int_0^t\psi (V_{t-s}f(\xi_s) )~ds\Big]
 	= \Pi_x [f(\xi_t)]
   , \quad x\in \mathbb R^d, t\geq 0.
 \end{align}	
@@ -140,7 +134,6 @@ Our key assumption is that $\psi$ satisfies Grey's condition and some perturbati
 when  $z\to 0$, $\psi(z)=-\alpha z + \eta z^{1+\beta} (1+o(1))$ with $\alpha > 0$, $\eta>0$ and $\beta\in (0, 1)$.
 Our  goal is to find $(F_t)_{t\geq 0}$ and $(G_t)_{t\geq 0}$ so that
 $ (X_t(f) -G_t)/F_t $ converges weakly to some non-degenerate random variable as $t\rightarrow\infty$, for a large class of functions $f$.
-%Note that, in the setting of this paper, $X_t(f)$ typically have infinite second moment.
 Note that, in the setting of this paper, $X_t(f)$ typically has infinite second moment.
 
 There are many papers on CLTs for branching processes, branching diffusions and superprocesses under the second moment condition.
@@ -168,10 +161,8 @@ of a class of critical superprocesses with spatially dependent stable branching 
 
 As far as we know, this paper is the first to study spatial CLTs for supercritical superprocesses without the second moment condition.
 
-% *** Main results
 \subsection{Main results}
 \label{sec:I:R}
-% **** Assumption 1
 We will always assume that the following assumption holds.
 \begin{asp}
   \label{asp: Greys condition}
@@ -181,7 +172,6 @@ For $\mu \in \mathcal M(\mathbb R^d)$, write $\|\mu\| = \mu(1)$.
 It is known (see \cite[Theorems 12.5 \& 12.7]{Kyprianou2014Fluctuations} for example) that, under Assumption \ref{asp: Greys condition}, the \emph{extinction event} $D :=\{\exists t\geq 0,~\text{s.t.}~ \|X_t\| =0 \}$ has positive probability with respect to $\mathbb P_\mu$ for each  $\mu \in \mathcal M(\mathbb R^d)$.
 In fact, $ \mathbb{P}_{\mu} (D) = e^{-\bar v \|\mu\|}$ where $ \bar v := \sup\{\lambda \geq 0: \psi(\lambda) = 0\} \in (0,\infty) $ is the largest root of $\psi$.
 
-% **** Assumption 2
 Denote by $\Gamma$ the gamma function.
 For any $\sigma$-finite signed measure $\mu$, we use $|\mu|$ to denote the total variation measure of $\mu$.
 In this paper, we will also assume the following:
@@ -222,7 +212,6 @@ It will be proved in Lemma \ref{lem: LlogL criterion} that, under Assumption \re
  $\psi$ satisfies the $L \log L$ condition, i.e., $ \int_{(1,\infty)} y\log y~\pi(dy) < \infty. $
 This guarantees that $H_\infty$, the limit of the non-negative martingale $(e^{-\alpha t} \|X_t\|)_{t\geq 0}$, is non-degenerate.
 \end{rem}
-% **** Mean semigroup
 Let us introduce some notation in order to give the precise formulation of our main result.
 Denote by $\mathcal B(\mathbb R^d, \mathbb R)$ the space of all $\mathbb R$-valued Borel functions on $\mathbb R^d$.
 Denote by $\mathcal B(\mathbb R^d, \mathbb R_+)$ the space of all $\mathbb R_+$-valued Borel functions on $\mathbb R^d$.
@@ -241,7 +230,6 @@ It is known that, see \cite[Proposition 2.27]{Li2011Measure-valued} for example,
 for all $\mu\in \mathcal M(\mathbb R^d)$, $t\geq 0$ and $f\in \mathcal B(\mathbb R^d, \mathbb R_+)$.
 
 
-% **** Spectral Property
 The limit behavior of $X$  is closely related to the spectral property of the OU semigroup $(P_t)_{t\geq 0}$ which we now recall (See \cite{MetafunePallaraPriola2002Spectrum} for more details).
 It is known that the OU process $\xi$ has an invariant probability on $\mathbb R^d$
 \begin{align}
@@ -294,7 +282,6 @@ which is the lowest non-trivial frequency in the eigen-expansion \eqref{semicomp
 Note that $ \kappa_f\geq 0$ and that, if $f\in L^2(\varphi)$ is non-trivial, then $\kappa_f<\infty$.
 In particular, the order of any constant non-zero function is zero.
 
-% **** Martingale limits
 Denote by $\mathcal M_c(\mathbb R^d)$ the space of all finite Borel measures of compact support on $\mathbb R^d$.
 For $p\in \mathbb{Z}_+^d$, define
 \(
@@ -302,7 +289,7 @@ For $p\in \mathbb{Z}_+^d$, define
   := e^{-(\alpha-|p|b)t}X_t(\phi_p)
 \)
 for all $t\geq 0$.
-If $\alpha\beta>|p|b(1+\beta)$, then for all $\gamma\in (0, \beta)$ and $\mu\in \mathcal M_c(\mathbb R^d)$, we will prove in Lemma \ref{lem:M:L:ML} that $(H_t^p)_{t\geq 0}$ is a $\mathbb{P}_{\mu}$-martingale bounded in $L^{1+\gamma}(\mathbb{P}_{\mu})$.
+If $\alpha \tilde \beta>|p|b, \tilde \beta := \beta/(1+\beta)$, then for all $\gamma\in (0, \beta)$ and $\mu\in \mathcal M_c(\mathbb R^d)$, we will prove in Lemma \ref{lem:M:L:ML} that $(H_t^p)_{t\geq 0}$ is a $\mathbb{P}_{\mu}$-martingale bounded in $L^{1+\gamma}(\mathbb{P}_{\mu})$.
 Thus the limit $H^p_{\infty}:=\lim_{t\rightarrow \infty}H_t^p$ exists $\mathbb{P}_{\mu}$-almost surely and in $L^{1+\gamma}(\mathbb{P}_{\mu})$.
 
 We first present a law of large numbers for our model which extends the strong laws of large numbers of \cite{ChenRenYang2019Skeleton, EckhoffKyprianouWinkel2015Spines} in which the first order asymptotic ($\kappa_f=0$) was identified.
@@ -315,7 +302,7 @@ Denote by $\mathcal P$ the class of functions of polynomial growth on $\mathbb R
 It is clear that $\mathcal{P} \subset L^2(\varphi)$.
 \begin{thm}
   \label{thm: law of large number}
-  If $f \in \mathcal{P}$ satisfies $\alpha\beta>\kappa_fb(1+\beta)$, then for all $\gamma\in (0, \beta)$ and  $\mu\in \mathcal M_c(\mathbb R^d)$,
+  If $f \in \mathcal{P}$ satisfies $\alpha\tilde \beta>\kappa_f b$, then for all $\gamma\in (0, \beta)$ and  $\mu\in \mathcal M_c(\mathbb R^d)$,
   \[
     e^{-(\alpha-\kappa_fb)t}X_t(f)
     \xrightarrow[t\to \infty]{}\sum_{p\in \mathbb Z_+^d:|p|=\kappa_f}\langle f, \phi_p\rangle_{\varphi} H_{\infty}^p
@@ -335,19 +322,18 @@ However, to get a.s.\ convergence for bounded non-negative
 Lebesgue-a.e.\ continuous functions $f$, we do not need $f$ to be twice differentiable.
 See \cite[Theorem 2.13 \& Example 8.1]{ChenRenYang2019Skeleton} and \cite[Theorem 1.2 \& Example 4.1]{EckhoffKyprianouWinkel2015Spines}.
 
-% **** Stable CLT
 For the rest of this subsection, we focus on the CLTs of $X_t(f)$ for a large collection of $f\in \mathcal P\setminus \{0\}$.
 Write $\tilde u = \frac{u}{ 1+ u}$ for each $u \neq -1$.
 It turns out that there is a phase transition in the sense that the results are different in the following three cases:
 \begin{enumerate}
 \item
-  the small branching rate case: where
+  the small branching rate case where
 $f$ satisfies $\alpha \tilde \beta < \kappa_f b$;
 \item
-  the critical branching rate case: where
+  the critical branching rate case where
 $f$ satisfies $\alpha \tilde \beta = \kappa_f b$; and
 \item
-  the large branching rate case:  where
+  the large branching rate case  where
 $f$ satisfies $\alpha \tilde \beta > \kappa_f b$.
 \end{enumerate}
 Here, the small (resp. large) branching rate case means that the branching rate $\alpha$ is small (resp. large) compared to $\kappa_f$;
@@ -368,10 +354,8 @@ and a family of $\mathbb C$-valued functionals $(m_t)_{0 \leq t < \infty}$ on $\
 \end{align}
 Define $ \mathcal C_s := \mathcal P \cap \overline{\operatorname{Span}} \{ \phi_p: \alpha \tilde \beta < |p| b \}$, $\mathcal C_c   := \mathcal P \cap \operatorname{Span} \{ \phi_p : \alpha \tilde \beta = |p| b \} $
 and $ \mathcal C_l   := \mathcal P \cap \operatorname{Span} \{ \phi_p: \alpha \tilde \beta > |p| b \}$. 
-%new
 Note that $\mathcal C_s$ is an infinite dimensional space, $ \mathcal C_l$ and $\mathcal C_c$
 are finite dimensional spaces, and $\mathcal C_c$ might be empty.
-%end new
 For $f\in \mathcal P\setminus \{0\}$, in Lemma \ref{lem:m} and Proposition \ref{prop:PL:S} below, we will show that
 \begin{align}
   \label{eq:I:R:3}
@@ -456,7 +440,6 @@ Here we discuss the role of the other parameters $\rho, \eta$ and $\sigma$ in ou
 \end{itemize}
 
 
-% *** An outline of the methodology
 \subsection{An outline of the methodology}
 Let us give some intuitive explanation of the methodology used in this paper.
 For any $\mu\in \mathcal M_c(\mathbb R^d)$ and any random variable $Y$ with finite mean, we define
@@ -480,7 +463,7 @@ a multi-variate unit interval CLT  which says that
   \Big( \|X_t\|^{-\frac{1}{1+\beta}}\mathcal I^{t-k}_{t-k-1} X_t(f) \Big)_{k=0}^n
   \xrightarrow [t\to \infty]{d} (\zeta^f_k)_{k=0}^n,
 \]
-where $(\zeta_k)_{k \in \mathbb N}$ are independent $(1+\beta)$-stable random variables.
+where $(\zeta^f_k)_{k \in \mathbb N}$ are independent $(1+\beta)$-stable random variables.
 If $f \in \mathcal C_s\setminus\{0\}$, then it can be argued that $\sum_{k=0}^{\lfloor t \rfloor} \xi^f_k \xrightarrow[t\to \infty]{d} \zeta^f$ and then intuitively we have
 \(
   \|X_t\|^{-\frac{1}{1+\beta}}  X_t(f)
@@ -541,9 +524,7 @@ In Subsections \ref{sec:critical}--\ref{sec: large rate clt}, we will give the p
 In the Appendix, we consider a general superprocess $(X_t)_{t\geq 0}$ and we prove that the characteristic exponent of $X_t(f)$ satisfies a complex-valued non-linear integral equation.
 This fact will be used at several places in this paper, and we think it is of independent interest.
 
-% ** Preliminaries
 \section{Preliminaries}
-% *** Branching mechanisms
 \subsection{Branching mechanism}
 \label{sec: branching mechanism}
 Let $\psi$ be the branching mechanism given in \eqref{eq: honogeneou branching mechanism}.
@@ -638,7 +619,6 @@ The following lemma says that the constants $\eta, \beta$ in Assumption \ref{asp
   we immediately get the desired result.
 \end{proof}
 
-% *** Definition of controller
 \subsection{Definition of controller}
 \label{sec: controller}
 Denote by $\mathcal B(\mathbb R^d, \mathbb C)$ the space of all $\mathbb C$-valued Borel functions on $\mathbb R^d$.
@@ -680,7 +660,6 @@ The following lemma is easy to verify.
   \end{enumerate}
 \end{lem}
 
-% *** Controllers for the super-OU processes
 \subsection{Controllers for the super-OU processes}
 \label{sec: h-controller}
 Let $X$ be our super-OU process with branching mechanism $\psi$ satisfying
@@ -826,7 +805,6 @@ Then according to \cite[Fact 1.2]{MarksMilos2018CLT}, $Q$ is an operator from $\
   (7). Since $Z'''_t = (Z'_t-Z_t)+Z''_t$, the desired result follows from (5)--(6) above and Lemma \ref{lem: property of controllable operators}.(3).
 \end{proof}
 
-% *** Stable distributions
 \subsection{Stable distributions}
 \label{sec: stable distributions}
 Recall that the operators $(T_t)_{t\geq 0}$ are defined by \eqref{eq:I:R:1}, and the functionals $(m_{t})_{0\leq t< \infty}$ and $m$ are given by \eqref{eq:I:R:2} and \eqref{eq:I:R:3} respectively.
@@ -958,7 +936,7 @@ Note that $m[\theta f]$ can be written as
   \begin{align}
     \label{eq:PL:S:1}
     m[\theta f]
-    = \eta \int_0^{\infty}~ds\int_{\mathbb R^d} \big(-i\theta T_s f(x)\big)^{1+\beta} \varphi(x)~dx,
+    = \eta \int_0^{\infty}~ds\int_{\mathbb R^d} (-i\theta T_s f(x))^{1+\beta} \varphi(x)~dx,
     \quad \theta \in \mathbb R.
   \end{align}
 	Therefore, according to Lemma \ref{lem: charactreisticfunction}, in order to show that $\zeta^f$ is a $(1+\beta)$-stable random variable we only need to show that
@@ -993,7 +971,6 @@ It turns out that our proof of the CLT relies on the following refined estimate 
   Suppose that $g \in \mathcal P$, then there exists $h \in \mathcal P^+$ such that for all $ f \in \mathcal P_g := \{\theta T_n g: n \in \mathbb Z_+, \theta \in [-1,1]\} $ and $t\geq 0$, we have $ | P_t (Z_1 f - \langle Z_1 f, \varphi \rangle )| \leq e^{-bt} h$.
 \end{lem}
 \begin{proof}
-%Fix the $g \in \mathcal P$.
 Fix $g \in \mathcal P$.
 We write  $g = g_0 + g_1$ with $g_0 \in \mathcal C_s \oplus \mathcal C_c$ and $g_1 \in \mathcal C_l$,  and $q_f:=Z_1f - \langle Z_1f, \varphi \rangle\in \mathcal P^*$ for each $f\in \mathcal P$.
   We need to prove that there exists $h \in \mathcal P^+$ such that for each $f\in \mathcal P_g$, $|P_tq_f| \leq e^{-bt} h$.
@@ -1011,12 +988,9 @@ We write  $g = g_0 + g_1$ with $g_0 \in \mathcal C_s \oplus \mathcal C_c$ and $g
     T_s g
     = T_s (g_0 + g_1)
     = e^{\alpha \tilde \beta s}P_s g_0 + \sum_{p \in \mathbb Z_+^d: \alpha \tilde \beta > |p|b} 
-    %\langle g_1, \phi_p \rangle e^{-(\alpha \tilde \beta - |p|b)s} \phi_p.
     \langle g_1, \phi_p \rangle_\varphi e^{-(\alpha \tilde \beta - |p|b)s} \phi_p.
   \]
-  Notice that the second term is in $C_\infty(\mathbb R^d)\cap \mathcal P$ since it is a finite %summation of polynomials, 
-  sum of polynomials, 
-  and the first term is also in $C_\infty (\mathbb R^d) \cap \mathcal P$ according to \cite[Fact 1.1]{MarksMilos2018CLT}.
+  Notice that the second term is in $C_\infty(\mathbb R^d)\cap \mathcal P$ since it is a finite sum of polynomials, and the first term is also in $C_\infty (\mathbb R^d) \cap \mathcal P$ according to \cite[Fact 1.1]{MarksMilos2018CLT}.
 
   \emph{Step 3.} We show that there exists $h_3 \in \mathcal P^+$ such that for all $j \in \{1,\dots, d\}$ and $f \in \widetilde {\mathcal P}_g$, it holds that $|\partial_j f| \leq h_3$.
   In fact, it is known that  (see \cite{MetafunePallaraPriola2002Spectrum} for example)
@@ -1111,7 +1085,6 @@ We show that there exists $h_5 \in \mathcal P^+$ such that for each $f \in \wide
   \end{align}
 \end{proof}
 
-% *** Small value probability
 \subsection{Small value probability}
 \label{sec: Small value probability}
 In this subsection, we digress briefly from our super-OU process and consider a (supercritical) \emph{continuous-state branching process (CSBP)} $\{(Y_t)_{t\geq 0}; \mathbf P_x\}$ with branching mechanism $\psi$ given by \eqref{eq: honogeneou branching mechanism}.
@@ -1283,7 +1256,6 @@ We write $W_t = e^{-\alpha t}Y_t$ for each $t\geq 0$.
   Note that the left hand side is always bounded from above by $1$, so we can take $t_2 =0$ in the above statement.
 \end{proof}
 
-% *** Moments for super-OU processes
 \subsection{Moments for super-OU processes}
 \label{sec: Moments for super-OU processes}
 In this subsection,  we want to find some upper bound for the $(1+\gamma)$-th moment of $X_t(g)$,
@@ -1342,7 +1314,6 @@ for $u>0$ and $x\neq0$,
 \Big(  \frac{2^{2+\beta}}{2+\beta}\Big(\frac{e^{(t-s)(\alpha- \kappa b)}}{\lambda}\Big)^{1+\beta} + \frac{2^{3}}{3}\Big(\frac{e^{(t-s)(\alpha- \kappa b)}}{\lambda}\Big)^2\Big)
     \\ & \leq C e^{\alpha r} \Big(\Big( \frac{e^{(t-s)(\alpha - \kappa b)}}{\lambda}\Big)^{1+\beta} + \Big( \frac{e^{(t-s)(\alpha - \kappa b)}}{\lambda}\Big)^{2} \Big),
   \end{align}
-%  where the $C := \Big(\frac{2^{2+\beta}}{2+\beta} + \frac{2^{3}}{3} \Big) \mu(Q_0Rh)>0$.
 where $C := \Big(\frac{2^{2+\beta}}{2+\beta} + \frac{2^{3}}{3} \Big) \mu(Q_0Rh)>0$.
 \end{proof}
 
@@ -1409,13 +1380,11 @@ Recall that we write $\tilde u = \frac{u}{1+u}$ for each $u\neq -1$.
   By calculating the sum on the right, we get the desired result.
 \end{proof}
 
-% ** Proofs of main results
 \section{Proofs of main results}
 \label{proofs of main results}
 In this section, we will prove the main results of this paper.
 For simplicity, we will write $\mathbb{\widetilde{P}}_{\mu}=\mathbb{P}_{\mu}(\cdot|D^c)$ in this section.
 
-% *** law of large numbers
 \subsection{Law of large numbers}
 \label{sec: large rate lln}
 
@@ -1459,8 +1428,7 @@ Let $(\mathscr{F}_t)_{t\geq 0}$ be the natural filtration of $X$.  The following
   Using this and \eqref{martingale1}, we get the desired result.
 \end{proof}
 
-Recall that, for $p\in \mathbb Z_+^d$,  $\phi_p$ is an eigenfunction of $L$ corresponding to the %eigenvalue $-|p|b$ and $ H_t^p :=e^{-(\alpha-|p|b)t}X_t(\phi_p)$ for each $t\geq 0$.
-eigenvalue $-|p|b$ and $ H_t^p =e^{-(\alpha-|p|b)t}X_t(\phi_p)$ for each $t\geq 0$.
+Recall that, for $p\in \mathbb Z_+^d$,  $\phi_p$ is an eigenfunction of $L$ corresponding to the eigenvalue $-|p|b$ and $ H_t^p =e^{-(\alpha-|p|b)t}X_t(\phi_p)$ for each $t\geq 0$.
 
 \begin{lem}
   \label{lem:M:L:ML}
@@ -1661,10 +1629,8 @@ eigenvalue $-|p|b$ and $ H_t^p =e^{-(\alpha-|p|b)t}X_t(\phi_p)$ for each $t\geq 
   \]
 \end{proof}
 
-% **** Central limit theorems for one unite time interval
 \subsection{Central limit theorems for unit time intervals}
 \label{sec:critical}
-% ***** Local CLT for one interval
 In this subsection, we will establish the following CLT.
 \begin{thm}
   \label{lem:PR:LC}
@@ -1807,7 +1773,6 @@ On the other hand, by Proposition \ref{lem: control of XT}, for each $\epsilon \
 \end{proof}
 
 
-% ***** LCLT for Multiple interval
 The following corollary  will be used later in the proof of Theorem \ref{thm:M}.
 \begin{cor}
   \label{cor:MI}
@@ -1847,7 +1812,6 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   \end{align}
 \end{proof}
 
-% *** The small branching rate regime
 \subsection{Central limit theorem for $f\in \mathcal C_s$}
 \label{sec: small rate}
 
@@ -1863,7 +1827,6 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   \end{multline}
   and $ I^f_0(t) := \sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_k \tilde f},$ where $\tilde f:= e^{\alpha(\tilde \beta - 1)} f$.
 
-% ****** Step 1.
   \emph{Step 1.} We show that $I^f_0(t) \xrightarrow[t\to \infty]{d} \zeta^f$.
   In fact, for each $k \in \mathbb Z_+$, we have  $T_{k} \tilde f \in \mathcal P_{\tilde f}:=\{\theta T_n \tilde f: n \in \mathbb Z_+, \theta \in [-1,1]\}$.
   Therefore from Corollary \ref{cor:MI} we get that there exist $C_1,\delta_1 > 0$ such that
@@ -1883,7 +1846,6 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   \end{align}
   Therefore, we have $\mathbb{\widetilde{P}}_{\mu} [e^{i I^f_0(t)} ] \xrightarrow[t\to \infty]{} e^{m[f]}$. Since $I_0^f(t)$ is linear in $f$, we can replace $f$ with $\theta f$, $\theta \in \mathbb R$, and then the desired result in this step follows.
 
-% ****** Step 2.
   \emph{Step 2.} We show that $I^f_1(t) - I^f_0(t) \xrightarrow[t\to \infty]{d} 0$.
   In fact,  by \cite[Lemma 3.4.3]{Durrett2010Probability} we have that for each $t\geq t_0$,
   \begin{align}
@@ -1903,7 +1865,6 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   \]
   where $H_t := e^{-\alpha t}\|X_t\|$.
 
-% ******* Step 2.1
   \emph{Substep 2.1.} We show that there exist $C_{2.1},\delta_{2.1} >0$ such that for all $k \in \mathbb Z_+$ and $t\geq k+1$, $ \mathbb{\widetilde{P}}_{\mu} \big[ |Y_{t,k}| ;\mathcal{D}^c_{t,k} \big] \leq C_{2.1} e^{-\delta_{2.1} (t-k)}.$
   In fact, it follows from Proposition \ref{lem: control of XT}, Lemma \ref{lem: control of wt} with $|p|=0$ and Chebyshev's inequality that there exist $C_{2.1}', \delta_{2.1}'>0$ such that for all $k \geq 0$ and $t\geq k+1$,
   \begin{align}
@@ -1916,7 +1877,6 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   \end{align}
   This implies the desired result in this substep, since $|Y_{t,k}| \leq 2$ a.s..
 
-% ******* Step 2.2
   \emph{Substep 2.2.} We will show that there exist $C_{2.2},\delta_{2.2} > 0$ such that for all $k\in \mathbb Z_+$ and $t\geq k+1$, it holds that $ \mathbb{\widetilde{P}}_{\mu} [|Y_{t,k}|;\mathcal{D}_{t,k}] \leq  C_{2.2} e^{-\delta_{2.2} (t-k)}$.
   In fact, noticing that for $f\in \mathcal C_s$ and $k\in \mathbb Z_+$, we have $T_kf = e^{\alpha (\tilde \beta - 1 )k}P_k^\alpha f $; and therefore for all $k\in \mathbb Z_+$ and $t \geq k + 1$,
   \begin{align}
@@ -1968,7 +1928,6 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   as desired in this step.
   In the last inequality, we used the fact that $f\in \mathcal C_s$ and therefore $\alpha \tilde \beta < \kappa_f b$.
 
-% ****** Step 3
   \emph{Step 3.}
   We show that $I^f_2(t)\xrightarrow[t\to \infty]{d} 0$.
   First fix a $\gamma \in (0,\beta)$ in this step.
@@ -2001,7 +1960,6 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   From this and \eqref{Theorem123}, we get that $\widetilde {\mathbb P}_\mu[e^{i I^f_2(t)}] \xrightarrow[t\to \infty]{} 1$.
   Note that $I^f_2(t)$ is linear in $f$ so we can replace $f$ with $\theta f$ for $\theta \in \mathbb R$ and get the desired result in this step.
 
-% ****** Step 4
 	\emph{Step 4.} We will show that $I^f_3(t) \xrightarrow[t\to \infty]{\widetilde {\mathbb P}_\mu \text{-} a.s.} 0$.
   In fact, we have
   \begin{align}
@@ -2012,17 +1970,14 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
       \xrightarrow[t\to \infty]{\widetilde {\mathbb P}_\mu \text{-} a.s.} 0.
   \end{align}
 
-% ****** Final Step
   \emph{Step 5.} Combining Steps 1--4, we complete the proof of Theorem  \ref{thm:M}.\eqref{thm:M:1}.
 \end{proof}
 
-% *** Critical branching rate regime
 \subsection{Central limit theorem for $f \in \mathcal C_c$}
 \begin{proof}[Proof of Theorem \ref{thm:M}.(\ref{thm:M:2})]
   Fix $\mu\in \mathcal M_c(\mathbb R^d)$, $f\in \mathcal C_c$ and $t_0 > 1$ large enough so that $ \lceil t - \ln t\rceil \leq \lfloor t \rfloor - 1$ for each $t\geq t_0$.
   For each $t\geq t_0$, in this proof we write $\theta_t = \|t X_t\|^{\tilde \beta - 1}$,  define $I_i^f(t)$ using \eqref{eq:PM:CLTS:1}  for $i = 1,2,3$, and set $ I^f_0(t) := t^{\tilde \beta - 1}\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_{k} \tilde f}$, where $\tilde f = e^{\alpha(\tilde \beta - 1)} f$.
 
-% ****** Step 1.
   \emph{Step 1.} We show that $I^f_0(t) \xrightarrow[t\to \infty]{d} \zeta^f$.
   In fact, for each $t \geq  t_0( > 1)$ we have $t^{\tilde \beta - 1} < 1$; and therefore, for each $k \in \mathbb Z_+$, we have $t^{\tilde \beta - 1} T_{k+1} f \in \mathcal P_f:=\{\theta T_n f: n \in \mathbb Z_+, \theta \in [-1,1]\}$.
   Therefore from Proposition \ref{cor:MI} and that $\tilde \beta - 1 = -\frac{1}{1+\beta}$ we get that there exist $C_1,\delta_1 > 0$ such that
@@ -2044,7 +1999,6 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   Therefore $\mathbb {\widetilde P}_\mu[e^{i I^f_0(t)}] \xrightarrow[t\to \infty]{} e^{m[f]}$.
   The desired result in this step follows.
 
-% ****** Step 2.
   \emph{Step 2.} We show that $ I^f_1(t) - I^f_0 (t) \xrightarrow[t\to \infty]{d} 0$.
   In fact, similar to Step 2 in the proof of Theorem \ref{thm:M}.(\ref{thm:M:1}), we  have \eqref{eq:PM:S:1} is valid with $ Y_{t,k} := \exp(i t^{\tilde \beta - 1} \Upsilon_{t-k-1}^{T_{k}\tilde f} - i\theta_t \mathcal I_{t-k-1}^{t-k} X_t(f)) - 1$.
   Similarly, we claim that there exist $C_2, \delta_2>0$ such that $\widetilde {\mathbb P}_\mu [|Y_{t,k}|] \leq C_2 e^{-\delta_2 (t-k-1)}$ for all $k\in \mathbb N$ and $t\geq k+1$, and  then the desired result in this step follows.
@@ -2052,12 +2006,10 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   We will show the claim above in the following substeps 2.1 and 2.2.
   First we choose $\gamma \in (0,\beta)$ close enough to $\beta$ so that there exist $\eta,\eta'>0$ with $ \alpha \tilde \gamma > \eta > \eta - 3\eta' > \alpha \tilde \beta - \alpha \tilde \gamma > 0$; and define, for  $k \in \mathbb N$ and $t\geq k+1$, $ \mathcal{D}_{t,k} := \{|H_t-H_{t-k-1}| \leq  e^{-\eta (t-k-1)}, H_{t-k-1}> 2e^{-\eta' (t-k-1)}\}$.
 
-% ******* subStep 2.1
   \emph{Substep 2.1.}
   Similar to Substep 2.1 in the proof of Theorem \ref{thm:M}.(\ref{thm:M:1}), there exist $C_{2.1},\delta_{2.1} >0$ such that for all $k \in \mathbb N$ and $t\geq k+1$, $\mathbb{\widetilde{P}}_{\mu}[|Y_{t,k}|;\mathcal{D}^c_{t,k}] \leq C_{2.1} e^{-\delta_{2.1} (t-k)}$.
   We omit the details.
 
-% ******* Step 2.2
   \emph{Substep 2.2.} We will show that there exist $C_{2.2},\delta_{2.2} > 0$ such that for all $k\in \mathbb N$ and $t\geq k+1$, $ \mathbb{\widetilde{P}}_{\mu}[|Y_{t,k}|;\mathcal{D}_{t,k}] \leq  C_{2.2} e^{-\delta_{2.2} (t-k)}.$
   In fact, noticing that for $f\in \mathcal C_c$ and $k\in \mathbb Z_+$, we have $T_kf = e^{\alpha (\tilde \beta - 1 )k}P_k^\alpha $; and therefore for all $k\in \mathbb Z_+$ and $t \geq k + 1$,
   \[
@@ -2068,7 +2020,6 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   The rest is similar to Substep 2.2 in the proof of Theorem \ref{thm:M}.(\ref{thm:M:2}).
   We omit the details.
 
-% ****** Step 3
   \emph{Step 3.}
   We show that $ I^f_2(t)\xrightarrow[t\to \infty]{d} 0$.
   In fact, writing $\mathcal{E}_t:=\{\|X_t\|>t^{-1/2}e^{\alpha t}\}$, according to Proposition \ref{lem: control of XT}, there exist $C_3, \delta_3>0$ such that
@@ -2099,18 +2050,14 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   \end{align}
   From this and \eqref{Theorem123a}, we get the desired result in this step.
 
-% ****** Step 4
   \emph{Step 4.} Similar to Step 4 in the proof of Theorem \ref{thm:M}.(\ref{thm:M:1}), we can verify that $I_3(t) \xrightarrow[t\to \infty]{\widetilde {\mathbb P}_\mu \text{-} a.s.} 0$.
   We omit the details.
 
-% ****** Final step
  	\emph{Step 5.} Combining Steps 1--4, we complete the proof of Theorem \ref{thm:M}.\eqref{thm:M:2}.
 \end{proof}
 
-% *** The large branching rate regime: CLT
 \subsection{Central limit theorem for $f\in \mathcal C_l$}
 \label{sec: large rate clt}
-% ***** Proof or the main result
 \begin{proof}[Proof of Theorem \ref{thm:M}.(\ref{thm:M:3})]
   Fix $\mu \in \mathcal M_c(\mathbb R^d)$ and $f \in \mathcal C_l$.
   Define $\mathcal N:= \{p\in \mathbb Z_+^d: \alpha \tilde \beta > |p|b\}$.
@@ -2148,7 +2095,6 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   First we choose $\gamma\in(0, \beta)$ close enough to $\beta$ so that $\alpha \tilde \gamma > |p|b$ for each $p\in \mathcal N$;
   and even closer so that there exist $\eta,\eta'>0$ satisfying $\alpha \tilde \gamma > \eta>\eta - 3\eta'> \alpha (\tilde \beta - \tilde \gamma)>0$. We also define $\mathcal{D}_{t,k} :=\{|H_t-H_{t+k}|\leq  e^{-\eta t}, H_{t}> 2e^{-\eta' t}\}$.
 
-% ******* subStep 2.1
   \emph{Substep 2.1.} Similar to Substep 2.1 in the proof of Theorem \ref{thm:M}.(\ref{thm:M:1}), we have that there exist $C_{2.1},\delta_{2.1} >0$ such that for all $k \in \mathbb Z_+$ and $t\geq 0$, $ \mathbb{\widetilde{P}}_{\mu}[|Y_{t,k}|;\mathcal{D}^c_{t,k}] \leq C_{2.1} e^{-\delta_{2.1} t}$.
   We omit the details.
 
@@ -2205,7 +2151,6 @@ all $l\leq n$ in $\mathbb Z_+$ and  $(f_j)_{j=l}^n\subset \mathcal P_g$,
   \emph{Step 4.} Combining Steps 1--3, we complete the proof of Theorem \ref{thm:M}.\eqref{thm:M:3}.
 \end{proof}
 
-% ** Appendix
 \appendix
 \section{ }
 \subsection{Analytic facts}
@@ -2259,7 +2204,7 @@ In this subsection, we collect some useful analytic facts.
   It follows from Lemma \ref{lem: estimate of exponential remaining} that, for each $z_0 \in \mathbb C_+$,  there exists $C>0$ such that for $z \in \mathbb C_+$ close enough to $z_0$ and any $y>0$,
   \begin{align}
     & \Big| \frac{e^{-zy} - e^{-z_0 y}+(z-z_0) y}{z-z_0} \Big|
-      = \frac{1}{|z-z_0|}\Big| \int_0^1 \big(-y e^{-(\theta z+(1-\theta)z_0)y}+y\big)(z-z_0)d\theta\Big| \\
+      = \frac{1}{|z-z_0|}\Big| \int_0^1 (-y e^{-(\theta z+(1-\theta)z_0)y}+y)(z-z_0)d\theta\Big| \\
     & \leq y\int_0^1 |1-e^{-(\theta z +(1-\theta)z_0)y}| d\theta
       \leq (2y) \wedge\Big( y^2\int_0^1|\theta z+(1-\theta)z_0|d\theta\Big)
       \leq C(y\wedge y^2).
@@ -2347,7 +2292,6 @@ In particular, when $\varphi$ is the characteristic function of an infinitely di
 This distinguished logarithm should not be confused with the $\log$ function defined on $\mathbb C\setminus (-\infty, 0]$.
 See the paragraph immediately after \cite[Lemma 7.6]{Sato2013Levy}.
 
-% *** Feynman-Kac formula with complex valued functions
 \subsection{Feynman-Kac formula with complex valued functions}
 \label{seq: complex Feynman-Kac transform}
 In this subsection we give a version of the Feynman-Kac formula with complex valued functions.
@@ -2408,7 +2352,6 @@ We write
   Applying Gronwall's inequality, we get that $h(r) =  0$ for $r\in [0,t]$.
 \end{proof}
 
-% ** Superprocesses
 \subsection{Superprocesses}
 \label{sec: definition of superprocess}
 In this subsection, we will give the definition of a general superprocess.
@@ -2467,7 +2410,6 @@ Suppose that $(X_t)_{t\geq 0}$ is non-persistent, then according to \cite[Sectio
 and (iii) if $\mathcal N$ is a Poisson random measure defined on some probability space with intensity $\mathbb N_\mu(\cdot):= \int_E \mathbb N_x(\cdot )\mu(dx)$, then the superprocess $\{X;\mathbf P_\mu\}$ can be realized by $\widetilde X_0 := \mu$ and $\widetilde X_t(\cdot) := \mathcal N[W_t(\cdot)]$ for each $t>0$.
 We refer to $(\mathbb N_x)_{x\in E}$ as the \emph{Kuznetsov measures} of $X$.
 
-% ** Semigroup for superproccesses
 \subsection{Semigroups for superprocesses}
 \label{sec: definition of vf}
 Let $X$ be a non-persistent superprocess with its Kuznetsov measure denoted by $(\mathbb N_x)_{x\in E}$.
@@ -2527,7 +2469,7 @@ Noticing that $\theta \mapsto \mathbb N_x[e^{i\theta W_t(f)} - 1]$ is a continuo
   for all $f \in L_1(\xi),x\in E$ and $t\geq 0$, we have
   \begin{align}
     \label{eq: upper bound of psi(v)}
-    \big|\psi\big(x,-U_tf\big)\big|
+    |\psi (x,-U_tf)|
     \leq C P^{\rho_1}_t |f|(x) + C (P^{\rho_1}_t |f| (x))^2.
   \end{align}
 \end{lem}
@@ -2580,7 +2522,7 @@ $
   \begin{align}
     \label{eq: path integration representation of psi(v)}
     \psi(x,-U_tf)
-    = -\int_0^1 \psi'\big(x,-U_t(\theta f)\big) \frac{\partial}{\partial \theta} U_t(\theta f)(x)~d\theta.
+    = -\int_0^1 \psi' (x,-U_t(\theta f) ) \frac{\partial}{\partial \theta} U_t(\theta f)(x)~d\theta.
   \end{align}
   Notice that
   \begin{align}
@@ -2604,13 +2546,12 @@ is well defined.
 In fact, using Jensen's inequality and the Markov property, we have
 \begin{align}
   \label{eq: domination of psi(v)}
-  & \Pi_x\Big[\int_0^t |\psi \big(\xi_s,-U_{t-s}f\big)|ds\Big]
-  \leq \Pi_x\Big[\int_0^t \big(C_1 P_{t-s}^{\rho_1}|f|(\xi_s)+C_2 P_{t-s}^{\rho_1}|f|(\xi_s)^2\big)ds\Big] \\
-  & \leq \int_0^t \big(C_1 e^{t\|\rho_1\|}\Pi_x \big[ \Pi_{\xi_s}[|f(\xi_{t-s})|] \big]+C_2 e^{2t\|\rho_1\|}\Pi_x \big[ \Pi_{\xi_s}[|f (\xi_{t-s})|]^2 \big]\big)~ds \\
+  & \Pi_x\Big[\int_0^t |\psi (\xi_s,-U_{t-s}f )|ds\Big]
+  \leq \Pi_x\Big[\int_0^t (C_1 P_{t-s}^{\rho_1}|f|(\xi_s)+C_2 P_{t-s}^{\rho_1}|f|(\xi_s)^2 )ds\Big] \\
+  & \leq \int_0^t (C_1 e^{t\|\rho_1\|}\Pi_x [ \Pi_{\xi_s}[|f(\xi_{t-s})|] ]+C_2 e^{2t\|\rho_1\|}\Pi_x [ \Pi_{\xi_s}[|f (\xi_{t-s})|]^2 ] )~ds \\
   & \leq \int_0^t (C_1 e^{t\|\rho_1\|}\Pi_x [ |f(\xi_{t})|]+C_2e^{2t\|\rho_1\|}\Pi_x [ |f (\xi_{t})|^2 ])~ds < \infty.
 \end{align}
 
-% ** A complex-valued non-linear integral equation
 \subsection{A complex-valued non-linear integral equation}
 Let $X$ be a non-persistent superprocess.
 In this subsection, we will prove the following:
@@ -2620,12 +2561,12 @@ In this subsection, we will prove the following:
   If $f\in L_2(\xi)$,  then for all $t\geq 0$ and $x\in E$,
 \begin{align}
   \label{eq: complex FKPP-equation}
-  U_tf(x) - \Pi_x \Big[\int_0^t \psi\big(\xi_s, - U_{t-s}f\big) ds \Big]
+  U_tf(x) - \Pi_x \Big[\int_0^t \psi (\xi_s, - U_{t-s}f ) ds \Big]
   = i \Pi_x [f(\xi_t)].
 \end{align}
 \begin{align}
   \label{eq: complex FKPP-equation with FK-transform}
-  U_tf(x) -  \int_0^t P_{t-s}^{\rho_1} \psi_0\big(\cdot,-U_sf\big) (x)~ds
+  U_tf(x) -  \int_0^t P_{t-s}^{\rho_1} \psi_0(\cdot,-U_sf) (x)~ds
   = iP_t^{\rho_1} f(x).
 \end{align}
 \end{prop}
@@ -2687,8 +2628,8 @@ According to the spine decomposition theorem in \cite{RenSongSun2017Spine}, we h
   From Lemma \ref{lem: estimate of exponential remaining}, we have $\mathbf Q^{(g,t)}_{x}$-almost surely
   \begin{align}
     & \int_{[0,t]\times \mathbb W}|e^{i w_{t-s}(f)} - 1| \mathbf m(\xi, ds,dw)
-      \leq \int_{[0,t]\times \mathbb W}\big(| w_{t-s}(f)| \wedge 2\big) \mathbf m(\xi, ds,dw) \\
-    & \leq \int_0^t \Big(2\rho_2(\xi_s)\mathbb N_{\xi_s}\big( W_{t-s}(|f|)\big)  + \int_{(0,1]} y \mathbf P_{y \delta_{\xi_s}}[X_{t-s}(|f|)] \pi(\xi_s,dy)
+      \leq \int_{[0,t]\times \mathbb W} (| w_{t-s}(f)| \wedge 2 ) \mathbf m(\xi, ds,dw) \\
+    & \leq \int_0^t \Big(2\rho_2(\xi_s)\mathbb N_{\xi_s} ( W_{t-s}(|f|) )  + \int_{(0,1]} y \mathbf P_{y \delta_{\xi_s}}[X_{t-s}(|f|)] \pi(\xi_s,dy)
    + 2\int_{(1,\infty)}y\pi(\xi_s,dy)\Big) ds
     \\ & \leq \int_0^t (P_{t-s}^{\rho_1} |f|)(\xi_s)\Big(2\rho_2(\xi_s)  + \int_{(0,1]} y^2 \pi(\xi_s,dy)\Big) ds + 2t \sup_{x\in E}\int_{(1,\infty)}y\pi(x,dy)
     \\ & \leq \Big(2\|\rho_2\|_\infty +\sup_{x\in E}\int_{(0,1]} y^2 \pi(x,dy)\Big) t e^{t\|\rho_1\|_\infty}\|f\|_\infty + 2t \sup_{x\in E}\int_{(1,\infty)}y\pi(x,dy)
@@ -2699,7 +2640,7 @@ According to the spine decomposition theorem in \cite{RenSongSun2017Spine}, we h
     & \int_{[0,t]\times \mathbb N}(e^{i  w_{t-s}(f)} - 1) \mathbf m(\xi, ds,dw)
     \\ & =\int_0^t \Big(2\rho_2(\xi_s)\mathbb N_{\xi_s}(e^{i W_{t-s}(f)} - 1)  + \int_{(0,\infty)} y \mathbf P_{y \delta_{\xi_s}}[e^{i X_{t-s}(f)} - 1] \pi(\xi_s,dy)\Big) ds
     \\ & =\int_0^t \Big( 2\rho_2(\xi_s) U_{t-s} f(\xi_s) + \int_{(0,\infty)} y (e^{y U_{t-s}f(\xi_s)} - 1) \pi(\xi_s,dy) \Big) ds
-    \\ & = -\int_0^t \psi'_0 \big(\xi_s, -U_{t-s}f\big)ds.
+    \\ & = -\int_0^t \psi'_0 (\xi_s, -U_{t-s}f )ds.
   \end{align}
   Therefore, according to \eqref{eq: Spine decomposition 2}, Campbell's formula and above, we have that
   \begin{align}
@@ -2739,23 +2680,23 @@ According to the spine decomposition theorem in \cite{RenSongSun2017Spine}, we h
   From \eqref{eq: upper bound of psi'(v)}, we know that for each $\theta\in \mathbb R$, $(t,x) \mapsto |\psi'(x,-U_tf(x))|$ is locally bounded (i.e. bounded on $[0,T]\times E$ for each $T \geq 0$).
   Therefore, we can apply Lemma \ref{eq: complex FK} and get that
   \[
-    \frac{\partial}{\partial \theta} U_{t-r}(\theta f)(x) + \Pi_{r,x} \Big[\int_r^t \psi'\big(\xi_s,- U_{t-s}(\theta f)\big)\frac{\partial}{\partial \theta} U_{t-s}(\theta f)(\xi_s)~ds\Big]
+    \frac{\partial}{\partial \theta} U_{t-r}(\theta f)(x) + \Pi_{r,x} \Big[\int_r^t \psi' (\xi_s,- U_{t-s}(\theta f) )\frac{\partial}{\partial \theta} U_{t-s}(\theta f)(\xi_s)~ds\Big]
     = \Pi_{r,x} [i f(\xi_t)]
   \]
   and
   \begin{align}
-    & \frac{\partial}{\partial \theta} U_{t-r}(\theta f)(x) + \Pi_{r,x} \Big[\int_r^t e^{\int_r^s \rho_1(\xi_u)du}\psi_0'\big(\xi_s,- U_{t-s}(\theta f)\big)\frac{\partial}{\partial \theta} U_{t-s}(\theta f)(\xi_s)~ds\Big]\\
+    & \frac{\partial}{\partial \theta} U_{t-r}(\theta f)(x) + \Pi_{r,x} \Big[\int_r^t e^{\int_r^s \rho_1(\xi_u)du}\psi_0' (\xi_s,- U_{t-s}(\theta f) )\frac{\partial}{\partial \theta} U_{t-s}(\theta f)(\xi_s)~ds\Big]\\
     & = \Pi_{r,x} [i e^{\int_r^t \rho_1(\xi_s)ds}f(\xi_t)].
   \end{align}
   Integrating the two displays above with respect to $\theta$  on [0,1], using
   Fubini's theorem, \eqref{eq: upper bounded for derivative of v(theta)}, \eqref{eq: path integration representation of psi(v)} and \eqref{eq: upper bound of psi'(v)}, we get
   \begin{align}
-    U_{t-r}f(x) - \Pi_{r,x} \Big[\int_r^t \psi\big(\xi_s,-U_{t-s}f\big) ~ds\Big]
+    U_{t-r}f(x) - \Pi_{r,x} \Big[\int_r^t \psi (\xi_s,-U_{t-s}f ) ~ds\Big]
     = i \theta \Pi_{r,x} [f(\xi_t)]
   \end{align}
   and
   \begin{align}
-    U_{t-r}f(x) - \Pi_{r,x} \Big[\int_r^t e^{\int_r^s \rho_1(\xi_u)du} \psi_0\big(\xi_s,- U_{t-s}f\big) ~ds\Big]
+    U_{t-r}f(x) - \Pi_{r,x} \Big[\int_r^t e^{\int_r^s \rho_1(\xi_u)du} \psi_0 (\xi_s,- U_{t-s}f ) ~ds\Big]
     = i \Pi_{r,x} [e^{\int_r^t\rho_1(\xi_u)du}f(\xi_t)].
   \end{align}
   Taking $r = 0$, we get that \eqref{eq: complex FKPP-equation} and \eqref{eq: complex FKPP-equation with FK-transform} are true if $f\in \mathcal B_b(E)$.
@@ -2766,7 +2707,7 @@ According to the spine decomposition theorem in \cite{RenSongSun2017Spine}, we h
   From what we have proved, we have
   \begin{align}
     \label{eq: complex FKPP-equation for fn}
-    U_tf_n(x) - \Pi_{x} \Big[\int_0^t \psi\big(\xi_s, - U_{t-s}f_n\big) ~ds\Big]
+    U_tf_n(x) - \Pi_{x} \Big[\int_0^t \psi (\xi_s, - U_{t-s}f_n ) ~ds\Big]
     = i \Pi_{x} [f_n(\xi_t)].
   \end{align}
   Note that
@@ -2778,7 +2719,7 @@ According to the spine decomposition theorem in \cite{RenSongSun2017Spine}, we h
  \]
   we have $U_tf_n(x) \xrightarrow[n\to \infty]{} U_tf(x)$, and (iii) by the dominated convergence theorem, \eqref{eq: domination of psi(v)} and the fact (see \eqref{eq: upper bound of psi(v)}) that
   \[
-    \big|\psi(\xi_s,- U_{t-s}f_n)\big|
+    |\psi(\xi_s,- U_{t-s}f_n) |
     \leq C_1 P_{t-s}^{\rho_1}|f|(\xi_s)+C_2 P_{t-s}^{\rho_1}|f|(\xi_s)^2,
   \]
   we get that $\Pi_{x} [\int_0^t \psi(\xi_s,- U_{t-s}f_n)ds] \xrightarrow[n\to \infty]{} \Pi_{x} [\int_0^t \psi(\xi_s,- U_{t-s}f)ds]$.
