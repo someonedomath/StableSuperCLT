@@ -370,23 +370,31 @@ For every $t\geq 0$ and $f\in \mathcal P$, define
    := \frac{X_{t+1} (f) - X_t(P_1^\alpha f)}{\| X_t\|^{1-\tilde \beta}}.
 \]
 Form \cite[Theorem 3.4]{RenSongSunZhao2019Stable} we know that, for each $f\in \mathcal P$, $\langle Z_1f,\varphi\rangle$ is the characteristic exponent of the limit of $\Upsilon^f_t$.
-For $g\in \mathcal P$, define $\mathcal P_g:= \{\theta T_ng:n \in \mathbb Z_+, \theta \in [-1,1]\}$.
+%{
+%For $g\in \mathcal P$, define $\mathcal P_g:= \{\theta T_ng:n \in \mathbb Z_+, \theta \in [-1,1]\}$.
+For $g = g_\mathrm s + g_\mathrm c + g_\mathrm l\in \mathcal P$ such that $g_\mathrm s \in \mathcal C_\mathrm s, g_\mathrm c \in \mathcal C_\mathrm c$ and $g_\mathrm 1 \in \mathcal C_\mathrm l$, we define $\overline {\mathcal P}_g:= \{\theta_\mathrm s T_n g_\mathrm s +  \theta_\mathrm c T_n g_\mathrm c + \theta_\mathrm 1 T_n g_\mathrm 1: n \in \mathbb Z_+, \theta_\mathrm s, \theta_\mathrm c, \theta_\mathrm l \in [-1,1]\}$.
+%}
 The following generalization of
 \cite[Proposition 3.5]{RenSongSunZhao2019Stable} will be used later in the proof of  Theorem \ref{thm: II}, a special case of Theorem \ref{thm:M}.
 
-\begin{prop}
-  \label{cor:MI}
-For each  $f,g\in \mathcal P$ and $\mu\in \mathcal M_c(\mathbb R^d)$, there exist $C,\delta>0$ such that for
-all $n_1,n_2 \in \mathbb Z_+$, $(f_j)_{j=0}^{n_1}\subset \mathcal P_f$, $(g_j)_{j=0}^{n_2}\subset \mathcal P_g$ and $t\geq n_1+1$, we have
+\begin{prop} \label{cor:MI}
+%{
+	% For each  $f,g\in \mathcal P$ and $\mu\in \mathcal M_c(\mathbb R^d)$, there exist $C,\delta>0$ such that for all $n_1,n_2 \in \mathbb Z_+$, $(f_j)_{j=0}^{n_1}\subset \mathcal P_f$, $(g_j)_{j=0}^{n_2}\subset \mathcal P_g$ and $t\geq n_1+1$, we have
+	For each  $f,g\in \mathcal P$ and $\mu\in \mathcal M_c(\mathbb R^d)$, there exist $C,\delta>0$ such that for
+	all $n_1,n_2 \in \mathbb Z_+$, $(f_j)_{j=0}^{n_1}\subset \overline{\mathcal P}_f$, $(g_j)_{j=0}^{n_2}\subset \overline{\mathcal P}_g$ and $t\geq n_1+1$, we have
+%}
 \begin{equation}
   \label{32corollary}
   \Big|\mathbb{\widetilde{P}}_{\mu}\Big[  \Big(\prod_{k=0}^{n_1}e^{i \Upsilon^{f_k}_{t-k-1}}\Big)  \Big( \prod_{k=0}^{n_2}e^{i \Upsilon^{g_k}_{t+k} } \Big) \Big]  -  \Big(\prod_{k=0}^{n_1} e^{\langle Z_1f_k, \varphi\rangle}\Big) \Big(\prod_{k=0}^{n_2} e^{\langle Z_1g_k, \varphi\rangle}\Big) \Big|\leq C e^{-\delta (t-n_1)}.
 \end{equation}
 \end{prop}
 \begin{proof}
-	In this proof, we fix $f,g\in \mathcal P$, $\mu\in \mathcal M_c(\mathbb R^d)$, $n_1,n_2 \in \mathbb Z_+$, $(f_j)_{j=0}^{n_1}\subset \mathcal P_f$, $(g_j)_{j=0}^{n_2}\subset \mathcal P_g$ and $t\geq n_1 + 1$.
- For any $k_1 \in \{-1,0,\dots,n_1\}$ and $k_2 \in \{-1,0,\dots,n_2\}$,  define
-  \[
+%{
+	% In this proof, we fix $f,g\in \mathcal P$, $\mu\in \mathcal M_c(\mathbb R^d)$, $n_1,n_2 \in \mathbb Z_+$, $(f_j)_{j=0}^{n_1}\subset \mathcal P_f$, $(g_j)_{j=0}^{n_2}\subset \mathcal P_g$ and $t\geq n_1 + 1$.
+	In this proof, we fix $f,g\in \mathcal P$, $\mu\in \mathcal M_c(\mathbb R^d)$, $n_1,n_2 \in \mathbb Z_+$, $(f_j)_{j=0}^{n_1}\subset \overline{\mathcal P}_f$, $(g_j)_{j=0}^{n_2}\subset \overline{\mathcal P}_g$ and $t\geq n_1 + 1$.
+%}
+ 	For any $k_1 \in \{-1,0,\dots,n_1\}$ and $k_2 \in \{-1,0,\dots,n_2\}$,  define
+\[
     a_{k_1,k_2}
     :=  \mathbb{\widetilde{P}}_{\mu}\Big[ \Big(\prod_{j=k_1+1}^{n_1} e^{i\Upsilon_{t-j-1}^{f_j}} \Big)  \Big(\prod_{j=0}^{k_2}e^{i\Upsilon_{t+j}^{g_j}}\Big) \Big] \Big(\prod_{j=0}^{k_1}e^{\langle Z_1 f_j, \varphi\rangle}\Big) \Big(\prod_{j=k_2+1}^{n_2} e^{ \langle Z_1g_j,\varphi \rangle} \Big),
   \]
@@ -413,7 +421,10 @@ $\prod_{j=0}^{-1} =1.$
 \begin{align}
     &| a_{-1,k_2} - a_{-1,k_2-1}|
     \overset{\eqref{eq:MI.1}}\leq \mathbb{P}_{\mu}(D^c)^{-1}\mathbb{P}_{\mu}\Big[\big|\mathbb P_\mu[e^{i\Upsilon^{g_{k_2}}_{t+k_2}}-e^{\langle Z_1g_{k_2}, \varphi\rangle}; D^c|\mathscr F_{t+k_2}]\big|\Big]
-    \\&\label{eq:MI.15}\overset{\text{\cite[Proposition 3.5]{RenSongSunZhao2019Stable}}}\leq C_0 e^{-\delta_0 (t+k_2)}.
+%{
+    %\\&\label{eq:MI.15}\overset{\text{\cite[Proposition 3.5]{RenSongSunZhao2019Stable}}}\leq C_0 e^{-\delta_0 (t+k_2)}.
+    \\&\label{eq:MI.15}\overset{\text{Proposition \ref{thm:Key}}}\leq C_0 e^{-\delta_0 (t+k_2)}.
+%}
 \end{align}
 	Notice that, for any $k_1 \in \{0, \dots , n_1\}$,
 	\begin{align}
@@ -433,7 +444,9 @@ $\prod_{j=0}^{-1} =1.$
 \begin{align}
     &| a_{k_1-1,-1} - a_{k_1,-1}|
     \overset{\eqref{eq:MI.2}}\leq \frac{1}{\mathbb{P}_{\mu}(D^c)}\mathbb{P}_{\mu}\Big[\big|\mathbb P_\mu[e^{i\Upsilon^{f_{k_1}}_{t-k_1-1}}-e^{\langle Z_1f_{k_1}, \varphi\rangle}; D^c|\mathscr F_{t-k_1-1}]\big|\Big]
-    \\&\label{eq:MI.25}\overset{\text{\cite[Proposition 3.5]{RenSongSunZhao2019Stable}}}\leq C_1 e^{-\delta_1 (t-k_1)}.
+    %{ \\&\label{eq:MI.25}\overset{\text{\cite[Proposition 3.5]{RenSongSunZhao2019Stable}}}\leq C_1 e^{-\delta_1 (t-k_1)}.
+    \\&\label{eq:MI.25}\overset{\text{Proposition \ref{thm:Key}}}\leq C_1 e^{-\delta_1 (t-k_1)}.
+    %}
 \end{align}
   Therefore, there exist $C,\delta >0$, depending only on $f,g$ and $\mu$, such that
   \begin{align}
@@ -547,9 +560,9 @@ Since $\Upsilon_t^f$ is linear in $f$, for each $t\geq 1$,
 \sum_{j=\mathrm s,\mathrm c,\mathrm l}I_0^{f_j}(t)\Big)\Big]
 = \widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i\sum_{k=0}^{\lfloor t-\ln t \rfloor}\Upsilon_{t-k-1}^{T_k(\tilde{f_\mathrm s}+t^{\tilde{\beta}-1} \tilde{f}_{\mathrm c})}\Big)\exp\Big(i\sum_{k=0}^{\lfloor t^2 \rfloor}\Upsilon_{t+k}^{-T_k\tilde{f}_{\mathrm l}}\Big)\Big].
 \]
-Using Proposition \ref{cor:MI} 
-with $f=\tilde{f_\mathrm s}+t^{\tilde{\beta}-1} \tilde{f}_{\mathrm c}$ and $g = -\tilde{f}_{\mathrm l}$, we get that there exist $C_1,\delta_1 > 0$ such that
-for every $t\geq 1$,
+%{
+	% Using Proposition \ref{cor:MI} with $f=\tilde{f_\mathrm s}+t^{\tilde{\beta}-1} \tilde{f}_{\mathrm c}$ and $g = -\tilde{f}_{\mathrm l}$, we get that there exist $C_1,\delta_1 > 0$ such that for every $t\geq 1$,
+	Using Proposition \ref{cor:MI} with $f=\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g = \tilde{f}_{\mathrm l}$, we get that there exist $C_1,\delta_1 > 0$ such that for every $t\geq 1$, 
   \begin{align}
     &\Big|\widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l}I_0^{f_j}(t)\Big)\Big]
     -\exp\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \langle Z_1(T_{k}(\tilde f_\mathrm s+t^{\tilde{\beta}-1}\tilde{f}_{\mathrm c})), \varphi\rangle \Big)\exp\Big(\sum_{k=0}^{\lfloor t^2 \rfloor}\langle Z_1(-T_k\tilde{f}_{\mathrm l}),\varphi\rangle\Big)\Big|\\
@@ -724,6 +737,233 @@ Now for each $t>0$, we get
 \end{align}
 \end{proof}
 
+%{
+\appendix
+\section{}
+\begin{lem}
+	\label{lem:P:R}
+	Suppose that $g = g_\mathrm s + g_\mathrm c + g_\mathrm l$ such that $g_\mathrm s \in \mathcal C_\mathrm s, g_\mathrm c \in \mathcal C_\mathrm c$ and $g_\mathrm 1 \in \mathcal C_\mathrm l$. 
+	Then there exists $h \in \mathcal P^+$ such that for all $ f \in \overline {\mathcal P}_g := \{\theta_\mathrm s T_n g_\mathrm s +  \theta_\mathrm c T_n g_\mathrm c + \theta_\mathrm 1 T_n g_\mathrm 1: n \in \mathbb Z_+, \theta_\mathrm s, \theta_\mathrm c, \theta_\mathrm l \in [-1,1]\}$ and $t\geq 0$, we have $ | P_t (Z_1 f - \langle Z_1 f, \varphi \rangle )| \leq e^{-bt} h$.
+\end{lem}
+\begin{proof}
+	We write $q_f:=Z_1f - \langle Z_1f, \varphi \rangle\in \mathcal P^*$ for each $f\in \mathcal P$.
+	We need to prove that there exists $h \in \mathcal P^+$ such that for each $f\in \overline{\mathcal P}_g$, $|P_tq_f| \leq e^{-bt} h$. 	
+	
+	\emph{Step 1. We show that $\overline {\mathcal P}_g \subset C_\infty (\mathbb R^d) \cap \mathcal P$.}
+	In fact, for each $f \in \overline {\mathcal P}_g$, there exists $n \in \mathbb Z_+, \theta_\mathrm s, \theta_\mathrm c, \theta_\mathrm l \in [-1,1]$ such that
+	\[
+	f
+	= \theta_\mathrm s e^{\alpha \tilde \beta n}P_n g_\mathrm s +  \theta_\mathrm c e^{\alpha \tilde \beta n}P_n g_\mathrm c + \theta_\mathrm l \sum_{p \in \mathbb Z_+^d: \alpha \tilde \beta > |p|b} \langle g_\mathrm l, \phi_p \rangle_\varphi e^{-(\alpha \tilde \beta - |p|b)s} \phi_p.
+	\]
+	Notice that the third term is in $C_\infty(\mathbb R^d)\cap \mathcal P$ since it is a finite sum of polynomials, and the first two terms are also in $C_\infty (\mathbb R^d) \cap \mathcal P$ according to \cite[Fact 1.1]{MarksMilos2018CLT}.
+	
+	\emph{Step 2. We show that there exists $h_2 \in \mathcal P^+$ such that for any $j\in \{1,\dots, d\}$ and $f\in \overline{\mathcal P}_g$ it holds that $|\partial_j f| \leq h_2$.}
+	In fact, it is known that  (see \cite{MetafunePallaraPriola2002Spectrum} for example)
+	\begin{align}
+	\label{eq:P:R:3:-1}
+	P_t f(x)
+	= \int_{\mathbb R^d} f\big(x e^{-bt} + y \sqrt{1-e^{-2bt}}\big) \varphi(y)~dy,
+	\quad t\geq 0, x\in \mathbb R^d, f\in \mathcal P.
+	\end{align}
+	For $f\in C_\infty(\mathbb R^d)\cap \mathcal P$ it can be verified from above that
+	\begin{align}
+	\label{eq:P:R:3:1}
+	\partial_j P_t f
+	= e^{-bt} P_t \partial_j f,
+	\quad t \geq 0, j \in \{1,\dots, d\}.
+	\end{align}
+	Thanks to Step 1, $T_1 g_\mathrm s \in C_\infty(\mathbb R^d)\cap \mathcal P$.
+	According to \cite[Fact 1.3]{MarksMilos2018CLT} and the fact that $\alpha \tilde \beta \leq \kappa _{g_\mathrm s} b$, we have for each $j \in \{1,\dots, d\}$,
+	\[
+	\kappa_{(\partial_j T_1 g_\mathrm s)}
+	\geq \kappa_{(T_1 g_\mathrm s)} - 1
+	= \kappa_{g_\mathrm s} - 1
+	\geq \frac{\alpha \tilde \beta}{b} - 1.
+	\]
+	Therefore, there exists  $h'_2\in \mathcal P^+$ such that for all $n \in \mathbb Z_+$ and $j\in \{1,\dots,d\}$,
+	\begin{align}
+	& | \partial_j T_{n+1}g_\mathrm s |
+	= | \partial_j e^{\alpha \tilde \beta n}P_n T_1g_\mathrm s |
+	= e^{\alpha \tilde \beta n-bn} |P_n \partial_j T_1 g_\mathrm s| \\
+	& \leq e^{\alpha \tilde \beta n-bn} \exp\{-\kappa_{(\partial_j T_1 g_\mathrm s)}bn\}Q \partial_j T_1g_\mathrm s
+	\leq Q\partial_j T_1g_\mathrm s
+	\leq h'_2,
+	\end{align}
+	where operator $Q$ is given by \cite[(2.3)]{RenSongSunZhao2019Stable}.
+	With the exact same reason there exists $h''_2 \in \mathcal P^+$ such that for all $n \in \mathbb Z_+$ and $j\in \{1,\dots,d\}$,
+\[
+	| \partial_j T_{n+1}g_\mathrm c| \leq h''_2
+\]
+	On the other hand, there exists $h_2'''\in \mathcal P^+$ such that for all $n \in \mathbb Z_+$ and $j\in \{1,\dots,d\}$,
+	\begin{align}
+	& |\partial_j T_{n+1}g_\mathrm l |
+	= \Big| \sum_{p\in \mathbb Z_+^d: \alpha \tilde \beta > |p|b} e^{- (\alpha \tilde \beta - |p|b)(n+1)} \langle g_\mathrm l, \phi_p \rangle_\varphi \partial_j \phi_p \Big| \\
+	& \leq \sum_{p\in \mathbb Z_+^d: \alpha \tilde \beta > |p|b} |\langle g_\mathrm l, \phi_p \rangle_\varphi \partial_j \phi_p |
+	\leq h_2'''.
+	\end{align}
+	Then the desired result in this step follows.
+	
+	\emph{Step 3. We show that there exists $h_3 \in \mathcal P^+$ such that for all $j \in \{1,\dots, d\}$, $u \in [0, 1]$ and $f\in \overline{\mathcal P}_g$, it holds that $ | \partial_j  P_{1-u}^\alpha (- i P_u^\alpha f)^{1+\beta} | \leq h_3$. }
+	In fact, thanks to Step 2 and \eqref{eq:P:R:3:1}, for all $j \in \{1,\dots, d\}, u \in [0, 1]$ and $f\in \overline{\mathcal P}_g$, we have
+	\begin{align}
+	& \partial_j  P_{1-u}^\alpha (- i P_u^\alpha f)^{1+\beta}
+	= e^{-(1-u)b} P_{1-u}^\alpha \partial_j (- i P_u^\alpha f)^{1+\beta}
+	\\ & = (1+\beta) e^{-(1-u)b} P_{1-u}^\alpha [ (- i P_u^\alpha f)^\beta \partial_j (- i P_u^\alpha f) ]
+	\\ & = -i(1+\beta) e^{-(1-u)b} P_{1-u}^\alpha[ (- i P_u^\alpha f)^\beta e^{-ub} P_u^\alpha \partial_j f]
+	\\ & = -i(1+\beta) e^{-b} e^{(1-u)\alpha} e^{u\alpha (1+\beta)} P_{1-u} [ (- i P_u f)^\beta P_u \partial_j f ].
+	\end{align}
+	Recall from Step 1 in the proof of \cite[Lemma 2.6]{RenSongSunZhao2019Stable} there exists $h'_3\in \mathcal P^+$ such that for all $f\in \overline{\mathcal P}_g$ we have $|f| \leq h'_3$.
+	Therefore, using Step 2, we have for all $j \in \{1,\dots, d\}$ and $u \in [0, 1]$,
+	\begin{align}
+	& |\partial_j  P_{1-u}^\alpha (- i P_u^\alpha f)^{1+\beta}|
+	\leq (1+\beta) e^{\alpha (1+\beta)} P_{1-u} [  (P_u |f|)^\beta P_u |\partial_j f| ]
+	\\ & \leq (1+\beta) e^{\alpha (1+\beta)} P_{1-u} [  (P_u h'_3)^\beta P_u h_2 ]
+	\leq (1+\beta) e^{\alpha (1+\beta)} Q_0 [  (Q_0 h'_3)^\beta Q_0 h_2 ],
+	\end{align}
+	where $Q_0$ is defined by \cite[(2.3)]{RenSongSunZhao2019Stable}.
+	This implies the desired result in this step.
+	
+	\emph{Step 4. We show that there exists $h_4 \in \mathcal P^+$ such that for any $f \in \overline {\mathcal P}_g$ we have $ |\nabla (Z_1f)| \leq h_4$.}
+	In fact, according to Step 3, for all $j \in \{1,\dots, d\}$ and compact $A \subset \mathbb R^d$, we have
+	\[
+	\int_0^1 \sup_{x\in A} | (\partial_j  P_{1-u}^\alpha (-i P_u^\alpha f)^{1+\beta}) (x) |~du
+	\leq \sup_{x\in A} h_3(x) < \infty.
+	\]
+	Using this and \cite[Theorem A.5.2]{Durrett2010Probability}, for all $j \in \{1,\dots, d\}$ and $x\in \mathbb R^d$, it holds that
+	\[
+	| \partial_j Z_1 f(x)|
+	= \Big| \int_0^1  ( \partial_jP_{1-u}^\alpha (-iP_u^\alpha f)^{1+\beta} ) (x) ~du  \Big|
+	\leq h_3(x).
+	\]
+	Now, the desired result for this step is valid.
+	
+	\emph{Step 5. We finish the proof.}
+	Note that there are $c_0, n_0> 0$ such that for all $x\in \mathbb R^d$, $h_4(x) \leq c_0(1+|x|)^{n_0}$.
+	Also note that for all $x, y \in \mathbb R^d$, $1+|x|+|y|\leq (1+|x|) (1+|y|)$; and that for all $\theta \in [0,1]$, $|\sqrt {1 - \theta} - 1| \leq \theta$.
+	Write $D_{x,y} = \{ax+by: a, b \in [0,1]\}$ fo $x, y \in \mathbb R^d$.
+	Using \eqref{eq:P:R:3:-1} and Step 4, there exists  $h_5 \in \mathcal P^+$ such that for all $f\in \overline {\mathcal P}_g$, $t \geq 0$ and $x \in \mathbb R^d$,
+	\begin{align}
+	& |P_t q_f(x)|
+	= \Big| \int_{\mathbb R^d}\big ( (Z_1f)(x e^{-bt}+ y \sqrt{1 - e^{-2bt}}) - (Z_1 f) (y) \big) \varphi(y) ~dy \Big| \\
+	& \leq \int_{\mathbb R^d} \Big(\sup_{z\in D_{x,y}} |\nabla  (Z_1f) (z) |\Big) | x e^{-bt} + y \sqrt{1 - e^{-2bt}} - y | \varphi(y) ~dy \\
+	& \leq e^{-bt} \int_{\mathbb R^d} c_0(1+|x|+|y|)^{n_0} (|x|+|y|) \varphi(y) ~dy \\
+	& \leq c_0 e^{-bt}(1+|x|)^{n_0}\Big(|x|\int_{\mathbb R^d} (1+|y|)^{n_0}\varphi(y) ~dy + \int_{\mathbb R^d} (1+ |y|)^{n_0} |y| \varphi(y) ~dy \Big) \\
+	& \leq e^{-bt} h_5(x).
+	\qedhere
+	\end{align}
+\end{proof}
+
+\begin{prop}
+	\label{thm:Key}
+	For all $\mu \in \mathcal M_c(\mathbb R^d)$ and $g \in \mathcal P \setminus \{0\}$, there exist $C,\delta>0$ such that
+	for all $t\geq 1$ and $f \in \overline{\mathcal P}_g$, we have
+	\[
+	\mathbb P_\mu
+	\Big[  \big|\mathbb P_\mu [e^{i\Upsilon^f_t} - e^{\langle Z_1f, \varphi\rangle}; D^c | \mathscr F_t ]  \big|\Big]
+	\leq C e^{- \delta t}.
+	\]
+\end{prop}
+
+\begin{proof}
+	Fix  $\mu \in \mathcal M_c(\mathbb R^d)$ and $g \in \mathcal P\setminus \{0\}$.
+	
+	\emph{Step 1. Write $ A_t(\epsilon) :=\{ \|X_t\| \geq e^{(\alpha - \epsilon)t} \} $ for $t\geq 0$ and $\epsilon > 0$.
+	We will show that for all $f\in \mathcal P \setminus \{0\}$, $\epsilon > 0$ and $t\geq 0$, it holds that
+	\[
+	\mathbb P_\mu \Big[ | \mathbb P_\mu [e^{i\Upsilon^f_t} - e^{\langle Z_1f, \varphi\rangle}; D^c | \mathscr F_t ]| \Big]
+	\leq J^f_1(t,\epsilon)+J^f_2(t,\epsilon)+J^f_3(t,\epsilon),
+	\]
+	where
+	\begin{align}
+	\label{eq: Def of Ji}
+	&J^f_1(t,\epsilon):= \mathbb{P}_{\mu} [ | X_t(Z'''_1(\theta_t f)) |; A_t(\epsilon) ],
+	\quad
+	J^f_2(t,\epsilon):= \mathbb{P}_{\mu}[|X_t( Z_1(\theta_t f))-\langle Z_1f, \varphi\rangle |; A_t(\epsilon)],
+	\\ & J_3(t,\epsilon):=2\mathbb{P}_{\mu}(A_t (\epsilon)\Delta D^c),
+	\quad
+	\theta_t := \|X_t\|^{-(1 - \tilde \beta)}.
+	\end{align}
+}
+	In fact, it follows from \cite[(2.2)]{RenSongSunZhao2019Stable}, the definitions of $U_1$, $Z'''_1$ and $Z_1$, that for all $t\geq 0$,
+\begin{align}
+	\label{eq: need1}
+	& \mathbb{P}_{\mu}[e^{i\Upsilon^f_t}|\mathscr{F}_t]
+	= \mathbb{P}_{\mu}[\exp\{i\theta_t X_{t+1} (f) - i \theta_t X_t(P_1^\alpha f)\} |\mathscr{F}_{t}] \\
+	& = \exp\{X_t((U_1 - iP^\alpha_1 ) (\theta_t f))\}
+	= \exp\{X_t((Z_1 + Z'''_1) (\theta_t f))\}.
+\end{align}
+	From Lemma \cite[Lemma 2.8]{RenSongSunZhao2019Stable}, we  get that $\theta\mapsto \langle Z_1(\theta f),\varphi\rangle$ is the characteristic function of some $(1+\beta)$-stable random variable, and then  $\operatorname{Re} \langle Z_1f, \varphi\rangle \leq 0$.
+	Using this, \eqref{eq: need1}, the fact that $\operatorname{Re} U_tf \leq 0$, and that $|e^{-x} - e^{-y}| \leq |x-y|$ for all $x,y \in \mathbb C_+$, we get for each $t\geq 0$ and $\epsilon> 0$,
+	\begin{align}
+	\label{eq: inequality that will used later}
+	& \mathbb{P}_\mu \Big[ \big|  \mathbb{P}_\mu [ e^{i\Upsilon^f_t} - e^{\langle Z_1f,\varphi \rangle} ; D^c | \mathscr F_{t}]  \big |\Big]  \\
+	&  \leq \mathbb{P}_\mu   \Big[ \big|    \mathbb{P}_\mu [ e^{i \Upsilon^f_t }-e^{\langle Z_1f, \varphi\rangle}; A_{t}(\epsilon) | \mathscr F_{t}] \big|  + 2\mathbb P_\mu ( A_{t}(\epsilon) \Delta D^c | \mathscr F_{t}) \Big] \\
+	& = \mathbb{P}_{\mu}\Big[ \big|\mathbb{P}_\mu [e^{i\Upsilon^f_t} | \mathscr F_{t}]-e^{\langle Z_1f, \varphi\rangle}\big| ; A_{t}(\epsilon) \Big] + J_3(t,\epsilon) \\
+	& \leq \mathbb{P}_\mu \Big[ |e^{X_{t}((Z_1+Z'''_1) (\theta_t f))}-e^{\langle Z_1f, \varphi\rangle} | ; A_{t}(\epsilon) \Big]+  J_3(t,\epsilon) \\
+	& \leq \mathbb{P}_\mu \Big[ | X_{t} ( (Z_1+Z'''_1)(\theta_t f)) - \langle Z_1f, \varphi\rangle | ;A_{t}(\epsilon)\Big]+  J_3(t,\epsilon) \\
+	& \leq J^f_1(t,\epsilon) + J^f_2(t,\epsilon)+ J_3(t,\epsilon).
+	\end{align}
+	
+	\emph{Step 2. We will show that for $\epsilon>0$ small enough, there exist  $C_2, \delta_2>0$ such that for all $t\geq 1$ and
+	$f \in \overline{\mathcal P}_g$, we have $ J^f_1(t,\epsilon) \leq C_2e^{-\delta_2 t}$.}	
+	In fact, let $\delta_0 >0$ be the constant in \cite[Lemma 2.5.(7)]{RenSongSunZhao2019Stable} and let $R$ be the corresponding $(\theta^{2+\beta}\vee \theta^{1+\beta+\delta_0})$-controller.
+	Acording to Step 1 in the proof of \cite[Lemma 2.6]{RenSongSunZhao2019Stable}, there exists $h_{2} \in \mathcal P^+$ such that for each $f \in \overline{\mathcal P}_g$ it holds that $|f| \leq h_{2}$.
+	Then, we have for all $t\geq 0$, $\epsilon> 0$ and $f\in \overline{\mathcal P}_g$,
+	\begin{align}
+	& |Z'''_1(\theta_t f)|\mathbf{1}_{A_{t}(\epsilon)}
+	\leq R(|\theta_{t} f|)\mathbf{1}_{A_{t}(\epsilon)}
+	\leq R \Big(\frac{h_{2}}{e^{(\alpha-\epsilon)t(1-\tilde \beta)}}\Big)
+	\leq \sum_{\rho \in \{\delta_0,1\}}e^{-\frac{1+\beta+\rho}{1+\beta}(\alpha-\epsilon)t}Rh_{2}.
+	\end{align}
+	Thus for all $t\geq 0$, $\epsilon> 0$ and $f\in \overline{\mathcal P}_g$,
+	\begin{align}
+	\label{eq: estimate of J1}
+	J^f_1(t,\epsilon)
+	& \leq \sum_{\rho \in \{\delta_0,1\}}e^{-\frac{1+\beta+\rho}{1+\beta}(\alpha-\epsilon)t}\mathbb{P}_{\mu}[X_{t}(Rh_2)]
+	\leq \sum_{\rho \in \{\delta_0,1\}} \mu(Q_0 R h_{2}) e^{-(\alpha\frac{\rho}{1+\beta}-\epsilon\frac{1+\beta+\rho}{1+\beta})t},
+	\end{align}
+	where $Q_0$ is defined by \cite[(2.3)]{RenSongSunZhao2019Stable}.
+	By taking $\epsilon>0$ small enough, we get the desired result in this step.
+	
+	\emph{Step 3.
+	We will show that for $\epsilon>0$ small enough there exist $C_3, \delta_3 > 0$ such that for all $t \geq 0$ and $f\in \overline{\mathcal P}_g$,  we have $ J^f_2(t,\epsilon) \leq C_3 e^{-\delta_3 t}$.}
+	In fact, for all $t\geq 0$, and $f\in \overline{\mathcal P}_g$,
+	\begin{align}
+	& X_{t}(Z_1(\theta_t f))- \langle Z_1f, \varphi\rangle
+	= \theta_t^{1+\beta} X_t(Z_1 f) - \langle  Z_1 f,\varphi \rangle
+	= \frac{1}{\|X_{t}\|}X_t(Z_1f - \langle  Z_1 f ,\varphi \rangle),
+	\end{align}
+	and therefore,
+	\begin{align}
+	\label{eq: prevJ2}
+	J^f_2(t,\epsilon)
+	& = \mathbb P_\mu\Big[\Big|  \frac{1}{\|X_{t}\|}X_t(Z_1f - \langle  Z_1 f ,\varphi \rangle) \Big|;A_t(\epsilon)\Big]
+	\leq e^{-(\alpha-\epsilon)t} \mathbb{P}_{\mu}[|X_t (q_f) |].
+	\end{align}
+	where $ q_f = Z_1 f-\langle  Z_1 f,\varphi\rangle \in \mathcal P^*$.
+	It follows from Lemma \ref{lem:P:R} that there exists $h_{3}\in \mathcal{P}$ such that for each $ f\in \mathcal P_g$, we have $Q_1 (\operatorname{Re} q_f) \leq h_{3} \text{ and } Q_1 (\operatorname{Im} q_f)\leq h_3$, where $Q_1$ is given by \cite[(2.3)]{RenSongSunZhao2019Stable} with $\kappa=1$.
+	In the rest of this step, we  fix a $\gamma\in(0,\beta)$ small enough such that $\alpha \gamma < b < (1+\gamma)b$.
+	According to \cite[Lemma 2.14.(3)]{RenSongSunZhao2019Stable} (with $\kappa=1$), there exists $C_{3}>0$ such that for all $t\geq 0$ and $f\in \overline{\mathcal P}_g$,
+	\begin{align}
+	& \mathbb{P}_{\mu}\left[\left|X_{t}(q_f)\right|\right]
+	\leq \| X_{t}( \operatorname{Re} q_f)\|_{\mathbb{P}_{\mu,1+\gamma}} + \| X_{t}(\operatorname{Im} q_f)\|_{\mathbb{P}_{\mu,1+\gamma}} \\
+	& \leq 2\sup_{q\in \mathcal P: Q_1 q\leq h_{3}} \|X_t(q)\|_{\mathbb P_\mu; 1+\gamma} \leq C_{3} e^{\frac{\alpha t}{1+\gamma}}.
+	\end{align}
+	Therefore, for all $t\geq 0, \epsilon > 0$ and $f \in \overline{\mathcal P}_g$, we have
+	\begin{align}
+	\label{eq: right bound for J2}
+	J^f_2(t, \epsilon)
+	\leq  C_3 e^{-(\alpha-\epsilon)t}e^{\frac{\alpha t}{1+\gamma}}
+	\leq C_{3} e^{-(\alpha\tilde \gamma -\epsilon)t}.
+	\end{align}
+	By taking $\epsilon >0$ small enough, we get the required result in this step.
+	
+	\emph{Step 4. We finish the proof.}
+	Note that, from Step 4 of the proof of \cite[Proposition 3.5]{RenSongSunZhao2019Stable}, we have for each $\epsilon\in (0,  \alpha)$, there exist $C_4,\delta_4>0$ such that for all $t\geq 1$, $J_3(t,\epsilon)\leq C_4e^{-\delta_4 t}.$
+	Now combine this with the results in Step 1--3, we  immediately get the desired result.
+\end{proof}
+%}
+
 \begin{thebibliography}{10}
 
 \bibitem{AdamczakMilos2015CLT}
@@ -757,6 +997,11 @@ Now for each $t>0$, we get
   R. M. Dudley,
 \emph{Real Analysis and Probability},
   Cambridge University Press, 2002.
+  
+  \bibitem{Durrett2010Probability}
+ R. Durrett,
+ \emph{Probability: theory and examples},
+ Fourth edition. Cambridge Series in Statistical and Probabilistic Mathematics, 31. Cambridge University Press, Cambridge, 2010.
 
 \bibitem{Dynkin1993Superprocesses}
   E. B. Dynkin,
