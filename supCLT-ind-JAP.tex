@@ -154,7 +154,6 @@ $
 	Let $\mathbb Z_+ := \mathbb N\cup\{0\}$.
 	It is known that $(P_t)_{t\geq 0}$ is a strongly continuous semigroup in $L^2(\varphi)$ and its generator $L$ has discrete spectrum $\sigma(L)= \{-bk: k \in \mathbb Z_+\}$.	
 		The eigenfunctions of $L$ consists a family of polynomials $\{\phi_p:p\in \mathbb Z_+^d\}$ which forms a complete orthonormal basis of $L^2(\varphi)$.
-%	And for each $p\in \mathbb Z_+^d$, 
 For each $p\in \mathbb Z_+^d$, 
 $\phi_p$ is an eigenfunction of $L$ corresponding to the eigenvalue $b|p|$, where $|p|:= \sum_{k=1}^d p_k$.
 	For each function $f\in L^2(\varphi)$, define the order of $f$ as
@@ -171,7 +170,6 @@ $H_t^p
 	$\mu\in \mathcal M_c(\mathbb R^d)$, $(H_t^p)_{t\geq 0}$ is a $\mathbb{P}_{\mu}$-martingale.
 	Furthermore, if $\alpha \tilde \beta>|p|b$, then for every $\gamma\in (0, \beta)$ and $\mu\in \mathcal M_c(\mathbb R^d)$,  $(H_t^p)_{t\geq 0}$ is a $\mathbb{P}_{\mu}$-martingale bounded in $L^{1+\gamma}(\mathbb{P}_{\mu})$;
 	thus $H^p_{\infty}:=\lim_{t\rightarrow \infty}H_t^p$ exists $\mathbb{P}_{\mu}$-almost surely and in $L^{1+\gamma}(\mathbb P_\mu)$.
-%We will write $H^0_t$ and $H^0_\infty$ as $H^0_t$ and $H_\infty$, respectively.
 We will write $H^0_t$ and $H^0_\infty$ as $H_t$ and $H_\infty$, respectively.
 
 
@@ -294,11 +292,9 @@ if $f_\mathrm c\not\equiv 0$, then
    	:= \frac{X_{t+1} (f) - X_t(P_1^\alpha f)}{\| X_t\|^{1-\tilde \beta}}.
 \]
 	Form \cite[Theorem 3.4]{RenSongSunZhao2019Stable} we know that, for each $f\in \mathcal P$, $\langle Z_1f,\varphi\rangle$ is the characteristic exponent of 
-%	the limit of $\Upsilon^f_t$.
 the weak limit of $\Upsilon^f_t$.
 	For $g = g_\mathrm s + g_\mathrm c + g_\mathrm l\in \mathcal P$ with $g_\mathrm s \in \mathcal C_\mathrm s, g_\mathrm c \in \mathcal C_\mathrm c$ and $g_\mathrm 1 \in \mathcal C_\mathrm l$, we define $\overline {\mathcal P}_g:= \{\theta_\mathrm s T_n g_\mathrm s +  \theta_\mathrm c T_n g_\mathrm c + \theta_\mathrm 1 T_n g_\mathrm 1: n \in \mathbb Z_+, \theta_\mathrm s, \theta_\mathrm c, \theta_\mathrm l \in [-1,1]\}$, where $T_n$ is the operator defined in \eqref{e:Tt}.
 	The following Lemma \ref{lem:P:R} can be proved using 
-%	a similar argument used in the proof of 
 an argument similar to that used in the proof of 
 	\cite[Lemma 2.9]{RenSongSunZhao2019Stable}. We omit the details here.
 \begin{lem}
@@ -307,7 +303,6 @@ an argument similar to that used in the proof of
 \end{lem}
 
 	The following result is a generalization of \cite[Proposition 3.5]{RenSongSunZhao2019Stable}, whose proof is similar to that of \cite[Proposition 3.5]{RenSongSunZhao2019Stable},
-%		with using Lemma \ref{lem:P:R} above instead of Lemma 2.9 in \cite{RenSongSunZhao2019Stable}.
 with Lemma \ref{lem:P:R} replacing the role of \cite[Lemma 2.9]{RenSongSunZhao2019Stable}.
 	Let $(\mathscr F_t)_{t\geq 0}$ be the natural filtration of $X$.
 	\begin{prop}
@@ -430,7 +425,6 @@ with Lemma \ref{lem:P:R} replacing the role of \cite[Lemma 2.9]{RenSongSunZhao20
         \\& :=\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_k \tilde f_\mathrm s},t^{\tilde \beta - 1}\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_{k} \tilde f_\mathrm c},\sum_{k = 0}^{\lfloor t^2 \rfloor} \Upsilon_{t+k}^{- T_k \tilde f_\mathrm l}\Big),
 \end{align}
 where $T_k$ is the operator defined in 
-%\eqref{e:Tt} and $\mathrm x_t(f_\mathrm l)$ is defined in \eqref{eq:oldResult} 
 \eqref{e:Tt}, $\mathrm x_t(f_\mathrm l)$ is defined in \eqref{eq:oldResult} 
 with $f$ replaced with $f_\mathrm l$, $\tilde f_\mathrm s:=e^{\alpha(\tilde \beta - 1)} f_\mathrm s$, $\tilde f_\mathrm c:=e^{\alpha(\tilde \beta - 1)} f_\mathrm c$ and $\tilde f_\mathrm l := \sum_{p\in \mathbb Z^d_+: \alpha\tilde\beta>|p|b}e^{-(\alpha - |p|b)}\langle f_\mathrm l, \phi_p \rangle_\varphi \phi_p$.
 	The following result is a special case of Theorem \ref{thm:M}.
@@ -440,7 +434,6 @@ with $f$ replaced with $f_\mathrm l$, $\tilde f_\mathrm s:=e^{\alpha(\tilde \bet
 \begin{proof}
 	In this proof, we always work under $\mathbb{\widetilde{P}}_{\mu}$.
 	According to the proof of 
-%	Theorem 1.6 in \cite{RenSongSunZhao2019Stable}, and the fact that the convergence in
 \cite[Theorem 1.6]{RenSongSunZhao2019Stable} and the fact that the convergence in
  probability of random vectors to the zero vector is equivalent to the convergence of each components of the random vectors to zero, we have
 \[
@@ -461,14 +454,12 @@ with $f$ replaced with $f_\mathrm l$, $\tilde f_\mathrm s:=e^{\alpha(\tilde \bet
 \]
 	Note that $\{T_k(\tilde f_\mathrm s + t^{\tilde\beta - 1}\tilde f_{\mathrm c}):k\in \mathbb Z_+, t\geq 1\}\subset \overline{\mathcal P}_{\tilde f_\mathrm s + \tilde f_{\mathrm c}}$ and $\{-T_k\tilde{f}_{\mathrm l}: k\in \mathbb Z_+\}\subset \overline{\mathcal P}_{\tilde f_\mathrm l}$.
 	Therefore, we can use Proposition \ref{cor:MI} with $f$ 
-%	taking as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taking as 
 taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 	$\tilde{f}_{\mathrm l}$
-	%, and get that there exist $C_1,\delta_1 > 0$ such that for every $t>e$ (which implies $t\geq \lfloor t - \ln t\rfloor +1$),
 	to get that there exist $C_1,\delta_1 > 0$ such that for every $t>e$ (which implies $t\geq \lfloor t - \ln t\rfloor +1$),
 \begin{align}
        &\begin{multlined}
-  	\bigg|\widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l}R'_j(t)\Big)\Big] - 
+  	\bigg|\widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l}R'_j(t)\Big)\Big] - {}
   	\\ \exp\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \big\langle Z_1\big(T_{k}(\tilde f_\mathrm s+t^{\tilde{\beta}-1}\tilde{f}_{\mathrm c})\big), \varphi \big\rangle \Big)\exp\Big(\sum_{k=0}^{\lfloor t^2 \rfloor}\langle Z_1(-T_k\tilde{f}_{\mathrm l}),\varphi\rangle\Big)\bigg|
   	\end{multlined}
       \\ &\leq C_1 e^{-\delta_1(t - \lfloor t - \ln t\rfloor)}.
