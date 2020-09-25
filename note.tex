@@ -1,0 +1,277 @@
+
+\documentclass[a4paper,12pt, reqno]{amsart}
+\usepackage{amssymb,amsmath,latexsym}
+\usepackage{color}%cyan,red;magenta,green;yellow,blue
+\usepackage{comment}
+\oddsidemargin 0in
+\evensidemargin 0in
+\topmargin -0.2in
+\textwidth 6.6in
+\textheight 9.6in
+%\def\doublespace{\baselineskip=16pt}
+\def\doublespace{\baselineskip=14pt}
+%\usepackage{hyperref}
+%\usepackage{showkeys}
+\allowdisplaybreaks
+%\def\singlespace{\baselineskip=12pt}
+\def\singlespace{\baselineskip=10pt}
+\newcommand{\red}{\color{red}}
+\newcommand{\blue}{\color{blue}}
+\newcommand{\magenta}{\color{magenta}}
+\newcommand{\normal}{\color{black}}
+\newcommand{\bk}{\color{black}}
+
+
+
+%\begin{doublespace}
+
+\def\1{{\bf 1}}
+\def\ind{{\bf 1}}
+\def\nn{\nonumber}
+\def\bee{\begin{equation}}
+\def\eee{\end{equation}}
+\def\sA {{\mathcal A}} \def\sB {{\mathcal B}} \def\sC {{\mathcal C}}
+\def\sD {{\mathcal D}} \def\sE {{\mathcal E}} \def\sF {{\mathcal F}}
+\def\sG {{\mathcal G}} \def\sH {{\mathcal H}} \def\sI {{\mathcal I}}
+\def\sJ {{\mathcal J}} \def\sK {{\mathcal K}} \def\sL {{\mathcal L}}
+\def\sM {{\mathcal M}} \def\sN {{\mathcal N}} \def\sO {{\mathcal O}}
+\def\sP {{\mathcal P}} \def\sQ {{\mathcal Q}} \def\sR {{\mathcal R}}
+\def\sV {{\mathcal V}} \def\sW {{\mathcal W}} \def\sX {{\mathcal X}}
+\def\sY {{\mathcal Y}} \def\sZ {{\mathcal Z}}
+
+\def\bA {{\mathbb A}} \def\bB {{\mathbb B}} \def\bC {{\mathbb C}}
+\def\bD {{\mathbb D}} \def\bE {{\mathbb E}} \def\bF {{\mathbb F}}
+\def\bG {{\mathbb G}} \def\bH {{\mathbb H}} \def\bI {{\mathbb I}}
+\def\bJ {{\mathbb J}} \def\bK {{\mathbb K}} \def\bL {{\mathbb L}}
+\def\bM {{\mathbb M}} \def\bN {{\mathbb N}} \def\bO {{\mathbb O}}
+\def\bP {{\mathbb P}} \def\bQ {{\mathbb Q}} \def\bR {{\mathbb R}}
+\def\bS {{\mathbb S}} \def\bT {{\mathbb T}}
+\def\bV {{\mathbb V}} \def\bW {{\mathbb W}} \def\bX {{\mathbb X}}
+\def\bY {{\mathbb Y}} \def\bZ {{\mathbb Z}}
+\def\R {{\mathbb R}} \def\RR {{\mathbb R}} \def\H {{\mathbb H}}
+\def\n{{\bf n}} \def\Z {{\mathbb Z}}
+
+\def\supp{{\mathop {{\rm supp\, }}}}
+\def\esssup{{\mathop{\rm ess \; sup \, }}}
+\def\essinf{{\mathop{\rm ess \; inf \, }}}
+\def\essosc{{\mathop{\rm ess \; osc \, }}}
+
+
+
+\newcommand{\expr}[1]{\left( #1 \right)}
+\newcommand{\cl}[1]{\overline{#1}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{corollary}[thm]{Corollary}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{example}[thm]{Example}
+\numberwithin{equation}{section}
+\def\ee{\varepsilon}
+\def\qed{{\hfill $\Box$ \bigskip}}
+\def\NN{{\mathcal N}}
+\def\AA{{\mathcal A}}
+\def\MM{{\mathcal M}}
+\def\BB{{\mathcal B}}
+\def\CC{{\mathcal C}}
+\def\LL{{\mathcal L}}
+\def\DD{{\mathcal D}}
+\def\FF{{\mathcal F}}
+\def\EE{{\mathcal E}}
+\def\QQ{{\mathcal Q}}
+\def\SS{{\mathcal S}}
+\def\RR{{\mathbb R}}
+\def\R{{\mathbb R}}
+\def\L{{\bf L}}
+\def\K{{\bf K}}
+\def\S{{\bf S}}
+\def\A{{\bf A}}
+\def\E{{\mathbb E}}
+\def\F{{\bf F}}
+\def\P{{\mathbb P}}
+\def\N{{\mathbb N}}
+\def\eps{\varepsilon}
+\def\wh{\widehat}
+\def\wt{\widetilde}
+\def\pf{\noindent{\bf Proof.} }
+\def\pff{\noindent{\bf Proof} }
+\def\cp{\mathrm{Cap}}
+\usepackage{hyperref}
+%\bibliographystyle{plain}
+\begin{document}
+\title[]{Notes}
+\author{}
+
+
+ \date{}
+
+
+%\begin{abstract}
+
+%\end{abstract}
+\maketitle
+
+%\bigskip
+%\noindent {\bf AMS 2010 Mathematics Subject Classification}:
+
+
+%\bigskip\noindent
+%{\bf Keywords and phrases}:
+
+
+\smallskip
+
+The following statement, corresponding to Step 1 in the proof of Lemma 2.6 of the EJP paper, is correct, by looking at things separately.
+
+If  $f(x)=f_1(x)+t^{\widetilde{\beta}-1}f_2(x)$ with
+$f_1, f_2\in\mathcal P$, then there exists $h\in \mathcal P$ such that 
+$|T_tf|\le e^{-\delta t}h$ for all $t\ge 1$, where
+$$
+\delta=(\inf\{|\tilde \beta\alpha-|p|b|: p\in\mathbb Z^d_+, \langle f_1, \phi_p\rangle\neq 0\})
+\wedge (\inf\{|\tilde \beta\alpha-|p|b|: p\in\mathbb Z^d_+, \langle f_2, \phi_p\rangle\neq 0\}).
+$$
+
+
+The statement of Lemma 2.9 of the EJP paper can be changed to the following form
+with proof basically unchanged.
+
+{\bf Lemma 2.9} Suppose that $g(x)=g_1(x)+t^{\tilde{\beta}-1}g_2(x)$ with
+$g_1, g_2\in\mathcal P$. Then there exists $h\in\mathcal P^+$ such that for all
+$f\in \mathcal P_g=\{\theta_nT_ng: n\in \mathbb Z_+, \theta\in [-1, 1]\}$ and $t\ge 1$, we have $|P_t(Z_1f-\langle Z_1f, \varphi\rangle)|\le e^{-b t}h$.
+
+
+
+I am proposing to change the statement of Proposition 3.5 to the following form:
+
+{\bf Proposition 3.5} Fro all $\mu\in\mathcal M_c(\mathbb R^d)$ and $g(x)=g_1(x)+t^{\tilde{\beta}-1}g_2(x)$ with
+$g_1, g_2\in\mathcal P$, there exist $C, \delta>0$ such that for all $t\ge 1$ and $f\in \mathcal P_g:=\{\theta T_ng: n\in \mathbb Z_+, \theta\in [-1, 1]\}$, we have
+$$
+\mathbb P_\mu\left[|\mathbb P_\mu[e^{i\upsilon^f_t}-e^{\langle Z_1f, \varphi\rangle}; D^c|\mathcal F_t|\right]\le C e^{-\delta t}.
+$$
+
+I think that the proof stays the same.
+
+\begin{lem}
+	\label{lem:P:R}
+	Suppose that $g \in \mathcal P$, then there exists $h \in \mathcal P^+$ such that for all $ f \in \mathcal P_g := \{\theta T_n g: n \in \mathbb Z_+, \theta \in [-1,1]\} $ and $t\geq 0$, we have $ | P_t (Z_1 f - \langle Z_1 f, \varphi \rangle )| \leq e^{-bt} h$.
+\end{lem}
+\begin{proof}
+	Fix $g \in \mathcal P$.
+	We write  $g = g_0 + g_1$ with $g_0 \in \mathcal C_s \oplus \mathcal C_c$ and $g_1 \in \mathcal C_l$,  and $q_f:=Z_1f - \langle Z_1f, \varphi \rangle\in \mathcal P^*$ for each $f\in \mathcal P$.
+	We need to prove that there exists $h \in \mathcal P^+$ such that for each $f\in \mathcal P_g$, $|P_tq_f| \leq e^{-bt} h$.
+	
+	\emph{Step 1.} We claim  that we only need to prove the result for all
+	$f \in \widetilde{\mathcal P}_g:= \{T_{n+1} g : n \in \mathbb Z_+\}$.
+	In fact, both $\operatorname{Re} q_g$ and $\operatorname{Im} q_g$ are functions in $\mathcal P$ of order $\geq 1$.
+	The result is valid for $f = T_0 g = g$ according to \cite[Fact 1.2]{MarksMilos2018CLT}.
+	Also, note that if the result is valid for some $f \in \mathcal P$, it is also valid for any $\theta f$ with $\theta \in [-1,1]$.
+	
+	
+	\emph{Step 2.} We show that $\{T_s g: s> 0\} \subset C_\infty (\mathbb R^d) \cap \mathcal P$.
+	In fact, for each $s > 0$,
+	\[
+	T_s g
+	= T_s (g_0 + g_1)
+	= e^{\alpha \tilde \beta s}P_s g_0 + \sum_{p \in \mathbb Z_+^d: \alpha \tilde \beta > |p|b} 
+	\langle g_1, \phi_p \rangle_\varphi e^{-(\alpha \tilde \beta - |p|b)s} \phi_p.
+	\]
+	Notice that the second term is in $C_\infty(\mathbb R^d)\cap \mathcal P$ since it is a finite sum of polynomials, and the first term is also in $C_\infty (\mathbb R^d) \cap \mathcal P$ according to \cite[Fact 1.1]{MarksMilos2018CLT}.
+	
+	\emph{Step 3.} We show that there exists $h_3 \in \mathcal P^+$ such that for all $j \in \{1,\dots, d\}$ and $f \in \widetilde {\mathcal P}_g$, it holds that $|\partial_j f| \leq h_3$.
+	In fact, it is known that  (see \cite{MetafunePallaraPriola2002Spectrum} for example)
+	\begin{align}
+	\label{eq:P:R:3:-1}
+	P_t f(x)
+	= \int_{\mathbb R^d} f\big(x e^{-bt} + y \sqrt{1-e^{-2bt}}\big) \varphi(y)~dy,
+	\quad t\geq 0, x\in \mathbb R^d, f\in \mathcal P.
+	\end{align}
+	For $f \in C_\infty(\mathbb R^d)\cap \mathcal P$ it can be verified from above that
+	\begin{align}
+	\label{eq:P:R:3:1}
+	\partial_j P_t f
+	= e^{-bt} P_t \partial_j f,
+	\quad t \geq 0, j \in \{1,\dots, d\}.
+	\end{align}
+	Thanks to Step 2, $T_1 g_0 \in C_\infty(\mathbb R^d)\cap \mathcal P$.
+	According to \cite[Fact 1.3]{MarksMilos2018CLT} and the fact that $\alpha \tilde \beta \leq \kappa _{g_0} b$, we have for each $j \in \{1,\dots, d\}$,
+	\[
+	\kappa_{(\partial_j T_1 g_0)}
+	\geq \kappa_{(T_1 g_0)} - 1
+	= \kappa_{g_0} - 1
+	\geq \frac{\alpha \tilde \beta}{b} - 1.
+	\]
+	Therefore, there exists  $h'_3\in \mathcal P^+$ such that for all $n \in \mathbb Z_+$ and $j\in \{1,\dots,d\}$,
+	\begin{align}
+	& | \partial_j T_{n+1}g_0 |
+	= | \partial_j e^{\alpha \tilde \beta n}P_n T_1g_0 |
+	= e^{\alpha \tilde \beta n-bn} |P_n \partial_j T_1 g_0| \\
+	& \leq e^{\alpha \tilde \beta n-bn} \exp\{-\kappa_{(\partial_j T_1 g_0)}bn\}Q \partial_j T_1g_0
+	\leq Q\partial_j T_1g_0
+	\leq h'_3.
+	\end{align}
+	On the other hand, there exists $h_3''\in \mathcal P^+$ such that for all $n \in \mathbb Z_+$ and $j\in \{1,\dots,d\}$,
+	\begin{align}
+	& |\partial_j T_{n+1}g_1 |
+	= \Big| \sum_{p\in \mathbb Z_+^d: \alpha \tilde \beta > |p|b} e^{- (\alpha \tilde \beta - |p|b)(n+1)} \langle g_1, \phi_p \rangle_\varphi \partial_j \phi_p \Big| \\
+	& \leq \sum_{p\in \mathbb Z_+^d: \alpha \tilde \beta > |p|b} |\langle g_1, \phi_p \rangle_\varphi \partial_j \phi_p |
+	\leq h_3''.
+	\end{align}
+	Then the desired result in this step follows.
+	
+	\emph{Step 4.} We show that there exists $h_{4} \in \mathcal P^+$ such that for all $j \in \{1,\dots, d\}, u \in [0, 1]$ and $f \in \widetilde {\mathcal P}_g$, it holds that $ | \partial_j  P_{1-u}^\alpha (- i P_u^\alpha f)^{1+\beta} | \leq h_4$.
+	In fact, thanks to Step 2 and \eqref{eq:P:R:3:1}, for all $j \in \{1,\dots, d\}, u \in [0, 1]$ and $f \in \widetilde{\mathcal P}_g$, we have
+	\begin{align}
+	& \partial_j  P_{1-u}^\alpha (- i P_u^\alpha f)^{1+\beta}
+	= e^{-(1-u)b} P_{1-u}^\alpha \partial_j (- i P_u^\alpha f)^{1+\beta}
+	\\ & = (1+\beta) e^{-(1-u)b} P_{1-u}^\alpha [ (- i P_u^\alpha f)^\beta \partial_j (- i P_u^\alpha f) ]
+	\\ & = -i(1+\beta) e^{-(1-u)b} P_{1-u}^\alpha[ (- i P_u^\alpha f)^\beta e^{-ub} P_u^\alpha \partial_j f]
+	\\ & = -i(1+\beta) e^{-b} e^{(1-u)\alpha} e^{u\alpha (1+\beta)} P_{1-u} [ (- i P_u f)^\beta P_u \partial_j f ].
+	\end{align}
+	Recall from Step 1 in the proof of Lemma \ref{lem:m} there exists $h'_4\in \mathcal P^+$ such that for each $f \in \{T_sg:s\geq 0\}$ it holds that $|f| \leq h'_4$.
+	Therefore, using Step 3, we have for all $j \in \{1,\dots, d\}, u \in [0, 1]$ and $f \in \widetilde {\mathcal P}_g$,
+	\begin{align}
+	& |\partial_j  P_{1-u}^\alpha (- i P_u^\alpha f)^{1+\beta}|
+	\leq (1+\beta) e^{\alpha (1+\beta)} P_{1-u} [  (P_u |f|)^\beta P_u |\partial_j f| ]
+	\\ & \leq (1+\beta) e^{\alpha (1+\beta)} P_{1-u} [  (P_u h'_4)^\beta P_u h_3 ]
+	\leq (1+\beta) e^{\alpha (1+\beta)} Q_0 [  (Q_0 h_4')^\beta Q_0 h_3 ],
+	\end{align}
+	where $Q_0$ is defined by \eqref{eq:Q}.
+	This implies the desired result in this step.
+	
+	\emph{Step 5.}
+	We show that there exists $h_5 \in \mathcal P^+$ such that for each $f \in \widetilde {\mathcal P}_g$, we have $ |\nabla (Z_1f)| \leq h_5$.
+	In fact, according to Step 4, for all $j \in \{1,\dots, d\}$, $f \in \widetilde{\mathcal P}_g$ and compact $A \subset \mathbb R^d$, we have
+	\[
+	\int_0^1 \sup_{x\in A} | (\partial_j  P_{1-u}^\alpha (-i P_u^\alpha f)^{1+\beta}) (x) |~du
+	\leq \sup_{x\in A} h_4(x) < \infty.
+	\]
+	Using this and \cite[Theorem A.5.2]{Durrett2010Probability}, for all $j \in \{1,\dots, d\}$, $f\in \widetilde {\mathcal P}_g$ and $x\in \mathbb R^d$, it holds that
+	\[
+	| \partial_j Z_1 f(x)|
+	= \Big| \int_0^1  ( \partial_jP_{1-u}^\alpha (-iP_u^\alpha f)^{1+\beta} ) (x) ~du  \Big|
+	\leq h_4(x).
+	\]
+	Now, the desired result for this step is valid.
+	
+	\emph{Step 6.}
+	Let $h_5$ be the function in Step 5.
+	There are $c_0, n_0> 0$ such that for all $x\in \mathbb R^d$, $h_5(x) \leq c_0(1+|x|)^{n_0}$.
+	Note that for all $x, y \in \mathbb R^d$, $1+|x|+|y|\leq (1+|x|) (1+|y|)$; and that for all $\theta \in [0,1]$, $|\sqrt {1 - \theta} - 1| \leq \theta$.
+	Write $D_{x,y} = \{ax+by: a, b \in [0,1]\}$ fo $x, y \in \mathbb R^d$.
+	Using \eqref{eq:P:R:3:-1} and Step 5, there exists  $h_6 \in \mathcal P^+$ such that for all $t \geq 0$, $f \in \widetilde {\mathcal P}_g$ and $x \in \mathbb R^d$,
+	\begin{align}
+	& |P_t q_f(x)|
+	= \Big| \int_{\mathbb R^d} ( (Z_1f)(x e^{-bt}+ y \sqrt{1 - e^{-2bt}}) - Z_1 f (y) ) \varphi(y) ~dy \Big| \\
+	& \leq \int_{\mathbb R^d} \Big(\sup_{z\in D_{x,y}} |\nabla  (Z_1f) (z) |\Big) | x e^{-bt} + y \sqrt{1 - e^{-2bt}} - y | \varphi(y) ~dy \\
+	& \leq e^{-bt} \int_{\mathbb R^d} c_0(1+|x|+|y|)^{n_0} (|x|+|y|) \varphi(y) ~dy \\
+	& \leq c_0 e^{-bt}(1+|x|)^{n_0}\Big(|x|\int_{\mathbb R^d} (1+|y|)^{n_0}\varphi(y) ~dy + \int_{\mathbb R^d} (1+ |y|)^{n_0} |y| \varphi(y) ~dy \Big) \\
+	& \leq e^{-bt} h_6(x).
+	\qedhere
+	\end{align}
+\end{proof}
+
+
+%\end{doublespace}
+
+\end{document}
