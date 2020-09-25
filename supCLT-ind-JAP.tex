@@ -72,14 +72,14 @@
 	Let $\xi=\{(\xi_t)_{t\geq 0}; (\Pi_x)_{x\in \mathbb R^d}\}$ be an $\mathbb R^d$-valued Ornstein-Uhlenbeck process (OU process) with generator
 \begin{align}
   	Lf(x)
-  	= \frac{1}{2}\sigma^2\Delta f(x)-b x \cdot \nabla f(x), 
+  	= \frac{1}{2}\sigma^2\Delta f(x)-b x \cdot \nabla f(x),
   	\quad  x\in \mathbb R^d, f \in C^2(\mathbb R^d),
 \end{align}
 	where $\sigma > 0$ and $b > 0$ are constants.
 	Let $\psi$ be a function on $\mathbb R_+$ of the form
 \begin{align}
   	\psi(z)
-  	=- \alpha z + \rho z^2 + \int_{(0,\infty)} (e^{-zy} - 1 + zy) \pi(\mathrm dy), 
+  	=- \alpha z + \rho z^2 + \int_{(0,\infty)} (e^{-zy} - 1 + zy) \pi(\mathrm dy),
   	\quad  z \in \mathbb R_+,
 \end{align}
 	where $\alpha > 0 $, $\rho \geq0$ and $\pi$ is a measure on $(0,\infty)$ with $\int_{(0,\infty)}(y\wedge y^2)\pi(\mathrm dy)< \infty$.
@@ -102,10 +102,9 @@
 	where $(t,x) \mapsto V_tf(x)$ is the unique locally bounded non-negative solution to the equation
 \begin{align}
   	V_tf(x) + \Pi_x \Big[ \int_0^t\psi (V_{t-s}f(\xi_s) ) \mathrm ds\Big]
-	= \Pi_x [f(\xi_t)], 
+	= \Pi_x [f(\xi_t)],
 	\quad x\in \mathbb R^d, t\geq 0.
 \end{align}	
-	%{The existence of such super-OU process $X$ is well known, see \cite{Dynkin1993Superprocesses} for instance.
 	The existence of such super-OU process $X$ is well known, see \cite{Dynkin1993Superprocesses,Li2011Measure-valued} for instance.
 
 	There have been many central limit theorem type results for branching processes, branching diffusions and superprocesses, under the second moment condition.
@@ -131,12 +130,10 @@
 \end{asp}
 
 	It is known (see \cite[Theorems 12.5 \& 12.7]{Kyprianou2014Fluctuations} for example) that, under Assumption \ref{asp: Greys condition}, the \emph{extinction event}
-%{\[
 $
-	D 
-	:=\{\exists t\geq 0,~\text{such that}~ \|X_t\| =0 \}
-%\]
-$ %}
+	D
+	:=\{\exists t\geq 0~\text{such that}~ \|X_t\| =0 \}
+$ 
 	is non-trivial with respect to $\mathbb P_\mu$ for each  $\mu \in \mathcal M(\mathbb R^d)\setminus\{0\}$.
 	It follows from \cite[Lemma 2.2]{RenSongSunZhao2019Stable}  that, if Assumption \ref{asp: branching mechanism} holds, then $\eta$ and $\beta$ are uniquely determined by the L\'evy measure $\pi$.
 
@@ -155,120 +152,57 @@ $ %}
   	:= \int_{\mathbb R^d}f_1(x)f_2(x)\varphi(x) \mathrm dx, \quad f_1,f_2 \in L^2(\varphi).
 \end{align}
 	Let $\mathbb Z_+ := \mathbb N\cup\{0\}$.
-%{
 	It is known that $(P_t)_{t\geq 0}$ is a strongly continuous semigroup in $L^2(\varphi)$ and its generator $L$ has discrete spectrum $\sigma(L)= \{-bk: k \in \mathbb Z_+\}$.	
-	%For each $p = (p_k)_{k = 1}^d \in \mathbb{Z}_+^{d}$, write $|p|:=\sum_{k=1}^d p_k$, $p!:= \prod_{k= 1}^d p_k!$ and $\partial_p:= \prod_{k = 1}^d(\partial^{p_k}/\partial x_k^{p_k})$.
-	%The \emph{Hermite polynomials} are defined by
-%\begin{align}
-  	%\mathcal H_p(x)
-  	%:=(-1)^{|p|}e^{|x|^2} \partial_p e^{-|x|^2}, 
-  	%\quad x\in \mathbb R^d, p \in \mathbb{Z}_+^{d}.
-%\end{align}
-	The eigenfunctions of $L$ consists a family of polynomials $\{\phi_p:p\in \mathbb Z_+^d\}$ which forms a complete orthonormal basis of $L^2(\varphi)$. 
-	And for each $p\in \mathbb Z_+^d$, $\phi_p$ corresponding to eigenvalue $-b|p|$ where $|p|:= \sum_{k=1}^d p_k$.
-	% It is known that $(P_t)_{t\geq 0}$ is a strongly continuous semigroup in $L^2(\varphi)$ and its generator $L$ has discrete spectrum $\sigma(L)= \{-bk: k \in \mathbb Z_+\}$.
-	%For each $p\in \mathbb Z_+^d$,
-%\begin{align}
-  	%\phi_p(x)
-  	%:= \frac{1}{\sqrt{ p! 2^{|p|} }} \mathcal H_p \Big(\frac{ \sqrt{b} }{\sigma}x \Big), 
-  	%\quad x\in \mathbb R^d,
-%\end{align}
-	%is an eigenfunction of $L$ corresponding to the eigenvalue $b|p|$.
-	%Moreover, $\{\phi_p: p \in \mathbb Z_+^d\}$ forms a complete orthonormal basis of $L^2(\varphi)$.
-	%Thus for each $f\in L^2(\varphi)$, we have
-%\begin{align}
-%\label{semicomp1}
-	%f
-  	%= \sum_{k=0}^{\infty}\sum_{p\in \mathbb Z_+^d:|p|=k}\langle f, \phi_p \rangle_{\varphi} \phi_p, 
-  	%\quad \text{in~} L^2(\varphi).
-%\end{align}
-%}
+		The eigenfunctions of $L$ consists a family of polynomials $\{\phi_p:p\in \mathbb Z_+^d\}$ which forms a complete orthonormal basis of $L^2(\varphi)$.
+%	And for each $p\in \mathbb Z_+^d$, 
+For each $p\in \mathbb Z_+^d$, 
+$\phi_p$ is an eigenfunction of $L$ corresponding to the eigenvalue $b|p|$, where $|p|:= \sum_{k=1}^d p_k$.
 	For each function $f\in L^2(\varphi)$, define the order of $f$ as
-%{
-%\[
-$
-  	\kappa_f
-  	:= \inf \left \{k\geq 0: \exists ~ p\in \mathbb Z_+^d , {\rm ~s.t.~} |p|=k {\rm ~and~}  \langle f, \phi_p \rangle_{\varphi}\neq 0\right \}.
-$
-%\]
-%{
-	%Note that $ \kappa_f\geq 0$ and that, if $f\in L^2(\varphi)$ is non-trivial, then $\kappa_f<\infty$.
-	%In particular, the order of any constant non-zero function is zero.
-%}
+$\kappa_f
+  	:= \inf \left \{k\geq 0: \exists ~ p\in \mathbb Z_+^d , {\rm ~s.t.~} |p|=k {\rm ~and~}  \langle f, \phi_p \rangle_{\varphi}\neq 0\right \}$
+with the convention that $\inf\emptyset=\infty.$
 	
 	For $p\in \mathbb{Z}_+^d$, define
-%{\[
-$
-  	H_t^p
-  	%:= e^{-(\alpha-|p|b)t}X_t(\phi_p), \qquad t\geq 0.
-  	:= e^{-(\alpha-|p|b)t}X_t(\phi_p), t\geq 0.
-%\]
-$
-%}
-%{	We will write $H^0_t$ as $H_t$. %}
+$H_t^p
+    	:= e^{-(\alpha-|p|b)t}X_t(\phi_p), t\geq 0.$
 	For each $u \neq -1$, we write $\tilde u = u/(1+ u)$.
-%{
-	%We have shown in \cite[Lemma 3.2]{RenSongSunZhao2019Stable} the following:
 	We have shown in \cite[Lemma 3.2]{RenSongSunZhao2019Stable} that
-%\begin{equation}\label{eq:Hinfty}
-%\begin{minipage}{0.9\textwidth}
-	%For any
-	for any 
+	for any
 	$\mu\in \mathcal M_c(\mathbb R^d)$, $(H_t^p)_{t\geq 0}$ is a $\mathbb{P}_{\mu}$-martingale.
-	Furthermore, if $\alpha \tilde \beta>|p|b$, then for every $\gamma\in (0, \beta)$ and $\mu\in \mathcal M_c(\mathbb R^d)$,  $(H_t^p)_{t\geq 0}$ is a $\mathbb{P}_{\mu}$-martingale bounded in $L^{1+\gamma}(\mathbb{P}_{\mu})$; 
+	Furthermore, if $\alpha \tilde \beta>|p|b$, then for every $\gamma\in (0, \beta)$ and $\mu\in \mathcal M_c(\mathbb R^d)$,  $(H_t^p)_{t\geq 0}$ is a $\mathbb{P}_{\mu}$-martingale bounded in $L^{1+\gamma}(\mathbb{P}_{\mu})$;
 	thus $H^p_{\infty}:=\lim_{t\rightarrow \infty}H_t^p$ exists $\mathbb{P}_{\mu}$-almost surely and in $L^{1+\gamma}(\mathbb P_\mu)$.
-%\end{minipage}
-%\end{equation}
-%}
-%{
-	%We will write $H^0_\infty$ as $H_\infty$.
-	We will write $H^0_t$ and $H^0_\infty$ as $H^0_t$ and $H_\infty$.
-%}
+%We will write $H^0_t$ and $H^0_\infty$ as $H^0_t$ and $H_\infty$, respectively.
+We will write $H^0_t$ and $H^0_\infty$ as $H_t$ and $H_\infty$, respectively.
 
-%{Denote by $\mathcal P$ the class of functions of polynomial growth on $\mathbb R^d$, i.e.,
+
 	Denote by $\mathcal P \subset L^2(\varphi)$ the class of functions of polynomial growth on $\mathbb R^d$, i.e.,
-%\begin{align}
-$
-  	\mathcal{P}
-  	:= \{f\in \mathcal B(\mathbb R^d, \mathbb R):\exists C>0, n \in \mathbb Z_+ \text{~s.t.~} \forall x\in \mathbb R^d, |f(x)|\leq C(1+|x|)^n \}.
-$
-%\end{align}
-	%It is clear that $\mathcal{P} \subset L^2(\varphi)$.
-%}
-%{	
+$\mathcal{P}
+  	:= \{f\in \mathcal B(\mathbb R^d, \mathbb R):\exists C>0, n \in \mathbb Z_+ \text{~s.t.~} \forall x\in \mathbb R^d, |f(x)|\leq C(1+|x|)^n \}.$
 	Define
-%\begin{equation}
-%\begin{minipage}{0.9\textwidth}
-	$\mathcal C_\mathrm s := \mathcal P \cap \overline{\operatorname{Span}} \{ \phi_p: \alpha \tilde \beta < |p| b \}, 
-	%\quad 
-	~
+	$\mathcal C_\mathrm s := \mathcal P \cap \overline{\operatorname{Span}} \{ \phi_p: \alpha \tilde \beta < |p| b \},
+		~
 	\mathcal C_\mathrm c   := \mathcal P \cap \operatorname{Span} \{ \phi_p : \alpha \tilde \beta = |p| b \} $, and
-	%\\ 
 	$ \mathcal C_\mathrm l   := \mathcal P \cap \operatorname{Span} \{ \phi_p: \alpha \tilde \beta > |p| b \}$.
-%\end{minipage}
-%\end{equation}
 	Note that $\mathcal C_\mathrm s$ is an infinite dimensional space, $ \mathcal C_\mathrm l$ and $\mathcal C_\mathrm c$ are finite dimensional spaces, and $\mathcal C_c$ might be empty.
 	Define a semigroup
 \begin{align}\label{e:Tt}
 	T_t f
-	%{:= \sum_{p \in \mathbb Z_+^d} e^{-\big| |p|b - \alpha \tilde \beta \big|t} \langle f, \phi_p \rangle_{\varphi} \phi_p,
-	:= \sum_{p \in \mathbb Z_+^d} \exp\{-\big| |p|b - \alpha \tilde \beta \big|t\} \langle f, \phi_p \rangle_{\varphi} \phi_p,
+	:= \sum_{p \in \mathbb Z_+^d} e^{-\big| |p|b - \alpha \tilde \beta \big|t} \langle f, \phi_p \rangle_{\varphi} \phi_p,
 	\quad t\geq 0, f\in \mathcal P,
 \end{align}
 	and a family of functionals
 \begin{align}\label{eq:M.13}
 	m_t[f]
-	:= \eta \int_0^t \mathrm du \int_{\mathbb R^d} \big(-iT_u f(x)\big)^{1+\beta} \varphi(x) \mathrm dx, 
+	:= \eta \int_0^t \mathrm du \int_{\mathbb R^d} \big(-iT_u f(x)\big)^{1+\beta} \varphi(x) \mathrm dx,
 	\quad 0 \leq t< \infty, f\in \mathcal P.
 \end{align}
-%{	For each $\mu \in \mathcal M(\mathbb R^d)\setminus\{0\}$, write $\widetilde {\mathbb P}_\mu(\cdot):= \mathbb P_\mu(\cdot | D^c).$ %}
 	We have shown in \cite[Lemma 2.6 and Proposition 2.7]{RenSongSunZhao2019Stable} that,
 \begin{equation} \label{eq:I:R:3}
 \begin{minipage}{0.9\textwidth}
 	for each $f\in \mathcal P$, there exists a $(1+\beta)$-stable random variable $\zeta^f$ with characteristic function $\theta \mapsto e^{m[\theta f]}, \theta \in \mathbb R,$ where
 \begin{equation}
 	m[f]
-	:= 
+	:=
 \begin{cases}
 	\lim_{t\to \infty} m_t[f], &
 	f \in \mathcal C_\mathrm s \oplus \mathcal C_\mathrm l, \\
@@ -277,11 +211,9 @@ $
 \end{equation}
 \end{minipage}
 \end{equation}
-	%{Furthermore, we proved in \cite[Theorem 1.6]{RenSongSunZhao2019Stable} that
-	For each $\mu \in \mathcal M(\mathbb R^d)\setminus\{0\}$, write $\widetilde {\mathbb P}_\mu(\cdot):= \mathbb P_\mu(\cdot | D^c).$ 
-	We also proved in \cite[Theorem 1.6]{RenSongSunZhao2019Stable} that 
-	%}
-\begin{equation}\label{eq:oldResult}
+		For each $\mu \in \mathcal M(\mathbb R^d)\setminus\{0\}$, write $\widetilde {\mathbb P}_\mu(\cdot):= \mathbb P_\mu(\cdot | D^c).$
+	We also proved in \cite[Theorem 1.6]{RenSongSunZhao2019Stable} that
+	\begin{equation}\label{eq:oldResult}
 \begin{minipage}{0.9\textwidth}
 	if $\mu\in \mathcal M_\mathrm c(\mathbb R^d)\setminus \{0\}$, $f_\mathrm s\in \mathcal C_\mathrm s$, $f_\mathrm c \in \mathcal C_\mathrm c$ and $f_\mathrm l \in \mathcal C_\mathrm l$, then under $\mathbb {\widetilde P}_\mu$,
 \[
@@ -296,22 +228,19 @@ $
 	where $\widetilde H_\infty$ has the distribution of $\{H_{\infty}; \widetilde {\mathbb P}_\mu\}$;
 	$\zeta^{f_\mathrm s}$, $\zeta^{f_\mathrm c}$ and $\zeta^{-f_\mathrm l}$ are the $(1+\beta)$-stable random variables described in \eqref{eq:I:R:3}; and
 \[
-	\mathrm x_t(f) 
+	\mathrm x_t(f)
 	:= \sum_{p\in \mathbb Z^d_+:\alpha \tilde \beta>|p|b}\langle f,\phi_p\rangle_\varphi e^{(\alpha-|p|b)t}H^p_{\infty},
 	\quad t\geq 0, f\in \mathcal P.
 \]
 \end{minipage}
 \end{equation}
 	The above result gives the central limit theorem for $X_t(f)$ if $f\in \mathcal P\setminus\{0\}$ satisfies $\alpha \tilde \beta \leq \kappa_f b$.
-	A general  $f \in \mathcal P$ can be decomposed as $f_s + f_c + f_l$ with $f_s \in \mathcal C_\mathrm s$, $f_c \in \mathcal C_\mathrm c$ and $f_l \in \mathcal C_\mathrm l$; 
-%{and if $f\in  \mathcal P$ satisfies $\alpha \tilde \beta > \kappa_f b$, then $f_\mathrm c$ and $f_\mathrm l$ maybe non-zero.
-	and if $f\in  \mathcal P$ satisfies $\alpha \tilde \beta > \kappa_f b$, then $f_\mathrm s$ and $f_\mathrm l$ maybe non-zero while $f_\mathrm c \equiv 0$.
-%}
+	A general  $f \in \mathcal P$ can be decomposed as $f_s + f_c + f_l$ with $f_s \in \mathcal C_\mathrm s$, $f_c \in \mathcal C_\mathrm c$ and $f_l \in \mathcal C_\mathrm l$;
+  and if $f\in  \mathcal P$ satisfies $\alpha \tilde \beta > \kappa_f b$, then $f_\mathrm s$ and $f_\mathrm l$ maybe non-zero while $f_\mathrm c \equiv 0$.
 	In \cite{RenSongSunZhao2019Stable}, we were not able to establish a central limit theorem in this case. We conjectured there that the limit random variables in \eqref{eq:oldResult} for $f_\mathrm s\in \mathcal C_\mathrm s$, $f_\mathrm c\in \mathcal C_\mathrm c$ and $f_\mathrm l\in \mathcal C_\mathrm l$ are independent.
 	Once this asymptotic independence is established, a central limit theorem  for $ X_t(f)$ for all $f\in  \mathcal P$ would follow.
 
-	%{The main purpose of this note is to show that the limit  random variables in \eqref{eq:oldResult} are independent.
-	The main purpose of this note is to confirm this conjecture. %}
+	The main purpose of this note is to show that the limit  random variables in \eqref{eq:oldResult} are independent.
 
 \begin{thm}
 \label{thm:M}
@@ -322,31 +251,30 @@ $
 	\Bigg)
 	\\&\xrightarrow[t\rightarrow \infty]{d}(\widetilde H_\infty,\zeta^{f_\mathrm s},\zeta^{f_\mathrm c},\zeta^{-f_\mathrm l}),
 \end{align}
-	where $\mathrm x_t(f_\mathrm l)$ is defined in \eqref{eq:oldResult} with $f$ replaced with $f_\mathrm l$;
-	$\widetilde H_\infty$ has the distribution of $\{H_{\infty}; \widetilde {\mathbb P}_\mu\}$; 
-	$\zeta^{f_\mathrm s}$, $\zeta^{f_\mathrm c}$ and $\zeta^{-f_\mathrm l}$ are the $(1+\beta)$-stable random variables described in \eqref{eq:I:R:3}; 
+	where $\mathrm x_t(f_\mathrm l)$ is defined in 
+	\eqref{eq:oldResult} 
+	with $f$ replaced with $f_\mathrm l$;
+	$\widetilde H_\infty$ has the distribution of $\{H_{\infty}; \widetilde {\mathbb P}_\mu\}$;
+	$\zeta^{f_\mathrm s}$, $\zeta^{f_\mathrm c}$ and $\zeta^{-f_\mathrm l}$ are the $(1+\beta)$-stable random variables described in \eqref{eq:I:R:3};
 	$\widetilde H_\infty$,  $\zeta^{f_\mathrm s}$, $\zeta^{f_\mathrm c}$ and $\zeta^{-f_\mathrm l}$ are independent.
 \end{thm}
 
 	As a corollary of this theorem, we get  central limit theorems for $X_t(f)$ for all $f\in \mathcal P$.
 
-\begin{cor} 
+\begin{cor}
 	Let $\mu\in \mathcal M_c(\mathbb R^d)\setminus \{0\}$ and $f\in \mathcal P$.
 	Let  $f=f_\mathrm s + f_\mathrm c + f_\mathrm l$ be the unique decomposition of $f$ with $f_\mathrm s \in \mathcal C_\mathrm s$, $f_\mathrm c \in \mathcal C_\mathrm c$ and $f_\mathrm l \in \mathcal C_\mathrm l$.
 	Then under $\widetilde {\mathbb{P}}_{\mu}$, it holds that
 \begin{enumerate}
-\item  
-%{ if $f_\mathrm c=0$, then
+\item
 	if $f_\mathrm c\equiv 0$, then
-%}
 \[
     \frac{ X_t(f) - \mathrm x_t(f)}{\|X_t\|^{1-\tilde \beta}}
     \xrightarrow[t\to \infty]{d} \zeta^{f_\mathrm s}+\zeta^{-f_\mathrm l},
 \]
 	where $\zeta^{f_\mathrm s}$ and $\zeta^{-f_\mathrm l}$ are the $(1+\beta)$-stable random variables described in \eqref{eq:I:R:3}, $\zeta^{f_\mathrm s}$ and $\zeta^{-f_\mathrm l}$ are independent;
-\item 
-%{	if $f_\mathrm c\neq0$, then
-if $f_\mathrm c\not\equiv 0$, then%}
+\item
+if $f_\mathrm c\not\equiv 0$, then
 \[
     \frac{ X_t(f) - \mathrm x_t(f)}{\|tX_t\|^{1-\tilde \beta}}
     \xrightarrow[t\to \infty]{d}\zeta^{f_\mathrm c}.
@@ -365,24 +293,26 @@ if $f_\mathrm c\not\equiv 0$, then%}
   	\quad \Upsilon^f_t
    	:= \frac{X_{t+1} (f) - X_t(P_1^\alpha f)}{\| X_t\|^{1-\tilde \beta}}.
 \]
-	Form \cite[Theorem 3.4]{RenSongSunZhao2019Stable} we know that, for each $f\in \mathcal P$, $\langle Z_1f,\varphi\rangle$ is the characteristic exponent of the limit of $\Upsilon^f_t$.
+	Form \cite[Theorem 3.4]{RenSongSunZhao2019Stable} we know that, for each $f\in \mathcal P$, $\langle Z_1f,\varphi\rangle$ is the characteristic exponent of 
+%	the limit of $\Upsilon^f_t$.
+the weak limit of $\Upsilon^f_t$.
 	For $g = g_\mathrm s + g_\mathrm c + g_\mathrm l\in \mathcal P$ with $g_\mathrm s \in \mathcal C_\mathrm s, g_\mathrm c \in \mathcal C_\mathrm c$ and $g_\mathrm 1 \in \mathcal C_\mathrm l$, we define $\overline {\mathcal P}_g:= \{\theta_\mathrm s T_n g_\mathrm s +  \theta_\mathrm c T_n g_\mathrm c + \theta_\mathrm 1 T_n g_\mathrm 1: n \in \mathbb Z_+, \theta_\mathrm s, \theta_\mathrm c, \theta_\mathrm l \in [-1,1]\}$, where $T_n$ is the operator defined in \eqref{e:Tt}.
-	The following Lemma \ref{lem:P:R} can be proved using a similar argument used in the proof of \cite[Lemma 2.9]{RenSongSunZhao2019Stable}. We omit the details here.
+	The following Lemma \ref{lem:P:R} can be proved using 
+%	a similar argument used in the proof of 
+an argument similar to that used in the proof of 
+	\cite[Lemma 2.9]{RenSongSunZhao2019Stable}. We omit the details here.
 \begin{lem}
 \label{lem:P:R}
-	%{Suppose that $g = g_\mathrm s + g_\mathrm c + g_\mathrm l$ with $g_\mathrm s \in \mathcal C_\mathrm s, g_\mathrm c \in \mathcal C_\mathrm c$ and $g_\mathrm 1 \in \mathcal C_\mathrm l$.
-	%Then there exists $h \in \mathcal P^+$ such that for all $ f \in \overline {\mathcal P}_g$ and $t\geq 0$, we have $ | P_t (Z_1 f - \langle Z_1 f, \varphi \rangle )| \leq e^{-bt} h$.
 	For any $g\in \mathcal P$ there exists $h \in \mathcal P^+$ such that for all $ f \in \overline {\mathcal P}_g$ and $t\geq 0$, we have $ | P_t (Z_1 f - \langle Z_1 f, \varphi \rangle )| \leq e^{-bt} h$.
 \end{lem}
 
-	The following result is a generalization of \cite[Proposition 3.5]{RenSongSunZhao2019Stable}, whose proof is similar to that of \cite[Proposition 3.5]{RenSongSunZhao2019Stable} 
-	%{with using Lemma \ref{lem:P:R} instead of Lemma 2.9 in \cite{RenSongSunZhao2019Stable}.
-	with using Lemma \ref{lem:P:R} above instead of Lemma 2.9 in \cite{RenSongSunZhao2019Stable}.
+	The following result is a generalization of \cite[Proposition 3.5]{RenSongSunZhao2019Stable}, whose proof is similar to that of \cite[Proposition 3.5]{RenSongSunZhao2019Stable},
+%		with using Lemma \ref{lem:P:R} above instead of Lemma 2.9 in \cite{RenSongSunZhao2019Stable}.
+with Lemma \ref{lem:P:R} replacing the role of \cite[Lemma 2.9]{RenSongSunZhao2019Stable}.
 	Let $(\mathscr F_t)_{t\geq 0}$ be the natural filtration of $X$.
-	%}
-\begin{prop}
+	\begin{prop}
 \label{thm:Key}
-	For each $\mu \in \mathcal M_c(\mathbb R^d)$  and $g \in \mathcal P$, there exist $C,\delta>0$ such that for all $t\geq 1$ and $f \in \overline{\mathcal P}_g$, we have
+	For any $\mu \in \mathcal M_c(\mathbb R^d)$  and $g \in \mathcal P$, there exist $C,\delta>0$ such that for all $t\geq 1$ and $f \in \overline{\mathcal P}_g$, we have
 \[
 	\mathbb P_\mu
 	\Big[ \big|\mathbb P_\mu [e^{i\Upsilon^f_t} - e^{\langle Z_1f, \varphi\rangle}; D^c | \mathscr F_t ]  \big|\Big]
@@ -394,7 +324,7 @@ if $f_\mathrm c\not\equiv 0$, then%}
 	Note that the constants $C$ and $\delta$ in the next result depend only on $f,g\in \mathcal P$ and $\mu\in \mathcal M_c(\mathbb R^d)$, do not depend on $n_1, n_2, f_j, g_j$ and $t$ (as long as $t\geq n_1+1$).
 
 \begin{prop} \label{cor:MI}
-	For each  $f,g\in \mathcal P$ and $\mu\in \mathcal M_c(\mathbb R^d)$, there exist $C,\delta>0$ such that for all $n_1,n_2 \in \mathbb Z_+$, $(f_j)_{j=0}^{n_1}\subset \overline{\mathcal P}_f$, $(g_j)_{j=0}^{n_2}\subset \overline{\mathcal P}_g$ and $t\geq n_1+1$, we have
+	For any  $f,g\in \mathcal P$ and $\mu\in \mathcal M_c(\mathbb R^d)$, there exist $C,\delta>0$ such that for all $n_1,n_2 \in \mathbb Z_+$, $(f_j)_{j=0}^{n_1}\subset \overline{\mathcal P}_f$, $(g_j)_{j=0}^{n_2}\subset \overline{\mathcal P}_g$ and $t\geq n_1+1$, we have
 \begin{equation}
 \label{32corollary}
 	\Big|\mathbb{\widetilde{P}}_{\mu}\Big[  \Big(\prod_{k=0}^{n_1}e^{i \Upsilon^{f_k}_{t-k-1}}\Big)  \Big( \prod_{k=0}^{n_2}e^{i \Upsilon^{g_k}_{t+k} } \Big) \Big]  -  \Big(\prod_{k=0}^{n_1} e^{\langle Z_1f_k, \varphi\rangle}\Big) \Big(\prod_{k=0}^{n_2} e^{\langle Z_1g_k, \varphi\rangle}\Big) \Big|
@@ -409,12 +339,11 @@ if $f_\mathrm c\not\equiv 0$, then%}
     :=  \mathbb{\widetilde{P}}_{\mu}\Big[ \Big(\prod_{j=k_1+1}^{n_1} e^{i\Upsilon_{t-j-1}^{f_j}} \Big)  \Big(\prod_{j=0}^{k_2}e^{i\Upsilon_{t+j}^{g_j}}\Big) \Big] \Big(\prod_{j=0}^{k_1}e^{\langle Z_1 f_j, \varphi\rangle}\Big) \Big(\prod_{j=k_2+1}^{n_2} e^{ \langle Z_1g_j,\varphi \rangle} \Big),
 \]
 	where we used the convention that $\prod_{j=0}^{-1} =1.$
-%{Let $(\mathscr F_t)_{t\ge 0}$ be the natural filtration of $X$. %}
   	Then for all  $k_2 \in \{0,\dots,n_2\}$, we have
 \begin{equation}
-\label{eq:MI.1} 
+\label{eq:MI.1}
 \begin{multlined}
-	 a_{-1,k_2} - a_{-1,k_2-1} 
+	 a_{-1,k_2} - a_{-1,k_2-1}
 	 = \frac{1}{\mathbb{P}_{\mu}(D^c)}  \Big(\prod_{j=k_2+1}^{n_2}e^{\langle Z_1g_j, \varphi\rangle}\Big) \times {}
 	\\ \mathbb{P}_{\mu}\Big[\Big(\prod_{j=0}^{n_1}e^{i\Upsilon_{t-j-1}^{f_j}}\Big)\Big(\prod_{j=0}^{k_2-1} e^{i\Upsilon_{t+j}^{g_j}}\Big) \mathbb P_\mu[e^{i\Upsilon^{g_{k_2}}_{t+k_2}}-e^{\langle Z_1g_{k_2}, \varphi\rangle}; D^c|\mathscr F_{t+k_2}] \Big].
 \end{multlined}
@@ -451,10 +380,8 @@ if $f_\mathrm c\not\equiv 0$, then%}
 \end{align}
 \end{proof}
 
-	%{The following elementary result will also be used in the proof of Theorem \ref{thm: II}.
 	The following analytic result is elementary, and will also be used in the proof of Theorem \ref{thm: II}.
-	%}
-\begin{lem}
+	\begin{lem}
 \label{ineq: analysis}
 	There exists a constant $C>0$, such that for any $x,y \in \mathbb R$,
 \[
@@ -493,74 +420,71 @@ if $f_\mathrm c\not\equiv 0$, then%}
 \end{proof}
 \end{comment}
 
-	In the remainder of this section, we always fix $\mu \in \mathcal M_c(\mathbb R^d)\setminus\{0\}$, $f_\mathrm s\in \mathcal C_\mathrm s$,  $f_\mathrm c\in \mathcal C_\mathrm c$ and $f_\mathrm l\in \mathcal C_\mathrm l$.
+	In the remainder of this section, we  fix $\mu \in \mathcal M_c(\mathbb R^d)\setminus\{0\}$, $f_\mathrm s\in \mathcal C_\mathrm s$,  $f_\mathrm c\in \mathcal C_\mathrm c$ and $f_\mathrm l\in \mathcal C_\mathrm l$.
 	For every $t\geq 1$, define
 \begin{align}
 	R(t)
 	&:=\Big( \frac{X_t(f_\mathrm s)}{\|X_t\|^{1-\tilde \beta}},\frac{X_t(f_\mathrm c)}{\|tX_t\|^{1-\tilde \beta}},\frac{ X_t(f_\mathrm l) - \mathrm x_t(f_\mathrm l)}{\|X_t\|^{1-\tilde \beta}}\Big),
-    %{ \\R_0(t)
-    %&=\big(I_0^{f_\mathrm s}(t),I_0^{f_\mathrm c}(t),I_0^{f_\mathrm l}(t)\big)
-    \\R'(t)
+        \\R'(t)
     &=\big(R'_\mathrm s(t), R'_\mathrm c(t), R'_\mathrm l(t)\big)
-    %}
-    \\& :=\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_k \tilde f_\mathrm s},t^{\tilde \beta - 1}\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_{k} \tilde f_\mathrm c},\sum_{k = 0}^{\lfloor t^2 \rfloor} \Upsilon_{t+k}^{- T_k \tilde f_\mathrm l}\Big),
+        \\& :=\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_k \tilde f_\mathrm s},t^{\tilde \beta - 1}\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_{k} \tilde f_\mathrm c},\sum_{k = 0}^{\lfloor t^2 \rfloor} \Upsilon_{t+k}^{- T_k \tilde f_\mathrm l}\Big),
 \end{align}
-%{
-	%where $T_k$ is the operator defined in \eqref{e:Tt} and $\mathrm x_t(f_\mathrm l)$ is defined in \eqref{eq:oldResult} with $f$ replaced with $f_\mathrm l$, $\tilde f_\mathrm s:=e^{\alpha(\tilde \beta - 1)} f_\mathrm s$, $\tilde f_\mathrm c:=e^{\alpha(\tilde \beta - 1)} f_\mathrm c$ and $\tilde f_\mathrm l := \sum_{p\in \mathbb Z^d_+: \alpha\tilde\beta>|p|b}e^{-(\alpha - |p|b)}\langle f_\mathrm l, \phi_p \rangle_\varphi \phi_p$.
-	where $T_k$ is the operator defined in \eqref{e:Tt}, $\tilde f_\mathrm s:=e^{\alpha(\tilde \beta - 1)} f_\mathrm s$, $\tilde f_\mathrm c:=e^{\alpha(\tilde \beta - 1)} f_\mathrm c$ and $\tilde f_\mathrm l := \sum_{p\in \mathbb Z^d_+: \alpha\tilde\beta>|p|b}e^{-(\alpha - |p|b)}\langle f_\mathrm l, \phi_p \rangle_\varphi \phi_p$.
-%}
+where $T_k$ is the operator defined in 
+%\eqref{e:Tt} and $\mathrm x_t(f_\mathrm l)$ is defined in \eqref{eq:oldResult} 
+\eqref{e:Tt}, $\mathrm x_t(f_\mathrm l)$ is defined in \eqref{eq:oldResult} 
+with $f$ replaced with $f_\mathrm l$, $\tilde f_\mathrm s:=e^{\alpha(\tilde \beta - 1)} f_\mathrm s$, $\tilde f_\mathrm c:=e^{\alpha(\tilde \beta - 1)} f_\mathrm c$ and $\tilde f_\mathrm l := \sum_{p\in \mathbb Z^d_+: \alpha\tilde\beta>|p|b}e^{-(\alpha - |p|b)}\langle f_\mathrm l, \phi_p \rangle_\varphi \phi_p$.
 	The following result is a special case of Theorem \ref{thm:M}.
 \begin{thm}\label{thm: II}
 	Under $\mathbb{\widetilde{P}}_{\mu}$, $R(t) \xrightarrow[t\rightarrow\infty]{d}(\zeta^{f_\mathrm s},\zeta^{f_\mathrm c},\zeta^{-f_\mathrm l})$, where $\zeta^{f_\mathrm s},\zeta^{f_\mathrm c}$ and $\zeta^{-f_\mathrm l}$ are the $(1+\beta)$-stable random variables described in \eqref{eq:I:R:3}, and $\zeta^{f_\mathrm s},\zeta^{f_\mathrm c}$ and $\zeta^{-f_\mathrm l}$ are independent.
 \end{thm}
 \begin{proof}
 	In this proof, we always work under $\mathbb{\widetilde{P}}_{\mu}$.
-	According to the proof of Theorem 1.6 in \cite{RenSongSunZhao2019Stable}, and the fact that the convergence in probability of random vectors to the zero vector is equivalent to the convergence of each components of the random vectors to zero, we have
+	According to the proof of 
+%	Theorem 1.6 in \cite{RenSongSunZhao2019Stable}, and the fact that the convergence in
+\cite[Theorem 1.6]{RenSongSunZhao2019Stable} and the fact that the convergence in
+ probability of random vectors to the zero vector is equivalent to the convergence of each components of the random vectors to zero, we have
 \[
-	%{R(t)-R_0(t) 
 	R(t)-R'(t)
-	%} 
 	\xrightarrow[t\to \infty]{\text{in probability}} 0.
 \]
 	With the help of Slutsky's theorem, what is left to show is that,
 \begin{equation} \label{lem:UOT}
-	%{R_0(t)
-	R'(t)%}
+	R'(t)
 	\xrightarrow[t\to \infty]{d}(\zeta^{f_\mathrm s},\zeta^{f_\mathrm c},\zeta^{-f_\mathrm l}).
 \end{equation}
 
 	Now we prove \eqref{lem:UOT}.
 	Since $\Upsilon_t^f$ is linear in $f$, for each $t\geq 1$,
 \[
-	%{\widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l}I_0^{f_j}(t)\Big)\Big]
-	\widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l} R_j(t)\Big)\Big] %}
+        \widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l} R'_j(t)\Big)\Big]
 	= \widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i\sum_{k=0}^{\lfloor t-\ln t \rfloor}\Upsilon_{t-k-1}^{T_k(\tilde{f_\mathrm s}+t^{\tilde{\beta}-1} \tilde{f}_{\mathrm c})}\Big)\exp\Big(i\sum_{k=0}^{\lfloor t^2 \rfloor}\Upsilon_{t+k}^{-T_k\tilde{f}_{\mathrm l}}\Big)\Big].
 \]
 	Note that $\{T_k(\tilde f_\mathrm s + t^{\tilde\beta - 1}\tilde f_{\mathrm c}):k\in \mathbb Z_+, t\geq 1\}\subset \overline{\mathcal P}_{\tilde f_\mathrm s + \tilde f_{\mathrm c}}$ and $\{-T_k\tilde{f}_{\mathrm l}: k\in \mathbb Z_+\}\subset \overline{\mathcal P}_{\tilde f_\mathrm l}$.
-	Therefore, we can use Proposition \ref{cor:MI} with $f$ taking as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taking as $\tilde{f}_{\mathrm l}$, and get that there exist $C_1,\delta_1 > 0$ such that for every $t>e$ (which implies $t\geq \lfloor t - \ln t\rfloor +1$),
+	Therefore, we can use Proposition \ref{cor:MI} with $f$ 
+%	taking as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taking as 
+taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
+	$\tilde{f}_{\mathrm l}$
+	%, and get that there exist $C_1,\delta_1 > 0$ such that for every $t>e$ (which implies $t\geq \lfloor t - \ln t\rfloor +1$),
+	to get that there exist $C_1,\delta_1 > 0$ such that for every $t>e$ (which implies $t\geq \lfloor t - \ln t\rfloor +1$),
 \begin{align}
-    %{&\Big|\widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l}I_0^{f_j}(t)\Big)\Big] -\exp\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \langle Z_1(T_{k}(\tilde f_\mathrm s+t^{\tilde{\beta}-1}\tilde{f}_{\mathrm c})), \varphi\rangle \Big)\exp\Big(\sum_{k=0}^{\lfloor t^2 \rfloor}\langle Z_1(-T_k\tilde{f}_{\mathrm l}),\varphi\rangle\Big)\Big|
-    &\begin{multlined} 
-  	\bigg|\widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l}R'_j(t)\Big)\Big] - {}
-  	\\ \exp\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \big\langle Z_1\big(T_{k}(\tilde f_\mathrm s+t^{\tilde{\beta}-1}\tilde{f}_{\mathrm c})\big), \varphi \big\rangle \Big)\exp\Big(\sum_{k=0}^{\lfloor t^2 \rfloor}\langle Z_1(-T_k\tilde{f}_{\mathrm l}),\varphi\rangle\Big)\bigg| 
+       &\begin{multlined}
+  	\bigg|\widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l}R'_j(t)\Big)\Big] - 
+  	\\ \exp\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \big\langle Z_1\big(T_{k}(\tilde f_\mathrm s+t^{\tilde{\beta}-1}\tilde{f}_{\mathrm c})\big), \varphi \big\rangle \Big)\exp\Big(\sum_{k=0}^{\lfloor t^2 \rfloor}\langle Z_1(-T_k\tilde{f}_{\mathrm l}),\varphi\rangle\Big)\bigg|
   	\end{multlined}
-  	%}
-    \\ &\leq C_1 e^{-\delta_1(t - \lfloor t - \ln t\rfloor)}.
+      \\ &\leq C_1 e^{-\delta_1(t - \lfloor t - \ln t\rfloor)}.
 \end{align}
 	We claim that
-\begin{align} 
+\begin{align}
 \label{eq:UOT.1}
 	&\lim_{t\rightarrow\infty}\exp\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor}\big \langle Z_1\big(T_{k}(\tilde f_\mathrm s+t^{\tilde{\beta}-1}\tilde{f}_\mathrm c)\big), \varphi\big\rangle \Big)\exp\Big(\sum_{k=0}^{\lfloor t^2 \rfloor}\langle Z_1(-T_k\tilde{f}_\mathrm l),\varphi\rangle\Big)
 	\\& =\exp(m[f_\mathrm s]+m[f_\mathrm c]+m[-f_\mathrm l]).
 \end{align}
 	Given this claim, we have
 \[
-	%{\widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l}I_0^{f_j}(t)\Big)\Big]
-	\widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l} R'_{j}(t)\Big)\Big] %}
+	\widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l} R'_{j}(t)\Big)\Big]
 	\xrightarrow[t\to \infty]{} \exp(m[f_\mathrm s]+m[f_\mathrm c]+m[-f_\mathrm l]).
 \]
-	%{Since $I_0^{f_j}(t)$ are linear
-	Since $R'_{j}(t)$ are linear %}
+	Since $R'_{j}(t)$ are linear 
 	 in $f_j \in \mathcal C_j~(j=\mathrm s,\mathrm c,\mathrm l)$, replacing $f_j$ with $\theta_j f_j$, we immediately get \eqref{lem:UOT}.
 
 	Now we prove the claim \eqref{eq:UOT.1}.
@@ -570,7 +494,7 @@ if $f_\mathrm c\not\equiv 0$, then%}
   	= \sum_{k=0}^n \int_0^1 \big\langle P_u^\alpha \big(\eta(-iP_{1 - u}^\alpha T_k \tilde f)^{1+\beta}\big), \varphi\big\rangle \mathrm du
  	\\& = \sum_{k=0}^n \int_0^1 e^{\alpha u} \langle \eta (-iP_{1 - u}^\alpha T_{k}\tilde f)^{1+\beta}, \varphi \rangle \mathrm du
  	= \sum_{k=0}^n \int_0^1 \langle \eta (-iT_{k+1 - u} f)^{1+\beta}, \varphi\rangle \mathrm du
- 	\\&= \int_0^{n+1} \langle  \eta (-iT_{u} f)^{1+\beta}, \varphi\rangle \mathrm du 
+ 	\\&= \int_0^{n+1} \langle  \eta (-iT_{u} f)^{1+\beta}, \varphi\rangle \mathrm du
  	= m_{n+1}[f],
 \end{align}
 	where $\tilde f=e^{\alpha(\tilde \beta - 1)} f$.
@@ -593,7 +517,7 @@ if $f_\mathrm c\not\equiv 0$, then%}
 	This means that there exists $C_1 >0$ such that for all $t\geq 1$,
 \begin{align}
 	&\Big|\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \langle Z_1T_{k}(\tilde f_\mathrm s+t^{\tilde{\beta}-1}\tilde{f}_c), \varphi\rangle \Big)-m_{\lfloor t-\ln t \rfloor+1}[f_\mathrm s]-\frac{1}{t}m_{\lfloor t-\ln t \rfloor+1}[f_\mathrm c]\Big|
-	\\& 
+	\\&
 \begin{multlined}
 	\overset{\eqref{eq:UOT.15},\eqref{eq:M.13}}\leq\Big| \eta \int_0^{\lfloor t-\ln t \rfloor+1}\big\langle \big(-iT_u(f_\mathrm s+t^{\tilde{\beta}-1}f_\mathrm c)\big)^{1+\beta},\varphi \big\rangle \mathrm du - {}
 	\\ \eta \int_0^{\lfloor t-\ln t \rfloor+1} \langle (-iT_u f_\mathrm s)^{1+\beta}, \varphi \rangle  \mathrm du - \eta \int_0^{\lfloor t-\ln t \rfloor+1} \langle (-iT_u f_\mathrm c)^{1+\beta}, \varphi \rangle  \mathrm du\Big|
@@ -603,7 +527,7 @@ if $f_\mathrm c\not\equiv 0$, then%}
 	\\& \xrightarrow[t\rightarrow \infty]{} 0.
 \end{align}
 	Combining this with \eqref{eq:I:R:3}, we get that
-\begin{equation} 
+\begin{equation}
 \label{eq:UOT.4}
 	\lim_{t\rightarrow \infty}\exp\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \langle Z_1T_{k}(\tilde f_\mathrm s+t^{\tilde{\beta}-1}\tilde{f}_c), \varphi\rangle \Big)  = \exp( m[f_\mathrm s]+m[f_\mathrm c]).
 \end{equation}
@@ -632,7 +556,7 @@ if $f_\mathrm c\not\equiv 0$, then%}
 	Using the definition, we can easily see that, if $\mu_1$ and $\mu_2$ are the distributions of two $\mathbb R^d $-valued random variables $X$ and $Y$ respectively, defined on same probability space, then
 \begin{align}
 \label{ineq: distribution control}
-  	d(\mu_1,\mu_2) 
+  	d(\mu_1,\mu_2)
   	\leq \mathbb E|X-Y|.
 \end{align}
 	In this proof, let us fix $\mu\in \mathcal M_\mathrm c(\mathbb R^d)\setminus \{0\}$, $f_\mathrm s\in \mathcal C_\mathrm s$, $f_\mathrm c \in \mathcal C_\mathrm c$ and $f_\mathrm l \in \mathcal C_\mathrm l$.
@@ -684,7 +608,7 @@ if $f_\mathrm c\not\equiv 0$, then%}
 	Now we prove the claim \eqref{eq:M.3}.
 	For every $r,t >0$, let
 \[
-	\theta,\theta_\mathrm s,\theta_\mathrm c,\theta_\mathrm l \in \mathbb R 
+	\theta,\theta_\mathrm s,\theta_\mathrm c,\theta_\mathrm l \in \mathbb R
 	\mapsto k(\theta,\theta_\mathrm s,\theta_\mathrm c,\theta_\mathrm l,r,t)
 \]
 	be the characteristic function of  $S(t,r)$ under $\widetilde{\mathbb P}_{\mu}$.
@@ -700,7 +624,6 @@ if $f_\mathrm c\not\equiv 0$, then%}
 	\\&:=i\theta_\mathrm s \frac{X_{t+r}(f_\mathrm s)}{\|X_{t+r}\|^{1-\tilde{\beta}}} + i\theta_\mathrm c \frac{X_{t+r}(f_\mathrm c)}{\|(t+r)X_{t+r}\|^{1-\tilde{\beta}}} + i\theta_\mathrm l  \frac{ X_{t+r}(f_\mathrm l)- \mathbb P_\mu[\mathrm x_{t+r}(f_\mathrm l)|\mathscr F_u]}{\|X_{t+r}\|^{1-\tilde{\beta}}}
 	\\&\label{eq:M.6}
 \begin{multlined}
-	%{\overset{\eqref{eq:Hinfty}}%}
 	=i\theta_\mathrm s \frac{X_{t+r}(f_\mathrm s)}{\|X_{t+r}\|^{1-\tilde{\beta}}} + \frac{i\theta_\mathrm c}{(t+r)^{1-\tilde{\beta}}} \frac{X_{t+r}(f_\mathrm c)}{\|X_{t+r}\|^{1-\tilde{\beta}}} + {}
 	\\\quad  i\theta_\mathrm l  \frac{ X_{t+r}(f_\mathrm l) - \sum_{p\in \mathbb Z_+^d:\alpha\tilde{\beta}>|p|b} e^{(\alpha - |p|b)(t+r)} e^{-(\alpha - |p|b)u}X_u(\phi_p) }{\|X_{t+r}\|^{1-\tilde{\beta}}}.
 \end{multlined}
@@ -727,17 +650,17 @@ if $f_\mathrm c\not\equiv 0$, then%}
 \begin{thebibliography}{10}
 
 \bibitem{AdamczakMilos2015CLT}
-	R. Adamczak and P. Mi{\l}o\'{s}, 
+	R. Adamczak and P. Mi{\l}o\'{s},
 	\emph{C{LT} for {O}rnstein-{U}hlenbeck branching particle system},
 	Electron. J. Probab. \textbf{20} (2015), no. 42, 35 pp.
 
 \bibitem{Asmussen76Convergence}
-	S. Asmussen, 
+	S. Asmussen,
 	\emph{Convergence rates for branching processes},
 	Ann. Probab.  \textbf{4} (1976), no. 1, 139--146.
 
 \bibitem{AsmussenHering1983Branching}
-	S. Asmussen and H. Hering, 
+	S. Asmussen and H. Hering,
 	\emph{Branching processes},
 	Progress in Probability and Statistics, 3. Birkh\"{a}user Boston, Inc., Boston, MA, 1983.
 
@@ -760,12 +683,6 @@ if $f_\mathrm c\not\equiv 0$, then%}
   	R. M. Dudley,
 	\emph{Real Analysis and Probability},
   	Cambridge University Press, 2002.
-
-%{\bibitem{Durrett2010Probability}
- 	%R. Durrett,
- 	%\emph{Probability: theory and examples},
- 	%Fourth edition. Cambridge Series in Statistical and Probabilistic Mathematics, 31. Cambridge University Press, Cambridge, 2010.
-%}
 
 \bibitem{Dynkin1993Superprocesses}
   	E. B. Dynkin,
