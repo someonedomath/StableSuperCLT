@@ -1,0 +1,355 @@
+\documentclass[xcolor=dvipsnames]{beamer}
+\synctex=1
+%\usepackage[UTF8,scheme=plain]{ctex}
+\usepackage{hyperref}
+\usepackage{lmodern}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\usepackage{comment}
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs}
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+\usecolortheme{rose}
+\usefonttheme{serif}
+\usefonttheme{structurebold}
+\setbeamerfont{title}{shape=\itshape,family=\rmfamily}
+\setbeamercolor{title}{fg=red!80!black,bg=red!20!white}
+
+\title[Stable CLT for superprocesses]{Stable Central Limit Theorems for Super Ornstein-Uhlenbeck Processes}
+\author[Zhenyao Sun]{ 
+	{\bf \Large Zhenyao Sun  }
+}
+\institute[]{Joint work with {\bf Yan-Xia Ren}, {\bf Renming Song} and {\bf Jianjie Zhao}}
+\date[]{
+	Branching structure,
+	\\ August, 2020}
+
+\AtBeginSection[]{\frame{\frametitle{Outline}\tableofcontents[current]}}
+
+\begin{document}
+
+
+
+
+\frame{\titlepage}
+
+%\part{Main Part}
+\begin{frame}
+	\vfill This talk is based on the following two papers:
+	
+	\vfill [1] Y.-X. Ren, R. Song Z. Sun and J. Zhao: 
+	Stable central limit theorems for super Ornstein-Uhlenbeck processes. 
+	{\it Elect. J. Probab.}, \textbf{24} (2019), No. 141, 1--42
+	
+	\vfill [2] Y.-X. Ren, R. Song Z. Sun and J. Zhao: 
+	Y.-X. Ren, R. Song, Z, Sun and J. Zhao Stable central limit theorems for super 
+	Ornstein-Uhlenbeck processes, II. https://arxiv.org/pdf/2005.11731.pdf
+\end{frame}
+
+\section{Background}
+
+
+\begin{frame}{Background/CLT with finite second moment}
+\begin{block}{}<1-2>
+There have been many {\color{Bittersweet}central limit theorem} type results for {\color{blue} branching processes}, {\color{blue} branching Markov processes} and {\color{blue} superprocesses}, under the {\color{PineGreen} second moment condition}.
+\end{block}
+
+\begin{block}{}<2>
+	Some {\color{Bittersweet}spatial central limit theorems} for {\color{PineGreen}supercritical} {\color{blue}branching OU processes} with {\color{PineGreen} binary branching} were proved in Adamczak-Milos (EJP, 2015), and some {\color{Bittersweet}spatial central limit theorems} for {\color{PineGreen} supercritical} {\color{blue} super-processes} were proved in Milos (JTP, 2018). 
+	These two papers made connections between {\color{Bittersweet}spatial central limit theorems} and {\color{Bittersweet}branching rate regimes}. The results of these two papers have been refined and generalized in a series of papers by Ren-Song-Zhang.
+\end{block}
+\end{frame}
+
+\begin{frame}{Background/CLT with infinite second moment}
+\begin{block}{}<1-3>
+There are also {\color{Bittersweet}central limit theorem} type results for {\color{PineGreen} supercritical} {\color{blue}branching processes}
+and {\color{blue} branching Markov processes} with branching mechanisms of {\color{PineGreen} infinite second moment}.
+For earlier papers, see Asmussen, (AOP, 1976) and Heyde (JAP, 1971).
+\end{block}
+
+\begin{block}{}<2-3>
+In a recent paper (arXiv:1803.05491) Marks and Milos established some {\color{Bittersweet}spatial central limit theorems} in the {\color{PineGreen} small and critical branching rate regimes}, for some {\color{PineGreen} supercritical} {\color{blue} branching OU processes} with a {\color{PineGreen} special stable offspring distribution.}
+\end{block}
+
+\begin{block}{}<3>
+Our {\color{red}goal} is to establish {\color{Bittersweet}stable central limit theorems} for {\color{blue}super-OU processes} with {\color{PineGreen} general stable branching mechanisms.}
+\end{block}  
+\end{frame}
+
+\section{Model}
+
+\begin{frame}{Model/Parameters}
+\begin{block}{}<1-2>
+Suppose ${\color{blue}\xi}=\{({\color{blue}\xi}_t)_{t\ge 0}, (\Pi_x)_{x\in \mathbb R^d}\}$ is an OU process on $\mathbb R^d$ with generator
+$$
+Lf(x)=\frac12\sigma^2\Delta f(x)-{\color{red} b}x\cdot \nabla f(x)
+$$
+with ${\color{red}b}, \sigma$ being positive constants.
+\end{block}
+
+\begin{block}{}<2>
+Suppose that ${\color{blue}\psi}$ is a branching mechanism of the form
+$$
+{\color{blue}\psi} (z)=-{\color{red}\alpha} z + \rho z^2 +\int_{(0, \infty)}(e^{-zy}-1+zy) \pi(dy)
+$$
+where ${\color{red}\alpha}>0$ and $\rho\ge 0$ and $\pi$ is a measure on $(0, \infty)$ with
+$\int_{(0, \infty)}(y\wedge y^2)\pi(dy)<\infty$.
+We call ${\color{red}\alpha}$ the branching rate.
+\end{block}
+\end{frame}
+
+\begin{frame}{Model/Assumptions}
+\begin{block}{Assumption 1}<1-3>
+	The branching mechanism satisfies Grey's condition, i.e. there is some constant $z' > 0$ such that ${\color{blue}\psi}(z) > 0$ for all $z>z'$ and that $\int_{z'}^\infty {\color{blue}\psi}(z)^{-1}dz < \infty$.
+\end{block}
+\begin{block}{Assumption 2}<2-3>
+There exist constants $\eta > 0$ and ${\color{red}\beta} \in (0,1)$ such that
+$$
+    \int_{(1,\infty)}y^{1+ {\color{red} \beta} +\delta}~\Big|\pi(dy)-\frac{\eta~dy}{\Gamma(-1-{\color{red}\beta})y^{2+{\color{red}\beta}}}\Big| <\infty,
+$$
+	for some $\delta \in (0, 1-{\color{red}\beta})$.
+\end{block}
+\begin{block}{}<3>
+Roughly speaking, Assumption 2 says that ${\color{blue}\psi}$ is ``not too far away'' from
+$\widetilde \psi(z)= -{\color{red}\alpha} z+\eta z^{1+{\color{red}\beta}}$ near 0.
+\end{block}
+\end{frame}
+
+\begin{frame}{Model/Superprocess}
+\begin{block}{}<1-2>
+Denote by $\mathcal M(\mathbb R^d)$ ($\mathcal M_c(\mathbb R^d)$, resp.) the space of all finite Borel measures (of compact support, resp.) on $\mathbb R^d$. We suppose that $X=\{(X_t)_{t\ge 0}, 
+(\mathbb P_\mu)_{\mu \in \mathcal M(\mathbb R^d)}\}$ is a superprocess with spatial motion ${\color{blue}\xi}$ and branching mechanism ${\color{blue}\psi}$, i.e., a super-OU process.
+\end{block}
+\begin{block}{}<2>
+	In other word, for each non-negative bounded Borel function $f$ on $\mathbb R^d$, we have
+	\begin{align}
+		\label{eq: def of V_t}
+		\mathbb{P}_{\mu}[e^{-X_t(f)}]
+		= e^{-\mu(V_tf)},
+		\quad t\geq 0, \mu \in \mathcal M(\mathbb R^d),
+	\end{align}
+	where $(t,x) \mapsto V_tf(x)$ is the unique locally bounded non-negative solution to the equation
+	\begin{align}
+		V_tf(x) + \Pi_x \Big[ \int_0^t {\color{blue}\psi} (V_{t-s}f({\color{blue}\xi}_s) ) \mathrm ds\Big]
+		= \Pi_x [f({\color{blue}\xi}_t)],
+		\quad x\in \mathbb R^d, t\geq 0.
+	\end{align}	
+\end{block}
+\end{frame}
+
+\section{Main Result}
+\begin{frame}{Main Result/Preliminary}
+\begin{block}{}<1-2>
+The OU process ${\color{blue}\xi}$ has an invariant distribution
+$$
+    {\color{blue}\varphi(x)}dx
+    :=\Big (\frac{{\color{red}b}}{\pi \sigma^2}\Big )^{d/2}\exp \Big(-\frac{{\color{red}b}}{\sigma^2}|x|^2 \Big)dx,
+    \quad x\in \mathbb R^d.
+$$
+    Let ${\color{blue}L^2(\varphi)}:= \left\{ h  \in \mathcal B(\mathbb R^d, \mathbb R): \int_{\mathbb R^d} |h(x)|^2 {\color{blue}\varphi(x)} dx < \infty \right\}$.
+        Then, ${\color{blue}L^2(\varphi)}$ is a Hilbert space with inner product $\langle \cdot, \cdot \rangle_{\color{blue}\varphi}$.
+\end{block}
+
+\begin{block}{}<2>
+The OU operator $L$ has discrete spectrum
+$\color{red}\sigma(L)= \{-bk: k \in \mathbb Z_+\}$.
+The eigenfunctions of $L$ consists a family of polynomials $\color{red}\{\phi_p:p\in \mathbb Z_+^d\}$ which forms a complete orthonormal basis of ${\color{blue}L^2(\varphi)}$.
+For each $\color{red}p\in \mathbb Z_+^d$, 
+${\color{red}\phi_p}$ is an eigenfunction of $L$ corresponding to the eigenvalue ${\color{red}b}{\color{red}|p|}$, where $\color{red}|p|:= \sum_{k=1}^d p_k$. 
+\end{block}
+\end{frame}
+
+\begin{frame} {Main Result/Preliminary}
+	\begin{block}{}<1-4>
+		For $p\in \mathbb{Z}_+^d$, define a martingale
+		$
+		\color{blue}H_t^p
+		:= e^{-(\alpha-|p|b)t}X_t({\color{blue}\phi_p}), t\geq 0.
+		$
+	\end{block}
+	
+	\begin{block}{}<2-4>
+		For any $u \neq -1$, we write $\color{red}\tilde u = u/(1+ u)$.
+	\end{block}
+	
+	\begin{block}{Lemma 1}<3-4>
+		For any $\mu\in \mathcal M_c(\mathbb R^d)$, $\color{blue}(H_t^p)_{t\geq 0}$ is a $\mathbb{P}_{\mu}$-martingale.
+		Furthermore, if $\color{red}\alpha  \tilde \beta>|p|b$, then for any $\gamma\in (0, {\color{red}\beta})$ and $\mu\in \mathcal M_c(\mathbb R^d)$,  $\color{blue}(H_t^p)_{t\geq 0}$ is a $\mathbb{P}_{\mu}$-martingale bounded in $L^{1+\gamma}(\mathbb{P}_{\mu})$;
+		thus $\color{blue}H^p_{\infty}:=\lim_{t\rightarrow \infty}H_t^p$ exists $\mathbb{P}_{\mu}$-almost surely and in $L^{1+\gamma}(\mathbb P_\mu)$.
+	\end{block}
+	\begin{block}{}<4>
+		Fixing $\color{red}\beta\in (0,1)$, $\color{red}p\in \mathbb Z_+^d$ and $\color{red}b>0$, if the branching rate $\color{red} \alpha$ is large enough so that $\color{red}\alpha  \tilde \beta>|p|b$ then we say we are in the large branching rate regime; if $\color{red}\alpha \tilde \beta= |p|b$ then we are in the critical branching rate regime;
+		if $\color{red}\alpha \tilde \beta< |p|b$ then we are in the small branching rate regime.
+	\end{block}
+\end{frame}
+
+\begin{frame}{Main Result/Preliminary}
+\begin{block}{}<1-3>
+	Denote by $\color{blue}\mathcal P \subset L^2(\varphi)$ the class of functions of polynomial growth on $\mathbb R^d$:
+	$$
+	\left\{f\in \mathcal B(\mathbb R^d, \mathbb R):\exists~ C>0, n \in \mathbb Z_+ {\rm\,  s. t. \, } \forall x\in \mathbb R^d,~ |f(x)|\leq C(1+|x|)^n\right\}.
+	$$
+\end{block}
+\begin{block}{}<2-3>
+	Then we have the decomposition ${\color{blue}\mathcal P} = {\color{red}\mathcal C_\mathrm s} \otimes {\color{red}\mathcal C_\mathrm c} \otimes {\color{red}\mathcal C_\mathrm l}$ where
+\begin{align*}
+	{\color{red}\mathcal C_\mathrm s} &:= \mathcal P \cap \overline{\operatorname{Span}} \{ {\color{blue}\phi_p}: {\color{red}\alpha \tilde \beta < |p| b} \}\\
+ 	{\color{red}\mathcal C_\mathrm c}   &:= \mathcal P \cap \operatorname{Span} \{ {\color{blue}\phi_p} : {\color{red}\alpha \tilde \beta = |p| b} \} \\
+	{\color{red}\mathcal C_\mathrm l} &  := \mathcal P \cap \operatorname{Span} \{ {\color{blue}\phi_p}: {\color{red}\alpha \tilde \beta > |p| b} \}.
+\end{align*}
+\end{block}
+
+\begin{block}{}<3>
+Note that $\color{red}\mathcal C_\mathrm s$ is an infinite dimensional space, ${\color{red}\mathcal C_\mathrm l}$ and ${\color{red}\mathcal C_\mathrm c}$
+are finite dimensional spaces, and ${\color{red}\mathcal C_\mathrm c}$ might be empty.
+\end{block}
+\end{frame}
+
+\begin{frame}{Main Result/Preliminary}
+
+\begin{block}{}<1-2>
+Define a semigroup
+\begin{align*}
+{\color{blue}T_t} f
+:= \sum_{p \in \mathbb Z_+^d} e^{\color{red}-\big| |p|b - \alpha \tilde \beta \big|t} \langle f, \phi_p \rangle_{\varphi} \phi_p
+,\quad t\geq 0, f\in \mathcal P,
+\end{align*}
+and a family of functionals
+$$
+{\color{blue}m_t}[f]
+:= \eta \int_0^t \mathrm du \int_{\mathbb R^d} \big(-i {\color{blue}T_u} f(x)\big)^{1+{\color{red}\beta}} \varphi(x) \mathrm dx
+, \quad 0 \leq t< \infty, f\in \mathcal P.
+$$
+\end{block}
+
+\begin{block}{Proposition 2}<2>   
+For each $f\in \mathcal P$, there exists a $(1+{\color{red}\beta})$-stable random variable ${\color{red}\zeta^f}$ with characteristic function
+$
+\theta \mapsto e^{\color{red}m[\theta f]}, \theta \in \mathbb R,
+$
+where
+$$
+{\color{red}m[f]}
+:= \begin{cases}
+\lim_{t\to \infty} {\color{blue}m_t}[f], &
+f \in {\color{red}\mathcal C_\mathrm s \oplus \mathcal C_\mathrm l}, \\
+\lim_{t\to \infty} {\color{red}\frac{1}{t}} {\color{blue}m_t}[f], & f\in {\color{red}\mathcal P \setminus (\mathcal C_\mathrm s \oplus \mathcal C_\mathrm l)}.
+\end{cases}
+$$
+\end{block}
+\end{frame}
+
+\begin{frame}{Main Result/Preliminary}
+
+\begin{block}{}<1-2>
+For $f\in \mathcal P$, note that
+	$$
+	{\color{blue}\mathrm X_t(f)} = \sum_{p\in \mathbb Z^d_+}\langle f,\phi_p\rangle_\varphi e^{(\alpha-|p|b)t}{\color{blue}H^p_{t}}, \quad t\ge 0.
+	$$ 
+Define the centering 
+$$
+{\color{blue}\mathrm x_t(f)} : = \sum_{p\in \mathbb Z^d_+:{\color{red}\alpha} {\color{red}\tilde \beta>|p|b}}\langle f,\phi_p\rangle_\varphi e^{(\alpha-|p|b)t}{\color{blue}H^p_{B\infty}}, \quad t\ge 0.
+$$ 
+\end{block}
+\begin{block}{}<2>
+	Let $D :=\{\exists t\geq 0,~\text{such that}~ \|X_t\| =0 \}$
+	be the extinction event. 
+\end{block}
+\end{frame}
+
+\begin{frame}{Main Result}
+
+\begin{block}{Theorem 3 (Ren, Song, S. and Zhao, arXiv:2005.11731)}<1>
+If $\mu\in \mathcal M_\mathrm c(\mathbb R^d)\setminus\{0\}$, $\color{red}f_\mathrm s\in \mathcal C_\mathrm s$, $\color{red}f_\mathrm c\in \mathcal C_\mathrm c$ and $\color{red}f_\mathrm l \in \mathcal C_\mathrm l$, then under $\mathbb P_\mu(\cdot | D^c)$,
+	\begin{align*} 
+	&S(t):=
+	\Bigg(e^{-\alpha t}\|X_t\|, \frac{X_t({\color{red}f_\mathrm s})}{\|X_t\|^{{\color{blue}1-\tilde \beta}}},\frac{X_t({\color{red}f_\mathrm c)}}{\|{\color{blue}t}X_t\|^{{\color{blue}1-\tilde \beta}}}, \frac{ X_t({\color{red}f_\mathrm l}) - \mathrm x_t({\color{red}f_\mathrm l})}{\|X_t\|^{{\color{blue}1-\tilde \beta}}} \Bigg)
+	\\&\xrightarrow[t\rightarrow \infty]{d}({\color{blue}\widetilde H_\infty},{\color{red}\zeta^{f_\mathrm s}},{\color{red}\zeta^{f_\mathrm c}},{\color{red}\zeta^{-f_\mathrm l}}),
+	\end{align*}
+	where 
+${\color{red}\widetilde H_\infty}$ has the distribution of $\{H_{\infty}; \widetilde {\mathbb P}_\mu\}$; $\color{red}\zeta^{f_\mathrm s}$, $\color{red}\zeta^{f_\mathrm c}$ and $\color{red}\zeta^{-f_\mathrm l}$ are the $\color{blue}(1+\beta)$-stable random variables described in Proposition 2; $\color{blue}\widetilde H_\infty$,  $\color{red}\zeta^{f_\mathrm s}$, $\color{red}\zeta^{f_\mathrm c}$ and $\color{red}\zeta^{-f_\mathrm l}$ are independent.
+\end{block}
+\end{frame}
+
+\begin{frame}{Main Result}
+\begin{block}{Corollary 4}<1>
+Let $\mu\in \mathcal M_c(\mathbb R^d)\setminus \{0\}$ and $f\in \mathcal P$ with $\color{red}f=f_\mathrm s + f_\mathrm c+ f_\mathrm l$ where $\color{red}f_\mathrm s \in \mathcal C_\mathrm s$, $\color{red}f_\mathrm c\in \mathcal C_\mathrm c$ and $\color{red}f_\mathrm l \in \mathcal C_\mathrm l$.
+Then under $\mathbb{P}_{\mu}(\cdot| D^c)$, it holds that
+\begin{enumerate}
+\item  if $\color{red}f_\mathrm c\equiv 0$, then
+\[
+    \frac{ X_t(f) - \mathrm x_t(f)} {\|X_t\|^{{\color{blue}1-\tilde \beta}}}
+    \xrightarrow[t\to \infty]{d}
+       {\color{red}\zeta^{f_\mathrm s}}+{\color{red}\zeta^{-f_\mathrm l}},
+\]
+	where $\color{red}\zeta^{f_\mathrm s}$ and $\color{red}\zeta^{-f_\mathrm l}$  are the $\color{blue}(1+\beta)$-stable random variables described in Proposition 2, $\color{red}\zeta^{f_\mathrm s}$ and $\color{red}\zeta^{-f_\mathrm l}$ are independent;
+\item if $\color{red}f_\mathrm c\not \equiv 0$, then
+\[
+    \frac{ X_t(f) - \mathrm x_t(f)}{\|{\color{blue}t}X_t\|^{{\color{blue}1-\tilde \beta}}}
+    \xrightarrow[t\to \infty]{d}{\color{red}\zeta^{f_\mathrm c}}.
+\]
+	where $\color{red}\zeta^{f_\mathrm c}$ is the $\color{blue}(1+\beta)$-stable random variable described in Proposition 2.
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\section{Intuitive explanation}
+
+\begin{frame}{Intuitive explanation}
+\begin{block}{}<1-3>
+	The central limit theorem for $\color{blue}X_t(\phi_p)$ takes different forms depending on whether it's in the large branching regime (${\color{red}\alpha \tilde \beta > {\color{red}|p|}  b}$), or in the critical branching regime (${\color{red}\alpha \tilde \beta = {\color{red}|p|}  b}$), or in the small branching regime (${\color{red}\alpha \tilde \beta < {\color{red}|p|}  b}$).
+	We now give some intuitive explanation of this phase transition.
+\end{block}
+
+\begin{block}{}<2-3>
+	A superprocess can be thought of as a cloud of infinitesimal branching ``particles'' moving in space.
+\end{block}
+
+\begin{block}{}<3>
+	The phase transition is due to an interplay of two competing effects in the system: coarsening and smoothing.
+	The coarsening effect corresponds to the increase of the spatial inequality and is a consequence of the branching.
+	The smoothing effect corresponds to the decrease of the spatial inequality and is a consequence of the mixing property of the OU processes.
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Intuitive explanation}
+\begin{block}{}<1-3>
+	Let us discuss how the parameters $\color{red}\alpha, \beta, b$ and ${\color{red}|p|}$
+	influence those two effects:
+\end{block}
+\begin{block}{}<2-3>
+		The branching rate $\color{red}\alpha$ captures the mean intensity of the branching in the system.
+		Therefore, the lager the branching rate $\color{red}\alpha$, the stronger the coarsening effect.
+\end{block}
+\begin{block}{}<3>
+		The tail index $\color{red}\beta$ describes the heaviness of the tail of the offspring distribution which belongs to the domain of attraction of some $\color{red}(1+\beta)$-stable random variable.
+		When $\color{red}\beta$ is smaller i.e. the tail is heavier, then it is more likely that 
+		one particle can suddenly have a large amount of offspring.
+		In other words, the larger the tail index $\color{red}\beta$, the smaller the fluctuation of offspring number, and then the stronger the coarsening effect.
+\end{block}
+\end{frame}
+
+\begin{frame}{Intuitive explanation}
+\begin{block}{}<1-2>
+	The drift parameter $\color{red}b$ is related to the level of the mixing property of the OU particles.
+		The larger the drift parameter $\color{red}b$, the faster the OU-particles forgetting their initial position, and therefore the stronger the smoothing effect.
+\end{block}
+\begin{block}{}<2>
+		The order ${\color{red}|p|}$ is related to the capability of $\color{blue}\phi_p$ capturing the mixing property of the OU particles.
+		In particular, in the case that $\color{red}|p| = 0$, no mixing property can be captured. (Since $\color{blue}\phi_p \equiv 1$, we are only considering the total mass $\color{blue}\|X_t\|$).
+		In general, the higher the order ${\color{red}|p|}$, the more mixing property can be captured by $\color{blue}\phi_p$, and therefore the stronger the smoothing effect.
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\begin{center}
+\Huge{Thank you!}
+\end{center}
+\begin{center}
+\end{center}
+\end{frame}
+\end{document}
