@@ -201,7 +201,7 @@ $\mathcal{P}
 	\quad 0 \leq t< \infty, f\in \mathcal P.
 \end{align}
 %{
-{\bf Zhenyao: give definition for this non-integer power here.}
+{\bf Zhenyao: give definition for this non-integer power here. Check page 32 of our EJP paper.}
 %}
 	We have shown in \cite[Lemma 2.6 and Proposition 2.7]{RenSongSunZhao2019Stable} that,
 \begin{equation} \label{eq:I:R:3}
@@ -243,7 +243,7 @@ $\mathcal{P}
 \end{equation}
 	The above result gives the central limit theorem for $X_t(f)$ if $f\in \mathcal P\setminus\{0\}$ satisfies $\alpha \tilde \beta \leq \kappa_f b$.
 %{
-{\bf ZS: page 4 line 1. I think that “$\leq$” should be “$>$”}
+{\bf (ZS: One reviewer think here that “$\alpha \tilde \beta \leq \kappa_f b$” should be “$\alpha \tilde \beta > \kappa_f b$”. But I think it should be “$\alpha \tilde \beta \leq \kappa_f b$”.)}
 %}
 	A general  $f \in \mathcal P$ can be decomposed as $f_s + f_c + f_l$ with $f_s \in \mathcal C_\mathrm s$, $f_c \in \mathcal C_\mathrm c$ and $f_l \in \mathcal C_\mathrm l$;
   and if $f\in  \mathcal P$ satisfies $\alpha \tilde \beta > \kappa_f b$, then $f_\mathrm s$ and $f_\mathrm l$ maybe non-zero while $f_\mathrm c \equiv 0$.
@@ -294,7 +294,11 @@ if $f_\mathrm c\not\equiv 0$, then
 \end{cor}
 
 %{
-{\bf ZS: add some comments about the second Assumption here about its limitation. Why we are not generalizing it to the slowly varying case.}
+{\bf ZS: We can add some comments about the second Assumption here about its limitation. 
+	We can also think about why we can't easily generalize our result to slowly varying case. 
+	From remark 1.3 of our EJP paper, $\eta$ is an key parameter there. 
+	What is the role of $\eta$ in our end result? If we replace $\eta + o(1)$ by slowly varying functions, we might loss this parameter, and the result might not hold.
+}
 %}
 
 \section{Proof of main result}
@@ -319,7 +323,7 @@ an argument similar to that used in the proof of
 \end{lem}
 
 %{
-{\bf ZS: Give the definition of $\mathcal P^+$ here.}
+{\bf ZS: Give the definition of $\mathcal P^+$ here. $\mathcal P^+$ is the non-negative element in $\mathcal P$. See the original definition in our EJP paper page 10.}
 %}
 
 	The following result is a generalization of \cite[Proposition 3.5]{RenSongSunZhao2019Stable}, whose proof is similar to that of \cite[Proposition 3.5]{RenSongSunZhao2019Stable},
@@ -404,7 +408,7 @@ with Lemma \ref{lem:P:R} replacing the role of \cite[Lemma 2.9]{RenSongSunZhao20
 \]
 \end{lem}
 %{
-	{\bf ZS: Give the definition of $x^\beta$ for negative numbers.}
+	{\bf ZS: Here the non-integer power of negative number should be avoided. When we are applying it in (2.9) below, however, we don't have to use the non-negative values. }
 %}
 \begin{comment}
 \begin{proof}
@@ -446,6 +450,9 @@ with Lemma \ref{lem:P:R} replacing the role of \cite[Lemma 2.9]{RenSongSunZhao20
     &=\big(R'_\mathrm s(t), R'_\mathrm c(t), R'_\mathrm l(t)\big)
         \\& :=\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_k \tilde f_\mathrm s},t^{\tilde \beta - 1}\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_{k} \tilde f_\mathrm c},\sum_{k = 0}^{\lfloor t^2 \rfloor} \Upsilon_{t+k}^{- T_k \tilde f_\mathrm l}\Big),
 \end{align}
+%{
+{\bf ZS: Let's change the second equal sign above as $:=$.}
+%}
 where $T_k$ is the operator defined in 
 \eqref{e:Tt}, $\mathrm x_t(f_\mathrm l)$ is defined in \eqref{eq:oldResult} 
 with $f$ replaced with $f_\mathrm l$, $\tilde f_\mathrm s:=e^{\alpha(\tilde \beta - 1)} f_\mathrm s$, $\tilde f_\mathrm c:=e^{\alpha(\tilde \beta - 1)} f_\mathrm c$ and $\tilde f_\mathrm l := \sum_{p\in \mathbb Z^d_+: \alpha\tilde\beta>|p|b}e^{-(\alpha - |p|b)}\langle f_\mathrm l, \phi_p \rangle_\varphi \phi_p$.
@@ -543,7 +550,7 @@ taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 	\\& \xrightarrow[t\rightarrow \infty]{} 0.
 \end{align}
 %{
-{\bf ZS: there is a $1/t$ missed in the above inequality.}
+{\bf ZS: there is a $1/t$ missed in the above inequality. Indeed before the third integration on the right of the first inequality. This is only a typo.}
 %}
 	Combining this with \eqref{eq:I:R:3}, we get that
 \begin{equation}
@@ -651,7 +658,7 @@ taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 \end{multlined}
 \end{align}
 %{
-{\bf ZS: Above $\langle f, \phi_p\rangle_\varphi$ is missing.}
+{\bf ZS: Above $\langle f_l, \phi_p\rangle_\varphi$ is missing. This is only a typo.}
 %}
 	Now for each $t>0$, we get
 \begin{align}
