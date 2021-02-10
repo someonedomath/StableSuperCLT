@@ -142,7 +142,11 @@ $
 $ 
 	is non-trivial with respect to $\mathbb P_\mu$ for each  $\mu \in \mathcal M(\mathbb R^d)\setminus\{0\}$.
 	It follows from \cite[Lemma 2.2]{RenSongSunZhao2019Stable}  that, if Assumption \ref{asp: branching mechanism} holds, then $\eta$ and $\beta$ are uniquely determined by the L\'evy measure $\pi$.
-
+	%{ new
+    Throughout this paper, $\beta$ and  $\eta$ always stand for the constants in 
+     Assumption \ref{asp: branching mechanism}.
+ %}
+ 
 	We now recall some notation and basic facts from \cite{RenSongSunZhao2019Stable}.
 	We use  $(P_t)_{t\geq 0}$ to denote the transition semigroup of $\xi$.	
 	Define $P^{\alpha}_t f(x) := e^{\alpha t} P_t f(x) = \Pi_x [e^{\alpha t}f(\xi_t)]$ for each $x\in \mathbb R^d$, $t\geq 0$ and $f\in \mathcal B(\mathbb R^d, \mathbb R_+)$.
@@ -159,7 +163,12 @@ $
 \end{align}
 	Let $\mathbb Z_+ := \mathbb N\cup\{0\}$.
 	It is known that $(P_t)_{t\geq 0}$ is a strongly continuous semigroup in $L^2(\varphi)$ and its generator $L$ has discrete spectrum $\sigma(L)= \{-bk: k \in \mathbb Z_+\}$.	
-		The eigenfunctions of $L$ consists a family of polynomials $\{\phi_p:p\in \mathbb Z_+^d\}$ which forms a complete orthonormal basis of $L^2(\varphi)$.
+		The eigenfunctions of $L$ 
+%{		
+		%consists 
+		consists of 
+		%}
+		a family of polynomials $\{\phi_p:p\in \mathbb Z_+^d\}$ which forms a complete orthonormal basis of $L^2(\varphi)$.
 For each $p\in \mathbb Z_+^d$, 
 $\phi_p$ is an eigenfunction of $L$ corresponding to the eigenvalue $b|p|$, where $|p|:= \sum_{k=1}^d p_k$.
 	For each function $f\in L^2(\varphi)$, define the order of $f$ as
@@ -201,11 +210,13 @@ $\mathcal{P}
 	\quad 0 \leq t< \infty, f\in \mathcal P.
 \end{align}
 %{
-	Let us explain the non-integer power of the complex numbers used above. 
+%	Let us explain the non-integer power of the complex numbers used above. 
+	The non-integer power of the complex numbers above is has its usual meaning. For the reader's convenience, we recall the its definition here.
+%}	
 	For each $z\in \mathbb C\setminus (-\infty, 0]$, we define $\log z : = \log |z| + i \arg z$ where $\arg z \in (-\pi,\pi)$ is uniquely determined so that $z = |z|e^{i \arg z}$. 
 	For each $z\in \mathbb C\setminus (-\infty, 0]$ and $\gamma \in \mathbb R$, we define $z^\gamma := e^{\gamma \log z}$.
 	For each $\gamma \geq 0$, we define $0^\gamma := \lim_{z\to 0, z\in \mathbb C\setminus (-\infty,0]} z^\gamma=\mathbf 1_{\gamma = 0}$.
-%}
+
 
 	We have shown in \cite[Lemma 2.6 and Proposition 2.7]{RenSongSunZhao2019Stable} that,
 \begin{equation} \label{eq:I:R:3}
@@ -245,14 +256,13 @@ $\mathcal{P}
 \]
 \end{minipage}
 \end{equation}
-%{
-	%The above result gives the central limit theorem for $X_t(f)$ if $f\in \mathcal P\setminus\{0\}$ satisfies $\alpha \tilde \beta \leq \kappa_f b$.
-	%A general  $f \in \mathcal P$ can be decomposed as $f_s + f_c + f_l$ with $f_s \in \mathcal C_\mathrm s$, $f_c \in \mathcal C_\mathrm c$ and $f_l \in \mathcal C_\mathrm l$;
-  %and if $f\in  \mathcal P$ satisfies $\alpha \tilde \beta > \kappa_f b$, then $f_\mathrm s$ and $f_\mathrm l$ maybe non-zero while $f_\mathrm c \equiv 0$.
-	%In \cite{RenSongSunZhao2019Stable}, we were not able to establish a central limit theorem in this case. 
-	Any  $f \in \mathcal P$ can be decomposed as $f_s + f_c + f_l$ with $f_s \in \mathcal C_\mathrm s$, $f_c \in \mathcal C_\mathrm c$ and $f_l \in \mathcal C_\mathrm l$. 
-	In \cite{RenSongSunZhao2019Stable}, we were not able to establish a central limit theorem for $f$ if  $\|f_\mathrm s\|_{L^2(\varphi)}> 0, \|f_\mathrm c\|_{L^2(\varphi)} = 0$ and $\|f_\mathrm l\|_{L^2(\varphi)}> 0$.
+	Any  $f \in \mathcal P$ can be decomposed as 
+%{	
+%$f_s + f_c + f_l$ 
+	$f=f_s + f_c + f_l$ 
 %}	
+	with $f_s \in \mathcal C_\mathrm s$, $f_c \in \mathcal C_\mathrm c$ and $f_l \in \mathcal C_\mathrm l$. 
+	In \cite{RenSongSunZhao2019Stable}, we were not able to establish a central limit theorem for $f$ if  $\|f_\mathrm s\|_{L^2(\varphi)}> 0, \|f_\mathrm c\|_{L^2(\varphi)} = 0$ and $\|f_\mathrm l\|_{L^2(\varphi)}> 0$.
 	We conjectured there that the limit random variables in \eqref{eq:oldResult} for $f_\mathrm s\in \mathcal C_\mathrm s$, $f_\mathrm c\in \mathcal C_\mathrm c$ and $f_\mathrm l\in \mathcal C_\mathrm l$ are independent.
 	Once this asymptotic independence is established, a central limit theorem  for $ X_t(f)$ for all $f\in  \mathcal P$ would follow.
 
@@ -293,22 +303,27 @@ $\mathcal{P}
 if $f_\mathrm c\not\equiv 0$, then
 \[
     \frac{ X_t(f) - \mathrm x_t(f)}{\|tX_t\|^{1-\tilde \beta}}
-    \xrightarrow[t\to \infty]{d}\zeta^{f_\mathrm c}.
+    \xrightarrow[t\to \infty]{d}
+    %{
+   % \zeta^{f_\mathrm c}.
+   \zeta^{f_\mathrm c},
+   %}
 \]
 	where $\zeta^{f_\mathrm c}$ is the $(1+\beta)$-stable random variable described in \eqref{eq:I:R:3}.
 \end{enumerate}
 \end{cor}
 
-%{
+
 \begin{rem}
 	We mention here that  the branching mechanism $\psi$ considered in this paper can be written in a form of $\psi(z)= -\alpha z + z^{1+\beta} (\eta + \epsilon(z))$ where $\epsilon (z) \to 0$ as $z \to 0$ (See \cite[Remark 1.3]{RenSongSunZhao2019Stable}).
 	It would be interesting to consider the more general cases $\psi(z)= -\alpha z + z^{1+\beta}l(z)$ where $l(z)$ is only assumed to be a slowly varying function. 
-	Note that in this case if $l$ blows up at $0$ (for example $l(z) = \log z$) our result can not hold anymore. 
-	This is simply because the limiting $\alpha$-stable random variable $\zeta^f$ described in \eqref{eq:I:R:3} will cease to make sense. 
+%{	
+%Note that in this case if $l$ blows up at $0$ (for example $l(z) = \log z$) our result can not hold anymore. 
+%	This is simply because the limiting $\alpha$-stable random variable $\zeta^f$ described in \eqref{eq:I:R:3} will cease to make sense. 
+For this more general case, the arguments of \cite{RenSongSunZhao2019Stable} and this paper no longer work. It seems that new idea and treatment are needed.
+%}
 \end{rem}
 	
-	
-%}
 
 \section{Proof of main result}
 \label{proofs of main results}
@@ -320,7 +335,11 @@ if $f_\mathrm c\not\equiv 0$, then
   	\quad \Upsilon^f_t
    	:= \frac{X_{t+1} (f) - X_t(P_1^\alpha f)}{\| X_t\|^{1-\tilde \beta}}.
 \]
-	Form \cite[Theorem 3.4]{RenSongSunZhao2019Stable} we know that, for each $f\in \mathcal P$, $\langle Z_1f,\varphi\rangle$ is the characteristic exponent of 
+%{	
+%Form 
+From
+%}
+	\cite[Theorem 3.4]{RenSongSunZhao2019Stable} we know that, for each $f\in \mathcal P$, $\langle Z_1f,\varphi\rangle$ is the characteristic exponent of 
 the weak limit of $\Upsilon^f_t$.
 	For $g = g_\mathrm s + g_\mathrm c + g_\mathrm l\in \mathcal P$ with $g_\mathrm s \in \mathcal C_\mathrm s, g_\mathrm c \in \mathcal C_\mathrm c$ and $g_\mathrm 1 \in \mathcal C_\mathrm l$, we define $\overline {\mathcal P}_g:= \{\theta_\mathrm s T_n g_\mathrm s +  \theta_\mathrm c T_n g_\mathrm c + \theta_\mathrm 1 T_n g_\mathrm 1: n \in \mathbb Z_+, \theta_\mathrm s, \theta_\mathrm c, \theta_\mathrm l \in [-1,1]\}$, where $T_n$ is the operator defined in \eqref{e:Tt}.
 	The following Lemma \ref{lem:P:R} can be proved using 
@@ -328,10 +347,7 @@ an argument similar to that used in the proof of
 	\cite[Lemma 2.9]{RenSongSunZhao2019Stable}. We omit the details here.
 \begin{lem}
 \label{lem:P:R}
-	%{
-	%For any $g\in \mathcal P$ there exists $h \in \mathcal P^+$ such that for all $ f \in \overline {\mathcal P}_g$ and $t\geq 0$, we have $ | P_t (Z_1 f - \langle Z_1 f, \varphi \rangle )| \leq e^{-bt} h$.
 	For any $g\in \mathcal P$ there exists non-negative $h \in \mathcal P$ such that for all $ f \in \overline {\mathcal P}_g$ and $t\geq 0$, we have $ | P_t (Z_1 f - \langle Z_1 f, \varphi \rangle )| \leq e^{-bt} h$.
-	%}
 \end{lem}
 
 	The following result is a generalization of \cite[Proposition 3.5]{RenSongSunZhao2019Stable}, whose proof is similar to that of \cite[Proposition 3.5]{RenSongSunZhao2019Stable},
@@ -409,39 +425,51 @@ with Lemma \ref{lem:P:R} replacing the role of \cite[Lemma 2.9]{RenSongSunZhao20
 
 	The following analytic result is elementary, and will also be used in the proof of Theorem \ref{thm: II}.
 \begin{lem} \label{ineq: analysis}
-	There exists a constant $C>0$, such that for any $x,y \in \mathbb R$,
+	There exists a constant $C>0$ such that for any $x,y \in \mathbb R$,
 \[
-%{
-	%|(x+y)^{1+\beta}-x^{1+\beta}-y^{1+\beta}|
     |(ix+iy)^{1+\beta}-(ix)^{1+\beta}-(iy)^{1+\beta}|
     \leq C(|x||y|^{\beta}+|x|^{\beta}|y|).
-    %}
 \]
 \end{lem}
-%{
 \begin{proof}
    	Note the desired result holds if $x =0$ or $y = 0$.
    	So, we can assume $|x|>0$ and $|y|>0$.
    	Noticing also the symmetry between $x$ and $y$, we can assume without loss of generality that $|x|\geq |y|$.
-   	Also note that $\overline{ z^{1+\beta}} = \overline z^{1+\beta}$ for each $z \in \mathbb C \setminus (-\infty, 0)$ where $\bar z$ represents the conjugation of $z$.
-   	So by taking conjugation, we can verify that 
+   	Also note that $\overline{ z^{1+\beta}} = \overline z^{1+\beta}$ for each $z \in \mathbb C \setminus (-\infty, 0)$ 
+   	%{
+%   	where $\bar z$ represents the conjugation of $z$.
+   	where $\bar z$ is the complex conjugate of $z$.
+ %  	So by taking conjugation, we can verify that 
+ It is easy is see that
+ %}
 \[
 	|(ix+iy)^{1+\beta}-(ix)^{1+\beta}-(iy)^{1+\beta}|
 	= |(-ix-iy)^{1+\beta}-(-ix)^{1+\beta}-(-iy)^{1+\beta}|.
 \]
-	This allows us to further assume without loss of generality that $y>0$.
-	Now let us calculate that for each $z\in \mathbb C$, 
+%{
+%	This allows us to further assume without loss of generality that $y>0$.
+Thus we can further assume without loss of generality that $y>0$.
+%	Now let us calculate that for each $z\in \mathbb C$, 
+	Note that for any $z\in \mathbb C$, 
+	%}
 \begin{align}
   	&\lim_{r \to \infty, r>0}\frac{(r\pm 1)^{1+\beta}-r^{1+\beta} - z}{r^{\beta}}
   	=\lim_{r\to \infty, r > 0}\frac{(r\pm1)^{1+\beta}-r^{1+\beta}}{r^{\beta}}
   	\\&=\lim_{r\to \infty,r>0}\big((1\pm r^{-1})^{1+\beta}-1\big)r = \pm(1+\beta).
 \end{align}
-	Taking absolute value and using continuity, we get that for each $z\in \mathbb C$ there exists $C(z)>0$ such that for each $r\geq 1$,
+%{
+%	Taking absolute value and using continuity, 
+Combining the above with continuity, 
+	%}
+	we get that for each $z\in \mathbb C$ there exists $C(z)>0$ such that for each $r\geq 1$,
 \[
   	|(r\pm 1)^{1+\beta}-r^{1+\beta} - z|
   	\leq C(z) |r|^{\beta}.
 \]
-	For any $u\in \mathbb R\setminus\{0\}, r>0$ and $\gamma \geq 0$, from the fact that $\arg (iu r) = \arg(iu)+ \arg(r)$ we can verify $(iur)^{\gamma} = (iu)^{\gamma} r^{\gamma}$.
+%{
+%	For any $u\in \mathbb R\setminus\{0\}, r>0$ and $\gamma \geq 0$, from the fact that $\arg (iu r) = \arg(iu)+ \arg(r)$ we can verify $(iur)^{\gamma} = (iu)^{\gamma} r^{\gamma}$.
+One can easily check by definition that $(iur)^{\gamma} = (iu)^{\gamma} r^{\gamma}$ for  any $u\in \mathbb R\setminus\{0\}, r>0$ and $\gamma \geq 0$.
+	%}
 Therefore for each $r\geq 1$ we have
 \begin{align}
 	&\big|\big(i(1+ r)\big)^{1+\beta} - (ir)^{1+\beta} - i^{1+\beta}\big|
@@ -456,20 +484,32 @@ and for each $r\leq -1$ we have
 	\\&= |(-r-1)^{1+\beta}-(-r)^{1+\beta}  - i^{2+2\beta}|
 	\leq C(i^{2+2\beta}) |r|^{\beta}.
 \end{align}
-	To summarize, there exists a $C_1>0$ such that for each $r\in \mathbb R$ with $|r|\geq 1$,
+%{
+%	To summarize, 
+Summarizing, we have that 	
+%}	
+	there exists a $C_1>0$ such that for each $r\in \mathbb R$ with $|r|\geq 1$,
 \[
 	\big|\big( i(1+ r)\big)^{1+\beta} - (ir)^{1+\beta} - i^{1+\beta}\big| \leq C_1 |r|^\beta.
 \]
-	Now we can verify that
+%{	
+%Now we can verify that
+Now it follows immediately that
+%}
 \begin{align}
 	&|(ix+iy)^{1+\beta}-(ix)^{1+\beta}-(iy)^{1+\beta}|
-	= \big|y^{1+\beta}\big(i(1+x/y)^{1+\beta}-(ix/y)^{1+\beta}- i^{1+\beta}\big)\big|
+	= \big|y^{1+\beta}\big(
+	%{
+	%i(1+x/y)^{1+\beta}
+	(i(1+x/y))^{1+\beta}
+	%}
+	-(ix/y)^{1+\beta}- i^{1+\beta}\big)\big|
 	\\&= |y|^{1+\beta}\big|\big(i(1+x/y)\big)^{1+\beta}-(ix/y)^{1+\beta}-i^{1+\beta}\big|
 	\leq C_1|y||x|^{\beta}.
 	\qedhere
 \end{align}
 \end{proof}
-%}
+
 
 	In the remainder of this section, we  fix $\mu \in \mathcal M_c(\mathbb R^d)\setminus\{0\}$, $f_\mathrm s\in \mathcal C_\mathrm s$,  $f_\mathrm c\in \mathcal C_\mathrm c$ and $f_\mathrm l\in \mathcal C_\mathrm l$.
 	For every $t\geq 1$, define
@@ -477,10 +517,7 @@ and for each $r\leq -1$ we have
 	R(t)
 	&:=\Big( \frac{X_t(f_\mathrm s)}{\|X_t\|^{1-\tilde \beta}},\frac{X_t(f_\mathrm c)}{\|tX_t\|^{1-\tilde \beta}},\frac{ X_t(f_\mathrm l) - \mathrm x_t(f_\mathrm l)}{\|X_t\|^{1-\tilde \beta}}\Big),
         \\R'(t)
-    %{
-    %&=\big(R'_\mathrm s(t), R'_\mathrm c(t), R'_\mathrm l(t)\big)
     &:=\big(R'_\mathrm s(t), R'_\mathrm c(t), R'_\mathrm l(t)\big)
-    %}
         \\& :=\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_k \tilde f_\mathrm s},t^{\tilde \beta - 1}\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_{k} \tilde f_\mathrm c},\sum_{k = 0}^{\lfloor t^2 \rfloor} \Upsilon_{t+k}^{- T_k \tilde f_\mathrm l}\Big),
 \end{align}
 where $T_k$ is the operator defined in 
@@ -559,9 +596,6 @@ taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 	It follows from Lemma \ref{ineq: analysis} that there exists $C>0$ such that for all $u\geq 0$ and $t\geq 0$,
 \begin{align}
   	&|(-i(T_uf_\mathrm s+t^{\tilde{\beta}-1}T_uf_\mathrm c))^{1+\beta}-(-iT_uf_\mathrm s)^{1+\beta}-(-it^{\tilde{\beta}-1}T_uf_\mathrm c)^{1+\beta}|
-%{
-  	%\\&  = |-i|^{1+\beta} |(T_u f + t^{\tilde \beta -1} T_u f_\mathrm c)^{1+\beta} - (T_u f_\mathrm s)^{1+\beta} - (t^{\tilde \beta - 1}T_u f_\mathrm c)^{1+\beta}|
-%}
   	\\&\overset{\text{Lemma \ref{ineq: analysis}}}
   	\leq  C(t^{-\frac{\beta}{1+\beta}}|T_uf_\mathrm s||T_uf_\mathrm c|^{\beta}+t^{-\frac{1}{1+\beta}}|T_uf_\mathrm s|^{\beta}|T_uf_\mathrm c|)
   	\\&\label{eq:UOT.21}\leq C(t^{-\frac{\beta}{1+\beta}}e^{-\delta u}h|f_\mathrm c|^{\beta}+t^{-\frac{1}{1+\beta}}e^{-\delta\beta u}h^{\beta}|f_\mathrm c|).
@@ -572,12 +606,9 @@ taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 	\\&
 \begin{multlined}
 	\overset{\eqref{eq:UOT.15},\eqref{eq:M.13}}\leq\Big| \eta \int_0^{\lfloor t-\ln t \rfloor+1}\big\langle \big(-iT_u(f_\mathrm s+t^{\tilde{\beta}-1}f_\mathrm c)\big)^{1+\beta},\varphi \big\rangle \mathrm du - {}
-%{
 	\\ \eta \int_0^{\lfloor t-\ln t \rfloor+1} \langle (-iT_u f_\mathrm s)^{1+\beta}, \varphi \rangle  \mathrm du
-	%- \eta 
 	- \frac{1}{t} \eta 
 	\int_0^{\lfloor t-\ln t \rfloor+1} \langle (-iT_u f_\mathrm c)^{1+\beta}, \varphi \rangle  \mathrm du\Big|
-%}
 \end{multlined}
 	\\ & \overset{\eqref{eq:UOT.21}}\leq C_1\int_0^{\lfloor t-\ln t \rfloor+1}\langle t^{-\frac{\beta}{1+\beta}}e^{-\delta u}h|f_\mathrm c|^{\beta}+t^{-\frac{1}{1+\beta}}e^{-\delta\beta u}h^{\beta}|f_\mathrm c|, \varphi \rangle \mathrm du
 	\\& \leq C_1 t^{-\frac{\beta}{1+\beta}} \langle h|f_\mathrm c|^{\beta},\varphi \rangle \int_0^\infty e^{-\delta u} \mathrm du + C_1 t^{-\frac{1}{1+\beta}} \langle h^\beta|f_\mathrm c|,\varphi \rangle \int_0^\infty e^{-\delta \beta u} \mathrm du
@@ -626,11 +657,8 @@ taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 	and
 \begin{align}
 	\widetilde{S}(t,r)
-	%{
-	%= 
 	:=
 	(e^{-\alpha (t+r)}\|X_{t+r}\|-e^{-\alpha t}\|X_t\|,0,0,0),
-	%}
 \end{align}
 	where, for any $t>0$, $\mathrm x_t(f_\mathrm l)$ is defined in \eqref{eq:oldResult} with $f$ replaced with $f_\mathrm l$.
 	Then $S(t+r)=S(t,r)+\widetilde{S}(t,r)$.
@@ -687,10 +715,7 @@ taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 \begin{multlined}
 	=i\theta_\mathrm s \frac{X_{t+r}(f_\mathrm s)}{\|X_{t+r}\|^{1-\tilde{\beta}}} + \frac{i\theta_\mathrm c}{(t+r)^{1-\tilde{\beta}}} \frac{X_{t+r}(f_\mathrm c)}{\|X_{t+r}\|^{1-\tilde{\beta}}} + {}
 	\\\quad  i\theta_\mathrm l  \frac{ X_{t+r}(f_\mathrm l) - \sum_{p\in \mathbb Z_+^d:\alpha\tilde{\beta}>|p|b} 
-	%{
-		%e^{(\alpha - |p|b)(t+r)} e^{-(\alpha - |p|b)u}X_u(\phi_p) 
 		\langle f_\mathrm l, \phi_p\rangle_\varphi e^{(\alpha - |p|b)(t+r)} H_u^p 
-	%}
 	}{\|X_{t+r}\|^{1-\tilde{\beta}}}.
 \end{multlined}
 \end{align}
@@ -713,6 +738,12 @@ taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 \end{align}
 \end{proof}
 
+%{ new
+\bigskip
+\noindent
+ 
+{\bf Acknowledgments:}  We thank the referees for the very helpful comments.
+%
 \begin{thebibliography}{10}
 
 \bibitem{AdamczakMilos2015CLT}
