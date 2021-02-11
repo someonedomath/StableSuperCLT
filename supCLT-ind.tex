@@ -36,7 +36,9 @@
   	Peking University \\
   	Beijing 100871, P. R. China}
 \email{yxren@math.pku.edu.cn}
-\thanks{Yan-Xia Ren is supported in part by NSFC (Grant Nos. 11671017  and 11731009) and LMEQF}
+\thanks{Yan-Xia Ren is supported in part by NSFC 
+(Grant Nos. 11731009 and 12071011) 
+and LMEQF}
 \address{
   	Renming Song \\
   	Department of Mathematics \\
@@ -63,8 +65,10 @@
 \email{zhaojianjie@pku.edu.cn}
 
 \begin{abstract}
-	This paper is a continuation of our recent paper (Elect. J. Probab. \textbf{24} (2019), no. 141) and is devoted to the asymptotic behavior of a class of supercritical super Ornstein-Uhlenbeck processes $(X_t)_{t\geq 0}$ with branching mechanisms of infinite second moment. 
-	In the aforementioned paper, we proved stable central limit theorems for  $X_t(f) $ for {\it some} functions $f$ of polynomial growth in three different regimes. 
+	This paper is a continuation of our recent paper 
+(Electron. J. Probab. \textbf{24} (2019), no. 141)
+and is devoted to the asymptotic behavior of a class of supercritical super Ornstein-Uhlenbeck processes $(X_t)_{t\geq 0}$ with branching mechanisms of infinite second moment.
+	In the aforementioned paper, we proved stable central limit theorems for  $X_t(f) $ for {\it some} functions $f$ of polynomial growth in three different regimes.
 	However, we were not able to prove central limit theorems for $X_t(f) $ for {\it all} functions $f$ of polynomial growth.
 	In this note, we show that the limiting stable random variables in the three different regimes are independent, and as a consequence, we get stable central limit theorems for  $X_t(f) $ for {\it all} functions $f$ of polynomial growth.
 \end{abstract}
@@ -139,12 +143,12 @@
 $
 	D
 	:=\{\exists t\geq 0~\text{such that}~ \|X_t\| =0 \}
-$ 
+$
 	is non-trivial with respect to $\mathbb P_\mu$ for each  $\mu \in \mathcal M(\mathbb R^d)\setminus\{0\}$.
 	It follows from \cite[Lemma 2.2]{RenSongSunZhao2019Stable}  that, if Assumption \ref{asp: branching mechanism} holds, then $\eta$ and $\beta$ are uniquely determined by the L\'evy measure $\pi$.
-    Throughout this paper, $\beta$ and  $\eta$ always stand for the constants in 
+    Throughout this paper, $\beta$ and  $\eta$ always stand for the constants in
      Assumption \ref{asp: branching mechanism}.
- 
+
 	We now recall some notation and basic facts from \cite{RenSongSunZhao2019Stable}.
 	We use  $(P_t)_{t\geq 0}$ to denote the transition semigroup of $\xi$.	
 	Define $P^{\alpha}_t f(x) := e^{\alpha t} P_t f(x) = \Pi_x [e^{\alpha t}f(\xi_t)]$ for each $x\in \mathbb R^d$, $t\geq 0$ and $f\in \mathcal B(\mathbb R^d, \mathbb R_+)$.
@@ -161,10 +165,10 @@ $
 \end{align}
 	Let $\mathbb Z_+ := \mathbb N\cup\{0\}$.
 	It is known that $(P_t)_{t\geq 0}$ is a strongly continuous semigroup in $L^2(\varphi)$ and its generator $L$ has discrete spectrum $\sigma(L)= \{-bk: k \in \mathbb Z_+\}$.	
-		The eigenfunctions of $L$ 
-		consists of 
+		The eigenfunctions of $L$
+		consists of
 		a family of polynomials $\{\phi_p:p\in \mathbb Z_+^d\}$ which forms a complete orthonormal basis of $L^2(\varphi)$.
-For each $p\in \mathbb Z_+^d$, 
+For each $p\in \mathbb Z_+^d$,
 $\phi_p$ is an eigenfunction of $L$ corresponding to the eigenvalue $b|p|$, where $|p|:= \sum_{k=1}^d p_k$.
 	For each function $f\in L^2(\varphi)$, define the order of $f$ as
 $\kappa_f
@@ -204,11 +208,8 @@ $\mathcal{P}
 	:= \eta \int_0^t \mathrm du \int_{\mathbb R^d} \big(-iT_u f(x)\big)^{1+\beta} \varphi(x) \mathrm dx,
 	\quad 0 \leq t< \infty, f\in \mathcal P.
 \end{align}
-%{
-%	The non-integer power of the complex numbers above is has its usual meaning. For the reader's convenience, we recall the its definition here.
 	Let us recall the definition of the non-integer power of complex numbers here.
-%}	
-	For each $z\in \mathbb C\setminus (-\infty, 0]$, we define $\log z : = \log |z| + i \arg z$ where $\arg z \in (-\pi,\pi)$ is uniquely determined so that $z = |z|e^{i \arg z}$. 
+	For each $z\in \mathbb C\setminus (-\infty, 0]$, we define $\log z : = \log |z| + i \arg z$ where $\arg z \in (-\pi,\pi)$ is uniquely determined so that $z = |z|e^{i \arg z}$.
 	For each $z\in \mathbb C\setminus (-\infty, 0]$ and $\gamma \in \mathbb R$, we define $z^\gamma := e^{\gamma \log z}$.
 	For each $\gamma \geq 0$, we define $0^\gamma := \lim_{z\to 0, z\in \mathbb C\setminus (-\infty,0]} z^\gamma=\mathbf 1_{\gamma = 0}$.
 
@@ -251,9 +252,9 @@ $\mathcal{P}
 \]
 \end{minipage}
 \end{equation}
-	Any  $f \in \mathcal P$ can be decomposed as 
-	$f=f_s + f_c + f_l$ 
-	with $f_s \in \mathcal C_\mathrm s$, $f_c \in \mathcal C_\mathrm c$ and $f_l \in \mathcal C_\mathrm l$. 
+	Any  $f \in \mathcal P$ can be decomposed as
+	$f=f_s + f_c + f_l$
+	with $f_s \in \mathcal C_\mathrm s$, $f_c \in \mathcal C_\mathrm c$ and $f_l \in \mathcal C_\mathrm l$.
 	In \cite{RenSongSunZhao2019Stable}, we were not able to establish a central limit theorem for $f$ if  $\|f_\mathrm s\|_{L^2(\varphi)}> 0, \|f_\mathrm c\|_{L^2(\varphi)} = 0$ and $\|f_\mathrm l\|_{L^2(\varphi)}> 0$.
 	We conjectured there that the limit random variables in \eqref{eq:oldResult} for $f_\mathrm s\in \mathcal C_\mathrm s$, $f_\mathrm c\in \mathcal C_\mathrm c$ and $f_\mathrm l\in \mathcal C_\mathrm l$ are independent.
 	Once this asymptotic independence is established, a central limit theorem  for $ X_t(f)$ for all $f\in  \mathcal P$ would follow.
@@ -269,8 +270,8 @@ $\mathcal{P}
 	\Bigg)
 	\\&\xrightarrow[t\rightarrow \infty]{d}(\widetilde H_\infty,\zeta^{f_\mathrm s},\zeta^{f_\mathrm c},\zeta^{-f_\mathrm l}),
 \end{align}
-	where $\mathrm x_t(f_\mathrm l)$ is defined in 
-	\eqref{eq:oldResult} 
+	where $\mathrm x_t(f_\mathrm l)$ is defined in
+	\eqref{eq:oldResult}
 	with $f$ replaced with $f_\mathrm l$;
 	$\widetilde H_\infty$ has the distribution of $\{H_{\infty}; \widetilde {\mathbb P}_\mu\}$;
 	$\zeta^{f_\mathrm s}$, $\zeta^{f_\mathrm c}$ and $\zeta^{-f_\mathrm l}$ are the $(1+\beta)$-stable random variables described in \eqref{eq:I:R:3};
@@ -305,7 +306,7 @@ if $f_\mathrm c\not\equiv 0$, then
 
 \begin{rem}
 	We mention here that  the branching mechanism $\psi$ considered in this paper can be written in a form of $\psi(z)= -\alpha z + z^{1+\beta} (\eta + \epsilon(z))$ where $\epsilon (z) \to 0$ as $z \to 0$ (See \cite[Remark 1.3]{RenSongSunZhao2019Stable}).
-	It would be interesting to consider the more general cases $\psi(z)= -\alpha z + z^{1+\beta}l(z)$ where $l(z)$ is only assumed to be a slowly varying function. 
+	It would be interesting to consider the more general cases $\psi(z)= -\alpha z + z^{1+\beta}l(z)$ where $l(z)$ is only assumed to be a slowly varying function.
 For this more general case, the arguments of \cite{RenSongSunZhao2019Stable} and this paper no longer work. It seems that new idea and treatment are needed.
 \end{rem}
 	
@@ -321,11 +322,11 @@ For this more general case, the arguments of \cite{RenSongSunZhao2019Stable} and
    	:= \frac{X_{t+1} (f) - X_t(P_1^\alpha f)}{\| X_t\|^{1-\tilde \beta}}.
 \]
 From
-	\cite[Theorem 3.4]{RenSongSunZhao2019Stable} we know that, for each $f\in \mathcal P$, $\langle Z_1f,\varphi\rangle$ is the characteristic exponent of 
+	\cite[Theorem 3.4]{RenSongSunZhao2019Stable} we know that, for each $f\in \mathcal P$, $\langle Z_1f,\varphi\rangle$ is the characteristic exponent of
 the weak limit of $\Upsilon^f_t$.
 	For $g = g_\mathrm s + g_\mathrm c + g_\mathrm l\in \mathcal P$ with $g_\mathrm s \in \mathcal C_\mathrm s, g_\mathrm c \in \mathcal C_\mathrm c$ and $g_\mathrm 1 \in \mathcal C_\mathrm l$, we define $\overline {\mathcal P}_g:= \{\theta_\mathrm s T_n g_\mathrm s +  \theta_\mathrm c T_n g_\mathrm c + \theta_\mathrm 1 T_n g_\mathrm 1: n \in \mathbb Z_+, \theta_\mathrm s, \theta_\mathrm c, \theta_\mathrm l \in [-1,1]\}$, where $T_n$ is the operator defined in \eqref{e:Tt}.
-	The following Lemma \ref{lem:P:R} can be proved using 
-an argument similar to that used in the proof of 
+	The following Lemma \ref{lem:P:R} can be proved using
+an argument similar to that used in the proof of
 	\cite[Lemma 2.9]{RenSongSunZhao2019Stable}. We omit the details here.
 \begin{lem}
 \label{lem:P:R}
@@ -417,7 +418,7 @@ with Lemma \ref{lem:P:R} replacing the role of \cite[Lemma 2.9]{RenSongSunZhao20
    	Note the desired result holds if $x =0$ or $y = 0$.
    	So, we can assume $|x|>0$ and $|y|>0$.
    	Noticing also the symmetry between $x$ and $y$, we can assume without loss of generality that $|x|\geq |y|$.
-   	Also note that $\overline{ z^{1+\beta}} = \overline z^{1+\beta}$ for each $z \in \mathbb C \setminus (-\infty, 0)$ 
+   	Also note that $\overline{ z^{1+\beta}} = \overline z^{1+\beta}$ for each $z \in \mathbb C \setminus (-\infty, 0)$
    	where $\bar z$ is the complex conjugate of $z$.
  It is easy is see that
 \[
@@ -425,7 +426,7 @@ with Lemma \ref{lem:P:R} replacing the role of \cite[Lemma 2.9]{RenSongSunZhao20
 	= |(-ix-iy)^{1+\beta}-(-ix)^{1+\beta}-(-iy)^{1+\beta}|.
 \]
 Thus we can further assume without loss of generality that $y>0$.
-	Note that for any $z\in \mathbb C$, 
+	Note that for any $z\in \mathbb C$,
 \begin{align}
   	&\lim_{r \to \infty, r>0}\frac{(r\pm 1)^{1+\beta}-r^{1+\beta} - z}{r^{\beta}}
   	=\lim_{r\to \infty, r > 0}\frac{(r\pm1)^{1+\beta}-r^{1+\beta}}{r^{\beta}}
@@ -477,8 +478,8 @@ Now it follows immediately that
     &:=\big(R'_\mathrm s(t), R'_\mathrm c(t), R'_\mathrm l(t)\big)
         \\& :=\Big(\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_k \tilde f_\mathrm s},t^{\tilde \beta - 1}\sum_{k=0}^{\lfloor t-\ln t \rfloor} \Upsilon_{t-k-1}^{T_{k} \tilde f_\mathrm c},\sum_{k = 0}^{\lfloor t^2 \rfloor} \Upsilon_{t+k}^{- T_k \tilde f_\mathrm l}\Big),
 \end{align}
-where $T_k$ is the operator defined in 
-\eqref{e:Tt}, $\mathrm x_t(f_\mathrm l)$ is defined in \eqref{eq:oldResult} 
+where $T_k$ is the operator defined in
+\eqref{e:Tt}, $\mathrm x_t(f_\mathrm l)$ is defined in \eqref{eq:oldResult}
 with $f$ replaced with $f_\mathrm l$, $\tilde f_\mathrm s:=e^{\alpha(\tilde \beta - 1)} f_\mathrm s$, $\tilde f_\mathrm c:=e^{\alpha(\tilde \beta - 1)} f_\mathrm c$ and $\tilde f_\mathrm l := \sum_{p\in \mathbb Z^d_+: \alpha\tilde\beta>|p|b}e^{-(\alpha - |p|b)}\langle f_\mathrm l, \phi_p \rangle_\varphi \phi_p$.
 	The following result is a special case of Theorem \ref{thm:M}.
 \begin{thm}\label{thm: II}
@@ -486,7 +487,7 @@ with $f$ replaced with $f_\mathrm l$, $\tilde f_\mathrm s:=e^{\alpha(\tilde \bet
 \end{thm}
 \begin{proof}
 	In this proof, we always work under $\mathbb{\widetilde{P}}_{\mu}$.
-	According to the proof of 
+	According to the proof of
 \cite[Theorem 1.6]{RenSongSunZhao2019Stable} and the fact that the convergence in
  probability of random vectors to the zero vector is equivalent to the convergence of each components of the random vectors to zero, we have
 \[
@@ -506,7 +507,7 @@ with $f$ replaced with $f_\mathrm l$, $\tilde f_\mathrm s:=e^{\alpha(\tilde \bet
 	= \widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i\sum_{k=0}^{\lfloor t-\ln t \rfloor}\Upsilon_{t-k-1}^{T_k(\tilde{f_\mathrm s}+t^{\tilde{\beta}-1} \tilde{f}_{\mathrm c})}\Big)\exp\Big(i\sum_{k=0}^{\lfloor t^2 \rfloor}\Upsilon_{t+k}^{-T_k\tilde{f}_{\mathrm l}}\Big)\Big].
 \]
 	Note that $\{T_k(\tilde f_\mathrm s + t^{\tilde\beta - 1}\tilde f_{\mathrm c}):k\in \mathbb Z_+, t\geq 1\}\subset \overline{\mathcal P}_{\tilde f_\mathrm s + \tilde f_{\mathrm c}}$ and $\{-T_k\tilde{f}_{\mathrm l}: k\in \mathbb Z_+\}\subset \overline{\mathcal P}_{\tilde f_\mathrm l}$.
-	Therefore, we can use Proposition \ref{cor:MI} with $f$ 
+	Therefore, we can use Proposition \ref{cor:MI} with $f$
 taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 	$\tilde{f}_{\mathrm l}$
 	to get that there exist $C_1,\delta_1 > 0$ such that for every $t>e$ (which implies $t\geq \lfloor t - \ln t\rfloor +1$),
@@ -528,7 +529,7 @@ taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 	\widetilde{\mathbb P}_{\mu}\Big[\exp\Big(i \sum_{j=\mathrm s,\mathrm c,\mathrm l} R'_{j}(t)\Big)\Big]
 	\xrightarrow[t\to \infty]{} \exp(m[f_\mathrm s]+m[f_\mathrm c]+m[-f_\mathrm l]).
 \]
-	Since $R'_{j}(t)$ are linear 
+	Since $R'_{j}(t)$ are linear
 	 in $f_j \in \mathcal C_j~(j=\mathrm s,\mathrm c,\mathrm l)$, replacing $f_j$ with $\theta_j f_j$, we immediately get \eqref{lem:UOT}.
 
 	Now we prove the claim \eqref{eq:UOT.1}.
@@ -564,7 +565,7 @@ taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 \begin{multlined}
 	\overset{\eqref{eq:UOT.15},\eqref{eq:M.13}}\leq\Big| \eta \int_0^{\lfloor t-\ln t \rfloor+1}\big\langle \big(-iT_u(f_\mathrm s+t^{\tilde{\beta}-1}f_\mathrm c)\big)^{1+\beta},\varphi \big\rangle \mathrm du - {}
 	\\ \eta \int_0^{\lfloor t-\ln t \rfloor+1} \langle (-iT_u f_\mathrm s)^{1+\beta}, \varphi \rangle  \mathrm du
-	- \frac{1}{t} \eta 
+	- \frac{1}{t} \eta
 	\int_0^{\lfloor t-\ln t \rfloor+1} \langle (-iT_u f_\mathrm c)^{1+\beta}, \varphi \rangle  \mathrm du\Big|
 \end{multlined}
 	\\ & \overset{\eqref{eq:UOT.21}}\leq C_1\int_0^{\lfloor t-\ln t \rfloor+1}\langle t^{-\frac{\beta}{1+\beta}}e^{-\delta u}h|f_\mathrm c|^{\beta}+t^{-\frac{1}{1+\beta}}e^{-\delta\beta u}h^{\beta}|f_\mathrm c|, \varphi \rangle \mathrm du
@@ -671,8 +672,8 @@ taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 	\\&\label{eq:M.6}
 \begin{multlined}
 	=i\theta_\mathrm s \frac{X_{t+r}(f_\mathrm s)}{\|X_{t+r}\|^{1-\tilde{\beta}}} + \frac{i\theta_\mathrm c}{(t+r)^{1-\tilde{\beta}}} \frac{X_{t+r}(f_\mathrm c)}{\|X_{t+r}\|^{1-\tilde{\beta}}} + {}
-	\\\quad  i\theta_\mathrm l  \frac{ X_{t+r}(f_\mathrm l) - \sum_{p\in \mathbb Z_+^d:\alpha\tilde{\beta}>|p|b} 
-		\langle f_\mathrm l, \phi_p\rangle_\varphi e^{(\alpha - |p|b)(t+r)} H_u^p 
+	\\\quad  i\theta_\mathrm l  \frac{ X_{t+r}(f_\mathrm l) - \sum_{p\in \mathbb Z_+^d:\alpha\tilde{\beta}>|p|b}
+		\langle f_\mathrm l, \phi_p\rangle_\varphi e^{(\alpha - |p|b)(t+r)} H_u^p
 	}{\|X_{t+r}\|^{1-\tilde{\beta}}}.
 \end{multlined}
 \end{align}
@@ -695,13 +696,8 @@ taken as $\tilde{f_\mathrm s}+ \tilde{f}_{\mathrm c}$ and $g$ taken as
 \end{align}
 \end{proof}
 
-%{
-%\bigskip
-%\noindent
-% {\bf Acknowledgments:}  
 \subsection*{Acknowledgment}
 We thank the referees for the very helpful comments.
-%}
 \begin{thebibliography}{10}
 
 \bibitem{AdamczakMilos2015CLT}
@@ -798,7 +794,8 @@ We thank the referees for the very helpful comments.
 \bibitem{RenSongSunZhao2019Stable}
 	Y.-X. Ren, R. Song, Z. Sun and J. Zhao,
 	\emph{Stable central limit theorems for super Ornstein-Uhlenbeck processes},
-	Elect. J Probab., \textbf{24} (2019), no. 141, 1--42.
+ Electron. J. Probab.,
+\textbf{24} (2019), no. 141, 1--42.
 
 \bibitem{RenSongZhang2014Central}
   	Y.-X. Ren, R. Song, and R. Zhang,
