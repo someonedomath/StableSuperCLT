@@ -1,0 +1,163 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%%
+%%            NOTE: The content in this template, including title, authors' name and affiliation, and etc.
+%%                 is ONLY a sample for the author's guidance.
+%%
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{amse-new}
+
+\numberwithin{equation}{section} %%% Equations numbered by section. If you don't want it, please delete it.
+
+\begin{document}
+
+ \PageNum{1}
+ \Volume{201x}{Sep.}{x}{x}
+ \OnlineTime{August 15, 201x}
+ \DOI{0000000000000000}
+ \EditorNote{Received x x, 201x, accepted x x, 201x}
+
+\abovedisplayskip 6pt plus 2pt minus 2pt \belowdisplayskip 6pt
+plus 2pt minus 2pt
+%%%%%%%%%%%%%%%%
+\def\vsp{\vspace{1mm}}
+\def\th#1{\vspace{1mm}\noindent{\bf #1}\quad}
+\def\proof{\vspace{1mm}\noindent{\it Proof}\quad}
+\def\no{\nonumber}
+\newenvironment{prof}[1][Proof]{\noindent\textit{#1}\quad }
+{\hfill $\Box$\vspace{0.7mm}}
+\def\q{\quad} \def\qq{\qquad}
+\allowdisplaybreaks[4]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%-------------------       Beginning of  Author's Definitions       -------------------%%
+%%                     Note: You may add your own definitions here.
+
+
+
+%%-------------------         the end of  Author's Definitions           -------------------%%
+
+
+
+\AuthorMark{Surname1 F1. and Surname2 F2. }                             %%%  appear on the head of even pages  %%%
+
+\TitleMark{A Template for Journal}  %%% Running Title, appear on the head of odd pages  %%%
+
+\title{A Template for Journal        %%%   Main Title of your paper  %%%
+\footnote{Supported by \ldots (Grant No. \ldots)}}                  %%%   the Fund which you are supported by  %%%
+
+\author{Firstname1 \uppercase{Surname1}}             %%%  1st Author's information   %%%
+    {Address\\
+    E-mail\,$:$ }
+
+\author{Firstname2 SURNAME2}     %%%  2nd Author's info, if exists, or you may delete this part directly  %%%
+    {Address\\
+    E-mail\,$:$  }
+
+\maketitle%
+
+
+\Abstract{Please make sure NO reference number in your Abstract since it is misunderstood independent of full text.}      % the abstract
+
+\Keywords{Aaaa, bbbb, cccc}        % the keywords
+
+\MRSubClass{05B05, 05B25, 20B25}      % MR(2000) Subject Classification
+
+%\baselineskip 15pt
+
+\section{Introduction}
+
+\subsection{A Subsection}
+
+Please make sure that your paper contains correct reference
+sequence (please resort them according to its {\it alphabetical
+order} and make sure that each bibliographical item is labelled
+and that these items are recalled using the command
+\verb|\cite{...}|, such as \cite{LT}, and \cite{HB,T1,T2,T3})
+
+All equations, theorems, definitions, lemmas, propositions,
+corollaries, examples, remarks etc. would be better to be numbered
+consecutively and unrepeatedly within each section. For example,
+Definition 2.1, Lemma 2.2, Theorem 2.3 \ldots.
+
+Use \verb|\label| and \verb|\ref| or \verb|\eqref| to
+automatically cross-reference sections, equations, theorems and
+theorem-like environments, tables, figures, etc.
+
+\begin{theorem}[\cite{HB}]\label{th:1.1} %Theorem 1.1 could be recalled by using Theorem \ref{th:1.1}
+The statements of theorems, lemmas, definitions, propositions,
+corollaries, conjectures, etc. are set in italics, by using
+\begin{verbatim}
+\begin{theorem/lemma/definition/proposition/corollary/conjecture}
+\end{theorem/lemma/definition/proposition/corollary/conjecture}.
+\end{verbatim}
+\end{theorem}
+
+\begin{prof}  %you can also use the environment \begin{proof}\end{proof}
+Observe that
+\begin{align}\label{E:1.1}
+AAAAAAAAAA &= BBBBBBBBBBB\nonumber \\
+           &\quad + CCCCCCCCCC\nonumber \\
+           &= DDDDDDDDDDDDD.
+\end{align}
+Now apply induction on $n$ to \eqref{E:1.1}\ldots
+\end{prof}
+
+\begin{remark}\label{re:1.2}
+Remarks, examples, problems, etc. are set in roman type.
+\end{remark}
+
+
+\subsection{Table}
+
+\begin{table}
+\begin{tabular}{|c|c|c|l|c|}
+\hline $P(x)$ & $i$& $(e(1),e(2),e(4))$ & $(e(3),e(6),e(12),e(24))$ & $T(E)$ \\
+\hline $P_1$  &    & & &$\emptyset$ \\
+\hline $P_2$  & 4  & & $(1,1,1,0)\rightarrow(0,0,0,1)$ &2\\
+\hline $P_3$  & 2  & &$(1,1,1,0)\rightarrow(0,0,2,0)$ &1\\
+\hline $P_4$  & 2  & $(0,1,1)\rightarrow(1,2,0)$ & &1\\
+\hline $P_5$  & 2  & $(0,1,1)\rightarrow(1,2,0)$ &$(1,1,1,0)\rightarrow(0,0,0,1)$ &$1,2$\\
+\hline $P_6$  & 6  & $(0,1,1)\rightarrow(1,2,0)$ &$(1,1,1,0)\rightarrow(2,2,0,0)$ &1\\
+\hline $P_7$  & 3  & $(0,1,1)\rightarrow(1,0,1)$ &$(1,1,1,0)\rightarrow(2,0,1,0)$ &0\\
+\hline $P_8$  & 3  & $(0,1,1)\rightarrow(2,1,0)$ &$(1,1,1,0)\rightarrow(2,0,1,0) \rightarrow(3,1,0,0)$ &$0,1$\\
+\hline
+\end{tabular}
+\caption{Aaa bbb ccc\label{tab}}
+\end{table}
+
+
+\subsection{Figure}
+
+%\centerline{\includegraphics[scale=1.2]{actmark.eps}}
+%\centerline{\small Figure 1\quad Journal mark}
+
+\acknowledgements{\rm We thank the referees for their time and
+comments. }
+
+
+
+\begin{thebibliography}{99}
+
+\bibitem{HB} %% Books %% surname(s), initial(s), title, publisher, place of publication, year
+Huppert, B., Blackburn, N.: Finite Groups II, Springer-Verlag, New
+York, 1982
+
+\bibitem{LT} %% Journals %% surname(s), initial(s), article, journal, volume, relevant page numbers, year
+Lorenzini, D., Tucker, T. J.: The equations and the method of
+Chabauty--Coleman. \emph{Invent. Math.}, \textbf{148}, 1--46
+(2002)
+
+\bibitem{T1}
+Test
+
+\bibitem{T2}
+Test
+
+\bibitem{T3}
+Test
+
+\end{thebibliography}
+
+
+\end{document}
